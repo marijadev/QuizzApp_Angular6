@@ -10,12 +10,16 @@ import { CoreModule } from './core/core.module';
 import { QuestionModule } from './questions/question.module';
 import { UsersComponent } from './users/users.component';
 import { ResultsComponent } from './results/results.component';
+import { TestsComponent } from './tests/tests.component';
+import { PassedTestsComponent } from './tests/passed-tests/passed-tests.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     ResultsComponent,
+    TestsComponent,
+    PassedTestsComponent,
   ],
   imports: [
 	BrowserModule,

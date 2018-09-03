@@ -6,6 +6,8 @@ import { UsersComponent } from '../users/users.component';
 import { QuestionComponent } from '../questions/question/question.component';
 import { ResultsComponent } from '../results/results.component';
 import { HeaderComponent } from './header/header.component';
+import { TestsComponent } from '../tests/tests.component';
+import { PassedTestsComponent } from '../tests/passed-tests/passed-tests.component';
 
 const coreRoutes: Routes = [
 	{
@@ -13,7 +15,8 @@ const coreRoutes: Routes = [
 			{ path: 'users', component: UsersComponent },
 			{ path: 'question', component: QuestionComponent },
 			{ path: 'results', component: ResultsComponent },
-
+			{ path: 'passed-tests', component: PassedTestsComponent },
+			{ path: 'tests', component: TestsComponent },
 		]
 	},
 	{ path: 'header', component: HeaderComponent },
