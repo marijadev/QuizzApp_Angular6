@@ -9,7 +9,7 @@ const questionRoutes: Routes = [
 ]
 
 @NgModule({
-	imports: [RouterModule.forRoot(questionRoutes)],
+	imports: [RouterModule.forChild(questionRoutes)],
 	exports: [RouterModule]
 })
 export class QuestionRouting {}
