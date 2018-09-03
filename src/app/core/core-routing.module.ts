@@ -13,6 +13,7 @@ const coreRoutes: Routes = [
 			{ path: 'users', component: UsersComponent },
 			{ path: 'question', component: QuestionComponent },
 			{ path: 'results', component: ResultsComponent },
+
 		]
 	},
 	{ path: 'header', component: HeaderComponent },

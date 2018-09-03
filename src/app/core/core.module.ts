@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { QuestionModule } from '../questions/question.module';
 import { QuestionComponent } from '../questions/question/question.component';
 import { CoreRoutingModule } from './core-routing.module';
+import { AuthService } from '../auth/auth.service';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { CoreRoutingModule } from './core-routing.module';
 		QuestionModule,
 		CoreRoutingModule
 	],
-	providers: [],
+	providers: [AuthService],
 	bootstrap: []
 })
 export class CoreModule { }

@@ -6,5 +6,5 @@ export interface UserModel {
 }
 
 export class User implements UserModel {
-	constructor(public email: string, public password: string) { }
+	constructor(public email: string, public password: string, public id?: number, public type?: string) { }
 }
