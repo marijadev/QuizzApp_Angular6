@@ -1,0 +1,19 @@
+<div class="login-container">
+  <div class="login-form-wrapper">
+    <div class="form-holder">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+          <label for="email">E-mail:</label><br>
+          <input type="email" name="email" class="form-input" id="email" ngModel email required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label><br>
+          <input type="password" name="password" class="form-input" id="password" ngModel password required>
+        </div>
+        <div class="form-group">
+          <button type="submit" style="cursor: pointer">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

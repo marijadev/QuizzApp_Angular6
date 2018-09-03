@@ -1,0 +1,17 @@
+main {
+	display: flex;
+	min-height: 100vh;
+}
+
+.profile-wrapper {
+	flex-basis: 25em;
+	height: 100vh;
+}
+
+.content-wrapper {
+	flex-basis: 100%;
+}
+
+.actions-wrapper {
+	min-height: 100%;
+}

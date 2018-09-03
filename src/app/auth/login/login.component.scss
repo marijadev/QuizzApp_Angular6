@@ -1,0 +1,48 @@
+.login-container {
+  min-height: 100vh;
+
+  .login-form-wrapper {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  height: 100vh;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition: "color 9999s ease-out, background-color #fff ease-out";
+  -webkit-transition-delay: 9999s;
+}
+
+.form-holder {
+  width: 300px;
+  padding: 100px 50px;
+  text-align: center;
+  background-color: rgb(184, 184, 184);
+  box-sizing: border-box;
+  font-size: 1.2rem;
+  color: #fff;
+
+  .form-input {
+    margin: 10px 0;
+    padding: 10px;
+	border: none;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0;
+    background-color: rgb(222, 65, 27);
+    color: #fff;
+  }
+}
+
+.form-input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
