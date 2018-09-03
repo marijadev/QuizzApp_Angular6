@@ -1,17 +1,33 @@
 main {
-	display: flex;
-	min-height: 100vh;
+  display: flex;
+  min-height: 100vh;
 }
 
-.profile-wrapper {
-	flex-basis: 25em;
-	height: 100vh;
+.home-profile-wrapper {
+  flex-basis: 25em;
+  height: 100vh;
+  padding: 100px 0;
+  background-color: rgba(139, 139, 139, 0.1);
+  text-align: center;
+  // background-color: rgba(222, 65, 27, 0.9);
+  // background-color: rgb(184, 184, 184);
 }
 
-.content-wrapper {
-	flex-basis: 100%;
-}
+.home-content-wrapper {
+  flex-basis: 100%;
 
-.actions-wrapper {
-	min-height: 100%;
+  .header-wrapper {
+    // background-color: rgb(222, 65, 27);
+    background-color: rgb(184, 184, 184);
+    padding: 20px;
+    color: white;
+  }
+
+  .content-wrapper {
+    flex-basis: 100%;
+  }
+
+  .actions-wrapper {
+    min-height: 100%;
+  }
 }
