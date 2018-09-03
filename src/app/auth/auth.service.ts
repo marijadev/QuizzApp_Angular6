@@ -7,7 +7,9 @@ export class AuthService {
 	user: User = {
 		email: '',
 		password: '',
-		type: 'user'
+		type: 'admin',
+		phone: null,
+		id: null
 	};
 
 	constructor(private router: Router) { }

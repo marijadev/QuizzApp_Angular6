@@ -17,7 +17,7 @@ import { AuthService } from '../auth/auth.service';
 		HomeComponent,
 		HeaderComponent,
 		ProfileComponent,
-		QuestionComponent
+		QuestionComponent,
 	],
 	imports: [
 		CommonModule,

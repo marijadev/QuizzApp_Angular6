@@ -1,0 +1,21 @@
+.question-wrapper {
+	min-height: 100vh;
+	background-color: gainsboro;
+    padding: 100px;
+}
+
+input, select {
+	width: 100%;
+	padding: 10px;
+}
+
+form {
+	display: flex;
+	box-sizing: border-box;
+	
+	.question-column {
+		padding:  0 20px;
+		flex-basis: 50%;
+
+	}
+}
