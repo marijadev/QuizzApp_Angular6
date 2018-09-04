@@ -10,6 +10,7 @@ import { QuestionModule } from '../questions/question.module';
 import { QuestionComponent } from '../questions/question/question.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { AuthService } from '../auth/auth.service';
+import { QuestionTypeComponent } from '../questions/question/question-type/question-type.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AuthService } from '../auth/auth.service';
 		HeaderComponent,
 		ProfileComponent,
 		QuestionComponent,
+		QuestionTypeComponent
 	],
 	imports: [
 		CommonModule,

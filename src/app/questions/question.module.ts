@@ -11,7 +11,8 @@ import { MultipleChoiceComponent } from './question/multiple-choice/multiple-cho
 @NgModule({
 	declarations: [
 	SingleChoiceComponent,
-	MultipleChoiceComponent],
+	MultipleChoiceComponent,
+],
 	imports: [
 		CommonModule,
 		ReactiveFormsModule,
