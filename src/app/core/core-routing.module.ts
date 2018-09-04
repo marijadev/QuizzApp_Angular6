@@ -12,7 +12,10 @@ import { PassedTestsComponent } from '../tests/passed-tests/passed-tests.compone
 const coreRoutes: Routes = [
 	{
 		path: 'home', component: HomeComponent, children: [
-			{ path: 'question', component: QuestionComponent },
+			{
+				path: 'question', component: QuestionComponent, children: [
+				]
+			},
 			{ path: 'results', component: ResultsComponent },
 			{ path: 'users', component: UsersComponent },
 			{ path: 'passed-tests', component: PassedTestsComponent },

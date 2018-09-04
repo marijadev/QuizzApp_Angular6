@@ -3,9 +3,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 
-import { QuestionRouting } from './question-routing.module';
-import { SingleChoiceComponent } from './question/single-choice/single-choice.component';
-import { MultipleChoiceComponent } from './question/multiple-choice/multiple-choice.component';
+import { QuestionTypeRoutingModule } from './question/question-type/question-type-routing.module';
+import { MultipleChoiceComponent } from './question/question-type/multiple-choice/multiple-choice.component';
+import { SingleChoiceComponent } from './question/question-type/single-choice/single-choice.component';
 
 
 @NgModule({
@@ -16,8 +16,8 @@ import { MultipleChoiceComponent } from './question/multiple-choice/multiple-cho
 	imports: [
 		CommonModule,
 		ReactiveFormsModule,
-		QuestionRouting,
 		HttpModule,
+		QuestionTypeRoutingModule
 	],
 	providers: [],
 	bootstrap: []
