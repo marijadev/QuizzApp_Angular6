@@ -5,7 +5,9 @@ import { QuestionComponent } from './question/question.component';
 
 
 const questionRoutes: Routes = [
-	{ path: '', component: QuestionComponent }
+	{ path: '', component: QuestionComponent, children:[
+		// {path: 'single-type', component: S}
+	] }
 ]
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRouting } from './app-routing.module';
@@ -12,6 +12,7 @@ import { UsersComponent } from './users/users.component';
 import { ResultsComponent } from './results/results.component';
 import { TestsComponent } from './tests/tests.component';
 import { PassedTestsComponent } from './tests/passed-tests/passed-tests.component';
+import { QuestionService } from './questions/question.service';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,14 @@ import { PassedTestsComponent } from './tests/passed-tests/passed-tests.componen
   ],
   imports: [
 	BrowserModule,
+	ReactiveFormsModule,
 	FormsModule,
 	AuthModule,
 	CoreModule,
 	QuestionModule,
 	AppRouting,
   ],
-  providers: [AuthService],
+  providers: [AuthService, QuestionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

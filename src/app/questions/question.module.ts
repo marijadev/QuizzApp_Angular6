@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
 
 import { QuestionRouting } from './question-routing.module';
 
@@ -10,8 +11,9 @@ import { QuestionRouting } from './question-routing.module';
 	],
 	imports: [
 		CommonModule,
-		FormsModule,
-		QuestionRouting
+		ReactiveFormsModule,
+		QuestionRouting,
+		HttpModule,
 	],
 	providers: [],
 	bootstrap: []

@@ -1,3 +1,5 @@
+@import '~src/assets/styles/_variables.scss';
+
 .login-container {
   min-height: 100vh;
 
@@ -38,7 +40,7 @@ input:-webkit-autofill:active {
     border: none;
     border-radius: 5px;
     padding: 10px 0;
-    background-color: rgb(222, 65, 27);
+    background-color: $color-orange;
     color: #fff;
   }
 }
