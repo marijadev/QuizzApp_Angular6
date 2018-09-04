@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
- 
+
 import { QuestionComponent } from './question/question.component';
+import { SingleChoiceComponent } from './question/single-choice/single-choice.component';
 
 
 const questionRoutes: Routes = [
-	{ path: '', component: QuestionComponent, children:[
-		// {path: 'single-type', component: S}
-	] }
+	{
+		path: '', component: QuestionComponent, children: [
+			{path: 'single-type', component: SingleChoiceComponent}
+		]
+	}
 ]
 
 @NgModule({
 	imports: [RouterModule.forChild(questionRoutes)],
 	exports: [RouterModule]
 })
-export class QuestionRouting {}
+export class QuestionRouting { }
