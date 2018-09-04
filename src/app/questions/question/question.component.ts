@@ -24,8 +24,9 @@ export class QuestionComponent implements OnInit {
 		})
 	}
 
-	onQuestionSubmit() {
-		console.log(this.questionForm)
+	onSubmitQuestion() {
+		// console.log(this.questionForm.controls)
+		console.log(this.questionForm.controls.question.value)
 	}
 
 }
