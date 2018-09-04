@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { QuestionComponent } from './question/question.component';
 import { SingleChoiceComponent } from './question/single-choice/single-choice.component';
+import { MultipleChoiceComponent } from './question/multiple-choice/multiple-choice.component';
 
 
 const questionRoutes: Routes = [
 	{
 		path: '', component: QuestionComponent, children: [
-			{path: 'single-type', component: SingleChoiceComponent}
+			{path: 'single-choice', component: SingleChoiceComponent},
+			{path: 'multiple-choice', component: MultipleChoiceComponent},
 		]
 	}
 ]

@@ -12,7 +12,7 @@ export class QuestionComponent implements OnInit {
 	questionForm: FormGroup;
 	difficulties: string[] = ['Easy', 'Medium', 'Difficult'];
 	categories: string[] = ['JavaScript', 'Java', 'PHP'];
-	questionTypes: string[] = ['Single Choice', 'Multiple Choice', 'Text', 'Connecting', 'Order'];
+	questionTypes: string[] = this.questionService.questionTypes;
 
 	constructor(private questionService: QuestionService) { }
 
@@ -36,7 +36,12 @@ export class QuestionComponent implements OnInit {
 
 		this.questionService.createQuestion(id, question, category, difficulty, type, answers)
 		// console.log(this.questionForm.controls.question.value)
-		console.log(this.questionService.newQuestion)
+	}
+
+	onTypeChange(e: any) {
+		const type = e.target.value;
+		this.questionService.checkType(type)
+		// console.log(e.target.value)
 	}
 
 }
