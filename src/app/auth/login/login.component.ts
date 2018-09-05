@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
 		this.authService.login(email, password);
 
 		this.router.navigate(['/home/question'], { relativeTo: this.actRoute });
-		// console.log(form.value.email)
 	}
 
 }

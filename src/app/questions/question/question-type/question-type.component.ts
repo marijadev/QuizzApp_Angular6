@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { QuestionService } from '../../question.service';
 

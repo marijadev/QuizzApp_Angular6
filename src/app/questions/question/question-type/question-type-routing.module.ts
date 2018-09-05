@@ -7,7 +7,7 @@ import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.compo
 
 const questionTypeRoutes: Routes = [
 	{
-		path: 'type', component: QuestionTypeComponent, children: [
+		path: '', component: QuestionTypeComponent, children: [
 			{path: 'single-choice', component: SingleChoiceComponent},
 			{path: 'multiple-choice', component: MultipleChoiceComponent},
 		]

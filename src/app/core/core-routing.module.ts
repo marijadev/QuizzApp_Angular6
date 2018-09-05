@@ -8,12 +8,21 @@ import { ResultsComponent } from '../results/results.component';
 import { HeaderComponent } from './header/header.component';
 import { TestsComponent } from '../tests/tests.component';
 import { PassedTestsComponent } from '../tests/passed-tests/passed-tests.component';
+import { QuestionTypeComponent } from '../questions/question/question-type/question-type.component';
+import { SingleChoiceComponent } from '../questions/question/question-type/single-choice/single-choice.component';
+import { MultipleChoiceComponent } from '../questions/question/question-type/multiple-choice/multiple-choice.component';
 
 const coreRoutes: Routes = [
 	{
 		path: 'home', component: HomeComponent, children: [
 			{
 				path: 'question', component: QuestionComponent, children: [
+					{
+						path: 'type', component: QuestionTypeComponent, children: [
+							{ path: 'single-choice', component: SingleChoiceComponent },
+							{ path: 'multiple-choice', component: MultipleChoiceComponent },
+						]
+					}
 				]
 			},
 			{ path: 'results', component: ResultsComponent },

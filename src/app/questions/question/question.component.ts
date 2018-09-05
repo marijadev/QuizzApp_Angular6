@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { QuestionService } from '../question.service';
-import { Question } from '../../shared/question.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { Question } from '../../shared/question.model';
+import { QuestionService } from '../question.service';
 
 
 @Component({
@@ -12,10 +14,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class QuestionComponent implements OnInit {
 	questionForm: FormGroup;
-	type: string;
 	difficulties: string[] = ['Easy', 'Medium', 'Difficult'];
 	categories: string[] = ['JavaScript', 'Java', 'PHP'];
 	questionTypes: string[] = ['Single Choice', 'Multiple Choice', 'Text', 'Connecting', 'Order'];
+	subscription: Observable<any>;
 
 	newQuestion: Question = {
 		id: null,
@@ -26,7 +28,7 @@ export class QuestionComponent implements OnInit {
 		answers: []
 	};
 
-	constructor(private router: Router, private actRoute: ActivatedRoute) { }
+	constructor(private router: Router, private actRoute: ActivatedRoute, private questionService: QuestionService) { }
 
 	ngOnInit() {
 		this.questionForm = new FormGroup({
@@ -35,33 +37,25 @@ export class QuestionComponent implements OnInit {
 			'difficulty': new FormControl(null),
 			'type': new FormControl(null)
 		})
-	}
 
-	// createQuestion(id: number, question: string, category: string, difficulty: string, type: string, answers: object[]) {
-	// 	this.newQuestion.id = id;
-	// 	this.newQuestion.question = question;
-	// 	this.newQuestion.category = category;
-	// 	this.newQuestion.difficulty = difficulty;
-	// 	this.newQuestion.type = type;
-	// 	this.newQuestion.answers = answers;
-	// }
+	}
 
 	onSubmitQuestion() {
-		// console.log(this.questionForm.controls)
-		// const id = Math.floor(Math.random() * 100000) + 1;
-		// const question = this.questionForm.controls.question.value;
-		// const category = this.questionForm.controls.category.value;
-		// const difficulty = this.questionForm.controls.difficulty.value;
-		// const type = this.questionForm.controls.type.value;
-		// const answers = null;
-		// console.log(this.questionForm.controls.question.value)
+		this.newQuestion.id = Math.floor(Math.random() * 100000) + 1;
+		this.newQuestion.question = this.questionForm.controls.question.value;
+		this.newQuestion.category = this.questionForm.controls.category.value;
+		this.newQuestion.difficulty = this.questionForm.controls.difficulty.value;
+		this.newQuestion.type = this.questionForm.controls.type.value;
+		this.newQuestion.answers = null;
 	}
-	
-	onTypeChange(e: any) {
-		this.newQuestion.type = e.target.value;
-		this.router.navigate(['/type/single-choice' ], {relativeTo: this.actRoute})
-		console.log(this.actRoute)
 
+	onTypeChange(e: any) {
+		const type = e.target.value;
+		const formattedType = type.replace(/\s+/g, '-').toLowerCase();
+
+		this.newQuestion.type = formattedType;
+		this.router.navigate(['type/' + formattedType], { relativeTo: this.actRoute })
 	}
+
 
 }
