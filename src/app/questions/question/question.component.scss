@@ -1,26 +1,32 @@
+@import '~src/assets/styles/_mixins.scss';
+
 .question-wrapper {
-	min-height: 100vh;
-	background-color: gainsboro;
-    padding: 100px;
+  min-height: 100vh;
+  background-color: gainsboro;
+  padding: 100px;
 }
 
-input, select {
-	width: 100%;
-	padding: 10px;
-	margin-top: 10px;
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
 }
 
 form {
-	display: flex;
-	box-sizing: border-box;
-	
-	.question-column {
-		padding:  0 20px;
-		flex-basis: 50%;
+  display: flex;
+  box-sizing: border-box;
 
-	}
+  .question-column {
+    padding: 0 20px;
+    flex-basis: 50%;
+  }
 
-	.form-group {
-		padding: 10px 0;
-	}
+  .form-group {
+    padding: 10px 0;
+  }
+}
+
+.submit-btn {
+  @extend %btn-submit-style;
 }

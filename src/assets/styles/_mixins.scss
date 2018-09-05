@@ -1,6 +1,40 @@
+@import '~src/assets/styles/_variables.scss';
+
 @mixin transform($property) {
-	-webkit-transform: $property;
-		-ms-transform: $property;
-			transform: $property;
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+
+//   .box { @include transform(rotate(30deg)); }
+%form-group-style {
+  padding: 10px 0;
+}
+
+%answer-holder-style {
+  display: flex;
+
+  .validation-question-wrapper {
+    display: flex;
+    align-items: center;
+    flex-basis: 10%;
   }
-  //   .box { @include transform(rotate(30deg)); }
+}
+
+%btn-submit-style {
+	width: 100%;
+	margin-top: 20px;
+	padding: 10px;
+	border: none;
+	outline: none;
+	background-color: $color-orange;
+	border-radius: 5px;
+	cursor: pointer;
+	color: $color-white;
+}
+
+%input-style {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}

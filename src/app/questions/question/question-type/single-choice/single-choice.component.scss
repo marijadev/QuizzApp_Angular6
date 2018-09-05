@@ -1,0 +1,15 @@
+@import '~src/assets/styles/_mixins.scss';
+
+
+input, select {
+	@extend %input-style;
+}
+
+.form-group {
+	@extend %form-group-style;
+}
+
+.answer-holder {
+	@extend %answer-holder-style;
+}
+

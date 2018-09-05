@@ -1,3 +1,17 @@
-<p>
-  single-choice works!
-</p>
+<div class="container">
+  <form (ngSubmit)="onSubmitAnswer()" [formGroup]='answerForm'>
+    <div class="form-group">
+      <div class="answer-holder">
+        <div formArrayName="answers">
+          <div *ngFor="let item of answers.controls; let i=index" [formGroupName]="i">
+            <label>
+              Answer {{i}}: <input formControlName="point" />
+            </label>
+            <button type="button" (click)="addAnswer()">Add Answer</button>
+            <button type="button" (click)="deleteAnswer(i)">Delete Answer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
