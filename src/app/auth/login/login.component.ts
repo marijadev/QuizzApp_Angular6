@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 		const password = form.value.password;
 		this.authService.login(email, password);
 
-		this.router.navigate(['/home/question'], { relativeTo: this.actRoute });
+		this.router.navigate(['/home/question/type/single-choice'], { relativeTo: this.actRoute });
 	}
 
 }

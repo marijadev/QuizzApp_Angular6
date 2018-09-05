@@ -28,7 +28,7 @@ export class QuestionComponent implements OnInit {
 		answers: []
 	};
 
-	constructor(private router: Router, private actRoute: ActivatedRoute, private questionService: QuestionService) { }
+	constructor(private router: Router, private actRoute: ActivatedRoute) { }
 
 	ngOnInit() {
 		this.questionForm = new FormGroup({
@@ -37,7 +37,14 @@ export class QuestionComponent implements OnInit {
 			'difficulty': new FormControl(null),
 			'type': new FormControl(null)
 		})
+	}
 
+	onTypeChange(e: any) {
+		const type = e.target.value;
+		const formattedType = type.replace(/\s+/g, '-').toLowerCase();
+
+		this.newQuestion.type = type;
+		this.router.navigate(['type/' + formattedType], { relativeTo: this.actRoute })
 	}
 
 	onSubmitQuestion() {
@@ -48,14 +55,4 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.type = this.questionForm.controls.type.value;
 		this.newQuestion.answers = null;
 	}
-
-	onTypeChange(e: any) {
-		const type = e.target.value;
-		const formattedType = type.replace(/\s+/g, '-').toLowerCase();
-
-		this.newQuestion.type = formattedType;
-		this.router.navigate(['type/' + formattedType], { relativeTo: this.actRoute })
-	}
-
-
 }
