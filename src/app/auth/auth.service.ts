@@ -7,20 +7,22 @@ export class AuthService {
 	user: User = {
 		email: '',
 		password: '',
-		type: 'admin',
+		status: '',
 		phone: null,
 		id: null
 	};
 
+
 	constructor(private router: Router) { }
 
-	login(email: string, password: string) {
+	login(email: string, password: string, status: string) {
 		this.user.email = email,
-			this.user.password = password
+		this.user.password = password;
+		this.user.status = status;
 	}
 
 	userType() {
-		if (this.user.type === 'admin') {
+		if (this.user.status === 'admin') {
 			return 'admin';
 		} return 'user';
 	}
