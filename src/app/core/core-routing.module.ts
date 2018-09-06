@@ -22,11 +22,11 @@ const coreRoutes: Routes = [
 				path: 'question', component: QuestionComponent, children: [
 					{
 						path: 'type', component: QuestionTypeComponent, children: [
-							{ path: 'single-choice', component: SingleChoiceComponent },
-							{ path: 'multiple-choice', component: MultipleChoiceComponent },
-							{ path: 'text', component: TextComponent },
-							{ path: 'order', component: OrderComponent },
-							{ path: 'connecting', component: ConnectingComponent },
+							// { path: 'single-choice', component: SingleChoiceComponent },
+							// { path: 'multiple-choice', component: MultipleChoiceComponent },
+							// { path: 'text', component: TextComponent },
+							// { path: 'order', component: OrderComponent },
+							// { path: 'connecting', component: ConnectingComponent },
 						]
 					}
 				]

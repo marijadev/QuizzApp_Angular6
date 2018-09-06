@@ -11,7 +11,7 @@ import { ConnectingComponent } from './question/question-type/connecting/connect
 
 @NgModule({
 	declarations: [
-	SingleChoiceComponent,
+	// SingleChoiceComponent,
 	MultipleChoiceComponent,
 	TextComponent,
 	OrderComponent,

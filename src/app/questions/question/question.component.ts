@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, Compiler, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Question } from '../../shared/question.model';
-import { QuestionService } from '../question.service';
+import { NgTemplateOutlet } from '@angular/common';
 
 
 @Component({
@@ -13,6 +13,8 @@ import { QuestionService } from '../question.service';
 	styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit {
+	@ViewChild(NgTemplateOutlet)
+	public questionTypeHolder: NgTemplateOutlet;
 	questionForm: FormGroup;
 	difficulties: string[] = ['Easy', 'Medium', 'Difficult'];
 	categories: string[] = ['JavaScript', 'Java', 'PHP'];
@@ -28,7 +30,7 @@ export class QuestionComponent implements OnInit {
 		answers: []
 	};
 
-	constructor(private router: Router, private actRoute: ActivatedRoute) { }
+	constructor(private router: Router, private actRoute: ActivatedRoute, private compiler: Compiler) { }
 
 	ngOnInit() {
 		this.questionForm = new FormGroup({
@@ -37,6 +39,7 @@ export class QuestionComponent implements OnInit {
 			'difficulty': new FormControl(null),
 			'type': new FormControl(null)
 		})
+
 	}
 
 	onTypeChange(e: any) {
@@ -44,7 +47,10 @@ export class QuestionComponent implements OnInit {
 		const formattedType = type.replace(/\s+/g, '-').toLowerCase();
 
 		this.newQuestion.type = type;
-		this.router.navigate(['type/' + formattedType], { relativeTo: this.actRoute })
+		// this.router.navigate(['type/' ], { relativeTo: this.actRoute });
+		// this.router.navigate(['type/' + formattedType], { relativeTo: this.actRoute });
+
+		// this.questionTypeHolder.ngTemplateOutlet.createEmbeddedView()
 	}
 
 	onSubmitQuestion() {
