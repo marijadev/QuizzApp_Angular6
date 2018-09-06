@@ -9,6 +9,7 @@ import { Route, Router, ActivatedRoute } from '@angular/router';
 	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+	@ViewChild('f') loginForm: NgForm;
 	sampleUsers = {
 		admins: [
 			{ id: 1, email: 'sample@test.com', password: 111, status: 'admin' },
