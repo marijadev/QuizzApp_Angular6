@@ -18,16 +18,13 @@ export class QuestionComponent implements OnInit {
 	type: string;
 	componentRef_: any;
 	@ViewChild('dynamic', { read: ViewContainerRef }) container: ViewContainerRef;
-	@ViewChild('sng') singleC: TemplateRef<any>;
-	@ViewChild('mlt') multiC: TemplateRef<any>;
-	@ViewChild('txt') textC: TemplateRef<any>;
-	@ViewChild('ord') orderC: TemplateRef<any>;
-	@ViewChild('cnn') conneC: TemplateRef<any>;
 
 	questionForm: FormGroup;
 	difficulties: string[] = ['Easy', 'Medium', 'Difficult'];
 	categories: string[] = ['JavaScript', 'Java', 'PHP'];
 	questionTypes: string[] = ['Single Choice', 'Multiple Choice', 'Text', 'Connecting', 'Order'];
+	questionTypesComponentsMapping = {
+	};
 	subscription: Observable<any>;
 	newQuestion: Question = {
 		id: null,
@@ -51,6 +48,7 @@ export class QuestionComponent implements OnInit {
 
 	visibleComponent = (name: string) => {
 		this.container.clear();
+		let questions = [...this.questionTypes];
 		if (this.type == 'Single Choice') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(SingleChoiceComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
