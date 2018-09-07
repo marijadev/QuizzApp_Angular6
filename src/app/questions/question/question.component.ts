@@ -45,8 +45,9 @@ export class QuestionComponent implements OnInit {
 		this.questionTypes = Object.keys(questionTypes);
 	}
 
-	visibleComponent = (name: string) => {
+	visibleComponent = () => {
 		this.container.clear();
+		
 		if (this.type == 'Single Choice') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(SingleChoiceComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
@@ -77,7 +78,7 @@ export class QuestionComponent implements OnInit {
 		const type = e.target.value;
 		this.newQuestion.type = type;
 		this.type = type;
-		this.visibleComponent(type);
+		this.visibleComponent();
 	}
 
 	onSubmitQuestion() {
