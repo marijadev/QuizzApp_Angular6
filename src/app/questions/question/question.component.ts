@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, TemplateRef, } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Question } from '../../shared/question.model';
-
+import { ComponentFactoryResolver } from '@angular/core';
+import { SingleChoiceComponent } from './question-type/single-choice/single-choice.component';
+import { MultipleChoiceComponent } from './question-type/multiple-choice/multiple-choice.component';
+import { TextComponent } from './question-type/text/text.component';
+import { OrderComponent } from './question-type/order/order.component';
 
 @Component({
 	selector: 'app-question',
@@ -13,7 +16,8 @@ import { Question } from '../../shared/question.model';
 })
 export class QuestionComponent implements OnInit {
 	type: string;
-	@ViewChild('vc', { read: ViewContainerRef }) viewContainer: ViewContainerRef;
+	componentRef_: any;
+	@ViewChild('dynamic', { read: ViewContainerRef }) container: ViewContainerRef;
 	@ViewChild('sng') singleC: TemplateRef<any>;
 	@ViewChild('mlt') multiC: TemplateRef<any>;
 	@ViewChild('txt') textC: TemplateRef<any>;
@@ -34,7 +38,7 @@ export class QuestionComponent implements OnInit {
 		answers: []
 	};
 
-	constructor(private router: Router, private actRoute: ActivatedRoute) { }
+	constructor(private resolver: ComponentFactoryResolver, private componentResolver: ComponentFactoryResolver) { }
 
 	ngOnInit() {
 		this.questionForm = new FormGroup({
@@ -45,12 +49,39 @@ export class QuestionComponent implements OnInit {
 		})
 	}
 
+	visibleComponent = (name: string) => {
+		this.container.clear();
+		if (this.type == 'Single Choice') {
+			const componentFactory = this.componentResolver.resolveComponentFactory(SingleChoiceComponent);
+			this.componentRef_ = this.container.createComponent(componentFactory);
+		}
+		else if (this.type == 'Multiple Choice') {
+			const componentFactory = this.componentResolver.resolveComponentFactory(MultipleChoiceComponent);
+			this.componentRef_ = this.container.createComponent(componentFactory);
+		}
+		else if (this.type == 'Text') {
+			const componentFactory = this.componentResolver.resolveComponentFactory(TextComponent);
+			this.componentRef_ = this.container.createComponent(componentFactory);
+		}
+		else if (this.type == 'Order') {
+			const componentFactory = this.componentResolver.resolveComponentFactory(OrderComponent);
+			this.componentRef_ = this.container.createComponent(componentFactory);
+		}
+		else if (this.type == 'Connecting') {
+			const componentFactory = this.componentResolver.resolveComponentFactory(OrderComponent);
+			this.componentRef_ = this.container.createComponent(componentFactory);
+		}
+	}
+
+	ngOnDestroy() {
+		this.componentRef_.destroy();
+	}
+
 	onTypeChange(e: any) {
 		const type = e.target.value;
 		this.newQuestion.type = type;
 		this.type = type;
-		this.viewContainer.remove();
-		this.checkQuestionType();
+		this.visibleComponent(type);
 	}
 
 	onSubmitQuestion() {
@@ -60,25 +91,5 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.difficulty = this.questionForm.controls.difficulty.value;
 		this.newQuestion.type = this.questionForm.controls.type.value;
 		this.newQuestion.answers = null;
-	}
-
-	checkQuestionType() {
-		switch (this.type) {
-			case "Single Choice":
-				this.viewContainer.createEmbeddedView(this.singleC);
-				break;
-			case "Multiple Choice":
-				this.viewContainer.createEmbeddedView(this.multiC);
-				break;
-			case "Text":
-				this.viewContainer.createEmbeddedView(this.textC);
-				break;
-			case "Order":
-				this.viewContainer.createEmbeddedView(this.orderC);
-				break;
-			case "Connecting":
-				this.viewContainer.createEmbeddedView(this.conneC);
-				break;
-		}
 	}
 }

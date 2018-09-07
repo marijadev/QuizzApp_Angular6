@@ -28,16 +28,18 @@ import { ConnectingComponent } from '../questions/question/question-type/connect
 		MultipleChoiceComponent,
 		TextComponent,
 		OrderComponent,
-		ConnectingComponent
+		ConnectingComponent,
 	],
 	imports: [
 		CommonModule,
 		FormsModule,
 		QuestionModule,
 		CoreRoutingModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
 	],
 	providers: [AuthService],
-	bootstrap: []
+	bootstrap: [],
+	entryComponents: [SingleChoiceComponent, MultipleChoiceComponent, TextComponent, OrderComponent, ConnectingComponent]
+
 })
 export class CoreModule { }

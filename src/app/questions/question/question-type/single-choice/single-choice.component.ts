@@ -12,7 +12,6 @@ export class SingleChoiceComponent implements OnInit {
 
 	ngOnInit() {
 		this.answerForm = this.fb.group({
-			title: [],
 			answers: this.fb.array([this.fb.group({ point: '' })])
 		})
 	}
@@ -20,9 +19,10 @@ export class SingleChoiceComponent implements OnInit {
 	get answers() {
 		return this.answerForm.get('answers') as FormArray;
 	}
-
+	
 	addAnswer() {
 		this.answers.push(this.fb.group({ point: '' }));
+		// console.log(this.answerForm.controls.answers.value)
 	}
 
 	deleteAnswer(index) {

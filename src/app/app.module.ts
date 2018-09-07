@@ -32,6 +32,6 @@ import { QuestionService } from './questions/question.service';
 	AppRouting,
   ],
   providers: [AuthService, QuestionService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

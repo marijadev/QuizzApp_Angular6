@@ -26,23 +26,7 @@
         </div>
       </div>
       <div class="question-type question-column">
-        <ng-container #vc>
-          <ng-template #sng>
-            <app-single-choice></app-single-choice>
-          </ng-template>
-          <ng-template #mlt>
-            <app-multiple-choice></app-multiple-choice>
-          </ng-template>
-          <ng-template #txt>
-            <app-text></app-text>
-          </ng-template>
-          <ng-template #ord>
-            <app-order></app-order>
-          </ng-template>
-          <ng-template #cnn>
-            <app-connecting></app-connecting>
-          </ng-template>
-        </ng-container>
+        <ng-template #dynamic></ng-template>
         <button class="submit-btn" type="submit">Submit</button>
       </div>
     </form>
