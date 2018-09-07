@@ -9,26 +9,12 @@ import { HeaderComponent } from './header/header.component';
 import { TestsComponent } from '../tests/tests.component';
 import { PassedTestsComponent } from '../tests/passed-tests/passed-tests.component';
 import { QuestionTypeComponent } from '../questions/question/question-type/question-type.component';
-import { SingleChoiceComponent } from '../questions/question/question-type/single-choice/single-choice.component';
-import { MultipleChoiceComponent } from '../questions/question/question-type/multiple-choice/multiple-choice.component';
-import { TextComponent } from '../questions/question/question-type/text/text.component';
-import { OrderComponent } from '../questions/question/question-type/order/order.component';
-import { ConnectingComponent } from '../questions/question/question-type/connecting/connecting.component';
 
 const coreRoutes: Routes = [
 	{
 		path: 'home', component: HomeComponent, children: [
-			{
-				path: 'question', component: QuestionComponent, children: [
-					{
-						path: 'type', component: QuestionTypeComponent, children: [
-							// { path: 'single-choice', component: SingleChoiceComponent },
-							// { path: 'multiple-choice', component: MultipleChoiceComponent },
-							// { path: 'text', component: TextComponent },
-							// { path: 'order', component: OrderComponent },
-							// { path: 'connecting', component: ConnectingComponent },
-						]
-					}
+			{path: 'question', component: QuestionComponent, children: [
+					// { path: 'type', component: QuestionTypeComponent }
 				]
 			},
 			{ path: 'results', component: ResultsComponent },

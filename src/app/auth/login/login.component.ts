@@ -22,8 +22,7 @@ export class LoginComponent implements OnInit {
 		
 		this.authService.login(email, password).subscribe(userStatus => {
 			if (userStatus === 'admin') {
-				this.router.navigate(['/home/question/type'], { relativeTo: this.actRoute });
-				// this.router.navigate(['/home/question/type/single-choice'], { relativeTo: this.actRoute });
+				this.router.navigate(['/home/question'], { relativeTo: this.actRoute });
 			} else if (userStatus === 'user') {
 				this.router.navigate(['/home/passed-tests'], { relativeTo: this.actRoute });
 			} 

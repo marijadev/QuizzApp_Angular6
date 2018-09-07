@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, Compiler, TemplateRef, AfterViewInit, ViewChildren, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Question } from '../../shared/question.model';
-import { NgTemplateOutlet } from '@angular/common';
 
 
 @Component({
@@ -12,7 +11,8 @@ import { NgTemplateOutlet } from '@angular/common';
 	templateUrl: './question.component.html',
 	styleUrls: ['./question.component.scss']
 })
-export class QuestionComponent implements OnInit, AfterViewInit {
+export class QuestionComponent implements OnInit {
+	type: string;
 	@ViewChild('vc', { read: ViewContainerRef }) viewContainer: ViewContainerRef;
 	@ViewChild('sng') singleC: TemplateRef<any>;
 	@ViewChild('mlt') multiC: TemplateRef<any>;
@@ -34,7 +34,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
 		answers: []
 	};
 
-	constructor(private router: Router, private actRoute: ActivatedRoute, private compiler: Compiler) { }
+	constructor(private router: Router, private actRoute: ActivatedRoute) { }
 
 	ngOnInit() {
 		this.questionForm = new FormGroup({
@@ -43,25 +43,14 @@ export class QuestionComponent implements OnInit, AfterViewInit {
 			'difficulty': new FormControl(null),
 			'type': new FormControl(null)
 		})
-		this.viewContainer.createEmbeddedView(this.singleC);
-		this.viewContainer.createEmbeddedView(this.multiC);
-		this.viewContainer.createEmbeddedView(this.textC);
-		this.viewContainer.createEmbeddedView(this.orderC);
-		this.viewContainer.createEmbeddedView(this.conneC);
-	}
-
-	ngAfterViewInit() {
 	}
 
 	onTypeChange(e: any) {
 		const type = e.target.value;
-		const formattedType = type.replace(/\s+/g, '-').toLowerCase();
-
 		this.newQuestion.type = type;
-		// this.router.navigate(['type/' ], { relativeTo: this.actRoute });
-		// this.router.navigate(['type/' + formattedType], { relativeTo: this.actRoute });
-
-		// this.questionTypeHolder.ngTemplateOutlet.createEmbeddedView()
+		this.type = type;
+		this.viewContainer.remove();
+		this.checkQuestionType();
 	}
 
 	onSubmitQuestion() {
@@ -71,5 +60,25 @@ export class QuestionComponent implements OnInit, AfterViewInit {
 		this.newQuestion.difficulty = this.questionForm.controls.difficulty.value;
 		this.newQuestion.type = this.questionForm.controls.type.value;
 		this.newQuestion.answers = null;
+	}
+
+	checkQuestionType() {
+		switch (this.type) {
+			case "Single Choice":
+				this.viewContainer.createEmbeddedView(this.singleC);
+				break;
+			case "Multiple Choice":
+				this.viewContainer.createEmbeddedView(this.multiC);
+				break;
+			case "Text":
+				this.viewContainer.createEmbeddedView(this.textC);
+				break;
+			case "Order":
+				this.viewContainer.createEmbeddedView(this.orderC);
+				break;
+			case "Connecting":
+				this.viewContainer.createEmbeddedView(this.conneC);
+				break;
+		}
 	}
 }
