@@ -26,8 +26,24 @@
         </div>
       </div>
       <div class="question-type question-column">
-		<router-outlet></router-outlet>
-		<ng-template #questionTypeHolder></ng-template>
+        <ng-container #vc>
+          <!-- <app-question-type></app-question-type> -->
+          <ng-template #sng>
+            <app-single-choice></app-single-choice>
+		  </ng-template>
+		  <ng-template #mlt>
+			  <app-multiple-choice></app-multiple-choice>
+		  </ng-template>
+		  <ng-template #txt>
+			  <app-text></app-text>
+		  </ng-template>
+		  <ng-template #ord>
+			  <app-order></app-order>
+		  </ng-template>
+		  <ng-template #cnn>
+			  <app-connecting></app-connecting>
+		  </ng-template>
+        </ng-container>
         <button class="submit-btn" type="submit">Submit</button>
       </div>
     </form>

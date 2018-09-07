@@ -1,6 +1,4 @@
-import { Component, OnInit, Injectable, Input } from '@angular/core';
-import { ActivatedRoute, Router, Params } from '@angular/router';
-import { QuestionService } from '../../question.service';
+import { Component, OnInit, Injectable } from '@angular/core';
 
 @Injectable()
 @Component({
@@ -9,9 +7,8 @@ import { QuestionService } from '../../question.service';
 	styleUrls: ['./question-type.component.scss']
 })
 export class QuestionTypeComponent implements OnInit {
-	type: string;
 
-	constructor(private route: ActivatedRoute, router: Router, private questionService: QuestionService) { }
+	constructor() { }
 
 	ngOnInit() {
 

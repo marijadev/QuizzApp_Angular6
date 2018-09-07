@@ -12,10 +12,10 @@ import { ConnectingComponent } from './question/question-type/connecting/connect
 @NgModule({
 	declarations: [
 	// SingleChoiceComponent,
-	MultipleChoiceComponent,
-	TextComponent,
-	OrderComponent,
-	ConnectingComponent,
+	// MultipleChoiceComponent,
+	// TextComponent,
+	// OrderComponent,
+	// ConnectingComponent,
 ],
 	imports: [
 		CommonModule,
