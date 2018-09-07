@@ -8,6 +8,7 @@ import { SingleChoiceComponent } from './question-type/single-choice/single-choi
 import { MultipleChoiceComponent } from './question-type/multiple-choice/multiple-choice.component';
 import { TextComponent } from './question-type/text/text.component';
 import { OrderComponent } from './question-type/order/order.component';
+import { questionTypes } from '../../shared/constants';
 
 @Component({
 	selector: 'app-question',
@@ -18,13 +19,10 @@ export class QuestionComponent implements OnInit {
 	type: string;
 	componentRef_: any;
 	@ViewChild('dynamic', { read: ViewContainerRef }) container: ViewContainerRef;
-
 	questionForm: FormGroup;
 	difficulties: string[] = ['Easy', 'Medium', 'Difficult'];
 	categories: string[] = ['JavaScript', 'Java', 'PHP'];
-	questionTypes: string[] = ['Single Choice', 'Multiple Choice', 'Text', 'Connecting', 'Order'];
-	questionTypesComponentsMapping = {
-	};
+	questionTypes: string[];
 	subscription: Observable<any>;
 	newQuestion: Question = {
 		id: null,
@@ -44,11 +42,11 @@ export class QuestionComponent implements OnInit {
 			'difficulty': new FormControl(null),
 			'type': new FormControl(null)
 		})
+		this.questionTypes = Object.keys(questionTypes);
 	}
 
 	visibleComponent = (name: string) => {
 		this.container.clear();
-		let questions = [...this.questionTypes];
 		if (this.type == 'Single Choice') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(SingleChoiceComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
