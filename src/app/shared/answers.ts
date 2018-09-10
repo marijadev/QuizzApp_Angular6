@@ -1,0 +1,3 @@
+interface Answers {
+	values: any[];
+}

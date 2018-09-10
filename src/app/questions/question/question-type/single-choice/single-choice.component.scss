@@ -1,5 +1,25 @@
 @import '~src/assets/styles/_mixins.scss';
 
+#answers-wrapper {
+	width: 100%;
+}
+
+.single-answer-holder {
+	display: flex;
+	align-items: center;
+}
+
+.answer-holder {
+	@extend %answer-holder-style;
+}
+
+.answer-checkbox {
+	flex-basis: 5%;
+}
+
+.true-false-holder {
+	display: flex;
+}
 
 input, select {
 	@extend %input-style;
@@ -9,7 +29,6 @@ input, select {
 	@extend %form-group-style;
 }
 
-.answer-holder {
-	@extend %answer-holder-style;
+.btn {
+	@extend %btn-style;
 }
-

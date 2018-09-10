@@ -1,11 +1,19 @@
 <div class="container">
-  <form (ngSubmit)="onSubmitAnswer()" [formGroup]='answerForm'>
+  <form [formGroup]='answerForm'>
     <div class="form-group">
       <div class="answer-holder">
-        <div formArrayName="answers">
+        <div formArrayName="answers" id="answers-wrapper">
           <div *ngFor="let item of answers.controls; let i=index" [formGroupName]="i">
             <label>
-              Answer {{i}}: <input formControlName="point" />
+              Answer {{i}}:
+              <div class="single-answer-holder">
+                <input formControlName="answer" />
+                <!-- <span class="true-false-holder">
+                  <button (click)="onTrue()" class="btn btn-validator true">True</button>
+                  <button (click)="onFalse()" class="btn btn-validator false">False</button>
+				</span> -->
+				<input type="checkbox" formControlName="value" appTrueFalse trueValue="yes" falseValue="no" class="answer-checkbox">
+              </div>
             </label>
           </div>
           <button type="button" (click)="addAnswer()">Add Answer</button>

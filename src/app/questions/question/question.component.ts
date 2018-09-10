@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, TemplateRef, } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, Input, ForwardRefFn } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
@@ -18,6 +18,7 @@ import { questionTypes } from '../../shared/constants';
 export class QuestionComponent implements OnInit {
 	type: string;
 	componentRef_: any;
+	childInstance: any;
 	@ViewChild('dynamic', { read: ViewContainerRef }) container: ViewContainerRef;
 	questionForm: FormGroup;
 	difficulties: string[] = ['Easy', 'Medium', 'Difficult'];
@@ -32,8 +33,9 @@ export class QuestionComponent implements OnInit {
 		type: '',
 		answers: []
 	};
+	answers: [];
 
-	constructor(private resolver: ComponentFactoryResolver, private componentResolver: ComponentFactoryResolver) { }
+	constructor(private componentResolver: ComponentFactoryResolver) { }
 
 	ngOnInit() {
 		this.questionForm = new FormGroup({
@@ -47,14 +49,16 @@ export class QuestionComponent implements OnInit {
 
 	visibleComponent = () => {
 		this.container.clear();
-		
+
 		if (this.type == 'Single Choice') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(SingleChoiceComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
+			this.childInstance = this.componentRef_.instance;
 		}
 		else if (this.type == 'Multiple Choice') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(MultipleChoiceComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
+			this.childInstance = this.componentRef_.instance;
 		}
 		else if (this.type == 'Text') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(TextComponent);
@@ -81,12 +85,30 @@ export class QuestionComponent implements OnInit {
 		this.visibleComponent();
 	}
 
+	checkTrueAnswers() {
+		const arr = this.componentRef_.instance.values;
+		let trueValue = null;
+
+		let check = arr.map(obj => {
+			if (obj.value === true) {
+				trueValue++;
+			}
+		})
+		
+		let correct = trueValue === 1 ? true : false;
+		console.log(correct)
+		return correct;
+	}
+
 	onSubmitQuestion() {
 		this.newQuestion.id = Math.floor(Math.random() * 100000) + 1;
 		this.newQuestion.question = this.questionForm.controls.question.value;
 		this.newQuestion.category = this.questionForm.controls.category.value;
 		this.newQuestion.difficulty = this.questionForm.controls.difficulty.value;
 		this.newQuestion.type = this.questionForm.controls.type.value;
-		this.newQuestion.answers = null;
+		if (!this.checkTrueAnswers()) {
+			this.newQuestion.answers = this.componentRef_.instance.values;
+		}
+		// console.log(this.newQuestion)
 	}
 }

@@ -13,6 +13,7 @@ import { ResultsComponent } from './results/results.component';
 import { TestsComponent } from './tests/tests.component';
 import { PassedTestsComponent } from './tests/passed-tests/passed-tests.component';
 import { QuestionService } from './questions/question.service';
+import { TrueFalseDirective } from './shared/true-false.directive';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { QuestionService } from './questions/question.service';
     ResultsComponent,
     TestsComponent,
     PassedTestsComponent,
+    TrueFalseDirective,
   ],
   imports: [
 	BrowserModule,
