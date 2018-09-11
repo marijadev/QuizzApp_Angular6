@@ -39,11 +39,4 @@ export class MultipleChoiceComponent implements OnInit {
 		this.formAnswers = array.value;
 		return this.formAnswers;
 	}
-
-	deleteAnswer(index) {
-		if (index !== 0) {
-			this.answers.removeAt(index);
-		}
-	}
-
 }

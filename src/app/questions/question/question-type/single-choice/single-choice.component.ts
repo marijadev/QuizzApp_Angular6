@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import {QuestionService} from '../../../../questions/question.service';
+import { QuestionService } from '../../../../questions/question.service';
 
 @Component({
 	selector: 'app-single-choice',
@@ -43,13 +43,12 @@ export class SingleChoiceComponent implements OnInit {
 			if (obj.value === true) {
 				value++;
 			}
-			if (value === 0) {
+			if (value === 0 || value > 1) {
 				result = false;
 				return result
-			} else if (value > 1) {
-				result = false;
-				return result
-			} else { result = true; }
+			}
+			result = true;
+			return result;
 		})
 
 		if (result === false) {
@@ -62,13 +61,11 @@ export class SingleChoiceComponent implements OnInit {
 			this.formAnswers = array.value;
 			return this.formAnswers;
 		}
-
-
 		// console.log(array.value)
 	}
 
 	deleteAnswer(index) {
-		if (index !== 0) {
+		if (this.formAnswers.length > 1) {
 			this.answers.removeAt(index);
 		}
 	}

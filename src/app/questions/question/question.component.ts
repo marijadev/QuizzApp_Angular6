@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, Input, ForwardRefFn } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { Question } from '../../shared/question.model';
@@ -34,18 +34,19 @@ export class QuestionComponent implements OnInit {
 		type: '',
 		answers: []
 	};
-	childInvalid: boolean = false;
+	childInvalid = false;
 
 	constructor(private componentResolver: ComponentFactoryResolver, private qService: QuestionService) { }
 
 	ngOnInit() {
 		this.questionForm = new FormGroup({
-			'question': new FormControl(null),
-			'category': new FormControl(null),
-			'difficulty': new FormControl(null),
-			'type': new FormControl(null)
+			'question': new FormControl(null, [Validators.required]),
+			'category': new FormControl(null, [Validators.required]),
+			'difficulty': new FormControl(null, [Validators.required]),
+			'type': new FormControl(null,  [Validators.required])
 		})
 		this.questionTypes = Object.keys(questionTypes);
+		this.childInvalid = this.qService.isChildFormValid;
 	}
 
 	visibleComponent = () => {
@@ -87,6 +88,9 @@ export class QuestionComponent implements OnInit {
 	}
 
 	onSubmitQuestion() {
+		for (let property in this.newQuestion) {
+			property = null;
+		}
 		this.newQuestion.id = Math.floor(Math.random() * 100000) + 1;
 		this.newQuestion.question = this.questionForm.controls.question.value;
 		this.newQuestion.category = this.questionForm.controls.category.value;
@@ -95,5 +99,7 @@ export class QuestionComponent implements OnInit {
 
 		this.newQuestion.answers = this.componentRef_.instance.values;
 		console.log(this.newQuestion)
+		this.questionForm.reset();
+
 	}
 }

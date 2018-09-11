@@ -29,3 +29,7 @@ form {
 .submit-btn {
   @extend %btn-submit-style;
 }
+
+.warning {
+	color: $color-orange;
+}

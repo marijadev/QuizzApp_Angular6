@@ -2,4 +2,8 @@
 
 .form-group {
 	@extend %answer-style;
+	textarea {
+		width: 100%;
+		outline: none;
+	}
 }
