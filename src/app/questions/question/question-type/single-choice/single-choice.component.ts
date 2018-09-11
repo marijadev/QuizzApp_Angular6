@@ -23,6 +23,7 @@ export class SingleChoiceComponent implements OnInit {
 
 	get answers() {
 		const array = this.answerForm.get('answers') as FormArray;
+		console.log(array.value)
 		this.formAnswers = array.value;
 		return array;
 	}

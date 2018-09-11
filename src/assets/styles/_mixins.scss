@@ -65,3 +65,35 @@
   width: 100%;
   padding: 10px;
 }
+
+%answer-style {
+    .answer-holder {
+      @extend %answer-holder-style;
+    }
+
+    #answers-wrapper {
+      width: 100%;
+    }
+
+    .single-answer-holder {
+      display: flex;
+      align-items: center;
+    }
+
+    .answer-checkbox {
+      flex-basis: 5%;
+    }
+
+    .true-false-holder {
+      display: flex;
+    }
+
+    input,
+    select {
+      @extend %input-style;
+    }
+
+    .btn {
+      @extend %btn-style;
+    }
+}

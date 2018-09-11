@@ -33,7 +33,6 @@ export class QuestionComponent implements OnInit {
 		type: '',
 		answers: []
 	};
-	answers: [];
 
 	constructor(private componentResolver: ComponentFactoryResolver) { }
 
@@ -85,20 +84,20 @@ export class QuestionComponent implements OnInit {
 		this.visibleComponent();
 	}
 
-	checkTrueAnswers() {
-		const arr = this.componentRef_.instance.values;
-		let trueValue = null;
+	// checkTrueAnswers() {
+	// 	const arr = this.componentRef_.instance.values;
+	// 	let trueValue = null;
 
-		let check = arr.map(obj => {
-			if (obj.value === true) {
-				trueValue++;
-			}
-		})
+	// 	let check = arr.map(obj => {
+	// 		if (obj.value === true) {
+	// 			trueValue++;
+	// 		}
+	// 	})
 		
-		let correct = trueValue === 1 ? true : false;
-		console.log(correct)
-		return correct;
-	}
+	// 	let correct = trueValue === 1 ? true : false;
+	// 	console.log(correct)
+	// 	return correct;
+	// }
 
 	onSubmitQuestion() {
 		this.newQuestion.id = Math.floor(Math.random() * 100000) + 1;
@@ -106,9 +105,9 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.category = this.questionForm.controls.category.value;
 		this.newQuestion.difficulty = this.questionForm.controls.difficulty.value;
 		this.newQuestion.type = this.questionForm.controls.type.value;
-		if (!this.checkTrueAnswers()) {
-			this.newQuestion.answers = this.componentRef_.instance.values;
-		}
+		// if (this.checkTrueAnswers()) {
+		// 	this.newQuestion.answers = this.componentRef_.instance.values;
+		// }
 		// console.log(this.newQuestion)
 	}
 }

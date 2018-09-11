@@ -1,0 +1,5 @@
+@import '~src/assets/styles/_mixins.scss';
+
+.form-group {
+	@extend %answer-style;
+}
