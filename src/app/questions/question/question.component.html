@@ -27,7 +27,7 @@
       </div>
       <div class="question-type question-column">
         <ng-template #dynamic></ng-template>
-        <button class="submit-btn" type="submit">Submit</button>
+        <button class="submit-btn" [disabled]="childInvalid" type="submit">Submit</button>
       </div>
     </form>
   </div>

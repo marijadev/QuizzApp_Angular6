@@ -1,6 +1,6 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-
+import {QuestionService} from '../../../../questions/question.service';
 
 @Component({
 	selector: 'app-single-choice',
@@ -13,7 +13,7 @@ export class SingleChoiceComponent implements OnInit {
 	arrayOfAnswers: EventEmitter<any> = new EventEmitter<any>();
 	selectedCheckbox: boolean = false;
 
-	constructor(private fb: FormBuilder, ) { }
+	constructor(private fb: FormBuilder, private qService: QuestionService) { }
 
 	ngOnInit() {
 		this.answerForm = this.fb.group({
@@ -23,7 +23,6 @@ export class SingleChoiceComponent implements OnInit {
 
 	get answers() {
 		const array = this.answerForm.get('answers') as FormArray;
-		console.log(array.value)
 		this.formAnswers = array.value;
 		return array;
 	}
@@ -38,8 +37,34 @@ export class SingleChoiceComponent implements OnInit {
 
 	get values() {
 		const array = this.answerForm.get('answers') as FormArray;
-		this.formAnswers = array.value;
-		return this.formAnswers;
+		let value = 0;
+		let result = false;
+		array.value.map(obj => {
+			if (obj.value === true) {
+				value++;
+			}
+			if (value === 0) {
+				result = false;
+				return result
+			} else if (value > 1) {
+				result = false;
+				return result
+			} else { result = true; }
+		})
+
+		if (result === false) {
+			this.qService.isChildFormValid = false;
+			console.log('cannot submit')
+			return null;
+		} else {
+			this.qService.isChildFormValid = true;
+			console.log('submit')
+			this.formAnswers = array.value;
+			return this.formAnswers;
+		}
+
+
+		// console.log(array.value)
 	}
 
 	deleteAnswer(index) {

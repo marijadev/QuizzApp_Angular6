@@ -9,6 +9,7 @@ import { MultipleChoiceComponent } from './question-type/multiple-choice/multipl
 import { TextComponent } from './question-type/text/text.component';
 import { OrderComponent } from './question-type/order/order.component';
 import { questionTypes } from '../../shared/constants';
+import { QuestionService } from '../question.service';
 
 @Component({
 	selector: 'app-question',
@@ -33,8 +34,9 @@ export class QuestionComponent implements OnInit {
 		type: '',
 		answers: []
 	};
+	childInvalid: boolean = false;
 
-	constructor(private componentResolver: ComponentFactoryResolver) { }
+	constructor(private componentResolver: ComponentFactoryResolver, private qService: QuestionService) { }
 
 	ngOnInit() {
 		this.questionForm = new FormGroup({
@@ -84,30 +86,14 @@ export class QuestionComponent implements OnInit {
 		this.visibleComponent();
 	}
 
-	// checkTrueAnswers() {
-	// 	const arr = this.componentRef_.instance.values;
-	// 	let trueValue = null;
-
-	// 	let check = arr.map(obj => {
-	// 		if (obj.value === true) {
-	// 			trueValue++;
-	// 		}
-	// 	})
-		
-	// 	let correct = trueValue === 1 ? true : false;
-	// 	console.log(correct)
-	// 	return correct;
-	// }
-
 	onSubmitQuestion() {
 		this.newQuestion.id = Math.floor(Math.random() * 100000) + 1;
 		this.newQuestion.question = this.questionForm.controls.question.value;
 		this.newQuestion.category = this.questionForm.controls.category.value;
 		this.newQuestion.difficulty = this.questionForm.controls.difficulty.value;
 		this.newQuestion.type = this.questionForm.controls.type.value;
-		// if (this.checkTrueAnswers()) {
-		// 	this.newQuestion.answers = this.componentRef_.instance.values;
-		// }
-		// console.log(this.newQuestion)
+
+		this.newQuestion.answers = this.componentRef_.instance.values;
+		console.log(this.newQuestion)
 	}
 }
