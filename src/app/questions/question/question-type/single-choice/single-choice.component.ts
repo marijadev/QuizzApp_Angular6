@@ -38,18 +38,8 @@ export class SingleChoiceComponent implements OnInit {
 	get values() {
 		const array = this.answerForm.get('answers') as FormArray;
 		let value = 0;
-		let result = false;
-		array.value.map(obj => {
-			if (obj.value === true) {
-				value++;
-			}
-			if (value === 0 || value > 1) {
-				result = false;
-				return result
-			}
-			result = true;
-			return result;
-		})
+
+		const result = array.value.filter(item => item.value === true).length == 1 ? true : false;
 
 		if (result === false) {
 			this.qService.isChildFormValid = false;

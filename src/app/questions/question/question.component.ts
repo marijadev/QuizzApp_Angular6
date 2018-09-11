@@ -98,7 +98,7 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.type = this.questionForm.controls.type.value;
 
 		this.newQuestion.answers = this.componentRef_.instance.values;
-		console.log(this.newQuestion)
+		// console.log(this.newQuestion)
 		this.questionForm.reset();
 
 	}
