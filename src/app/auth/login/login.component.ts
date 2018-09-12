@@ -20,10 +20,10 @@ export class LoginComponent implements OnInit {
 		const email = form.value.email;
 		const password = form.value.password;
 		
-		this.authService.login(email, password).subscribe(userStatus => {
-			if (userStatus === 'admin') {
+		this.authService.login(email, password).subscribe(admin => {
+			if (admin === 1) {
 				this.router.navigate(['/home/question'], { relativeTo: this.actRoute });
-			} else if (userStatus === 'user') {
+			} else if (admin === 0) {
 				this.router.navigate(['/home/passed-tests'], { relativeTo: this.actRoute });
 			} 
 		}, err => {

@@ -1,21 +1,39 @@
-<div class="container">
-  <form [formGroup]='answerForm'>
-    <div class="form-group">
-      <div class="answer-holder">
-        <div formArrayName="answers" id="answers-wrapper">
-          <div *ngFor="let item of answers.controls; let i=index" [formGroupName]="i">
-            <label>
+<!-- <div class="container"> -->
+<!-- <div [formGroup]='questionForm'> -->
+<!-- <div class="form-group"> -->
+<!-- <div class="answer-holder"> -->
+<!-- <div formArrayName="answers" id="answers-wrapper"> -->
+<!-- <div *ngFor="let item of answers.controls; let i=index" [formGroupName]="i"> -->
+<!--<label>
               Answer {{i}}:
-              <div class="single-answer-holder">
-                <input formControlName="answer" />
-				<input type="checkbox" formControlName="value" appTrueFalse trueValue="yes" falseValue="no" class="answer-checkbox">
-              </div>
+              <div class="single-answer-holder"> -->
+<!-- <input type="checkbox" formControlName="value" appTrueFalse trueValue="yes" falseValue="no" class="answer-checkbox">
+				  </div>
             </label>
-          </div>
-          <button type="button" (click)="addAnswer(i)">Add Answer</button>
-          <button type="button" (click)="deleteAnswer(i)">Delete Answer</button>
+		</div>
+		<button type="button" (click)="addAnswer(i)">Add Answer</button>
+		<button type="button" (click)="deleteAnswer(i)">Delete Answer</button>
+	</div>-->
+<!-- </div> -->
+<!-- </div>  -->
+<!-- </div> -->
+<!-- </div> -->
+
+<div [formGroup]='questionForm'>
+
+  <div formArrayName="answers" id="answers-wrapper">
+	  {{answers}}
+    <div *ngFor="let item of formAnswers; let i=index" [formArrayName]="i">
+		{{item}}
+      <label>
+        Answer {{i}}:
+        <div class="single-answer-holder">
+          <input formControlName="answer" />
+          <input type="checkbox" formControlName="value" appTrueFalse trueValue="yes" falseValue="no" class="answer-checkbox">
         </div>
-      </div>
+      </label>
     </div>
-  </form>
+    <button type="button" (click)="addAnswer(i)">Add Answer</button>
+    <button type="button" (click)="deleteAnswer(i)">Delete Answer</button>
+  </div>
 </div>

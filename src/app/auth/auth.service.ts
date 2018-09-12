@@ -8,15 +8,15 @@ export class AuthService {
 	user: User = {
 		email: '',
 		password: '',
-		status: '',
+		admin: 0,
 		phone: null,
 		id: null
 	};
 
-	sampleUsers = [{ id: 1, email: 'sample@test.com', password: '111', status: 'admin' },
-	{ id: 2, email: 'admin@test.com', password: '222', status: 'admin' },
-	{ id: 1, email: 'foo@test.com', password: '333', status: 'user' },
-	{ id: 2, email: 'user@test.com', password: '444', status: 'user' }];
+	sampleUsers = [{ id: 1, email: 'sample@test.com', password: '111', admin: 1 },
+	{ id: 2, email: 'admin@test.com', password: '222', admin: 1 },
+	{ id: 1, email: 'foo@test.com', password: '333', admin: 0 },
+	{ id: 2, email: 'user@test.com', password: '444', admin: 0 }];
 
 
 	constructor() { }
@@ -27,8 +27,8 @@ export class AuthService {
 		if(!!user) {
 			this.user.email = email,
 			this.user.password = password;
-			this.user.status = status;
-			return of(user.status);
+			this.user.admin = 1;
+			return of(user.admin);
 		}
 		return throwError('user not found');
 		
@@ -36,9 +36,9 @@ export class AuthService {
 	}
 
 	userType() {
-		if (this.user.status === 'admin') {
-			return 'admin';
-		} return 'user';
+		if (this.user.admin === 1) {
+			return 1;
+		} return 0;
 	}
 
 	private getUser(email, password){

@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
           <label for="type">Type:</label><br>
-          <select formControlName="type" name="questionType" (input)="onTypeChange($event)" id="questionType">
+          <select formControlName="type" name="questionType " (input)="onTypeChange($event)" id="questionType">
             <option [value]="type" *ngFor="let type of questionTypes; let i=index;" class="option">{{type}}</option>
 		  </select>
           <span *ngIf="!questionForm.get('type').valid && questionForm.get('type').touched" class="warning">Please select a question type!</span>		  
