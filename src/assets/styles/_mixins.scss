@@ -59,6 +59,11 @@
   border-radius: 5px;
   cursor: pointer;
   color: $color-white;
+
+  &:disabled {
+	  background-color: grey;
+	  cursor: text;
+  }
 }
 
 %input-style {

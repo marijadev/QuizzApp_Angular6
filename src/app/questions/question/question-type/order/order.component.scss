@@ -3,3 +3,7 @@
 .form-group {
 	@extend %answer-style;
 }
+
+#answer-order {
+	width: 10%;
+}

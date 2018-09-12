@@ -17,7 +17,7 @@ export class TextComponent implements OnInit {
 
 	ngOnInit() {
 		this.answerForm = this.fb.group({
-			answers: this.fb.array([this.fb.group({ answer: '', value: false })])
+			answers: this.fb.array([this.fb.group({ answer: '' })])
 		})
 	}
 
@@ -32,11 +32,4 @@ export class TextComponent implements OnInit {
 			this.formAnswers = array.value;
 			return this.formAnswers;
 	}
-
-	deleteAnswer(index) {
-		if (index > 1) {
-			this.answers.removeAt(index);
-		}
-	}
-
 }

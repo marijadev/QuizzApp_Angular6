@@ -11,7 +11,6 @@ export class SingleChoiceComponent implements OnInit {
 	answerForm: FormGroup;
 	formAnswers: Answers;
 	arrayOfAnswers: EventEmitter<any> = new EventEmitter<any>();
-	selectedCheckbox: boolean = false;
 
 	constructor(private fb: FormBuilder, private qService: QuestionService) { }
 
@@ -37,21 +36,18 @@ export class SingleChoiceComponent implements OnInit {
 
 	get values() {
 		const array = this.answerForm.get('answers') as FormArray;
-		let value = 0;
-
 		const result = array.value.filter(item => item.value === true).length == 1 ? true : false;
 
 		if (result === false) {
 			this.qService.isChildFormValid = false;
 			console.log('cannot submit')
-			return null;
+			return;
 		} else {
 			this.qService.isChildFormValid = true;
 			console.log('submit')
 			this.formAnswers = array.value;
 			return this.formAnswers;
 		}
-		// console.log(array.value)
 	}
 
 	deleteAnswer(index) {
