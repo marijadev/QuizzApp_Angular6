@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { QuestionService } from '../../../../questions/question.service';
 
@@ -9,8 +9,6 @@ import { QuestionService } from '../../../../questions/question.service';
 })
 export class SingleChoiceComponent implements OnInit {
 	questionForm: FormGroup;
-	formAnswers: Answers;
-	arrayOfAnswers: EventEmitter<any> = new EventEmitter<any>();
 
 	constructor(private fb: FormBuilder, private qService: QuestionService) { }
 
@@ -21,7 +19,7 @@ export class SingleChoiceComponent implements OnInit {
 	createAnswer() {
 		return this.fb.group({
 			answer: new FormControl(null, [Validators.required]),
-			value: new FormControl(null)
+			value: new FormControl(0)
 		})
 	}
 
@@ -37,27 +35,22 @@ export class SingleChoiceComponent implements OnInit {
 	get values() {
 		const answersArray = this.answers.value;
 		console.log(answersArray)
-		// const result = answersArray.value.filter(item => item.value === true).length == 1 ? true : false;
-		return answersArray;
-		// 	if (result === false) {
-		// 		this.qService.isChildFormValid = false;
-		// 		console.log('cannot submit')
-		// 		return;
-		// 	} else {
-		// 		this.qService.isChildFormValid = true;
-		// 		console.log('submit')
-		// 		this.formAnswers = array.value;
-		// 		return this.formAnswers;
-		// 	}
+		const result = answersArray.filter(item => item.value === true).length == 1 ? true : 0;
+		if (result === 0) {
+			this.qService.isChildFormValid = 0;
+			console.log('cannot submit')
+			return;
+		} else {
+			this.qService.isChildFormValid = 1;
+			console.log('submit')
+			return answersArray;
+		}
 	}
 
 	deleteAnswer(index: number) {
 		const answersArray = this.answers.value;
-		console.log(index)
 		if (answersArray.length > 1) {
 			this.answers.removeAt(index);
-			console.log(answersArray)
-			console.log('true')
 		}
 	}
 

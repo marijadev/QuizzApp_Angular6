@@ -12,8 +12,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/for
 	]
 })
 export class TrueFalseDirective implements ControlValueAccessor {
-	@Input() trueValue = true;
-	@Input() falseValue = false;
+	@Input() trueValue: number = 1;
+	@Input() falseValue: number = 0;
 	private propagateChange = (_: any) => { };
 	private propagateTouched = (_: any) => { };
 
@@ -21,17 +21,17 @@ export class TrueFalseDirective implements ControlValueAccessor {
 
 	writeValue(obj: any): void {
 		if (obj === this.trueValue) {
-			this.renderer.setProperty(this.elementRef.nativeElement, 'checked', true);
+			this.renderer.setProperty(this.elementRef.nativeElement, 'checked', 1);
 		} else {
-			this.falseValue = false;
-			this.renderer.setProperty(this.elementRef.nativeElement, 'checked', false);
+			this.falseValue = 0;
+			this.renderer.setProperty(this.elementRef.nativeElement, 'checked', 0);
 		}
 	}
 
 	@HostListener('change', ['$event'])
 	onHostChange(event) {
 		this.propagateChange(!event.target.checked ? this.falseValue : this.trueValue);
-		return this.falseValue = false;
+		return this.falseValue =0;
 	}
 
 	registerOnChange(fn: any): void {

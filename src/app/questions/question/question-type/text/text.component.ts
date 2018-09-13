@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { QuestionService } from '../../../../questions/question.service';
 
 @Component({
@@ -8,28 +8,25 @@ import { QuestionService } from '../../../../questions/question.service';
 	styleUrls: ['./text.component.scss']
 })
 export class TextComponent implements OnInit {
-	answerForm: FormGroup;
-	formAnswers: Answers;
-	arrayOfAnswers: EventEmitter<any> = new EventEmitter<any>();
-	selectedCheckbox: boolean = false;
+	questionForm: FormGroup;
 
 	constructor(private fb: FormBuilder, private qService: QuestionService) { }
 
 	ngOnInit() {
-		this.answerForm = this.fb.group({
-			answers: this.fb.array([this.fb.group({ answer: '' })])
+		this.questionForm.addControl('answers', this.fb.array([this.createAnswer()]));
+	}
+
+	createAnswer() {
+		return this.fb.group({
+			answer: new FormControl(null, [Validators.required]),
 		})
 	}
 
-	get answers() {
-		const array = this.answerForm.get('answers') as FormArray;
-		this.formAnswers = array.value;
-		return array;
+	get answers(): FormArray {
+		return this.questionForm.get('answers') as FormArray;
 	}
 
 	get values() {
-		const array = this.answerForm.get('answers') as FormArray;
-			this.formAnswers = array.value;
-			return this.formAnswers;
+		return this.answers.value;
 	}
 }

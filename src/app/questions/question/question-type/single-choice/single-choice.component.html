@@ -2,13 +2,15 @@
   <div class="answer-holder">
     <div formArrayName="answers" *ngFor="let item of questionForm.get('answers').controls; let i=index" id="answers-wrapper">
       <div [formGroupName]="i">
-        <label>
-          Answer {{i}}:
-          <div class="single-answer-holder">
-            <input formControlName="answer" />
-            <input type="checkbox" formControlName="value" appTrueFalse trueValue="yes" falseValue="no" class="answer-checkbox">
-          </div>
-        </label>
+        <div class="form-group">
+          <label>
+            Answer {{i}}:
+            <div class="single-answer-holder">
+              <input formControlName="answer" />
+              <input type="checkbox" formControlName="value" appTrueFalse trueValue="yes" falseValue="no" class="answer-checkbox">
+            </div>
+          </label>
+        </div>
       </div>
       <button type="button" (click)="addAnswer(i)">Add Answer</button>
       <button type="button" (click)="deleteAnswer(i)">Delete Answer</button>

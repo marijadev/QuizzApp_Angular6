@@ -1,18 +1,17 @@
-<div class="container">
-  <form [formGroup]='answerForm'>
-    <div class="form-group">
-      <div class="answer-holder">
-        <div formArrayName="answers" id="answers-wrapper">
-          <div *ngFor="let item of answers.controls; let i=index" [formGroupName]="i">
-            <label>
-              Answer {{i}}:
-              <div class="single-answer-holder">
-                <textarea formControlName="answer" rows="15"></textarea>
-              </div>
-            </label>
-          </div>
+
+<div [formGroup]='questionForm'>
+  <div class="answer-holder">
+    <div formArrayName="answers" *ngFor="let item of questionForm.get('answers').controls; let i=index">
+      <div [formGroupName]="i">
+        <div class="form-group">
+          <label>
+            Answer:
+            <div class="single-answer-holder">
+              <textarea formControlName="answer" rows="15"></textarea>
+            </div>
+          </label>
         </div>
       </div>
     </div>
-  </form>
+  </div>
 </div>
