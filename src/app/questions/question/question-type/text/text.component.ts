@@ -13,13 +13,7 @@ export class TextComponent implements OnInit {
 	constructor(private fb: FormBuilder, private qService: QuestionService) { }
 
 	ngOnInit() {
-		this.questionForm.addControl('answers', this.fb.array([this.createAnswer()]));
-	}
-
-	createAnswer() {
-		return this.fb.group({
-			answer: new FormControl(null, [Validators.required]),
-		})
+		this.questionForm.addControl('answers', new FormControl(null, [Validators.required]));
 	}
 
 	get answers(): FormArray {

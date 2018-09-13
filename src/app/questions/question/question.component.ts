@@ -46,7 +46,6 @@ export class QuestionComponent implements OnInit {
 			'type': new FormControl(null,  [Validators.required]),
 		})
 		this.questionTypes = Object.keys(questionTypes);
-		this.childInvalid = this.qService.isChildFormValid;
 	}
 
 	visibleComponent = () => {
@@ -99,6 +98,7 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.type = this.questionForm.controls.type.value;
 
 		this.newQuestion.answers = this.componentRef_.instance.values;
+		// console.log(JSON.stringify(this.newQuestion))
 		console.log(this.newQuestion)
 		this.questionForm.reset();
 
