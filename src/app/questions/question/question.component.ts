@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, Input, ForwardRefFn } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormArray, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { Question } from '../../shared/question.model';
@@ -44,7 +44,11 @@ export class QuestionComponent implements OnInit {
 			'category': new FormControl(null, [Validators.required]),
 			'difficulty': new FormControl(null, [Validators.required]),
 			'type': new FormControl(null, [Validators.required]),
-		})
+		}, {validators: [(control: FormGroup): ValidationErrors | null => {
+			if(!!this.childInstance) {
+				return this.childInstance.validate(control);
+			} return null;
+		  }]});
 		this.questionTypes = Object.keys(questionTypes);
 	}
 
@@ -94,11 +98,11 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.category = this.questionForm.controls.category.value;
 		this.newQuestion.difficulty = this.questionForm.controls.difficulty.value;
 		this.newQuestion.type = this.questionForm.controls.type.value;
-
 		this.newQuestion.answers = this.componentRef_.instance.values;
 		// console.log(JSON.stringify(this.newQuestion))
 		// console.log(this.newQuestion)
 		this.questionForm.reset();
+		this.questionForm.removeControl('answers');
 	}
 
 	ngOnDestroy() {

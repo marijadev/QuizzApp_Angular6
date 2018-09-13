@@ -32,8 +32,7 @@
       </div>
       <div class="question-type question-column">
         <ng-template #dynamic></ng-template>
-		<button class="submit-btn" type="submit">Submit</button>
-		<!-- [disabled]="!questionForm.valid && questionForm" -->
+		<button class="submit-btn" [disabled]="!questionForm.valid && questionForm" type="submit">Submit</button>
       </div>
     </form>
   </div>

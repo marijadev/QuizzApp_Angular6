@@ -34,17 +34,18 @@ export class SingleChoiceComponent implements OnInit, OnDestroy {
 
 	get values() {
 		const answersArray = this.answers.value;
-		console.log(answersArray)
-		const result = answersArray.filter(item => item.value === true).length == 1 ? true : 0;
-		if (result === 0) {
-			this.qService.isChildFormValid = 0;
-			console.log('cannot submit')
-			return;
-		} else {
-			this.qService.isChildFormValid = 1;
-			console.log('submit')
-			return answersArray;
-		}
+		// console.log(answersArray)
+		// const result = answersArray.filter(item => item.value === true).length == 1 ? true : 0;
+		// if (result === 0) {
+		// 	this.qService.isChildFormValid = 0;
+		// 	console.log('cannot submit')
+		// 	return;
+		// } else {
+		// 	this.qService.isChildFormValid = 1;
+		// 	console.log('submit')
+		// 	return answersArray;
+		// }
+		return answersArray;
 	}
 
 	deleteAnswer(index: number) {
@@ -52,6 +53,14 @@ export class SingleChoiceComponent implements OnInit, OnDestroy {
 		if (answersArray.length > 1) {
 			this.answers.removeAt(index);
 		}
+	}
+
+	validate(control: FormControl): { [s: string]: boolean } {
+		const trueValues: number = this.answers.value.filter(item => item.value === true).length;
+		if (trueValues === 1) {
+			return { 'checkboxValid': true }
+		}
+		return { 'checkboxValid': null }
 	}
 
 	ngOnDestroy() {
