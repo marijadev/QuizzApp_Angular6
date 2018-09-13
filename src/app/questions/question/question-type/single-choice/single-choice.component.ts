@@ -55,12 +55,12 @@ export class SingleChoiceComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	validate(control: FormControl): { [s: string]: boolean } {
-		const trueValues: number = this.answers.value.filter(item => item.value === true).length;
-		if (trueValues === 1) {
-			return { 'checkboxValid': true }
-		}
-		return { 'checkboxValid': null }
+	validate(control: FormGroup): { [s: string]: boolean } {
+		// const trueValues: number = this.answers.value.filter(item => item.value === true).length;
+		const checked = control.get('value');
+console.log(control.get('answer'))
+		// return checked === true ? { 'checkboxValid': true } : null;
+		return null;
 	}
 
 	ngOnDestroy() {
