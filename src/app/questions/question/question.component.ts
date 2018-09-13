@@ -98,8 +98,8 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.difficulty = this.questionForm.controls.difficulty.value;
 		this.newQuestion.type = this.questionForm.controls.type.value;
 
-		// this.newQuestion.answers = this.componentRef_.instance.values;
-		// console.log(this.newQuestion)
+		this.newQuestion.answers = this.componentRef_.instance.values;
+		console.log(this.newQuestion)
 		this.questionForm.reset();
 
 	}
