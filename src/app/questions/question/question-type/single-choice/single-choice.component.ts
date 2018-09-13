@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { QuestionService } from '../../../../questions/question.service';
 
@@ -7,7 +7,7 @@ import { QuestionService } from '../../../../questions/question.service';
 	templateUrl: './single-choice.component.html',
 	styleUrls: ['./single-choice.component.scss']
 })
-export class SingleChoiceComponent implements OnInit {
+export class SingleChoiceComponent implements OnInit, OnDestroy {
 	questionForm: FormGroup;
 
 	constructor(private fb: FormBuilder, private qService: QuestionService) { }
@@ -54,4 +54,7 @@ export class SingleChoiceComponent implements OnInit {
 		}
 	}
 
+	ngOnDestroy() {
+		// this.questionForm.removeControl('answers');
+	}
 }

@@ -43,7 +43,7 @@ export class QuestionComponent implements OnInit {
 			'question': new FormControl(null, [Validators.required]),
 			'category': new FormControl(null, [Validators.required]),
 			'difficulty': new FormControl(null, [Validators.required]),
-			'type': new FormControl(null,  [Validators.required]),
+			'type': new FormControl(null, [Validators.required]),
 		})
 		this.questionTypes = Object.keys(questionTypes);
 	}
@@ -73,17 +73,15 @@ export class QuestionComponent implements OnInit {
 			const componentFactory = this.componentResolver.resolveComponentFactory(OrderComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
 		}
-		 this.componentRef_.instance.questionForm = this.questionForm;
-	}
-
-	ngOnDestroy() {
-		this.componentRef_.destroy();
+		this.componentRef_.instance.questionForm = this.questionForm;
 	}
 
 	onTypeChange(e: any) {
-		const type = e.target.value;
-		this.newQuestion.type = type;
-		this.type = type;
+		this.newQuestion.type = e.target.value;
+		this.type = e.target.value;
+		if (this.type !== 'Text') {
+			this.questionForm.removeControl('answers');
+		}
 		this.visibleComponent();
 	}
 
@@ -99,8 +97,11 @@ export class QuestionComponent implements OnInit {
 
 		this.newQuestion.answers = this.componentRef_.instance.values;
 		// console.log(JSON.stringify(this.newQuestion))
-		console.log(this.newQuestion)
+		// console.log(this.newQuestion)
 		this.questionForm.reset();
+	}
 
+	ngOnDestroy() {
+		this.componentRef_.destroy();
 	}
 }
