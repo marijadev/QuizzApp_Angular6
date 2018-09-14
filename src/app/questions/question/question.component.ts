@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, Input, ForwardRefFn } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormArray, ValidationErrors } from '@angular/forms';
-import { Observable } from 'rxjs';
 
 import { Question } from '../../shared/question.model';
 import { ComponentFactoryResolver } from '@angular/core';
@@ -25,7 +24,6 @@ export class QuestionComponent implements OnInit {
 	difficulties: string[] = ['Easy', 'Medium', 'Difficult'];
 	categories: string[] = ['JavaScript', 'Java', 'PHP'];
 	questionTypes: string[];
-	subscription: Observable<any>;
 	newQuestion: Question = {
 		id: null,
 		question: '',
@@ -100,9 +98,10 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.type = this.questionForm.controls.type.value;
 		this.newQuestion.answers = this.componentRef_.instance.values;
 		// console.log(JSON.stringify(this.newQuestion))
-		// console.log(this.newQuestion)
+		console.log(this.newQuestion)
 		this.questionForm.reset();
 		this.questionForm.removeControl('answers');
+		this.childInstance.destroy();
 	}
 
 	ngOnDestroy() {

@@ -9,7 +9,6 @@ import { QuestionService } from '../../../../questions/question.service';
 })
 export class SingleChoiceComponent implements OnInit, OnDestroy {
 	questionForm: FormGroup;
-
 	constructor(private fb: FormBuilder, private qService: QuestionService) { }
 
 	ngOnInit() {
@@ -34,17 +33,6 @@ export class SingleChoiceComponent implements OnInit, OnDestroy {
 
 	get values() {
 		const answersArray = this.answers.value;
-		// console.log(answersArray)
-		// const result = answersArray.filter(item => item.value === true).length == 1 ? true : 0;
-		// if (result === 0) {
-		// 	this.qService.isChildFormValid = 0;
-		// 	console.log('cannot submit')
-		// 	return;
-		// } else {
-		// 	this.qService.isChildFormValid = 1;
-		// 	console.log('submit')
-		// 	return answersArray;
-		// }
 		return answersArray;
 	}
 
@@ -55,11 +43,17 @@ export class SingleChoiceComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	validate(control: FormGroup): { [s: string]: boolean } {
-		// const trueValues: number = this.answers.value.filter(item => item.value === true).length;
-		const checked = control.get('value');
-console.log(control.get('answer'))
-		// return checked === true ? { 'checkboxValid': true } : null;
+
+	validate(control: FormArray): { [s: string]: boolean } {
+		let trueLength = 0;
+		for (let i = 0; i < this.answers.value.length; i++) {
+			if (this.answers.value[i].value === true) {
+				trueLength++;
+			}
+		}
+		if (trueLength > 1 || trueLength === 0) {
+			return { 'checkboxValid': true };
+		}
 		return null;
 	}
 

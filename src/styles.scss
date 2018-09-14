@@ -24,3 +24,7 @@ a, a:visited, a:focus, a:hover {
 input, select, button {
 	outline: none;
 }
+
+.warning {
+	color: $color-orange;
+}
