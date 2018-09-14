@@ -7,7 +7,7 @@
             Answer {{i}}:
             <div class="single-answer-holder">
               <input formControlName="answer" />
-              <input type="checkbox" formControlName="value" appTrueFalse trueValue="yes" falseValue="no" class="answer-checkbox">
+			  <input type="checkbox" formControlName="value" appTrueFalse trueValue="yes" falseValue="no" class="answer-checkbox">
             </div>
           </label>
         </div>
@@ -16,5 +16,5 @@
       <button type="button" (click)="deleteAnswer(i)">Delete Answer</button>
     </div>
   </div>
-  <span *ngIf="questionForm.errors?.checkboxValid" class="warning">Please check true answers!</span>
+  <span *ngIf="questionForm.errors?.checkboxValid && questionForm.get('answers').touched" class="warning">Please check true answers!</span>
 </div>
