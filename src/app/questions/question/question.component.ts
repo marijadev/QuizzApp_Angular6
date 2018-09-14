@@ -98,6 +98,7 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.answers = this.componentRef_.instance.values;
 		// console.log(JSON.stringify(this.newQuestion))
 		console.log(this.newQuestion)
+		// console.log(this.componentRef_.instance.values)
 		this.questionForm.reset();
 	}
 
