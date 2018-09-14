@@ -16,4 +16,5 @@
       <button type="button" (click)="deleteAnswer(i)">Delete Answer</button>
     </div>
   </div>
+  <span *ngIf="questionForm.errors?.checkboxValid" class="warning">Please check true answers!</span>
 </div>

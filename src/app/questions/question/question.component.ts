@@ -82,11 +82,10 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.type = e.target.value;
 		this.type = e.target.value;
 		if (this.type !== 'Text') {
-			this.questionForm.removeControl('answers');
+			// this.questionForm.removeControl('answers');
 		}
 		this.visibleComponent();
 	}
-
 	onSubmitQuestion() {
 		for (let property in this.newQuestion) {
 			property = null;
@@ -99,9 +98,8 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.answers = this.componentRef_.instance.values;
 		// console.log(JSON.stringify(this.newQuestion))
 		console.log(this.newQuestion)
-		this.questionForm.reset();
-		this.questionForm.removeControl('answers');
-		this.childInstance.destroy();
+		// this.questionForm.reset();
+		// this.componentRef_.destroy()
 	}
 
 	ngOnDestroy() {

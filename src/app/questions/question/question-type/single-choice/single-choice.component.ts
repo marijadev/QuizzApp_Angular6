@@ -43,7 +43,6 @@ export class SingleChoiceComponent implements OnInit, OnDestroy {
 		}
 	}
 
-
 	validate(control: FormArray): { [s: string]: boolean } {
 		let trueLength = 0;
 		for (let i = 0; i < this.answers.value.length; i++) {
