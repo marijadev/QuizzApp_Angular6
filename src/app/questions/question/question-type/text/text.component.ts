@@ -23,4 +23,12 @@ export class TextComponent implements OnInit {
 	get values() {
 		return this.answers.value;
 	}
+
+	validate(control: FormArray): { [s: string]: boolean } {
+		console.log(this.answers.value)
+		if (this.answers.value !== ' ') {
+			return null;
+		}
+		return {'textFieldEmpty': true}
+	}
 }

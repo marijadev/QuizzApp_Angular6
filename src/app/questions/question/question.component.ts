@@ -81,9 +81,9 @@ export class QuestionComponent implements OnInit {
 	onTypeChange(e: any) {
 		this.newQuestion.type = e.target.value;
 		this.type = e.target.value;
-		if (this.type !== 'Text') {
-			// this.questionForm.removeControl('answers');
-		}
+		// if (this.type !== 'Text') {
+		// 	this.questionForm.removeControl('answers');
+		// }
 		this.visibleComponent();
 	}
 	onSubmitQuestion() {
@@ -98,8 +98,7 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.answers = this.componentRef_.instance.values;
 		// console.log(JSON.stringify(this.newQuestion))
 		console.log(this.newQuestion)
-		// this.questionForm.reset();
-		// this.componentRef_.destroy()
+		this.questionForm.reset();
 	}
 
 	ngOnDestroy() {

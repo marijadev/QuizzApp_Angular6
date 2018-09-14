@@ -57,6 +57,6 @@ export class SingleChoiceComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy() {
-		// this.questionForm.removeControl('answers');
+		this.questionForm.removeControl('answerS');
 	}
 }

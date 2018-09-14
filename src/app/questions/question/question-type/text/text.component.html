@@ -14,4 +14,5 @@
       </div>
     </div>
   </div>
+	<span *ngIf="questionForm.errors?.textFieldEmpty && questionForm.get('answers').touched" class="warning">Please type an answer!</span>
 </div>
