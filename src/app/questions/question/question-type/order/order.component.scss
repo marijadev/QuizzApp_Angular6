@@ -1,8 +1,20 @@
 @import '~src/assets/styles/_mixins.scss';
 
+.answer-holder {
+  .single-answer-holder {
+    display: flex;
+    align-items: center;
+  }
+
+  input {
+    @extend %input-style;
+  }
+}
+
 .form-group {
+	padding: 10px 0;
 }
 
 #answer-order {
-	width: 10%;
+	flex-basis: 10%;
 }

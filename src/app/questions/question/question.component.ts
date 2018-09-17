@@ -43,9 +43,10 @@ export class QuestionComponent implements OnInit {
 			'difficulty': new FormControl(null, [Validators.required]),
 			'type': new FormControl(null, [Validators.required]),
 		}, {validators: [(control: FormGroup): ValidationErrors | null => {
-			if(!!this.childInstance) {
-				return this.childInstance.validate(control);
-			} return null;
+			// if(!!this.childInstance) {
+			// 	return this.childInstance.validate(control);
+			// } 
+			return null;
 		  }]});
 		this.questionTypes = Object.keys(questionTypes);
 	}
@@ -97,7 +98,7 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.type = this.questionForm.controls.type.value;
 		this.newQuestion.answers = this.componentRef_.instance.values;
 		// console.log(JSON.stringify(this.newQuestion))
-		console.log(this.newQuestion)
+		// console.log(this.newQuestion)
 		// console.log(this.componentRef_.instance.values)
 		this.questionForm.reset();
 	}

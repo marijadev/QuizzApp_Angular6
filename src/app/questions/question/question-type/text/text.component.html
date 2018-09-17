@@ -1,18 +1,14 @@
-
 <div [formGroup]='questionForm'>
   <div class="answer-holder">
-    <div formArrayName="answers" *ngFor="let item of questionForm.get('answers').controls; let i=index">
-      <div [formGroupName]="i">
-        <div class="form-group">
-          <label>
-            Answer:
-            <div class="single-answer-holder">
-              <textarea formControlName="answer" rows="15"></textarea>
-            </div>
-          </label>
+    <div class="form-group">
+      <label>
+        Answer:
+        <div class="single-answer-holder">
+          <textarea formControlName="answer" rows="15"></textarea>
         </div>
-      </div>
+      </label>
     </div>
   </div>
-	<span *ngIf="questionForm.errors?.textFieldEmpty && questionForm.get('answers').touched" class="warning">Please type an answer!</span>
+  <span *ngIf="questionForm.errors?.textFieldEmpty && questionForm.get('answer').touched" class="warning">Please type
+    an answer!</span>
 </div>

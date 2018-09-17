@@ -1,5 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { QuestionService } from '../../../../questions/question.service';
 
 @Component({
@@ -13,22 +13,21 @@ export class TextComponent implements OnInit {
 	constructor(private fb: FormBuilder, private qService: QuestionService) { }
 
 	ngOnInit() {
-		this.questionForm.addControl('answers', new FormControl(null, [Validators.required]));
+		this.questionForm.addControl('answer', new FormControl(null, [Validators.required]));
 	}
 
-	get answers(): FormArray {
-		return this.questionForm.get('answers') as FormArray;
+	get answers(): FormControl{
+		return this.questionForm.get('answer') as FormControl;
 	}
 
 	get values() {
 		return this.answers.value;
 	}
 
-	validate(control: FormArray): { [s: string]: boolean } {
-		console.log(this.answers.value)
-		if (this.answers.value !== ' ') {
-			return null;
-		}
-		return {'textFieldEmpty': true}
-	}
+	// validate(control:FormControl): { [s: string]: boolean } {
+	// 	if (control !== ' ') {
+	// 		return null;
+	// 	}
+	// 	return {'textFieldEmpty': true}
+	// }
 }

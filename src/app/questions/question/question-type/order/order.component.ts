@@ -1,5 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { QuestionService } from '../../../../questions/question.service';
 
 @Component({
@@ -8,49 +8,58 @@ import { QuestionService } from '../../../../questions/question.service';
 	styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
-	answerForm: FormGroup;
-	formAnswers: Answers;
-	arrayOfAnswers: EventEmitter<any> = new EventEmitter<any>();
-	order;
-
+	questionForm: FormGroup;
 	constructor(private fb: FormBuilder, private qService: QuestionService) { }
 
 	ngOnInit() {
-		this.answerForm = this.fb.group({
-			answers: this.fb.array([this.fb.group({ answer: '', value: '' })])
+		this.questionForm.addControl('answers', this.fb.array([this.createAnswer()], answersOrder => {
+			return this.validate(answersOrder as FormArray)
+		}));
+	}
+
+	createAnswer() {
+		return this.fb.group({
+			answer: new FormControl(null, [Validators.required]),
+			value: new FormControl(0)
 		})
 	}
 
-	get answers() {
-		const array = this.answerForm.get('answers') as FormArray;
-		this.formAnswers = array.value;
-		return array;
+	get answers(): FormArray {
+		return this.questionForm.get('answers') as FormArray;
 	}
 
 	addAnswer() {
-		this.answers.push(this.fb.group({
-			answer: '',
-			value: ''
-		}));
-		// console.log(this.answerForm.controls.answers.value)
+		const answer = this.createAnswer();
+		this.answers.push(answer);
 	}
 
 	get values() {
-		const inputArray = this.answerForm.get('answers') as FormArray;
-		let inputValues = inputArray.value.slice().map(item => item.value);
-		let inputAnswers = inputArray.value.slice().map(item => item.answer);
-		let orderSort = inputValues.filter(val => val !== '').sort();
-		console.log('answers: ', inputAnswers.length, 'values: ', orderSort.length)
-
-	
-		this.formAnswers = inputArray.value;
-		return this.formAnswers;
+		const answersArray = this.answers.value;
+		return answersArray;
 	}
 
-	deleteAnswer(index) {
-		if (this.formAnswers.length > 1) {
+	deleteAnswer(index: number) {
+		const answersArray = this.answers.value;
+		if (answersArray.length > 1) {
 			this.answers.removeAt(index);
 		}
+	}
+
+	validate(control: FormArray): { [s: string]: boolean } {
+		// let lastValue = 1;
+		// let currentValue;
+
+		// for (let i = 1; i < control.length; i++) {
+		// 	if (lastValue === control.value.length) {
+		// 		console.log('control.value: ', control.value[i].value)
+		// 		return null;
+		// 	}
+		// }
+		return { 'orderInvalid': true };
+	}
+
+	ngOnDestroy() {
+		this.questionForm.removeControl('answers');
 	}
 
 

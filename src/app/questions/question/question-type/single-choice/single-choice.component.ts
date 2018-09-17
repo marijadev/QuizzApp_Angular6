@@ -12,7 +12,9 @@ export class SingleChoiceComponent implements OnInit, OnDestroy {
 	constructor(private fb: FormBuilder, private qService: QuestionService) { }
 
 	ngOnInit() {
-		this.questionForm.addControl('answers', this.fb.array([this.createAnswer()]));
+		this.questionForm.addControl('answers', this.fb.array([this.createAnswer()], answersArray => {
+			return this.validate(answersArray as FormArray);
+		}));
 	}
 
 	createAnswer() {
@@ -45,8 +47,8 @@ export class SingleChoiceComponent implements OnInit, OnDestroy {
 
 	validate(control: FormArray): { [s: string]: boolean } {
 		let trueLength = 0;
-		for (let i = 0; i < this.answers.value.length; i++) {
-			if (this.answers.value[i].value === true) {
+		for (let i = 0; i < control.value.length; i++) {
+			if (control.value[i].value === true) {
 				trueLength++;
 			}
 		}
@@ -57,10 +59,6 @@ export class SingleChoiceComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy() {
-		// this.questionForm.removeControl('answerS');
-		const answersArray = this.answers.value;
-		for (let i = answersArray.length - 1; i > 0; i--) {
-			//remove elements from the array
-		}
+		this.questionForm.removeControl('answers');
 	}
 }

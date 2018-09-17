@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { QuestionService } from '../../../question.service';
 
@@ -7,7 +7,7 @@ import { QuestionService } from '../../../question.service';
 	templateUrl: './multiple-choice.component.html',
 	styleUrls: ['./multiple-choice.component.scss']
 })
-export class MultipleChoiceComponent implements OnInit {
+export class MultipleChoiceComponent implements OnInit, OnDestroy {
 	questionForm: FormGroup;
 	formAnswers: Answers;
 	arrayOfAnswers: EventEmitter<any> = new EventEmitter<any>();
@@ -15,7 +15,9 @@ export class MultipleChoiceComponent implements OnInit {
 	constructor(private fb: FormBuilder, private qService: QuestionService) { }
 
 	ngOnInit() {
-		this.questionForm.addControl('answers', this.fb.array([this.createAnswer()]));
+		this.questionForm.addControl('answers', this.fb.array([this.createAnswer()], answersArray => {
+			return this.validate(answersArray as FormArray)
+		}));
 	}
 
 	createAnswer() {
@@ -48,8 +50,8 @@ export class MultipleChoiceComponent implements OnInit {
 
 	validate(control: FormArray): { [s: string]: boolean } {
 		let trueLength = 0;
-		for (let i = 0; i < this.answers.value.length; i++) {
-			if (this.answers.value[i].value === true) {
+		for (let i = 0; i < control.value.length; i++) {
+			if (control.value[i].value === true) {
 				trueLength++;
 				return null;
 			}
@@ -57,5 +59,10 @@ export class MultipleChoiceComponent implements OnInit {
 		if (trueLength === 0) {
 			return { 'checkboxValid': true };
 		}
+	}
+
+	ngOnDestroy() {
+		this.questionForm.removeControl('answers');
+
 	}
 }

@@ -1,22 +1,20 @@
-<div class="container">
-	<form [formGroup]='answerForm'>
-	  <div class="form-group">
-		<div class="answer-holder">
-		  <div formArrayName="answers" id="answers-wrapper">
-			<div *ngFor="let item of answers.controls; let i=index" [formGroupName]="i">
-			  <label>
-				Answer {{i}}:
-				<div class="single-answer-holder">
-				  <input formControlName="answer" />
-				  <input type="number" formControlName="value" class="answer-order" id="answer-order">
-				</div>
-			  </label>
-			</div>
-			<button type="button" (click)="addAnswer(i)">Add Answer</button>
-			<button type="button" (click)="deleteAnswer(i)">Delete Answer</button>
-		  </div>
-		</div>
-	  </div>
-	</form>
+<div [formGroup]='questionForm'>
+  <div class="answer-holder">
+    <div formArrayName="answers" *ngFor="let item of questionForm.get('answers').controls; let i=index" id="answers-wrapper">
+      <div [formGroupName]="i">
+        <div class="form-group">
+          <label>
+            Answer {{i}}:
+            <div class="single-answer-holder">
+              <input formControlName="answer" />
+              <input type="number" formControlName="value" class="answer-order" id="answer-order">
+            </div>
+          </label>
+        </div>
+        <button type="button" (click)="addAnswer(i)">Add Answer</button>
+        <button type="button" (click)="deleteAnswer(i)">Delete Answer</button>
+      </div>
+	</div>
+	<span *ngIf="questionForm.errors?.orderInvalid && questionForm.get('answers').touched" class="warning">Please select an  order of answers!</span>
   </div>
-  
+</div>
