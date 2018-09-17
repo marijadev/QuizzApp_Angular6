@@ -14,7 +14,11 @@
         <button type="button" (click)="addAnswer(i)">Add Answer</button>
         <button type="button" (click)="deleteAnswer(i)">Delete Answer</button>
       </div>
-	</div>
-	<span *ngIf="questionForm.errors?.orderInvalid && questionForm.get('answers').touched" class="warning">Please select an  order of answers!</span>
+    </div>
+    <span *ngIf="questionForm.errors?.orderInvalid && questionForm.get('answers').touched" class="warning">Please
+      select an order of answers!</span>
+    <span *ngIf="!questionForm.errors?.valueRepeat && questionForm.get('answers').touched" class="warning">You cannot
+      repeat the value numbers!</span>
+    <!-- <span *ngIf="questionForm.errors?.min && questionForm.get('answers').touched" class="warning">You cannot use 0 or negative numbers!</span> -->
   </div>
 </div>

@@ -46,17 +46,30 @@ export class OrderComponent implements OnInit {
 	}
 
 	validate(control: FormArray): { [s: string]: boolean } {
-		// let lastValue = 1;
-		// let currentValue;
+		let lastValue = 1;
+		
+		if (control.value && control.value.length > 0) {
+			let currentValues = [];
+			for (let i = 1; i < control.length; i++) {
+				let singleValue = control.value[i].value;
+				lastValue++;
+				
+				if (currentValues.includes(singleValue) == false) {
+					// console.log('control.value: ', singleValue, 'last value: ', lastValue, 'current value: ', currentValue)
+					console.log('current values: ', currentValues, 'single v: ', singleValue);
+					currentValues.push(singleValue);
+					return null;
+				} else {
+					return { 'valueRepeat': true };
+				};
+			};
 
-		// for (let i = 1; i < control.length; i++) {
-		// 	if (lastValue === control.value.length) {
-		// 		console.log('control.value: ', control.value[i].value)
-		// 		return null;
-		// 	}
-		// }
-		return { 'orderInvalid': true };
-	}
+			if (control.value.length > lastValue) {
+				return { 'orderInvalid': true };
+			}
+			return null;
+		};
+	};
 
 	ngOnDestroy() {
 		this.questionForm.removeControl('answers');
