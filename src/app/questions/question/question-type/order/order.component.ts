@@ -9,6 +9,7 @@ import { QuestionService } from '../../../../questions/question.service';
 })
 export class OrderComponent implements OnInit {
 	questionForm: FormGroup;
+	answerArrayLength: number;
 	constructor(private fb: FormBuilder, private qService: QuestionService) { }
 
 	ngOnInit() {
@@ -20,7 +21,7 @@ export class OrderComponent implements OnInit {
 	createAnswer() {
 		return this.fb.group({
 			answer: new FormControl(null, [Validators.required]),
-			value: new FormControl(0)
+			value: new FormControl(1, [Validators.min(1), Validators.required])
 		})
 	}
 
@@ -46,29 +47,20 @@ export class OrderComponent implements OnInit {
 	}
 
 	validate(control: FormArray): { [s: string]: boolean } {
-		let lastValue = 1;
-		
-		if (control.value && control.value.length > 0) {
-			let currentValues = [];
-			for (let i = 1; i < control.length; i++) {
-				let singleValue = control.value[i].value;
-				lastValue++;
-				
-				if (currentValues.includes(singleValue) == false) {
-					// console.log('control.value: ', singleValue, 'last value: ', lastValue, 'current value: ', currentValue)
-					console.log('current values: ', currentValues, 'single v: ', singleValue);
-					currentValues.push(singleValue);
-					return null;
-				} else {
-					return { 'valueRepeat': true };
-				};
-			};
+		let valueArray = [];
+		this.answerArrayLength = valueArray.length;
+		let currentValue;
 
-			if (control.value.length > lastValue) {
-				return { 'orderInvalid': true };
-			}
+		for (let i = 0; i < control.length; i++) {
+			currentValue = control.value[i].value;
+			valueArray.push(currentValue);
+		}
+
+		if (valueArray.includes(currentValue) == false) {
 			return null;
-		};
+		}
+		console.log(valueArray)
+		return { 'valueRepeat': true }
 	};
 
 	ngOnDestroy() {
