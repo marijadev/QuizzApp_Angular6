@@ -13,6 +13,7 @@ import { TestsComponent } from './tests/tests.component';
 import { PassedTestsComponent } from './tests/passed-tests/passed-tests.component';
 import { QuestionService } from './questions/question.service';
 import { TrueFalseDirective } from './shared/true-false.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { TrueFalseDirective } from './shared/true-false.directive';
 	AuthModule,
 	CoreModule,
 	AppRouting,
+	HttpClientModule
   ],
   providers: [AuthService, QuestionService],
   bootstrap: [AppComponent],
