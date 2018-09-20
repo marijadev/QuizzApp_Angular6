@@ -1,5 +1,7 @@
 export interface UserModel {
-	email: string;
+	username: string;
+	name?: string;
+	surname?: string;
 	password: string;
 	id?: number;
 	admin?: number;
@@ -7,5 +9,5 @@ export interface UserModel {
 }
 
 export class User implements UserModel {
-	constructor(public email: string, public password: string, public id?: number, public admin?: number, public phone?: number) { }
+	constructor(public username: string, public name: string, public surname: string, public password: string, public id?: number, public admin?: number, public phone?: number) { }
 }

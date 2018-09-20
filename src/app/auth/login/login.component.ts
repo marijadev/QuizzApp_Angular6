@@ -20,12 +20,14 @@ export class LoginComponent implements OnInit {
 	onSubmit(form: NgForm) {
 		const username = form.value.username;
 		const password = form.value.password;
+		// this.authService.user.username = username;
+		// this.authService.user.password = password;
+		
+		// this.http.get('/server/login').subscribe(data => console.log(data));
 
-		this.http.get('https://localhost:4200/api/login').subscribe(data => console.log(data))
-
-		// this.authService.login(username, password).subscribe(
-		// 	result => {console.log(result)}
-		// )
+		this.authService.login(username, password).subscribe(
+			result => {console.log(result)}
+		)
 		// .subscribe(admin => {
 		// 	if (admin === 1) {
 		// 		this.router.navigate(['/home/question'], { relativeTo: this.actRoute });

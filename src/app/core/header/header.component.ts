@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-	  this.userType = this.authService.userType();
+	//   this.userType = this.authService.userType();
   }
 
 }
