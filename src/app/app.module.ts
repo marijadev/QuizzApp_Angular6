@@ -14,6 +14,7 @@ import { PassedTestsComponent } from './tests/passed-tests/passed-tests.componen
 import { QuestionService } from './questions/question.service';
 import { TrueFalseDirective } from './shared/true-false.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './shared/services/users.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
 	AppRouting,
 	HttpClientModule
   ],
-  providers: [AuthService, QuestionService],
+  providers: [AuthService, QuestionService, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

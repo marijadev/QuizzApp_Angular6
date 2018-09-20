@@ -8,15 +8,13 @@ import { ResultsComponent } from '../results/results.component';
 import { HeaderComponent } from './header/header.component';
 import { TestsComponent } from '../tests/tests.component';
 import { PassedTestsComponent } from '../tests/passed-tests/passed-tests.component';
-import { QuestionTypeComponent } from '../questions/question/question-type/question-type.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const coreRoutes: Routes = [
 	{
 		path: 'home', component: HomeComponent, children: [
-			{path: 'question', component: QuestionComponent, children: [
-					// { path: 'type', component: QuestionTypeComponent }
-				]
-			},
+			{ path: 'question', component: QuestionComponent },
+			{ path: 'profile', component: ProfileComponent },
 			{ path: 'results', component: ResultsComponent },
 			{ path: 'users', component: UsersComponent },
 			{ path: 'passed-tests', component: PassedTestsComponent },

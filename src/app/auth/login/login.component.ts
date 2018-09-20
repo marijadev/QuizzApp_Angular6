@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
 import { Route, Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { createSecureServer } from 'http2';
 
 @Component({
 	selector: 'app-login',
@@ -18,27 +19,21 @@ export class LoginComponent implements OnInit {
 	}
 
 	onSubmit(form: NgForm) {
+		if (this.loginForm.invalid) { return; }
+
 		const username = form.value.username;
 		const password = form.value.password;
-		// this.authService.user.username = username;
-		// this.authService.user.password = password;
-		
-		// this.http.get('/server/login').subscribe(data => console.log(data));
 
 		this.authService.login(username, password).subscribe(
-			result => {console.log(result)}
+			user => {
+				if (user.admin === 1) {
+					this.router.navigate(['/home/question'], { relativeTo: this.actRoute });
+				} else if (user.admin === 0) {
+					this.router.navigate(['/home/passed-tests'], { relativeTo: this.actRoute });
+				}
+			}
 		)
-		// .subscribe(admin => {
-		// 	if (admin === 1) {
-		// 		this.router.navigate(['/home/question'], { relativeTo: this.actRoute });
-		// 	} else if (admin === 0) {
-		// 		this.router.navigate(['/home/passed-tests'], { relativeTo: this.actRoute });
-		// 	} 
-		// }, err => {
-		// 	console.log('not logged in');
-		// });
-
+		// this.http.get('/server/login').subscribe(data => console.log(data));
 	}
-
 
 }

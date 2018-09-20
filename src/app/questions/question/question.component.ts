@@ -42,12 +42,14 @@ export class QuestionComponent implements OnInit {
 			'category': new FormControl(null, [Validators.required]),
 			'difficulty': new FormControl(null, [Validators.required]),
 			'type': new FormControl(null, [Validators.required]),
-		}, {validators: [(control: FormGroup): ValidationErrors | null => {
-			// if(!!this.childInstance) {
-			// 	return this.childInstance.validate(control);
-			// } 
-			return null;
-		  }]});
+		}, {
+			validators: [(control: FormGroup): ValidationErrors | null => {
+				// if(!!this.childInstance) {
+				// 	return this.childInstance.validate(control);
+				// } 
+				return null;
+			}]
+			});
 		this.questionTypes = Object.keys(questionTypes);
 	}
 
@@ -82,9 +84,6 @@ export class QuestionComponent implements OnInit {
 	onTypeChange(e: any) {
 		this.newQuestion.type = e.target.value;
 		this.type = e.target.value;
-		// if (this.type !== 'Text') {
-		// 	this.questionForm.removeControl('answers');
-		// }
 		this.visibleComponent();
 	}
 	onSubmitQuestion() {
@@ -104,6 +103,8 @@ export class QuestionComponent implements OnInit {
 	}
 
 	ngOnDestroy() {
-		this.componentRef_.destroy();
+		if (this.componentRef_) {
+			this.componentRef_.destroy();
+		}
 	}
 }
