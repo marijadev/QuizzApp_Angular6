@@ -1,3 +1,5 @@
-  <!-- <ol *ngFor="let user of allUsers">
-	<li>{{user.username}}</li>
-  </ol> -->
+<ol>
+  <li *ngFor="let user of currentUsers">
+    <a>{{user.username}}, {{user.name}} {{user.surname}}, phone number: {{user.phone}}, admin: {{user.admin}}, ID: {{user.id}}</a>
+  </li>
+</ol>

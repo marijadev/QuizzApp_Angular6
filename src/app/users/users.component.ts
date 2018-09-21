@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/services/users.service';
+import { User } from '../shared/user.model';
 
 @Component({
 	selector: 'app-users',
@@ -9,13 +10,19 @@ import { UserService } from '../shared/services/users.service';
 
 export class UsersComponent implements OnInit {
 	allUsers;
-
+	currentUsers = [];
 	constructor(private userService: UserService) { }
 
 	ngOnInit() {
 		this.allUsers = this.userService.getAll().subscribe(
-			res => console.log(res)
-		);
+			res => {
+				res.map(user => {
+					this.currentUsers.push(new User(user.username, user.name, user.surname, user.password, user.id, user.admin, user.phone))
+					console.log('current ', this.currentUsers);
+				}
+				);
+			})
 	}
-
 }
+
+// new User(user.name, user.id, user.surname, user.password, user.phone, user.username)
