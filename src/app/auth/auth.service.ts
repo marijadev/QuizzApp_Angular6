@@ -50,6 +50,10 @@ export class AuthService {
 			);
 	}
 
+	public get userLoggedIn() {
+		return this.user;
+	}
+
 	logout() {
 		localStorage.removeItem('currentUser');
 	}

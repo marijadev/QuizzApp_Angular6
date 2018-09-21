@@ -9,12 +9,17 @@ import { HeaderComponent } from './header/header.component';
 import { TestsComponent } from '../tests/tests.component';
 import { PassedTestsComponent } from '../tests/passed-tests/passed-tests.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileViewComponent } from './profile/profile-view/profile-view.component';
+import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 
 const coreRoutes: Routes = [
 	{
 		path: 'home', component: HomeComponent, children: [
 			{ path: 'question', component: QuestionComponent },
-			{ path: 'profile', component: ProfileComponent },
+			{ path: 'profile', component: ProfileComponent, children: [
+				{path: '', component: ProfileViewComponent},
+				{path: 'edit-profile', component: EditProfileComponent},
+			] },
 			{ path: 'results', component: ResultsComponent },
 			{ path: 'users', component: UsersComponent },
 			{ path: 'passed-tests', component: PassedTestsComponent },
