@@ -1,1 +1,21 @@
-<app-profile-view></app-profile-view>
+<div *ngIf="!editing">
+  <div class="profile-container">
+    <div class="profile-img-wrapper">
+      <div class="profile-img-holder">
+        <img src="https://via.placeholder.com/200x200" alt="profile-picture">
+      </div>
+    </div>
+    <div class="profile-info-wrapper">
+      <div class="profile-info-holder">
+        <h3>{{user.name}} {{user.surname}}</h3>
+        <p>{{user.username}}</p>
+        <p>{{user.phone}}</p>
+      </div>
+    </div>
+    <button (click)="onEditProfile()" class="edit-profile">Edit Profile</button>
+  </div>
+</div>
+
+<div *ngIf="editing">
+  <app-edit-profile [(ngModel)]="name" label="Name" [required]="true" type="text"></app-edit-profile>
+</div>
