@@ -29,7 +29,7 @@ import { EditProfileComponent } from './profile/edit-profile/edit-profile.compon
 		TextComponent,
 		OrderComponent,
 		ConnectingComponent,
-		EditProfileComponent
+		EditProfileComponent,
 	],
 	imports: [
 		CommonModule,

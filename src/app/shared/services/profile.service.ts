@@ -7,6 +7,7 @@ import { User } from '../user.model';
 })
 export class ProfileService {
 	currentProfile: User;
+	editing: boolean = false;
 
 	constructor(private usersService: UserService) { }
 

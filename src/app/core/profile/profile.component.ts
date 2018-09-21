@@ -10,16 +10,17 @@ import { User } from '../../shared/user.model';
 })
 export class ProfileComponent implements OnInit {
 	user: User;
-	private editing: boolean = false; // Is Component in edit mode?
+	private editing: boolean; // Is Component in edit mode?
 
 	constructor(private profileService: ProfileService) { }
 
 	ngOnInit() {
 		this.user = this.profileService.populateUser();
-		console.log(this.user)
+		this.editing = this.profileService.editing;
 	}
 
 	onEditProfile() {
+		this.profileService.editing = true;
 		this.editing = true;
 	}
 
