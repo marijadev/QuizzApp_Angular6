@@ -30,6 +30,7 @@ export class ProfileService implements OnInit {
 		}
 		this.authService.setUser(user);
 		const currentUser = this.usersService.getCurrentUser();
-		this.http.post('/server/edit', currentUser).subscribe(arg => console.log(arg));
+		console.log(currentUser)
+		// this.http.post('/server/edit', currentUser).subscribe(arg => console.log(arg));
 	}
 }

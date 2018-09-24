@@ -17,7 +17,7 @@ export class UsersComponent implements OnInit {
 		this.allUsers = this.userService.getAll().subscribe(
 			res => {
 				res.map(user => {
-					this.currentUsers.push(new User(user.username, user.name, user.surname, user.password, user.id, user.admin, user.phone))
+					this.currentUsers.push(new User(user.id, user.username, user.password, user.name, user.surname, user.phone, user.admin))
 					console.log('current ', this.currentUsers);
 				}
 				);
