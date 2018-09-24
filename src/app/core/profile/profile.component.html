@@ -17,5 +17,5 @@
 </div>
 
 <div *ngIf="editing">
-  <app-edit-profile (editing)="editingProfile()"></app-edit-profile>
+  <app-edit-profile (editing)="editingProfile($event)"></app-edit-profile>
 </div>

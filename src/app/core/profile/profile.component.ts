@@ -16,13 +16,13 @@ export class ProfileComponent implements OnInit {
 
 	ngOnInit() {
 		this.user = this.profileService.populateUser();
-		console.log(this.user)
 	}
 
 	allowEditProfile() {
 		this.editing = true;
 	}
 	
-	editingProfile() {
+	editingProfile(e: boolean) {
+		this.editing = e;
 	}
 }
