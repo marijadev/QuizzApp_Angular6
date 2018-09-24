@@ -16,6 +16,7 @@ import { TrueFalseDirective } from './shared/true-false.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './shared/services/users.service';
 import { ProfileService } from './shared/services/profile.service';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { ProfileService } from './shared/services/profile.service';
 	AppRouting,
 	HttpClientModule
   ],
-  providers: [AuthService, QuestionService, UserService, ProfileService],
+  providers: [AuthGuard, AuthService, QuestionService, UserService, ProfileService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

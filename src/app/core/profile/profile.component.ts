@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProfileService } from '../../shared/services/profile.service';
 import { User } from '../../shared/user.model';
 
@@ -10,19 +10,19 @@ import { User } from '../../shared/user.model';
 })
 export class ProfileComponent implements OnInit {
 	user: User;
-	private editing: boolean; // Is Component in edit mode?
+	@Input('editing') editing;
 
 	constructor(private profileService: ProfileService) { }
 
 	ngOnInit() {
 		this.user = this.profileService.populateUser();
-		this.editing = this.profileService.editing;
+		console.log(this.user)
 	}
 
-	onEditProfile() {
-		this.profileService.editing = true;
+	allowEditProfile() {
 		this.editing = true;
 	}
-
-
+	
+	editingProfile() {
+	}
 }

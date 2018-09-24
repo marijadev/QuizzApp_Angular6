@@ -1,27 +1,26 @@
-<p>
-  edit-profile works!
-</p>
 <div>
-  <!-- <input #inlineEditControl [required]="required" [name]="username" [(ngModel)]="username" [type]="type" [placeholder]="username" />
-  <input #inlineEditControl [required]="required" [name]="name" [(ngModel)]="name" [type]="type" [placeholder]="name" /> -->
-  <!-- <input #inlineEditControl [required]="required" [name]="value" [(ngModel)]="value" [type]="type"
-    [placeholder]="label" />
-  <input #inlineEditControl [required]="required" [name]="value" [(ngModel)]="value" [type]="type"
-	[placeholder]="label" /> -->
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <label for="username">Username:</label>
-    <input type="text" class="form-control" name="username" ngModel required />
+  <form (ngSubmit)="onEditSubmit(f)" #f="ngForm">
     <!-- [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" -->
+    <div class="form-group">
+      <label for="name">Name:</label><br>
+      <input type="text" name="name" placeholder="Enter your name..." id="name"  ngModel required />
+    </div>
+    <div class="form-group">
+      <label for="surname">Surname:</label><br>
+      <input type="text" name="surname" placeholder="Enter your surname..." id="surname"  ngModel required />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone:</label><br>
+      <input type="number" name="phone" placeholder="Enter your phone..." id="phone"  ngModel required />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label><br>
+      <input type="password" name="password" placeholder="Enter your password..." id="password"  ngModel required />
+    </div>
     <div>
-      <button type="submit" [disabled]="!editProfileForm.valid && editProfileForm.touched">Submit new profile</button>
+      <button type="submit" [disabled]="!editProfileForm.valid && editProfileForm.touched">Cancel</button>
+      <button type="submit" [disabled]="!editProfileForm.valid && editProfileForm.touched">Submit</button>
     </div>
   </form>
 </div>
 
-username: string;
-name?: string;
-surname?: string;
-password: string;
-id?: number;
-admin?: number;
-phone?: number;

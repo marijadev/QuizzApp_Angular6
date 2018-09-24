@@ -10,10 +10,11 @@ import { TestsComponent } from '../tests/tests.component';
 import { PassedTestsComponent } from '../tests/passed-tests/passed-tests.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
+import { AuthGuard } from '../shared/guards/auth.guard';
 
 const coreRoutes: Routes = [
 	{
-		path: 'home', component: HomeComponent, children: [
+		path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
 			{ path: 'question', component: QuestionComponent },
 			{ path: 'profile', component: ProfileComponent, children: [
 				{path: 'edit-profile', component: EditProfileComponent},
@@ -25,6 +26,7 @@ const coreRoutes: Routes = [
 		]
 	},
 	{ path: 'header', component: HeaderComponent },
+	{ path: '**', redirectTo: '' }
 ]
 
 @NgModule({

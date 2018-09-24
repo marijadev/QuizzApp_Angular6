@@ -1,0 +1,10 @@
+@import '~src/assets/styles/_mixins.scss';
+
+.form-group {
+	@extend %form-group-style;
+}
+
+input {
+	padding: 10px;
+	margin-top: 10px;
+}

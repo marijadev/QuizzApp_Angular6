@@ -12,10 +12,10 @@
         <p>{{user.phone}}</p>
       </div>
     </div>
-    <button (click)="onEditProfile()" class="edit-profile">Edit Profile</button>
+    <button (click)="allowEditProfile()" class="edit-profile">Edit Profile</button>
   </div>
 </div>
 
 <div *ngIf="editing">
-  <app-edit-profile ></app-edit-profile>
+  <app-edit-profile (editing)="editingProfile()"></app-edit-profile>
 </div>

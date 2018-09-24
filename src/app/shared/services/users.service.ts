@@ -20,12 +20,4 @@ export class UserService {
 		const userLoggedIn = this.authService.userLoggedIn;
 		return userLoggedIn;
 	}
-
-	// update(user: User) {
-	// 	return this.http.put(`${config.apiUrl}/users/` + user.id, user);
-	// }
-
-	// delete(id: number) {
-	// 	return this.http.delete(`${config.apiUrl}/users/` + id);
-	// }
 }
