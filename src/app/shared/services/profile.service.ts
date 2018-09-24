@@ -10,7 +10,7 @@ import { Subject, Observable } from 'rxjs';
 })
 export class ProfileService implements OnInit {
 	currentProfile: User;
-	
+
 	constructor(private usersService: UserService, private http: HttpClient, private authService: AuthService) { }
 
 	ngOnInit() {
@@ -21,7 +21,7 @@ export class ProfileService implements OnInit {
 		return currentUser;
 	}
 
-	onEditProfile(name: string, password: string, surname: string, phone: number) {
+	onEditProfile(password: string, name: string, surname: string, phone: number) {
 		const user = {
 			password,
 			name,
