@@ -31,8 +31,10 @@ export class AuthService {
 		this.user.username = username;
 		this.user.password = password;
 		return this.http.post<User>('/server/login', this.user)
+		
 			.pipe(
 				map(user => {
+
 					if (user) {
 						this.user.id = user.id;
 						this.user.username = user.username;

@@ -13,9 +13,7 @@ export class EditProfileComponent implements OnInit {
 
 	constructor(private profileService: ProfileService) { }
 
-	ngOnInit() {
-
-	}
+	ngOnInit() {}
 
 	onEditSubmit() {
 		const afterEdit = false;

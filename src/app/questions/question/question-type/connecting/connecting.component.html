@@ -1,3 +1,18 @@
-<p>
-  connecting works!
-</p>
+<div [formGroup]='questionForm'>
+  <div class="answer-holder">
+    <div formArrayName="answers" *ngFor="let item of questionForm.get('answers').controls; let i=index" id="answers-wrapper">
+      <div [formGroupName]="i">
+        <div class="form-group">
+          <div class="answer-holder">
+            <label for="answer">Answer pair no.{{i}}:
+              <input type="text" formControlName="answer" id="answer" placeholder="Part one...">
+              <input type="text" formControlName="answer2" id="answer2" placeholder="Part one...">
+            </label>
+          </div>
+        </div>
+        <button type="button" (click)="addAnswer(i)">Add Answer</button>
+        <button type="button" (click)="deleteAnswer(i)">Delete Answer</button>
+      </div>
+    </div>
+  </div>
+</div>

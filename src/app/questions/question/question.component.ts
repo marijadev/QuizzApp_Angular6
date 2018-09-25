@@ -9,6 +9,7 @@ import { TextComponent } from './question-type/text/text.component';
 import { OrderComponent } from './question-type/order/order.component';
 import { questionTypes } from '../../shared/constants';
 import { QuestionService } from '../question.service';
+import { ConnectingComponent } from './question-type/connecting/connecting.component';
 
 @Component({
 	selector: 'app-question',
@@ -75,7 +76,7 @@ export class QuestionComponent implements OnInit {
 			this.componentRef_ = this.container.createComponent(componentFactory);
 		}
 		else if (this.type == 'Connecting') {
-			const componentFactory = this.componentResolver.resolveComponentFactory(OrderComponent);
+			const componentFactory = this.componentResolver.resolveComponentFactory(ConnectingComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
 		}
 		this.componentRef_.instance.questionForm = this.questionForm;
@@ -96,8 +97,7 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.difficulty = this.questionForm.controls.difficulty.value;
 		this.newQuestion.type = this.questionForm.controls.type.value;
 		this.newQuestion.answers = this.componentRef_.instance.values;
-		// console.log(JSON.stringify(this.newQuestion))
-		// console.log(this.newQuestion)
+		console.log(this.newQuestion)
 		// console.log(this.componentRef_.instance.values)
 		this.questionForm.reset();
 	}

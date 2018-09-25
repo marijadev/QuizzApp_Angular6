@@ -59,7 +59,6 @@ export class OrderComponent implements OnInit {
 		if (valueArray.includes(currentValue) == false) {
 			return null;
 		}
-		console.log(valueArray)
 		return { 'valueRepeat': true }
 	};
 
