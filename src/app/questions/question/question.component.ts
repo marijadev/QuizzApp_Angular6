@@ -10,6 +10,7 @@ import { OrderComponent } from './question-type/order/order.component';
 import { questionTypes } from '../../shared/constants';
 import { QuestionService } from '../question.service';
 import { ConnectingComponent } from './question-type/connecting/connecting.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
 	selector: 'app-question',
@@ -35,7 +36,7 @@ export class QuestionComponent implements OnInit {
 	};
 	childInvalid = false;
 
-	constructor(private componentResolver: ComponentFactoryResolver, private qService: QuestionService) { }
+	constructor(private componentResolver: ComponentFactoryResolver, private qService: QuestionService, private http: HttpClient) { }
 
 	ngOnInit() {
 		this.questionForm = new FormGroup({
@@ -44,12 +45,12 @@ export class QuestionComponent implements OnInit {
 			'difficulty': new FormControl(null, [Validators.required]),
 			'type': new FormControl(null, [Validators.required]),
 		}, {
-			validators: [(control: FormGroup): ValidationErrors | null => {
-				// if(!!this.childInstance) {
-				// 	return this.childInstance.validate(control);
-				// } 
-				return null;
-			}]
+				validators: [(control: FormGroup): ValidationErrors | null => {
+					// if(!!this.childInstance) {
+					// 	return this.childInstance.validate(control);
+					// } 
+					return null;
+				}]
 			});
 		this.questionTypes = Object.keys(questionTypes);
 	}
@@ -96,10 +97,19 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.category = this.questionForm.controls.category.value;
 		this.newQuestion.difficulty = this.questionForm.controls.difficulty.value;
 		this.newQuestion.type = this.questionForm.controls.type.value;
-		this.newQuestion.answers = this.componentRef_.instance.values;
-		console.log(this.newQuestion)
+		// this.newQuestion.answers = this.componentRef_.instance.values;
+		this.newQuestion.answers = this.componentRef_.instance.values.map(el => {
+			const arr = [];
+			el.value == true ? parseInt(el.value.toString().replace('true', '1')) : 0;
+			arr.push(el)
+			return arr;
+		})
+
+
+		console.log(this.newQuestion.answers)
 		// console.log(this.componentRef_.instance.values)
 		this.questionForm.reset();
+		// return this.http.post('/server/admin/newq', this.newQuestion).subscribe()
 	}
 
 	ngOnDestroy() {
