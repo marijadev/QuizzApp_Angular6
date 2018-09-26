@@ -13,30 +13,44 @@ import { TestsComponent } from './tests/tests.component';
 import { PassedTestsComponent } from './tests/passed-tests/passed-tests.component';
 import { QuestionService } from './questions/question.service';
 import { TrueFalseDirective } from './shared/true-false.directive';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserService } from './shared/services/users.service';
 import { ProfileService } from './shared/services/profile.service';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { TokenStorageService } from './shared/services/token-storage.service';
+import { MyInterceptor } from './shared/services/my-interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UsersComponent,
-    ResultsComponent,
-    TestsComponent,
-    PassedTestsComponent,
-    TrueFalseDirective,
-  ],
-  imports: [
-	BrowserModule,
-	ReactiveFormsModule,
-	FormsModule,
-	AuthModule,
-	CoreModule,
-	AppRouting,
-	HttpClientModule
-  ],
-  providers: [AuthGuard, AuthService, QuestionService, UserService, ProfileService],
-  bootstrap: [AppComponent],
+	declarations: [
+		AppComponent,
+		UsersComponent,
+		ResultsComponent,
+		TestsComponent,
+		PassedTestsComponent,
+		TrueFalseDirective,
+	],
+	imports: [
+		BrowserModule,
+		ReactiveFormsModule,
+		FormsModule,
+		AuthModule,
+		CoreModule,
+		AppRouting,
+		HttpClientModule
+	],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: MyInterceptor,
+			multi: true
+		},
+		AuthGuard,
+		AuthService,
+		QuestionService,
+		UserService,
+		ProfileService,
+		TokenStorageService
+	],
+	bootstrap: [AppComponent],
 })
 export class AppModule { }

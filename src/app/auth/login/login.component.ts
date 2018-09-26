@@ -20,18 +20,16 @@ export class LoginComponent implements OnInit {
 	onSubmit(form: NgForm) {
 		if (this.loginForm.invalid) { return; }
 
-		const username = form.value.username;
-		const password = form.value.password;
+		this.authService.login( form.value.username, form.value.password).subscribe(res => console.log(res))
 
-		this.authService.login(username, password).subscribe(
-			user => {
-				if (user.admin === 1) {
-					this.router.navigate(['/home/question'], { relativeTo: this.actRoute });
-				} else if (user.admin === 0) {
-					this.router.navigate(['/home/passed-tests'], { relativeTo: this.actRoute });
-				}
-			}
-		)
+			// user => {
+			// 	if (user.admin === 1) {
+			// 		this.router.navigate(['/home/question'], { relativeTo: this.actRoute });
+			// 	} else if (user.admin === 0) {
+			// 		this.router.navigate(['/home/passed-tests'], { relativeTo: this.actRoute });
+			// 	}
+			// }
+		
 		// this.http.get('/server/login').subscribe(data => console.log(data));
 	}
 
