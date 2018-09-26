@@ -17,15 +17,12 @@ export class ConnectingComponent implements OnInit {
 		this.questionForm.addControl('answers', this.fb.array([this.createAnswer()], answersOrder => {
 			return this.validate(answersOrder as FormArray)
 		}));
-		// this.questionForm.addControl('answers', this.fb.array([this.createAnswer()], answersOrder => {
-		// 	return this.validate(answersOrder as FormArray)
-		// }));
 	}
 
 	createAnswer() {
 		return this.fb.group({
 			answer: new FormControl(null, [Validators.required]),
-			answer2: new FormControl(null)
+			answer2: new FormControl(null, [Validators.required])
 		});
 	}
 

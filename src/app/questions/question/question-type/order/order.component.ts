@@ -51,15 +51,16 @@ export class OrderComponent implements OnInit {
 		this.answerArrayLength = valueArray.length;
 		let currentValue;
 
-		for (let i = 0; i < control.length; i++) {
-			currentValue = control.value[i].value;
-			valueArray.push(currentValue);
-		}
+		// for (let i = 0; i < control.length; i++) {
+		// 	currentValue = control.value[i].value;
+		// 	valueArray.push(currentValue);
+		// }
 
-		if (valueArray.includes(currentValue) == false) {
-			return null;
-		}
-		return { 'valueRepeat': true }
+		// if (valueArray.includes(currentValue) == false) {
+		// 	return null;
+		// }
+		// return { 'valueRepeat': true }
+		return null;
 	};
 
 	ngOnDestroy() {
