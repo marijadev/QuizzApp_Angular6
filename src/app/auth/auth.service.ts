@@ -34,7 +34,7 @@ export class AuthService {
 	login(username: string, password: string): Observable<any> {
 		this.user.username = username;
 		this.user.password = password;
-		return this.http.post<any>('/server/login', this.user).pipe(map(res=> console.log(res)))
+		return this.http.post<any>('/server/login', this.user, {observe: 'response'}).pipe(map(res=> console.log(res.headers.get('authorization'))))
 
 
 		// .pipe(
