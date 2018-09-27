@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-const TOKEN_KEY = 'AuthToken';
+let TOKEN_KEY = 'AuthToken';
 
 @Injectable()
 export class TokenStorageService {

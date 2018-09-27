@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../user.model';
 import { AuthService } from '../../auth/auth.service';
+import { API_URL } from '../constants';
 
 
 @Injectable()
@@ -9,7 +10,7 @@ export class UserService {
 	constructor(private http: HttpClient, private authService: AuthService) { }
 
 	getAll() {
-		return this.http.get<User[]>(`/server/users`)
+		return this.http.get<User[]>(API_URL.user)
 	}
 
 	getById(id: number) {

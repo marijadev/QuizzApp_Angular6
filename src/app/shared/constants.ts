@@ -11,3 +11,8 @@ export const questionTypes = {
 	'Order': OrderComponent,
 	'Connecting': ConnectingComponent
 }
+
+export const API_URL = {
+	login: '/server/login',
+	user: `/server/users`,
+}

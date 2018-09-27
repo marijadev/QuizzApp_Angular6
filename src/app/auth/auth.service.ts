@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
-import { User } from '../shared/user.model';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+
+import { User } from '../shared/user.model';
+
 import { TokenStorageService } from '../shared/services/token-storage.service';
-
-
-const httpOptions = {
-	headers: new HttpHeaders({
-		'Content-Type': 'application/json',
-		  'Authorization': ''
-	})
-};
+import { API_URL } from '../shared/constants';
+import { DataService } from '../shared/services/data.service';
+import { MyInterceptor } from '../shared/services/my-interceptor';
 
 @Injectable()
 export class AuthService {
@@ -27,33 +24,36 @@ export class AuthService {
 		admin: 0,
 	};
 
-	constructor(private http: HttpClient, private token: TokenStorageService) { 
-	}
-
+	constructor(
+		private http: HttpClient,
+		private tokenService: TokenStorageService) { }
 
 	login(username: string, password: string): Observable<any> {
 		this.user.username = username;
 		this.user.password = password;
-		return this.http.post<any>('/server/login', this.user, {observe: 'response'}).pipe(map(res=> console.log(res.headers.get('authorization'))))
-
-
-		// .pipe(
-		// 	map(user => {
-
-		// 		if (user) {
-		// 			this.user.id = user.id;
-		// 			this.user.username = user.username;
-		// 			this.user.password = user.password;
-		// 			this.user.name = user.name;
-		// 			this.user.surname = user.surname;
-		// 			this.user.phone = user.phone;
-		// 			this.user.admin = user.admin;
-		// 			localStorage.setItem('currentUser', JSON.stringify(user))
-		// 		}
-		// 		return user;
-		// 	})
-		// );
+		return this.http.post<any>(API_URL.login, this.user, { observe: 'response' }).pipe(map(res => {
+			const token = res.headers.get('authorization');
+			// console.log(res.headers.get('authorization'),
+			this.tokenService.saveToken(token);
+		}));
 	}
+
+	// .pipe(
+	// 	map(user => {
+
+	// 		if (user) {
+	// 			this.user.id = user.id;
+	// 			this.user.username = user.username;
+	// 			this.user.password = user.password;
+	// 			this.user.name = user.name;
+	// 			this.user.surname = user.surname;
+	// 			this.user.phone = user.phone;
+	// 			this.user.admin = user.admin;
+	// 			localStorage.setItem('currentUser', JSON.stringify(user))
+	// 		}
+	// 		return user;
+	// 	})
+	// );
 
 	public get userLoggedIn() {
 		return this.user;
