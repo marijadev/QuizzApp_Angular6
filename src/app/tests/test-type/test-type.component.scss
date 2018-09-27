@@ -2,12 +2,23 @@
 @import '~src/assets/styles/_mixins.scss';
 
 .test-type-inner-wrapper {
-  padding: 50px 100px;
+  position: relative;
+  padding: 100px;
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	background-color: rgba(255, 255, 255, 0.7);
+	z-index: -1;
+  }
 }
 
 h3 {
   @extend %headline-h3;
-  margin: 50px 0;
+  padding: 50px 0;
   text-align: center;
 }
 

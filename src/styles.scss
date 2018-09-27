@@ -1,30 +1,47 @@
 @import '~src/assets/styles/_variables.scss';
 
 body {
-	margin: 0;
-	padding: 0;
-	min-height: 100vh;
-	font-family: $main-font;
-	background-color: gainsboro;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: $main-font;
+  // background-color: gainsboro;
+  background-image: url('https://www.endava.com/-/media/EndavaDigital/Endava/Images/WorldMaps/Home-Map_1920x650.ashx');
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-h1, h2, h3, h4, h5, h6, p, ul { 
-	margin: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+  margin: 0;
 }
 
-a, a:visited, a:focus, a:hover {
-	text-decoration: none;
-	color: inherit;
+a,
+a:visited,
+a:focus,
+a:hover {
+  text-decoration: none;
+  color: inherit;
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-input, select, button {
-	outline: none;
+input,
+select,
+button {
+  outline: none;
 }
 
 .warning {
-	color: $color-orange;
+  color: $color-orange;
 }

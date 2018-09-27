@@ -13,6 +13,7 @@ export class TestTypeComponent implements OnInit {
 	animationStateDifficulty = 'out ';
 	animationStateCategory = 'out ';
 	animationStateDifficultyCategory = 'out ';
+	currentAnimation;
 	constructor() { }
 
 	ngOnInit() {
