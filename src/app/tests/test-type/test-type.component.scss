@@ -63,4 +63,8 @@ label {
 
 .combo {
   display: flex;
+
+  &.combo > .checkbox-holder:last-child {
+	  padding-left: 30px;
+  }
 }
