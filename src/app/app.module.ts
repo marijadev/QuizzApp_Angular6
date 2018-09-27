@@ -20,6 +20,8 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { TokenStorageService } from './shared/services/token-storage.service';
 import { MyInterceptor } from './shared/services/my-interceptor';
 import { DataService } from './shared/services/data.service';
+import { TestTypeComponent } from './tests/test-type/test-type.component';
+import { TestComponent } from './tests/test/test.component';
 
 @NgModule({
 	declarations: [
@@ -29,6 +31,8 @@ import { DataService } from './shared/services/data.service';
 		TestsComponent,
 		PassedTestsComponent,
 		TrueFalseDirective,
+		TestTypeComponent,
+		TestComponent,
 	],
 	imports: [
 		BrowserModule,

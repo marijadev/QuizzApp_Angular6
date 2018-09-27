@@ -1,0 +1,66 @@
+@import '~src/assets/styles/_variables.scss';
+@import '~src/assets/styles/_mixins.scss';
+
+.test-type-inner-wrapper {
+  padding: 50px 100px;
+}
+
+h3 {
+  @extend %headline-h3;
+  margin: 50px 0;
+  text-align: center;
+}
+
+h4 {
+  @extend %headline-h4;
+  margin-bottom: 20px;
+}
+
+.test-type-inner-holder {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 0;
+}
+
+.test-type {
+  flex: 1 1 100%;
+  padding: 0 10px;
+}
+
+button {
+  @extend %btn-submit-style;
+  width: 70%;
+  font-size: .9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.checkbox-holder {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-inner-holder {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+label {
+  margin-left: 10px;
+}
+
+.checkbox-indent {
+	padding-left: 30px;
+}
+
+.combo-holder {
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+}
+
+.combo {
+  display: flex;
+}

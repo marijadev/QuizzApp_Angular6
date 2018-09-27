@@ -1,3 +1,8 @@
-<p>
-  tests works!
-</p>
+<div class="container">
+	<div *ngIf="!testTypeSelected" class="test-type-holder">
+		<app-test-type></app-test-type>
+	</div>
+	<div *ngIf="testTypeSelected" class="test-holder">
+		<app-test></app-test>
+	</div>
+</div>
