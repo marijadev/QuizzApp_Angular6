@@ -8,7 +8,7 @@ export const SlideInOutAnimation = [
 			'max-height': '0px', 'opacity': '0', 'visibility': 'hidden'
 		})),
         state('in', style({
-            'max-height': '500px', 'opacity': '1', 'visibility': 'visible'
+            'max-height': '100%', 'opacity': '1', 'visibility': 'visible'
         })),
         transition('in => out', [group([
             animate('400ms ease-in-out', style({
@@ -27,7 +27,7 @@ export const SlideInOutAnimation = [
                 'visibility': 'visible'
             })),
             animate('600ms ease-in-out', style({
-                'max-height': '500px'
+                'max-height': '100%'
             })),
             animate('800ms ease-in-out', style({
                 'opacity': '1'
