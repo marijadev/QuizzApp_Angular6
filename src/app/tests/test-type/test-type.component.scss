@@ -13,8 +13,6 @@ h3 {
 
 h4 {
   @extend %headline-h4;
-  margin-bottom: 20px;
-  cursor: pointer;
 }
 
 .test-type-inner-holder {
@@ -52,8 +50,11 @@ label {
 }
 
 .checkbox-indent {
-	padding-left: 30px;
-	visibility: hidden;
+  padding-left: 30px;
+  margin-top: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s;
 }
 
 .combo-holder {
@@ -65,7 +66,42 @@ label {
 .combo {
   display: flex;
 
-  &.combo > .checkbox-holder:last-child {
-	  padding-left: 30px;
+  &.combo>.checkbox-holder:last-child {
+    padding-left: 30px;
+  }
+}
+
+.test-select-h {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.arrow-holder {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+
+  .arrow {
+    top: calc(50% - 8px);
+    width: 5px;
+    height: 16px;
+    background-color: $color-grey-light;
+
+    &.right {
+      position: absolute;
+	  right: 7px;
+	  left: calc(50% - 8px);
+      transform: rotate(-45deg)
+    }
+
+    &.left {
+      display: inline-block;
+      position: absolute;
+      right: 15px;
+      transform: rotate(45deg)
+    }
   }
 }

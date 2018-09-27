@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SlideInOutAnimation } from '../../shared/animations';
+import { NgForm } from '@angular/forms';
 
 @Component({
 	selector: 'app-test-type',
@@ -8,6 +9,7 @@ import { SlideInOutAnimation } from '../../shared/animations';
 	animations: [SlideInOutAnimation]
 })
 export class TestTypeComponent implements OnInit {
+	@ViewChild('f') form: NgForm;
 	animationStateDifficulty = 'out ';
 	animationStateCategory = 'out ';
 	animationStateDifficultyCategory = 'out ';
@@ -20,15 +22,19 @@ export class TestTypeComponent implements OnInit {
 		if (headline === 'difficulty') {
 			this.animationStateCategory = this.animationStateCategory === 'out' && 'out';
 			this.animationStateDifficultyCategory = this.animationStateDifficultyCategory === 'out' && 'out';
-			this.animationStateDifficulty = this.animationStateDifficulty === 'out' ? 'in' : 'out';
+			this.animationStateDifficulty = this.animationStateDifficulty === 'in' ? 'out' : 'in';
 		} else if (headline === 'category') {
 			this.animationStateDifficulty = this.animationStateDifficulty === 'out' && 'out';
 			this.animationStateDifficultyCategory = this.animationStateDifficultyCategory === 'out' && 'out';
-			this.animationStateCategory = this.animationStateCategory === 'out' ? 'in' : 'out';
+			this.animationStateCategory = this.animationStateCategory === 'in' ? 'out' : 'in';
 		} else if (headline === 'difficulty-category') {
 			this.animationStateDifficulty = this.animationStateDifficulty === 'out' && 'out';
 			this.animationStateCategory = this.animationStateCategory === 'out' && 'out';
-			this.animationStateDifficultyCategory = this.animationStateDifficultyCategory === 'out' ? 'in' : 'out';
+			this.animationStateDifficultyCategory = this.animationStateDifficultyCategory === 'in' ? 'out' : 'in';
 		}
+	}
+
+	onGenerateTest() {
+		console.log(this.form)
 	}
 }
