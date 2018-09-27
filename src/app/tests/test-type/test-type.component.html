@@ -2,8 +2,8 @@
   <h3 class="invert">Select the type of test you want to take:</h3>
   <div class="test-type-inner-holder">
     <div class="test-type difficulty">
-      <h4 class="grey" (click)="onTypeSelect()">Difficulty</h4>
-      <div class="checkbox-indent">
+      <h4 class="grey test-select" (click)="onTypeSelect('difficulty')">Difficulty</h4>
+      <div [@slideInOut]="animationStateDifficulty"  class="checkbox-indent">
         <div class="checkbox-holder">
           <div class="checkbox-inner-holder">
             <input type="checkbox" id="easy" value="Easy" name="checkbox easy difficulty">
@@ -24,8 +24,8 @@
       </div>
     </div>
     <div class="test-type category">
-      <h4 class="grey" (click)="onTypeSelect()">Category</h4>
-      <div class="checkbox-indent">
+      <h4 class="grey test-select" (click)="onTypeSelect('category')">Category</h4>
+      <div [@slideInOut]="animationStateCategory"  class="checkbox-indent">
         <div class="checkbox-holder">
           <div class="checkbox-inner-holder">
             <input type="checkbox" id="javascript" value="Javascript" name="checkbox javascript category">
@@ -46,8 +46,8 @@
       </div>
     </div>
     <div class="test-type difficulty-category">
-      <h4 class="grey" (click)="onTypeSelect()">Difficulty & Category</h4>
-      <div class="checkbox-indent">
+      <h4 class="grey test-select" (click)="onTypeSelect('difficulty-category')">Difficulty & Category</h4>
+      <div [@slideInOut]="animationStateDifficultyCategory"  class="checkbox-indent">
         <div class="combo-holder">
           <div class="combo">
             <div class="checkbox-holder">
