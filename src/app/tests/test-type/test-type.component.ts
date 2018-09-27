@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 	animations: [SlideInOutAnimation]
 })
 export class TestTypeComponent implements OnInit {
-	@ViewChild('f') form: NgForm;
+	// @ViewChild('f') form: NgForm;
 	animationStateDifficulty = 'out ';
 	animationStateCategory = 'out ';
 	animationStateDifficultyCategory = 'out ';
@@ -35,7 +35,7 @@ export class TestTypeComponent implements OnInit {
 		}
 	}
 
-	onGenerateTest() {
-		console.log(this.form)
+	onGenerateTest(form: NgForm) {
+		console.log(form)
 	}
 }
