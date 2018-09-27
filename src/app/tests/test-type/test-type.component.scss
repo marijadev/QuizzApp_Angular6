@@ -13,6 +13,7 @@ h3 {
 
 h4 {
   @extend %headline-h4;
+  transition: color .3s ease;
 }
 
 .test-type-inner-holder {
@@ -76,6 +77,16 @@ label {
   align-items: center;
   position: relative;
   cursor: pointer;
+
+  &:hover {
+    .arrow-holder>.arrow {
+      background-color: $color-orange;
+    }
+
+    h4 {
+      color: $color-orange;
+    }
+  }
 }
 
 .arrow-holder {
@@ -89,11 +100,12 @@ label {
     width: 5px;
     height: 16px;
     background-color: $color-grey-light;
+    transition: background-color .3s ease;
 
     &.right {
       position: absolute;
-	  right: 7px;
-	  left: calc(50% - 8px);
+      right: 7px;
+      left: calc(50% - 8px);
       transform: rotate(-45deg)
     }
 
