@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
 			// }
 		
 		// this.http.get('/server/login').subscribe(data => console.log(data));
+		
 	}
 
 }

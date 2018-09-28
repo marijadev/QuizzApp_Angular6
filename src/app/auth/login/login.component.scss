@@ -24,7 +24,8 @@ input:-webkit-autofill:active {
   width: 300px;
   padding: 100px 50px;
   text-align: center;
-  background-color: rgb(184, 184, 184);
+//   background-color: rgb(184, 184, 184);
+  background-color: rgba(0,0,0,0.1);
   box-sizing: border-box;
   font-size: 1.2rem;
   color: #fff;

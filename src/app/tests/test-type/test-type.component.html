@@ -1,6 +1,9 @@
 <div class="test-type-inner-wrapper">
   <div class="overlay"></div>
-  <h3 class="invert">Select the type of test you want to take:</h3>
+  <div class="headline-holder">
+    <h3 class="invert">Select the type of test you want to take:</h3>
+    <span class="separator"></span>
+  </div>
   <div class="test-type-inner-holder">
     <div class="test-type difficulty">
       <div class="test-select-h" (click)="onTypeSelect('difficulty')">
@@ -11,18 +14,18 @@
         </span>
       </div>
       <div [@slideInOut]="animationStateDifficulty" class="checkbox-indent">
-        <form (ngSubmit)="onGenerateTest(difficulty)" #difficulty="ngForm">
+        <form (ngSubmit)="onGenerateTest(fDiff)" #fDiff="ngForm">
           <div class="checkbox-holder">
             <div class="checkbox-inner-holder">
-              <input ngModel type="checkbox" id="easy" value="Easy" name="checkbox easy difficulty">
+              <input ngModel type="checkbox" id="easy" value="Easy" name="easy">
               <label for="easy">Easy</label>
             </div>
             <div class="checkbox-inner-holder">
-              <input ngModel type="checkbox" id="medium" value="Medium" name="checkbox medium difficulty">
+              <input ngModel type="checkbox" id="medium" value="Medium" name="medium">
               <label for="easy">Medium</label>
             </div>
             <div class="checkbox-inner-holder">
-              <input ngModel type="checkbox" id="difficult" value="Difficult" name="checkbox difficult difficulty">
+              <input ngModel type="checkbox" id="difficult" value="Difficult" name="difficult">
               <label for="easy">Difficult</label>
             </div>
             <div class="generate-holder">
@@ -41,19 +44,18 @@
         </span>
       </div>
       <div [@slideInOut]="animationStateCategory" class="checkbox-indent">
-        <form (ngSubmit)="onGenerateTest(category)" #category="ngForm">
-
+        <form (ngSubmit)="onGenerateTest(fCat)" #fCat="ngForm">
           <div class="checkbox-holder">
             <div class="checkbox-inner-holder">
-              <input ngModel type="checkbox" id="javascript" value="Javascript" name="checkbox javascript category">
+              <input ngModel type="checkbox" id="javascript" value="Javascript" name="javascript">
               <label for="javascript">JavaScipt</label>
             </div>
             <div class="checkbox-inner-holder">
-              <input ngModel type="checkbox" id="java" value="Java" name="checkbox java category">
+              <input ngModel type="checkbox" id="java" value="Java" name="java">
               <label for="Java">Java</label>
             </div>
             <div class="checkbox-inner-holder">
-              <input ngModel type="checkbox" id="php" value="php" name="checkbox php category">
+              <input ngModel type="checkbox" id="php" value="PHP" name="php">
               <label for="php">PHP</label>
             </div>
             <div class="generate-holder">
@@ -72,34 +74,34 @@
         </span>
       </div>
       <div [@slideInOut]="animationStateDifficultyCategory" class="checkbox-indent">
-        <form (ngSubmit)="onGenerateTest(difficultyCategory)" #difficultyCategory="ngForm">
+        <form (ngSubmit)="onGenerateTest(fDiffCat)" #fDiffCat="ngForm">
           <div class="combo-holder">
             <div class="combo">
               <div class="checkbox-holder">
                 <div class="checkbox-inner-holder">
-                  <input ngModel type="checkbox" id="easy" value="Easy" name="checkbox easy difficulty">
+                  <input ngModel type="checkbox" id="easy" value="Easy" name="easy">
                   <label for="easy">Easy</label>
                 </div>
                 <div class="checkbox-inner-holder">
-                  <input ngModel type="checkbox" id="medium" value="Medium" name="checkbox medium difficulty">
+                  <input ngModel type="checkbox" id="medium" value="Medium" name="medium">
                   <label for="easy">Medium</label>
                 </div>
                 <div class="checkbox-inner-holder">
-                  <input ngModel type="checkbox" id="difficult" value="Difficult" name="checkbox difficult difficulty">
+                  <input ngModel type="checkbox" id="difficult" value="Difficult" name="difficult">
                   <label for="easy">Difficult</label>
                 </div>
               </div>
               <div class="checkbox-holder">
                 <div class="checkbox-inner-holder">
-                  <input ngModel type="checkbox" id="javascript" value="Javascript" name="checkbox javascript category">
+                  <input ngModel type="checkbox" id="javascript" value="Javascript" name="javascript">
                   <label for="javascript">JavaScript</label>
                 </div>
                 <div class="checkbox-inner-holder">
-                  <input ngModel type="checkbox" id="java" value="Javacsript" name="checkbox java category">
+                  <input ngModel type="checkbox" id="java" value="Javacsript" name="java">
                   <label for="java">Java</label>
                 </div>
                 <div class="checkbox-inner-holder">
-                  <input ngModel type="checkbox" id="php" value="Php" name="checkbox php category">
+                  <input ngModel type="checkbox" id="php" value="Php" name="php">
                   <label for="java">PHP</label>
                 </div>
               </div>

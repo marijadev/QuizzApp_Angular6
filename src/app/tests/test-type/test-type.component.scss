@@ -3,6 +3,7 @@
 
 .test-type-inner-wrapper {
   position: relative;
+  min-height: 100vh;
   padding: 100px;
 
   .overlay {
@@ -16,10 +17,24 @@
   }
 }
 
+.headline-holder {
+	position: relative;
+}
+
 h3 {
   @extend %headline-h3;
-  padding: 50px 0;
+  padding-bottom: 50px;
   text-align: center;
+}
+
+.separator {
+	content: '';
+	position: absolute;
+	bottom: 10%;
+	left: calc(50% - 25px);
+	height: 5px;
+	width: 50px;
+	background-color: $color-orange;
 }
 
 h4 {
@@ -30,7 +45,7 @@ h4 {
 .test-type-inner-holder {
   display: flex;
   justify-content: space-between;
-  padding: 50px 0;
+  margin: 100px 0;
 }
 
 .test-type {

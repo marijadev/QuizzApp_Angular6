@@ -24,18 +24,20 @@ export class AuthService {
 		admin: 0,
 	};
 
-	constructor(
-		private http: HttpClient,
-		private tokenService: TokenStorageService) { }
+	constructor(private http: HttpClient, private tokenService: TokenStorageService) { }
 
 	login(username: string, password: string): Observable<any> {
 		this.user.username = username;
 		this.user.password = password;
 		return this.http.post<any>(API_URL.login, this.user, { observe: 'response' }).pipe(map(res => {
 			const token = res.headers.get('authorization');
-			// console.log(res.headers.get('authorization'),
 			this.tokenService.saveToken(token);
-		}));
+			// console.log(res.headers.get('authorization')),
+			if (token) {
+					this.http.get<any>(API_URL.getUser).subscribe(data => console.log(data))
+			}
+		}
+		))
 	}
 
 	// .pipe(

@@ -9,11 +9,12 @@ import { NgForm } from '@angular/forms';
 	animations: [SlideInOutAnimation]
 })
 export class TestTypeComponent implements OnInit {
-	// @ViewChild('f') form: NgForm;
+	@ViewChild('fDiff') formDiff: NgForm;
+	@ViewChild('fCat') formCat: NgForm;
+	@ViewChild('fDiffCat') formDiffCat: NgForm;
 	animationStateDifficulty = 'out ';
 	animationStateCategory = 'out ';
 	animationStateDifficultyCategory = 'out ';
-	currentAnimation;
 	constructor() { }
 
 	ngOnInit() {
@@ -36,6 +37,14 @@ export class TestTypeComponent implements OnInit {
 	}
 
 	onGenerateTest(form: NgForm) {
-		console.log(form)
+		if(form == this.formDiff) {
+			const value = form.value;
+			
+			// console.log('formDiff ', form.value)
+		} else if (form == this.formCat) {
+			// console.log('formCat ', form)
+		} else if(form == this.formDiffCat) {
+			// console.log('formDiffCat ', form)
+		} return;
 	}
 }

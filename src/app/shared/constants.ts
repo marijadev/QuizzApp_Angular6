@@ -14,5 +14,6 @@ export const questionTypes = {
 
 export const API_URL = {
 	login: '/server/login',
-	user: `/server/users`,
+	getUser: '/server/afterLogin',
+	userCategories: '/server/user/categories',
 }
