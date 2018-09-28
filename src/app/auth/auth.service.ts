@@ -34,7 +34,6 @@ export class AuthService {
 			if (token) {
 				return this.http.get<any>(API_URL.getUser).pipe(
 					map(user => {
-
 						if (user) {
 							this.user.id = user.id;
 							this.user.username = user.username;

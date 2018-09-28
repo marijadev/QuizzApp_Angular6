@@ -10,10 +10,11 @@ export const questionTypes = {
 	'Text': TextComponent,
 	'Order': OrderComponent,
 	'Connecting': ConnectingComponent
-}
+};
 
 export const API_URL = {
 	login: '/server/login',
 	getUser: '/server/afterLogin',
 	userCategories: '/server/user/categories',
-}
+	allUsers: '/server/admin/findUsers',
+};

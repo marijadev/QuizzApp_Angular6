@@ -10,8 +10,8 @@ export class UserService {
 	constructor(private http: HttpClient, private authService: AuthService) { }
 
 	getAll() {
-		return this.http.get<User[]>('/server/admin/findUsers')
-	}
+		return this.http.get<User[]>(API_URL.allUsers);
+	};
 
 	getById(id: number) {
 		// return this.http.get(`${config.apiUrl}/users/` + id);
@@ -20,5 +20,5 @@ export class UserService {
 	getCurrentUser() {
 		const userLoggedIn = this.authService.userLoggedIn;
 		return userLoggedIn;
-	}
-}
+	};
+};

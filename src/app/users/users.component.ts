@@ -11,7 +11,7 @@ import { User } from '../shared/user.model';
 export class UsersComponent implements OnInit {
 	allUsers;
 	currentUsers = [];
-	constructor(private userService: UserService) { }
+	constructor(private userService: UserService) { };
 
 	ngOnInit() {
 		this.allUsers = this.userService.getAll().subscribe(
@@ -19,9 +19,8 @@ export class UsersComponent implements OnInit {
 				res.map(user => {
 					this.currentUsers.push(new User(user.id, user.username, user.password, user.name, user.surname, user.phone, user.admin))
 					// console.log('current ', this.currentUsers);
-				}
-				);
-			})
-	}
-}
+				});
+			});
+	};
+};
 
