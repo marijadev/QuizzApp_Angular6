@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, flatMap } from 'rxjs/operators';
 
 import { User } from '../shared/user.model';
 
@@ -29,12 +29,12 @@ export class AuthService {
 	login(username: string, password: string): Observable<any> {
 		this.user.username = username;
 		this.user.password = password;
-		return this.http.post<any>(API_URL.login, this.user, { observe: 'response' }).pipe(map(res => {
+		return this.http.post<any>(API_URL.login, this.user, { observe: 'response' }).pipe(flatMap(res => {
 			const token = res.headers.get('authorization');
 			this.tokenService.saveToken(token);
 			// console.log(res.headers.get('authorization')),
 			if (token) {
-					this.http.get<any>(API_URL.getUser).subscribe(data => console.log(data))
+					return this.http.get<any>(API_URL.getUser);
 			}
 		}
 		))

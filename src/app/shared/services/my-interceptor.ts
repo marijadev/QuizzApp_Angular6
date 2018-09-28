@@ -13,11 +13,13 @@ export class MyInterceptor implements HttpInterceptor {
 	): Observable<HttpEvent<any>> {
 
 		const updatedRequest = request.clone({
-			headers: request.headers.set("Authorization", this.token.getToken())
+			headers: request.headers.append("Authorization", this.token.getToken()),
+			withCredentials: true
 		});
 
 		console.log("Before making api call : ", updatedRequest);
-		return next.handle(request).pipe(
+		console.log('has header', updatedRequest.headers.has('Authorization'));
+		return next.handle(updatedRequest).pipe(
 			tap(
 				event => {
 					if (event instanceof HttpResponse) {
