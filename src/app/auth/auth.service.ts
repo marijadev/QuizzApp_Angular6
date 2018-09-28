@@ -7,8 +7,6 @@ import { User } from '../shared/user.model';
 
 import { TokenStorageService } from '../shared/services/token-storage.service';
 import { API_URL } from '../shared/constants';
-import { DataService } from '../shared/services/data.service';
-import { MyInterceptor } from '../shared/services/my-interceptor';
 
 @Injectable()
 export class AuthService {
@@ -34,28 +32,26 @@ export class AuthService {
 			this.tokenService.saveToken(token);
 			// console.log(res.headers.get('authorization')),
 			if (token) {
-					return this.http.get<any>(API_URL.getUser);
+				return this.http.get<any>(API_URL.getUser).pipe(
+					map(user => {
+
+						if (user) {
+							this.user.id = user.id;
+							this.user.username = user.username;
+							this.user.password = user.password;
+							this.user.name = user.name;
+							this.user.surname = user.surname;
+							this.user.phone = user.phone;
+							this.user.admin = user.admin;
+							localStorage.setItem('currentUser', JSON.stringify(user))
+						}
+						return user;
+					})
+				);
 			}
 		}
 		))
 	}
-
-	// .pipe(
-	// 	map(user => {
-
-	// 		if (user) {
-	// 			this.user.id = user.id;
-	// 			this.user.username = user.username;
-	// 			this.user.password = user.password;
-	// 			this.user.name = user.name;
-	// 			this.user.surname = user.surname;
-	// 			this.user.phone = user.phone;
-	// 			this.user.admin = user.admin;
-	// 			localStorage.setItem('currentUser', JSON.stringify(user))
-	// 		}
-	// 		return user;
-	// 	})
-	// );
 
 	public get userLoggedIn() {
 		return this.user;

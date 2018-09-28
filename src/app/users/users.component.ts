@@ -18,11 +18,10 @@ export class UsersComponent implements OnInit {
 			res => {
 				res.map(user => {
 					this.currentUsers.push(new User(user.id, user.username, user.password, user.name, user.surname, user.phone, user.admin))
-					console.log('current ', this.currentUsers);
+					// console.log('current ', this.currentUsers);
 				}
 				);
 			})
 	}
 }
 
-// new User(user.name, user.id, user.surname, user.password, user.phone, user.username)

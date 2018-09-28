@@ -10,7 +10,7 @@ export class UserService {
 	constructor(private http: HttpClient, private authService: AuthService) { }
 
 	getAll() {
-		return this.http.get<User[]>(API_URL.user)
+		return this.http.get<User[]>('/server/admin/findUsers')
 	}
 
 	getById(id: number) {
