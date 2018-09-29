@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SlideInOutAnimation } from '../../shared/animations';
 import { NgForm } from '@angular/forms';
 import { TestService } from '../../shared/services/test.service';
+import { ValueTransformer } from '@angular/compiler/src/util';
 
 @Component({
 	selector: 'app-test-type',
@@ -17,6 +18,7 @@ export class TestTypeComponent implements OnInit {
 	animationStateCategory = 'out ';
 	animationStateDifficultyCategory = 'out ';
 	isTestTypeVisible: boolean;
+	allowGenerateTest: boolean = false;
 
 	constructor(private testService: TestService) { }
 
@@ -39,23 +41,38 @@ export class TestTypeComponent implements OnInit {
 	}
 
 
+	validateCheckboxLength(form) {
+		let counter: number = 0;
+		let selectedTest = '';
 
-	onGenerateTest(form: NgForm) {
-		let request = '';
-		if (form == this.formDiff) {
-			request = form.value;
-			// console.log('formDiff ', form.value)
-		} else if (form == this.formCat) {
-			request = form.value;
-			// console.log('formCat ', form)
-		} else if (form == this.formDiffCat) {
-			request = form.value;
-			// console.log('formDiffCat ', form)
+		for (let key in form.controls) {
+			if (form.controls[key].value === true) {
+				counter++;
+				selectedTest = key;
+			}
 		}
-		//here goes post request for the generated test
 
-		this.testService.toggleTestTypeSelectedVisibility();
+		if (counter === 1) {
+			this.allowGenerateTest = true;
+			console.log(selectedTest)
+			this.testService.toggleTestTypeSelectedVisibility();
+			return	//here goes post request for the generated test;
+		}
+		form.reset();
+		return alert('Select only one value!');
+	}
 
-		return;
+	onGenerateDiffTest(form: NgForm) {
+		this.validateCheckboxLength(form);
+	}
+
+	onGenerateCatTest(form: NgForm) {
+		this.validateCheckboxLength(form);
+	}
+
+	onGenerateDiffCatTest(form: NgForm) {
+		this.validateCheckboxLength(form.controls.diff)
+		this.validateCheckboxLength(form.controls.cat)
+		return	//here goes post request for the generated test;
 	}
 }

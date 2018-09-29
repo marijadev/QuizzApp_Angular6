@@ -14,22 +14,22 @@
         </span>
       </div>
       <div [@slideInOut]="animationStateDifficulty" class="checkbox-indent">
-        <form (ngSubmit)="onGenerateTest(fDiff)" #fDiff="ngForm">
+        <form (ngSubmit)="onGenerateDiffTest(fDiff)" #fDiff="ngForm">
           <div class="checkbox-holder">
             <div class="checkbox-inner-holder">
-              <input ngModel type="checkbox" id="easy" value="Easy" name="easy">
+              <input ngModel type="checkbox" id="easy" ng-checked value="Easy" name="easy">
               <label for="easy">Easy</label>
             </div>
             <div class="checkbox-inner-holder">
-              <input ngModel type="checkbox" id="medium" value="Medium" name="medium">
-              <label for="easy">Medium</label>
+              <input ngModel type="checkbox" id="medium" ng-checked value="Medium" name="medium">
+              <label for="medium">Medium</label>
             </div>
             <div class="checkbox-inner-holder">
-              <input ngModel type="checkbox" id="difficult" value="Difficult" name="difficult">
-              <label for="easy">Difficult</label>
-            </div>
+              <input ngModel type="checkbox" id="difficult" ng-checked value="Difficult" name="difficult">
+              <label for="difficult">Difficult</label>
+			</div>
             <div class="generate-holder">
-              <button (submit)="onGenerateTest()" class="flat">Generate Test</button>
+              <button (submit)="onGenerateDiffTest()" class="flat">Generate Test</button>
             </div>
           </div>
         </form>
@@ -44,7 +44,7 @@
         </span>
       </div>
       <div [@slideInOut]="animationStateCategory" class="checkbox-indent">
-        <form (ngSubmit)="onGenerateTest(fCat)" #fCat="ngForm">
+        <form (ngSubmit)="onGenerateCatTest(fCat)" #fCat="ngForm">
           <div class="checkbox-holder">
             <div class="checkbox-inner-holder">
               <input ngModel type="checkbox" id="javascript" value="Javascript" name="javascript">
@@ -59,7 +59,7 @@
               <label for="php">PHP</label>
             </div>
             <div class="generate-holder">
-              <button (submit)="onGenerateTest()" class="flat">Generate Test</button>
+              <button (submit)="onGenerateCatTest()" class="flat">Generate Test</button>
             </div>
           </div>
         </form>
@@ -74,10 +74,10 @@
         </span>
       </div>
       <div [@slideInOut]="animationStateDifficultyCategory" class="checkbox-indent">
-        <form (ngSubmit)="onGenerateTest(fDiffCat)" #fDiffCat="ngForm">
+        <form (ngSubmit)="onGenerateDiffCatTest(fDiffCat)" #fDiffCat="ngForm">
           <div class="combo-holder">
             <div class="combo">
-              <div class="checkbox-holder">
+              <div class="checkbox-holder" ngModelGroup="diff">
                 <div class="checkbox-inner-holder">
                   <input ngModel type="checkbox" id="easy" value="Easy" name="easy">
                   <label for="easy">Easy</label>
@@ -91,13 +91,13 @@
                   <label for="easy">Difficult</label>
                 </div>
               </div>
-              <div class="checkbox-holder">
+              <div class="checkbox-holder" ngModelGroup="cat">
                 <div class="checkbox-inner-holder">
                   <input ngModel type="checkbox" id="javascript" value="Javascript" name="javascript">
                   <label for="javascript">JavaScript</label>
                 </div>
                 <div class="checkbox-inner-holder">
-                  <input ngModel type="checkbox" id="java" value="Javacsript" name="java">
+                  <input ngModel type="checkbox" id="java" value="Java" name="java">
                   <label for="java">Java</label>
                 </div>
                 <div class="checkbox-inner-holder">
@@ -107,7 +107,7 @@
               </div>
             </div>
             <div class="generate-holder">
-              <button (submit)="onGenerateTest()" class="flat">Generate Test</button>
+              <button (submit)="onGenerateDiffCatTest()" class="flat">Generate Test</button>
             </div>
           </div>
         </form>
