@@ -17,4 +17,5 @@ export const API_URL = {
 	getUser: '/server/afterLogin',
 	userCategories: '/server/user/categories',
 	allUsers: '/server/admin/findUsers',
+	edit: '/server/edit',
 };

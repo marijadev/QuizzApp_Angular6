@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SlideInOutAnimation } from '../../shared/animations';
 import { NgForm } from '@angular/forms';
+import { TestService } from '../../shared/services/test.service';
 
 @Component({
 	selector: 'app-test-type',
@@ -15,10 +16,11 @@ export class TestTypeComponent implements OnInit {
 	animationStateDifficulty = 'out ';
 	animationStateCategory = 'out ';
 	animationStateDifficultyCategory = 'out ';
-	constructor() { }
+	isTestTypeVisible: boolean;
 
-	ngOnInit() {
-	}
+	constructor(private testService: TestService) { }
+
+	ngOnInit() { }
 
 	onTypeSelect(headline: string) {
 		if (headline === 'difficulty') {
@@ -36,15 +38,24 @@ export class TestTypeComponent implements OnInit {
 		}
 	}
 
+
+
 	onGenerateTest(form: NgForm) {
-		if(form == this.formDiff) {
-			const value = form.value;
-			
+		let request = '';
+		if (form == this.formDiff) {
+			request = form.value;
 			// console.log('formDiff ', form.value)
 		} else if (form == this.formCat) {
+			request = form.value;
 			// console.log('formCat ', form)
-		} else if(form == this.formDiffCat) {
+		} else if (form == this.formDiffCat) {
+			request = form.value;
 			// console.log('formDiffCat ', form)
-		} return;
+		}
+		//here goes post request for the generated test
+
+		this.testService.toggleTestTypeSelectedVisibility();
+
+		return;
 	}
 }

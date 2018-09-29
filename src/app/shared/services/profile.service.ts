@@ -4,6 +4,7 @@ import { User } from '../user.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../auth/auth.service';
 import { Subject, Observable } from 'rxjs';
+import { API_URL } from '../constants';
 
 @Injectable({
 	providedIn: 'root'
@@ -30,6 +31,6 @@ export class ProfileService implements OnInit {
 		}
 		this.authService.setUser(user);
 		const currentUser = this.usersService.getCurrentUser();
-		this.http.post('/server/edit', currentUser).subscribe(arg => console.log(arg));
+		this.http.post(API_URL.edit, currentUser).subscribe(arg => console.log(arg));
 	}
 }

@@ -23,6 +23,7 @@ import { MyInterceptor } from './shared/services/my-interceptor';
 import { DataService } from './shared/services/data.service';
 import { TestTypeComponent } from './tests/test-type/test-type.component';
 import { TestComponent } from './tests/test/test.component';
+import { TestService } from './shared/services/test.service';
 
 @NgModule({
 	declarations: [
@@ -57,7 +58,8 @@ import { TestComponent } from './tests/test/test.component';
 		UserService,
 		ProfileService,
 		TokenStorageService,
-		DataService
+		DataService,
+		TestService
 	],
 	bootstrap: [AppComponent],
 })
