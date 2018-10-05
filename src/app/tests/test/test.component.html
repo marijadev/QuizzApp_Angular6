@@ -4,9 +4,11 @@
   </div>
   <div class="test-holder">
     <div class="test-question">
-      <ol>
-		  <li><a>Question</a></li>
-	  </ol>
+      <form [formGroup]='testForm' (ngSubmit)="onSubmitQuestion()">
+		<ng-template #dynamic></ng-template>
+		<button class="submit-btn" type="submit">Submit</button>
+		<!-- [disabled]="!questionForm.valid && questionForm" -->
+      </form>
     </div>
   </div>
 </div>

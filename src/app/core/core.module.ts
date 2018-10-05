@@ -15,6 +15,7 @@ import { TextComponent } from '../questions/question/question-type/text/text.com
 import { OrderComponent } from '../questions/question/question-type/order/order.component';
 import { ConnectingComponent } from '../questions/question/question-type/connecting/connecting.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
+import { TestsModule } from '../tests/tests.module';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { EditProfileComponent } from './profile/edit-profile/edit-profile.compon
 		FormsModule,
 		CoreRoutingModule,
 		ReactiveFormsModule,
+		TestsModule
 	],
 	providers: [AuthService],
 	bootstrap: [],

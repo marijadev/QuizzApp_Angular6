@@ -45,13 +45,13 @@ export class QuestionComponent implements OnInit {
 			'difficulty': new FormControl(null, [Validators.required]),
 			'type': new FormControl(null, [Validators.required]),
 		}, {
-				validators: [(control: FormGroup): ValidationErrors | null => {
-					// if(!!this.childInstance) {
-					// 	return this.childInstance.validate(control);
-					// } 
-					return null;
-				}]
-			});
+			validators: [(control: FormGroup): ValidationErrors | null => {
+				// if(!!this.childInstance) {
+				// 	return this.childInstance.validate(control);
+				// } 
+				return null;
+			}]
+		});
 		this.http.get(API_URL.userCategories).subscribe(data => this.categories = data);
 		this.questionTypes = Object.keys(questionTypes);
 	}
@@ -101,7 +101,7 @@ export class QuestionComponent implements OnInit {
 		for (let i = 0; i < this.componentRef_.instance.values.length; i++) {
 			if (this.componentRef_.instance.values[i].value) {
 				this.componentRef_.instance.values[i].value = 1;
-			} 
+			}
 		}
 		this.newQuestion.answers = this.componentRef_.instance.values;
 		console.log(this.newQuestion)

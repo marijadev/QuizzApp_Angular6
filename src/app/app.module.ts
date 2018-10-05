@@ -24,11 +24,6 @@ import { DataService } from './shared/services/data.service';
 import { TestTypeComponent } from './tests/test-type/test-type.component';
 import { TestComponent } from './tests/test/test.component';
 import { TestService } from './shared/services/test.service';
-import { SingleItemComponent } from './tests/test/single-item/single-item.component';
-import { TextItemComponent } from './tests/test/text-item/text-item.component';
-import { MultipleItemComponent } from './tests/test/testItemComponents/multiple-item/multiple-item.component';
-import { OrderItemComponent } from './tests/test/testItemComponents/order-item/order-item.component';
-import { ConnectingItemComponent } from './tests/test/testItemComponents/connecting-item/connecting-item.component';
 
 @NgModule({
 	declarations: [
@@ -39,12 +34,7 @@ import { ConnectingItemComponent } from './tests/test/testItemComponents/connect
 		PassedTestsComponent,
 		TrueFalseDirective,
 		TestTypeComponent,
-		TestComponent,
-		SingleItemComponent,
-		TextItemComponent,
-		MultipleItemComponent,
-		OrderItemComponent,
-		ConnectingItemComponent,
+		TestComponent
 	],
 	imports: [
 		BrowserModule,
