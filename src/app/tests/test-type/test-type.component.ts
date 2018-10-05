@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SlideInOutAnimation } from '../../shared/animations';
 import { NgForm } from '@angular/forms';
 import { TestService } from '../../shared/services/test.service';
-import { ValueTransformer } from '@angular/compiler/src/util';
 
 @Component({
 	selector: 'app-test-type',
@@ -40,7 +39,6 @@ export class TestTypeComponent implements OnInit {
 		}
 	}
 
-
 	validateCheckboxLength(form) {
 		let counter: number = 0;
 		let selectedTest = '';
@@ -51,28 +49,39 @@ export class TestTypeComponent implements OnInit {
 				selectedTest = key;
 			}
 		}
-
 		if (counter === 1) {
 			this.allowGenerateTest = true;
-			console.log(selectedTest)
 			this.testService.toggleTestTypeSelectedVisibility();
-			return	//here goes post request for the generated test;
+			return selectedTest;
+			//here goes post request for the generated test;
 		}
 		form.reset();
 		return alert('Select only one value!');
 	}
 
 	onGenerateDiffTest(form: NgForm) {
-		this.validateCheckboxLength(form);
+		const difficultyTest = {
+			type: this.validateCheckboxLength(form)
+		}
+		return difficultyTest;//here goes post request for the generated test;		
 	}
 
 	onGenerateCatTest(form: NgForm) {
-		this.validateCheckboxLength(form);
+		const categoryTest = {
+			type: this.validateCheckboxLength(form)
+		}
+		return categoryTest; //here goes post request for the generated test;
 	}
 
 	onGenerateDiffCatTest(form: NgForm) {
-		this.validateCheckboxLength(form.controls.diff)
-		this.validateCheckboxLength(form.controls.cat)
-		return	//here goes post request for the generated test;
+		const comboTest = {
+			difficulty: this.validateCheckboxLength(form.controls.diff),
+			category: this.validateCheckboxLength(form.controls.cat)
+		}
+		if (this.allowGenerateTest) {
+			this.testService.toggleTestTypeSelectedVisibility();
+		}
+		this.testService.fakeRequest()
+		return comboTest;//here goes post request for the generated test;
 	}
 }

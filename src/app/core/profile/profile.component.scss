@@ -1,3 +1,10 @@
+@import '~src/assets/styles/_mixins.scss';
+
 h3, p {
-	margin: 10px 0;
+	margin: 20px 0;
+}
+
+.edit-profile {
+	@extend %btn-submit-style;
+	width: 65%;
 }

@@ -1,9 +1,16 @@
 @import '~src/assets/styles/_mixins.scss';
 
 .question-wrapper {
-  min-height: 100vh;
-  padding: 100px;
-  background-color: rgba(255, 255, 255, 0.7);
+	padding: 5%;
+	width: 50vw;
+	background-color: $color-white;
+	min-width: 300px;
+}
+
+h4 {
+  @extend %headline-h4;
+  padding-bottom: 50px;
+  text-align: center;
 }
 
 input,
@@ -32,5 +39,5 @@ form {
 }
 
 .warning {
-	color: $color-orange;
+  color: $color-orange;
 }

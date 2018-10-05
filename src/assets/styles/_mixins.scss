@@ -48,6 +48,7 @@
   background-color: $color-orange;
   border-radius: 5px;
   cursor: pointer;
+  text-transform: uppercase;
   color: $color-white;
 
   &:disabled {
@@ -95,9 +96,9 @@
 
 %headline-h4 {
 	font-weight: bold;
-	font-size: 2rem;
+	font-size: 1.6rem;
 	text-transform: uppercase;
-	color: $color-white;
+	color: $color-black;
 
 	&.grey {
 		color: $color-grey-light;

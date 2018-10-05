@@ -3,24 +3,23 @@
     <!-- [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" -->
     <div class="form-group">
       <label for="name">Name:</label><br>
-      <input type="text" name="name" placeholder="Enter your name..." id="name"  ngModel required />
+      <input type="text" name="name" placeholder="Enter your name..." id="name" ngModel required />
     </div>
     <div class="form-group">
       <label for="surname">Surname:</label><br>
-      <input type="text" name="surname" placeholder="Enter your surname..." id="surname"  ngModel required />
+      <input type="text" name="surname" placeholder="Enter your surname..." id="surname" ngModel required />
     </div>
     <div class="form-group">
       <label for="phone">Phone:</label><br>
-      <input type="number" name="phone" placeholder="Enter your phone..." id="phone"  ngModel required />
+      <input type="number" name="phone" placeholder="Enter your phone..." id="phone" ngModel required />
     </div>
     <div class="form-group">
       <label for="password">Password:</label><br>
-      <input type="password" name="password" placeholder="Enter your password..." id="password"  ngModel required />
+      <input type="password" name="password" placeholder="Enter your password..." id="password" ngModel required />
     </div>
     <div>
-      <button type="submit" [disabled]="!editProfileForm.valid && editProfileForm.touched">Cancel</button>
-      <button type="submit" [disabled]="!editProfileForm.valid && editProfileForm.touched">Submit</button>
+      <button class="btn" type="submit" [disabled]="!editProfileForm.valid && editProfileForm.touched">Submit</button>
+      <button class="btn cancel" type="submit" [disabled]="!editProfileForm.valid && editProfileForm.touched">Cancel</button>
     </div>
   </form>
 </div>
-

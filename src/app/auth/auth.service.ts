@@ -53,6 +53,9 @@ export class AuthService {
 	}
 
 	public get userLoggedIn() {
+		if(localStorage.getItem('currentUser')) {
+			return JSON.parse(localStorage.getItem('currentUser'));
+		}
 		return this.user;
 	}
 

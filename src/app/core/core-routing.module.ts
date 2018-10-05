@@ -11,6 +11,7 @@ import { PassedTestsComponent } from '../tests/passed-tests/passed-tests.compone
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { AuthGuard } from '../shared/guards/auth.guard';
+import { TestComponent } from '../tests/test/test.component';
 
 const coreRoutes: Routes = [
 	{
@@ -23,6 +24,7 @@ const coreRoutes: Routes = [
 			{ path: 'users', component: UsersComponent },
 			{ path: 'passed-tests', component: PassedTestsComponent },
 			{ path: 'tests', component: TestsComponent },
+			{ path: 'test', component: TestComponent },
 		]
 	},
 	{ path: 'header', component: HeaderComponent },

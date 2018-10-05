@@ -1,10 +1,22 @@
 @import '~src/assets/styles/_mixins.scss';
 
 .form-group {
-	@extend %form-group-style;
+  @extend %form-group-style;
 }
 
 input {
-	padding: 10px;
-	margin-top: 10px;
+  padding: 10px;
+  margin-top: 10px;
+  outline: none;
+  border: none;
+}
+
+.btn {
+  @extend %btn-submit-style;
+  width: 65%;
+
+  &.cancel {
+    background-color: $color-white;
+    color: $color-black;
+  }
 }

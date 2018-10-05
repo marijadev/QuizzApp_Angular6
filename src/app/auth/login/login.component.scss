@@ -2,7 +2,6 @@
 @import '~src/assets/styles/_mixins.scss';
 
 .login-container {
-  min-height: 100vh;
 
   .login-form-wrapper {
 	  display: flex;
@@ -37,12 +36,13 @@ input:-webkit-autofill:active {
   }
 
   button {
-    width: 100%;
+    width: 95%;
     margin-top: 10px;
     border: none;
     border-radius: 5px;
     padding: 10px 0;
-    background-color: $color-orange;
+	background-color: $color-orange;
+	text-transform: uppercase;
     color: #fff;
   }
 }
