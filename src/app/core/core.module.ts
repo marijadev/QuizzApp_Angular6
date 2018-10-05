@@ -37,11 +37,17 @@ import { TestsModule } from '../tests/tests.module';
 		FormsModule,
 		CoreRoutingModule,
 		ReactiveFormsModule,
-		TestsModule
+		TestsModule,
 	],
 	providers: [AuthService],
 	bootstrap: [],
-	entryComponents: [SingleChoiceComponent, MultipleChoiceComponent, TextComponent, OrderComponent, ConnectingComponent]
+	entryComponents: [
+		SingleChoiceComponent,
+		MultipleChoiceComponent,
+		TextComponent,
+		OrderComponent,
+		ConnectingComponent
+	]
 
 })
 export class CoreModule { }

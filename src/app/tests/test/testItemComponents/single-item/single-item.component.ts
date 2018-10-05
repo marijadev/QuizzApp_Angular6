@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormControl, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormControl, FormBuilder, Validators, FormGroup } from '@angular/forms';
+
+import { TestService } from '../../../../shared/services/test.service';
 
 @Component({
 	selector: 'app-single-item',
@@ -9,16 +11,13 @@ import { NgForm, FormControl, FormBuilder, Validators, FormGroup } from '@angula
 export class SingleItemComponent implements OnInit {
 	testForm: FormGroup;
 	questionsArr: object[];
-	constructor(private fb: FormBuilder) { }
+	constructor(private fb: FormBuilder, private testService: TestService) { };
 
 	ngOnInit() {
-		this.testForm.addControl('newAnswer', this.fb.array([this.createQuestion()]))
-	}
-	
-	createQuestion() {
-		return this.fb.group({
-			answer: new FormControl(null, [Validators.required]),
-			checked: new FormControl(0)
-		})
-	}
-}
+		if (this.testService.questionsByType.single) {
+			this.testService.questionsByType.single;
+		}
+		console.log('questions arr ',this.questionsArr)
+		this.testForm.addControl('newAnswer', this.fb.array([null]));
+	};
+};

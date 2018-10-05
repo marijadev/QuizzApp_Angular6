@@ -8,6 +8,7 @@ import { MultipleItemComponent } from './testItemComponents/multiple-item/multip
 import { TextItemComponent } from './testItemComponents/text-item/text-item.component';
 import { OrderItemComponent } from './testItemComponents/order-item/order-item.component';
 import { ConnectingItemComponent } from './testItemComponents/connecting-item/connecting-item.component';
+import { questionTypes } from '../../shared/constants';
 
 @Component({
 	selector: 'app-test',
@@ -23,8 +24,7 @@ export class TestComponent implements OnInit {
 	@ViewChild('dynamic', { read: ViewContainerRef }) container: ViewContainerRef;
 	testForm: FormGroup;
 	questionTypes: string[];
-	childInstance: any;
-	testQuestions;
+	childInstances: any;
 
 	constructor(private componentResolver: ComponentFactoryResolver, private route: Router, private actRoute: ActivatedRoute, private testService: TestService) { }
 
@@ -35,33 +35,47 @@ export class TestComponent implements OnInit {
 				this.testData.user = data.user;
 				this.testData.questions = data.questions;
 			}
-			this.questionTypes = this.testService.checkTestQuestionType(this.testData.questions);
-		})
-		// create new FormGroup
-		this.testForm = new FormGroup({
-		});
+			this.questionTypes = Object.keys(questionTypes);
+			// this.questionTypes = this.testService.checkTestQuestionType(this.testData.questions);
 
-		this.testService.getQuestions(this.testData.questions);
+			if (this.testData.questions) {
+				this.testService.getQuestions(this.testData.questions);
+				this.visibleQuestionItem();
+			}
+		})
+		// creating new FormGroup
+		this.testForm = new FormGroup({});
 	}
 
 	visibleQuestionItem() {
-		this.testQuestions = this.questionTypes.map(type => {
-			if (type == this.questionTypes[0]) {
+		this.testData.questions.map(question => {
+			if (this.questionTypes[0] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(SingleItemComponent);
-				this.childInstance.push(this.container.createComponent(componentFactory).instance);
-			} else if (type == this.questionTypes[1]) {
+				this.container.createComponent(componentFactory).instance;
+				this.testService.questionsByType.single.push(question);
+				
+			} else if (this.questionTypes[1] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(MultipleItemComponent);
-				this.childInstance.push(this.container.createComponent(componentFactory).instance);
-			} else if (type == this.questionTypes[2]) {
+				this.container.createComponent(componentFactory).instance;
+				this.testService.questionsByType.multiple.push(question);
+				
+			} else if (this.questionTypes[2] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(TextItemComponent);
-				this.childInstance.push(this.container.createComponent(componentFactory).instance);
-			} else if (type == this.questionTypes[3]) {
+				this.container.createComponent(componentFactory).instance;
+				this.testService.questionsByType.text.push(question);
+				
+			} else if (this.questionTypes[3] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(OrderItemComponent);
-				this.childInstance.push(this.container.createComponent(componentFactory).instance);
-			} else if (type == this.questionTypes[4]) {
+				this.container.createComponent(componentFactory).instance;
+				this.testService.questionsByType.order.push(question);
+				
+			} else if (this.questionTypes[4] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(ConnectingItemComponent);
-				this.childInstance.push(this.container.createComponent(componentFactory).instance);
-			} return null;
+				this.container.createComponent(componentFactory).instance;
+				this.testService.questionsByType.connecting.push(question);
+			}
+
+			return this.childInstances;
 		});
 	};
 

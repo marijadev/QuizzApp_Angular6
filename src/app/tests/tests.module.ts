@@ -7,6 +7,7 @@ import { MultipleItemComponent } from './test/testItemComponents/multiple-item/m
 import { OrderItemComponent } from './test/testItemComponents/order-item/order-item.component';
 import { TextItemComponent } from './test/testItemComponents/text-item/text-item.component';
 import { ConnectingItemComponent } from './test/testItemComponents/connecting-item/connecting-item.component';
+import { CoreRoutingModule } from '../core/core-routing.module';
 
 
 @NgModule({
@@ -21,10 +22,18 @@ import { ConnectingItemComponent } from './test/testItemComponents/connecting-it
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
+		CoreRoutingModule,
+
 	],
 	providers: [],
 	bootstrap: [],
-	entryComponents: []
+	entryComponents: [
+		SingleItemComponent,
+		MultipleItemComponent,
+		OrderItemComponent,
+		TextItemComponent,
+		ConnectingItemComponent
+	]
 
 })
 export class TestsModule { }

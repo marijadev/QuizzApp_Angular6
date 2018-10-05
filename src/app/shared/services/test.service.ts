@@ -11,6 +11,13 @@ export class TestService {
 	testTypeSelected: boolean = false;
 	testTypeSelectedChange: Subject<boolean> = new Subject<boolean>();
 	private questionsArr: object[];
+	questionsByType = {
+		single: [],
+		multiple: [],
+		order: [],
+		text: [],
+		connecting: []
+	}
 
 	constructor(private http: HttpClient) {
 		this.testTypeSelected = false;
@@ -25,21 +32,15 @@ export class TestService {
 
 	fakeRequest() {
 		// FAKE request
-		return this.http.get<any>('/server/user/maketest').pipe(map(data => data))
+		return this.http.get<any>('/server/user/maketest').pipe(map(data => data));
 	};
 
-	checkTestQuestionType(questions) {
-		let questionTypes = [];
-
-		questions.forEach(question => questionTypes.push(question.type));
-		return questionTypes;
-	};
-
-		
 	getQuestions(questions: object[]) {
-		const allQuestions = questions;
-		console.log(allQuestions)
-		return allQuestions;
+		return this.questionsArr = questions;
 	};
-	
+
+	get testQuestions() {
+		return this.questionsArr;
+	};
+
 };

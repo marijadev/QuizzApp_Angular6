@@ -63,36 +63,33 @@ export class QuestionComponent implements OnInit {
 			const componentFactory = this.componentResolver.resolveComponentFactory(SingleChoiceComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
 			this.childInstance = this.componentRef_.instance;
-		}
-		else if (this.type == 'Multiple Choice') {
+		} else if (this.type == 'Multiple Choice') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(MultipleChoiceComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
 			this.childInstance = this.componentRef_.instance;
-		}
-		else if (this.type == 'Text') {
+		} else if (this.type == 'Text') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(TextComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
-		}
-		else if (this.type == 'Order') {
+		} else if (this.type == 'Order') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(OrderComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
-		}
-		else if (this.type == 'Connecting') {
+		} else if (this.type == 'Connecting') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(ConnectingComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
 		}
 		this.componentRef_.instance.questionForm = this.questionForm;
-	}
+	};
 
 	onTypeChange(e: any) {
 		this.newQuestion.type = e.target.value;
 		this.type = e.target.value;
 		this.visibleComponent();
-	}
+	};
+
 	onSubmitQuestion() {
 		for (let property in this.newQuestion) {
 			property = null;
-		}
+		};
 		this.newQuestion.id = Math.floor(Math.random() * 100000) + 1;
 		this.newQuestion.question = this.questionForm.controls.question.value;
 		this.newQuestion.category = this.questionForm.controls.category.value;
@@ -101,17 +98,17 @@ export class QuestionComponent implements OnInit {
 		for (let i = 0; i < this.componentRef_.instance.values.length; i++) {
 			if (this.componentRef_.instance.values[i].value) {
 				this.componentRef_.instance.values[i].value = 1;
-			}
-		}
+			};
+		};
 		this.newQuestion.answers = this.componentRef_.instance.values;
 		console.log(this.newQuestion)
 		this.questionForm.reset();
-		return this.http.post('/server/admin/newq', this.newQuestion)
+		return this.http.post('/server/admin/newq', this.newQuestion);
 	}
 
 	ngOnDestroy() {
 		if (this.componentRef_) {
 			this.componentRef_.destroy();
-		}
-	}
-}
+		};
+	};
+};
