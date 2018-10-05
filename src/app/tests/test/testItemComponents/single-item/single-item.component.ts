@@ -15,9 +15,8 @@ export class SingleItemComponent implements OnInit {
 
 	ngOnInit() {
 		if (this.testService.questionsByType.single) {
-			this.testService.questionsByType.single;
+			this.questionsArr = this.testService.questionsByType.single;
 		}
-		console.log('questions arr ',this.questionsArr)
 		this.testForm.addControl('newAnswer', this.fb.array([null]));
 	};
 };

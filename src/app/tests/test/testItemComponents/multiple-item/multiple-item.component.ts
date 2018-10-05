@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { TestService } from '../../../../shared/services/test.service';
 
 @Component({
-  selector: 'app-multiple-item',
-  templateUrl: './multiple-item.component.html',
-  styleUrls: ['./multiple-item.component.scss']
+	selector: 'app-multiple-item',
+	templateUrl: './multiple-item.component.html',
+	styleUrls: ['./multiple-item.component.scss']
 })
 export class MultipleItemComponent implements OnInit {
+	testForm: FormGroup;
+	questionsArr: object[];
+	constructor(private fb: FormBuilder, private testService: TestService) { };
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+	ngOnInit() {
+		if (this.testService.questionsByType.multiple) {
+			this.questionsArr = this.testService.questionsByType.multiple;
+		}
+		this.testForm.addControl('newAnswer', this.fb.array([null]));
+	};
 }

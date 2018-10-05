@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { questionTypes } from '../../shared/constants';
 @Injectable({
 	providedIn: 'root'
 })
-export class TestService {
+export class TestService implements OnInit{
 	testTypeSelected: boolean = false;
 	testTypeSelectedChange: Subject<boolean> = new Subject<boolean>();
 	private questionsArr: object[];
@@ -19,12 +19,18 @@ export class TestService {
 		connecting: []
 	}
 
+
 	constructor(private http: HttpClient) {
 		this.testTypeSelected = false;
 		this.testTypeSelectedChange.subscribe((value) => {
 			this.testTypeSelected = value;
 		});
+
 	};
+	
+	ngOnInit() {
+
+	}
 
 	toggleTestTypeSelectedVisibility() {
 		this.testTypeSelectedChange.next(!this.testTypeSelected);
