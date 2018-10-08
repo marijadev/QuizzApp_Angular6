@@ -1,8 +1,5 @@
-<p>
-  multiple-item works!
-</p>
 <div class="container">
-  <h5>{{singleQuestion.question}}</h5>
+  <h5 class="question-h">{{singleQuestion.question}}</h5>
   <div [formGroup]="testForm">
     <ol>
       <li *ngFor="let singleAnswer of singleQuestion.answers; let i=index;">{{singleAnswer}}<input type="checkbox" /></li>

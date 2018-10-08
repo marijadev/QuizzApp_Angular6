@@ -9,14 +9,28 @@ import { TestService } from '../../../../shared/services/test.service';
 })
 export class TextItemComponent implements OnInit {
 	testForm: FormGroup;
-	questionsArr: object[];
+	questionsArr: any;
+	singleQuestion = {
+		id: 0,
+		question: '',
+		difficulty: '',
+		type: '',
+		category: '',
+		answers: []
+	};
 	constructor(private fb: FormBuilder, private testService: TestService) { };
 
 	ngOnInit() {
 		if (this.testService.questionsByType.text) {
 			this.questionsArr = this.testService.questionsByType.text;
-		}
-		this.testForm.addControl('newAnswer', this.fb.array([null]));
+			const questionObj = this.questionsArr[0];
+			for (let prop in questionObj) {
+				if (prop === 'id') {
+					this.singleQuestion.id = questionObj[prop];
+				} else if (prop === 'question') {
+					this.singleQuestion.question = questionObj[prop];
+				};
+			};
+		};
 	};
-
-}
+};

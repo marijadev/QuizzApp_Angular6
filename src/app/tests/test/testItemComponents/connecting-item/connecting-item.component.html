@@ -1,11 +1,11 @@
-<p>
-  connecting-item works!
-</p>
 <div class="container">
-  <h5>{{singleQuestion.question}}</h5>
-  <div [formGroup]="testForm" class="test-container">
+  <h5 class="question-h">{{singleQuestion.question}}</h5>
+  <div [formGroup]="testForm" class="single-question-container">
     <ol>
-      <li *ngFor="let singleAnswer of singleQuestion.answers">{{singleAnswer}}</li>
+      <li *ngFor="let singleAnswer of answersLeft">{{singleAnswer}}</li>
+    </ol>
+    <ol>
+      <li *ngFor="let singleAnswer of answersRight">{{singleAnswer}}</li>
     </ol>
   </div>
 </div>

@@ -18,6 +18,9 @@ export class ConnectingItemComponent implements OnInit {
 		category: '',
 		answers: []
 	};
+	answersLeft;
+	answersRight;
+
 	constructor(private fb: FormBuilder, private testService: TestService) { };
 
 	ngOnInit() {
@@ -31,10 +34,19 @@ export class ConnectingItemComponent implements OnInit {
 					this.singleQuestion.question = questionObj[prop];
 				} else if (prop === 'answers') {
 					const arrayOfAnswers = questionObj[prop];
-
+					let odd= [];
+					let even= [];
 					for (let i = 0; i < arrayOfAnswers.length; i++) {
-						this.singleQuestion.answers.push(arrayOfAnswers[i].answer);
+						if(i % 2 === 0) {
+							odd.push(arrayOfAnswers[i].answer);
+						} else if(i % 2 !== 0) {
+							even.push(arrayOfAnswers[i].answer)
+						}
+						// this.singleQuestion.answers.push(arrayOfAnswers[i].answer);
+						// console.log('odd ', odd, "even ", even)
 					}
+					this.answersLeft = odd;
+					this.answersRight = even;
 				}
 			}
 		};

@@ -6,6 +6,17 @@
   transform: $property;
 }
 
+%overlay {
+	position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    min-height: 100vh;
+    z-index: -1;
+}
+
 //   .box { @include transform(rotate(30deg)); }
 %form-group-style {
   padding: 10px 0;
@@ -24,18 +35,10 @@
 
   &.true {
     background-color: $color-green;
-
-    &:hover {
-      background-color: $color-dark-green;
-    }
   }
 
   &.false {
     background-color: $color-orange;
-
-    &:hover {
-      background-color: $color-dark-red;
-    }
   }
 }
 
@@ -84,23 +87,35 @@
 }
 
 %headline-h3 {
-	font-weight: bold;
-	font-size: 2.3rem;
-	text-transform: uppercase;
-	color: $color-white;
+  font-weight: bold;
+  font-size: 2.3rem;
+  text-transform: uppercase;
+  color: $color-white;
 
-	&.invert {
-		color: $color-black;
-	}
+  &.invert {
+    color: $color-black;
+  }
 }
 
 %headline-h4 {
-	font-weight: bold;
-	font-size: 1.6rem;
-	text-transform: uppercase;
-	color: $color-black;
+  font-weight: bold;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: $color-black;
 
-	&.grey {
-		color: $color-grey-light;
-	}
+  &.grey {
+    color: $color-grey-light;
+  }
+}
+
+%headline-h5 {
+  margin: 40px 0 10px 0;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  color: $color-black;
+
+  &.invert {
+    color: $color-white;
+  }
 }

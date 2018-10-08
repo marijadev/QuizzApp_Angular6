@@ -1,0 +1,14 @@
+@import '~src/assets/styles/_variables.scss';
+@import '~src/assets/styles/_mixins.scss';
+
+.question-h {
+	@extend %headline-h5;
+}
+
+ol {
+	margin-right: 10%;
+}
+
+.single-question-container {
+	display: flex;
+}

@@ -36,15 +36,9 @@ export class SingleItemComponent implements OnInit {
 
 					for (let i = 0; i < arrayOfAnswers.length; i++) {
 						this.singleQuestion.answers.push(arrayOfAnswers[i].answer);
-					}
-				}
-			}
-		}
-
-		// this.testForm.addControl('newAnswer', this.fb.array([
-		// 	this.singleQuestion.answers.forEach(answer => this.fb.control('answer'))
-		// ]));
-	}
-
-};
+					};
+				};
+			};
+		};
+	};
 };

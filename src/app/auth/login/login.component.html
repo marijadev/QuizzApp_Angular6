@@ -1,6 +1,10 @@
 <div class="login-container">
+  <div class="overlay"></div>
   <div class="login-form-wrapper">
     <div class="form-holder">
+      <div class="logo-holder">
+        <img src="../../../assets/img/logo.png" alt="company's logo">
+      </div>
       <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="form-group">
           <label for="username">E-mail:</label><br>
@@ -11,8 +15,10 @@
           <input type="password" name="password" class="form-input" id="password" ngModel password required>
         </div>
         <div class="form-group">
-			<span *ngIf="!loginForm.valid && loginForm.touched" class="help-block">Please enter valid data!</span>
-          <button type="submit" style="cursor: pointer">Submit</button>
+		  <span *ngIf="!loginForm.valid && loginForm.touched" class="help-block">Please enter valid data!</span>
+		  <div class="btn-holder">
+			  <button type="submit" style="cursor: pointer">Submit</button>
+		  </div>
         </div>
       </form>
     </div>
