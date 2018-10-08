@@ -19,18 +19,14 @@ export class TestService implements OnInit{
 		connecting: []
 	}
 
-
 	constructor(private http: HttpClient) {
 		this.testTypeSelected = false;
 		this.testTypeSelectedChange.subscribe((value) => {
 			this.testTypeSelected = value;
 		});
-
 	};
 	
-	ngOnInit() {
-
-	}
+	ngOnInit() {}
 
 	toggleTestTypeSelectedVisibility() {
 		this.testTypeSelectedChange.next(!this.testTypeSelected);

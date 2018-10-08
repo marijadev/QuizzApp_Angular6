@@ -9,12 +9,12 @@ import { TestService } from '../../../../shared/services/test.service';
 })
 export class MultipleItemComponent implements OnInit {
 	testForm: FormGroup;
-	questionsArr: object[];
+	questionArr: object[];
 	constructor(private fb: FormBuilder, private testService: TestService) { };
 
 	ngOnInit() {
 		if (this.testService.questionsByType.multiple) {
-			this.questionsArr = this.testService.questionsByType.multiple;
+			this.questionArr = this.testService.questionsByType.multiple;
 		}
 		this.testForm.addControl('newAnswer', this.fb.array([null]));
 	};

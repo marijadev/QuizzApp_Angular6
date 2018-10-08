@@ -29,59 +29,59 @@ export class TestComponent implements OnInit {
 	constructor(private componentResolver: ComponentFactoryResolver, private route: Router, private actRoute: ActivatedRoute, private testService: TestService) { }
 
 	ngOnInit() {
-		this.testService.fakeRequest().subscribe((data) => {
-			if (data) {
-				this.testData.id = data.id;
-				this.testData.user = data.user;
-				this.testData.questions = data.questions;
-			}
-			this.questionTypes = Object.keys(questionTypes);
+		// this.testService.fakeRequest().subscribe((data) => {
+		// 	if (data) {
+		// 		this.testData.id = data.id;
+		// 		this.testData.user = data.user;
+		// 		this.testData.questions = data.questions;
+		// 	}
+		// 	this.questionTypes = Object.keys(questionTypes);
 
-			if (this.testData.questions) {
-				this.testService.getQuestions(this.testData.questions);
-				this.visibleQuestionItem();
-			}
-		})
+		// 	if (this.testData.questions) {
+		// 		this.testService.getQuestions(this.testData.questions);
+		// 		this.visibleQuestionItem();
+		// 	}
+		// })
 		// creating new FormGroup
 		this.testForm = new FormGroup({});
 	}
 
-	visibleQuestionItem() {
-		this.testData.questions.map(question => {
-			if (this.questionTypes[0] == question.type) {
-				const componentFactory = this.componentResolver.resolveComponentFactory(SingleItemComponent);
-				this.container.createComponent(componentFactory).instance;
-				this.testService.questionsByType.single.push(question);
-				console.log('single ', this.testService.questionsByType.single)
+	// visibleQuestionItem() {
+	// 	this.testData.questions.map(question => {
+	// 		if (this.questionTypes[0] == question.type) {
+	// 			const componentFactory = this.componentResolver.resolveComponentFactory(SingleItemComponent);
+	// 			this.container.createComponent(componentFactory).instance;
+	// 			this.testService.questionsByType.single.push(question);
+	// 			console.log('single ', this.testService.questionsByType.single)
 				
-			} else if (this.questionTypes[1] == question.type) {
-				const componentFactory = this.componentResolver.resolveComponentFactory(MultipleItemComponent);
-				this.container.createComponent(componentFactory).instance;
-				this.testService.questionsByType.multiple.push(question);
-				console.log('multiple ', this.testService.questionsByType.multiple)
+	// 		} else if (this.questionTypes[1] == question.type) {
+	// 			const componentFactory = this.componentResolver.resolveComponentFactory(MultipleItemComponent);
+	// 			this.container.createComponent(componentFactory).instance;
+	// 			this.testService.questionsByType.multiple.push(question);
+	// 			console.log('multiple ', this.testService.questionsByType.multiple)
 				
-			} else if (this.questionTypes[2] == question.type) {
-				const componentFactory = this.componentResolver.resolveComponentFactory(TextItemComponent);
-				this.container.createComponent(componentFactory).instance;
-				this.testService.questionsByType.text.push(question);
-				console.log('text', this.testService.questionsByType.text)
+	// 		} else if (this.questionTypes[2] == question.type) {
+	// 			const componentFactory = this.componentResolver.resolveComponentFactory(TextItemComponent);
+	// 			this.container.createComponent(componentFactory).instance;
+	// 			this.testService.questionsByType.text.push(question);
+	// 			console.log('text', this.testService.questionsByType.text)
 				
-			} else if (this.questionTypes[3] == question.type) {
-				const componentFactory = this.componentResolver.resolveComponentFactory(OrderItemComponent);
-				this.container.createComponent(componentFactory).instance;
-				this.testService.questionsByType.order.push(question);
-				console.log('order', this.testService.questionsByType.order)
+	// 		} else if (this.questionTypes[3] == question.type) {
+	// 			const componentFactory = this.componentResolver.resolveComponentFactory(OrderItemComponent);
+	// 			this.container.createComponent(componentFactory).instance;
+	// 			this.testService.questionsByType.order.push(question);
+	// 			console.log('order', this.testService.questionsByType.order)
 				
-			} else if (this.questionTypes[4] == question.type) {
-				const componentFactory = this.componentResolver.resolveComponentFactory(ConnectingItemComponent);
-				this.container.createComponent(componentFactory).instance;
-				this.testService.questionsByType.connecting.push(question);
-				console.log('connecting', this.testService.questionsByType.connecting)
-			}
+	// 		} else if (this.questionTypes[4] == question.type) {
+	// 			const componentFactory = this.componentResolver.resolveComponentFactory(ConnectingItemComponent);
+	// 			this.container.createComponent(componentFactory).instance;
+	// 			this.testService.questionsByType.connecting.push(question);
+	// 			console.log('connecting', this.testService.questionsByType.connecting)
+	// 		}
 
-			return this.childInstances;
-		});
-	};
+	// 		return this.childInstances;
+	// 	});
+	// };
 
 
 	onPreviousPage() {

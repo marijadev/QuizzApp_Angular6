@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 				if (user.admin === 1) {
 					this.router.navigate(['/home/question'], { relativeTo: this.actRoute });
 				} else if (user.admin === 0) {
-					this.router.navigate(['/home/tests'], { relativeTo: this.actRoute });
+					this.router.navigate(['/home/test'], { relativeTo: this.actRoute });
 				};
 			},
 			error => {

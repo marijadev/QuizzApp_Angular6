@@ -5,7 +5,7 @@
 		<li><a [routerLink]="['/home/users']" routerLinkActive="router-link-active">View Users</a></li>
 	</ul>
 	<ul *ngIf="userType === 0"  class="header-ul">
-		<li><a [routerLink]="['/home/tests']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}">Take The Test</a></li>
+		<li><a [routerLink]="['/home/test']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}">Take The Test</a></li>
 		<li><a [routerLink]="['/home/passed-tests']" routerLinkActive="router-link-active">Passed Tests</a></li>
 	</ul>
 </nav>

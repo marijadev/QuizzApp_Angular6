@@ -37,13 +37,24 @@ export class ConnectingComponent implements OnInit {
 
 	get values() {
 		const resultArray = this.answers.value.map((val, index) => {
-			return [{answer: val.answer, value: index}, {answer: val.answer2, value: index}];
+			return [{ answer: val.answer, value: index }, { answer: val.answer2, value: index }];
 		}).reduce((acc, answerValue) => {
 			acc.push(answerValue[0]);
 			acc.push(answerValue[1]);
+
 			return acc;
 		}, []);
-		return resultArray;
+		
+		let even = [];
+		let odd = [];
+		resultArray.map((answer, i) => {
+			if (i % 2 === 0) {
+				return even.push(answer);
+			} else if (i % 2 !== 0) {
+				return odd.push(answer)
+			}
+		})
+		return [...even, ...odd];
 	}
 
 	deleteAnswer(index: number) {
