@@ -1,11 +1,11 @@
 <p>
   single-item works!
 </p>
-<div class="test-container">
-  <!-- <div [formGroup]='testForm'>
-    <div class="answer-holder">
-		<ol>
-		</ol>
-    </div>
-  </div> -->
+<div class="container">
+  <h5>{{singleQuestion.question}}</h5>
+  <div [formGroup]="testForm">
+    <ol>
+      <li *ngFor="let singleAnswer of singleQuestion.answers">{{singleAnswer}}<input type="checkbox" /></li>
+    </ol>
+  </div>
 </div>

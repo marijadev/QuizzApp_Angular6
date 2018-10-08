@@ -36,6 +36,9 @@ export class ConnectingComponent implements OnInit {
 	}
 
 	get values() {
+		let even = [];
+		let odd = [];
+
 		const resultArray = this.answers.value.map((val, index) => {
 			return [{ answer: val.answer, value: index }, { answer: val.answer2, value: index }];
 		}).reduce((acc, answerValue) => {
@@ -45,8 +48,6 @@ export class ConnectingComponent implements OnInit {
 			return acc;
 		}, []);
 		
-		let even = [];
-		let odd = [];
 		resultArray.map((answer, i) => {
 			if (i % 2 === 0) {
 				return even.push(answer);
