@@ -3,7 +3,7 @@
   <div [formGroup]="testForm" class="test-container">
     <ul>
       <cdk-drop (dropped)="onDrop($event)">
-        <li *ngFor="let singleAnswer of singleQuestion.answers" cdkDrag cdkDragLockAxis="y">{{singleAnswer}}</li>
+        <li *ngFor="let singleAnswer of answersUI" cdkDrag cdkDragLockAxis="y">{{singleAnswer.answer}}</li>
       </cdk-drop>
     </ul>
   </div>

@@ -19,6 +19,8 @@ export class TestService implements OnInit{
 		connecting: []
 	}
 
+	filledTest = [];
+
 	constructor(private http: HttpClient) {
 		this.testTypeSelected = false;
 		this.testTypeSelectedChange.subscribe((value) => {
@@ -44,5 +46,10 @@ export class TestService implements OnInit{
 	get testQuestions() {
 		return this.questionsArr;
 	};
+
+	onTestSubmit(question: any) {
+		this.filledTest.push(question);
+		console.log(this.filledTest)
+	}
 
 };

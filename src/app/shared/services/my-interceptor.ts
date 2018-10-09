@@ -17,18 +17,18 @@ export class MyInterceptor implements HttpInterceptor {
 			withCredentials: true
 		});
 
-		console.log("Before making api call : ", updatedRequest);
-		console.log('has header', updatedRequest.headers.has('Authorization'));
+		// console.log("Before making api call : ", updatedRequest);
+		// console.log('has header', updatedRequest.headers.has('Authorization'));
 		return next.handle(updatedRequest).pipe(
 			tap(
 				event => {
 					if (event instanceof HttpResponse) {
-						console.log("api call success :", event);
+						// console.log("api call success :", event);
 					}
 				},
 				error => {
 					if (event instanceof HttpResponse) {
-						console.log("api call error :", event);
+						// console.log("api call error :", event);
 					}
 				}
 			)

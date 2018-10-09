@@ -19,29 +19,36 @@ export class OrderItemComponent implements OnInit {
 		category: '',
 		answers: []
 	};
+	answerList = [];
+	answerValues = [];
+	answersUI = [];
+
 	constructor(private fb: FormBuilder, private testService: TestService) { };
 
 	ngOnInit() {
 		if (this.testService.questionsByType.order) {
 			this.questionsArr = this.testService.questionsByType.order;
 			const questionObj = this.questionsArr[0];
-			for (let prop in questionObj) {
-				if (prop === 'id') {
-					this.singleQuestion.id = questionObj[prop];
-				} else if (prop === 'question') {
-					this.singleQuestion.question = questionObj[prop];
-				} else if (prop === 'answers') {
-					const arrayOfAnswers = questionObj[prop];
 
-					for (let i = 0; i < arrayOfAnswers.length; i++) {
-						this.singleQuestion.answers.push(arrayOfAnswers[i].answer);
-					};
-				};
-			};
+			this.singleQuestion.id = questionObj['id'];
+			this.singleQuestion.type = questionObj['type'];
+			this.singleQuestion.difficulty = questionObj['difficulty'];
+			this.singleQuestion.category = questionObj['category'];
+			this.answersUI = questionObj['answers'].slice();
+			this.singleQuestion.answers = questionObj['answers'];
 		};
 	};
 
 	onDrop(event: CdkDragDrop<string[]>) {
-		moveItemInArray(this.singleQuestion.answers, event.previousIndex, event.currentIndex);
-	  };
+		moveItemInArray(this.answersUI, event.previousIndex, event.currentIndex);
+		let chosenArray = this.answersUI.map(answer => answer.value);
+		// console.log('chosen array ', chosenArray)
+		let answers = this.singleQuestion.answers;
+		for (let i = 0; i < answers.length; i++) {
+			// console.log('answ-', answers[i].value, 'test-', chosenArray[i])
+			answers[i].chosen = chosenArray[i];
+		}
+		console.log(answers);
+		// console.log(this.singleQuestion)
+	};
 }
