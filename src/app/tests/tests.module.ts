@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { SingleItemComponent } from './test/testItemComponents/single-item/single-item.component';
 import { MultipleItemComponent } from './test/testItemComponents/multiple-item/multiple-item.component';
@@ -23,7 +24,7 @@ import { CoreRoutingModule } from '../core/core-routing.module';
 		FormsModule,
 		ReactiveFormsModule,
 		CoreRoutingModule,
-
+		DragDropModule
 	],
 	providers: [],
 	bootstrap: [],

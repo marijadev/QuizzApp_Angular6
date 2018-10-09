@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { TestService } from '../../../../shared/services/test.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
 	selector: 'app-order-item',
@@ -34,9 +35,13 @@ export class OrderItemComponent implements OnInit {
 
 					for (let i = 0; i < arrayOfAnswers.length; i++) {
 						this.singleQuestion.answers.push(arrayOfAnswers[i].answer);
-					}
-				}
-			}
+					};
+				};
+			};
 		};
-	}
+	};
+
+	onDrop(event: CdkDragDrop<string[]>) {
+		moveItemInArray(this.singleQuestion.answers, event.previousIndex, event.currentIndex);
+	  };
 }

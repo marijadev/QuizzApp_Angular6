@@ -44,7 +44,7 @@ import { TestService } from './shared/services/test.service';
 		CoreModule,
 		AppRouting,
 		HttpClientModule,
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
 	],
 	providers: [
 		{

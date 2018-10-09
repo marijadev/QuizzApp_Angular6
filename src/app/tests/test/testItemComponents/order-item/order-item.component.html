@@ -1,8 +1,10 @@
 <div class="container">
   <h5 class="question-h">{{singleQuestion.question}}</h5>
   <div [formGroup]="testForm" class="test-container">
-    <ol>
-      <li *ngFor="let singleAnswer of singleQuestion.answers">{{singleAnswer}}</li>
-    </ol>
+    <ul>
+      <cdk-drop (dropped)="onDrop($event)">
+        <li *ngFor="let singleAnswer of singleQuestion.answers" cdkDrag cdkDragLockAxis="y">{{singleAnswer}}</li>
+      </cdk-drop>
+    </ul>
   </div>
 </div>
