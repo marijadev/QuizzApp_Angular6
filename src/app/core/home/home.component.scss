@@ -6,6 +6,16 @@ main {
   width: 100vw;
 }
 
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.img-holder {
+  max-width: 100px;
+}
+
 @import '~src/assets/styles/_variables.scss';
 
 .home-profile-wrapper {
@@ -23,13 +33,14 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   width: calc(100% - 300px);
 
   .header-wrapper {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 80px;
     padding: 20px;
     color: $color-orange;
@@ -40,8 +51,8 @@ main {
     display: flex;
     position: relative;
     align-items: center;
-	justify-content: center;
-	width: 100%;
+    justify-content: center;
+    width: 100%;
     height: 100%;
     padding-top: 80px;
   }

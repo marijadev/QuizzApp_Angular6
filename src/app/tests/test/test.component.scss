@@ -1,3 +1,6 @@
+@import '~src/assets/styles/_variables.scss';
+@import '~src/assets/styles/_mixins.scss';
+
 .container {
 	height: 100vh;
 	width: calc(100vw - 300px);
@@ -6,4 +9,14 @@
 
 #test-form {
 	margin-top: 50px;
+}
+
+.invert {
+	@extend %headline-h4;
+	text-align: center;
+}
+
+.btn {
+	@extend %btn-submit-style;
+	max-width: 200px;
 }

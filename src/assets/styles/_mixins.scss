@@ -106,6 +106,10 @@
   &.grey {
     color: $color-grey-light;
   }
+
+  &.invert {
+	  color: $color-black;
+  }
 }
 
 %headline-h5 {

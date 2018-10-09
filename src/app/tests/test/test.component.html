@@ -1,13 +1,13 @@
 <div class="container">
-  <div class="btn-holder">
-    <button (click)="onPreviousPage()">Previous page</button>
-  </div>
   <div class="test-holder">
+	  <h4 class="test-h invert">Please submit the correct answers:</h4>
     <div class="test-question">
       <form [formGroup]='testForm' (ngSubmit)="onSubmitAnswer()" id="test-form">
-		<ng-template #dynamic></ng-template>
-		<button class="submit-btn" type="submit">Submit</button>
-		<!-- [disabled]="!questionForm.valid && questionForm" -->
+        <ng-template #dynamic></ng-template>
+        <div class="btn-holder">
+          <button class="btn btn-submit" type="submit">Submit</button>
+        </div>
+        <!-- [disabled]="!questionForm.valid && questionForm" -->
       </form>
     </div>
   </div>
