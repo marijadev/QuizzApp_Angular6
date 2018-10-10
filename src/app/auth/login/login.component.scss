@@ -54,55 +54,55 @@ input:-webkit-autofill:active {
     position: relative;
     @extend %btn-submit-style;
 
-    &:after {
-      opacity: 0;
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 5px;
-      background-color: black;
-      -webkit-transform: translateX(100%);
-      content: 'SUBMIT';
-      line-height: 33px;
-      transition: all .3s ease-in-out;
-    }
+//     &:after {
+//       opacity: 0;
+//       position: absolute;
+//       top: 0;
+//       right: 0;
+//       width: 100%;
+//       height: 100%;
+//       border-radius: 5px;
+//       background-color: black;
+//       -webkit-transform: translateX(100%);
+//       content: 'SUBMIT';
+//       line-height: 33px;
+//       transition: all .3s ease-in-out;
+//     }
 
-    &:hover {
-      &:after {
-        transform: translateX(0%);
-        opacity: 1;
-      }
-    }
+//     &:hover {
+//       &:after {
+//         transform: translateX(0%);
+//         opacity: 1;
+//       }
+//     }
   }
 }
 
-.slide-in {
-  animation: slide-in .2s forwards;
-  -webkit-animation: slide-in 0.2s forwards;
-}
+// .slide-in {
+//   animation: slide-in .2s forwards;
+//   -webkit-animation: slide-in 0.2s forwards;
+// }
 
-.slide-out {
-  animation: slide-out 0.2s forwards;
-  -webkit-animation: slide-out 0.2s forwards;
-}
+// .slide-out {
+//   animation: slide-out 0.2s forwards;
+//   -webkit-animation: slide-out 0.2s forwards;
+// }
 
-@keyframes slide-in {
-  100% {
-    transform: translateX(0%);
-  }
-}
+// @keyframes slide-in {
+//   100% {
+//     transform: translateX(0%);
+//   }
+// }
 
-@keyframes slide-out {
-  0% {
-    transform: translateX(0%);
-  }
+// @keyframes slide-out {
+//   0% {
+//     transform: translateX(0%);
+//   }
 
-  100% {
-    transform: translateX(-100%);
-  }
-}
+//   100% {
+//     transform: translateX(-100%);
+//   }
+// }
 
 .form-input.ng-touched.ng-invalid {
   border: 1px solid $color-orange;

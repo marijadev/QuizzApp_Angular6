@@ -28,43 +28,32 @@ export class SingleItemComponent implements OnInit {
 		if (this.testService.questionsByType.single) {
 			this.questionsArr = this.testService.questionsByType.single;
 			const questionObj = this.questionsArr[0];
-			for (let prop in questionObj) {
-				if (prop === 'id') {
-					this.singleQuestion.id = questionObj[prop];
-				} else if (prop === 'question') {
-					this.singleQuestion.question = questionObj[prop];
-				} else if (prop === 'difficulty') {
-					this.singleQuestion.difficulty = questionObj[prop];
-				} else if (prop === 'type') {
-					this.singleQuestion.type = questionObj[prop];
-				} else if (prop === 'category') {
-					this.singleQuestion.category = questionObj[prop];
-				} else if (prop === 'answers') {
-					const arrayOfAnswers = questionObj[prop];
-
-					for (let i = 0; i < arrayOfAnswers.length; i++) {
-						this.singleQuestion.answers.push(arrayOfAnswers[i].answer);
-					};
-				};
-			};
+			
+			this.singleQuestion.id = questionObj['id'];
+			this.singleQuestion.question = questionObj['question'];
+			this.singleQuestion.difficulty = questionObj['difficulty'];
+			this.singleQuestion.type = questionObj['type'];
+			this.singleQuestion.category = questionObj['category'];
+			this.singleQuestion.answers = questionObj['answers'];
 		};
 	};
 
-	// onInputChecked(e) {
-	// 	console.log(e.target.checked)
-	// }
-
-	// validate(control): { [s: string]: boolean } {
-	// 	let trueLength = 0;
-	// 	for (let i = 0; i < control.value.length; i++) {
-	// 		if (control.value[i].value === true) {
-	// 			trueLength++;
-	// 		}
-	// 	}
-	// 	if (trueLength > 1 || trueLength === 0) {
-	// 		return { 'checkboxValid': true };
-	// 	}
-	// 	return null;
-	// }
-
+	onChecked(e: any, index: number) {
+		const answers = this.singleQuestion.answers;
+		if (e.srcElement.checked === true) {
+			for (let i = 0; i < answers.length; i++) {
+				if (i === index) {
+					answers[i].chosen = 1;
+				};
+			};
+		};
+		if (e.srcElement.checked === false) {
+			for (let i = 0; i < answers.length; i++) {
+				if (i === index) {
+					answers[i].chosen = 0;
+				};
+			};
+		};
+		console.log(this.singleQuestion)
+	};
 };

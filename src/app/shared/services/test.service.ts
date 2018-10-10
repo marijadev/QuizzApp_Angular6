@@ -47,7 +47,7 @@ export class TestService implements OnInit{
 		return this.questionsArr;
 	};
 
-	onTestSubmit(question: any) {
+	populateTest(question: any) {
 		this.filledTest.push(question);
 		console.log(this.filledTest)
 	}

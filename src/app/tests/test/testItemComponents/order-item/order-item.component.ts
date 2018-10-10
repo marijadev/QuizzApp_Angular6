@@ -31,6 +31,7 @@ export class OrderItemComponent implements OnInit {
 			const questionObj = this.questionsArr[0];
 
 			this.singleQuestion.id = questionObj['id'];
+			this.singleQuestion.question = questionObj['question'];
 			this.singleQuestion.type = questionObj['type'];
 			this.singleQuestion.difficulty = questionObj['difficulty'];
 			this.singleQuestion.category = questionObj['category'];
@@ -40,15 +41,14 @@ export class OrderItemComponent implements OnInit {
 	};
 
 	onDrop(event: CdkDragDrop<string[]>) {
+
 		moveItemInArray(this.answersUI, event.previousIndex, event.currentIndex);
 		let chosenArray = this.answersUI.map(answer => answer.value);
-		// console.log('chosen array ', chosenArray)
 		let answers = this.singleQuestion.answers;
+
 		for (let i = 0; i < answers.length; i++) {
 			// console.log('answ-', answers[i].value, 'test-', chosenArray[i])
 			answers[i].chosen = chosenArray[i];
-		}
-		console.log(answers);
-		// console.log(this.singleQuestion)
+		};
 	};
-}
+};

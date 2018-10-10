@@ -26,23 +26,31 @@ export class MultipleItemComponent implements OnInit {
 		if (this.testService.questionsByType.multiple) {
 			this.questionsArr = this.testService.questionsByType.multiple;
 			const questionObj = this.questionsArr[0];
-			for (let prop in questionObj) {
-				if (prop === 'id') {
-					this.singleQuestion.id = questionObj[prop];
-				} else if (prop === 'question') {
-					this.singleQuestion.question = questionObj[prop];
-				} else if (prop === 'answers') {
-					const arrayOfAnswers = questionObj[prop];
 
-					for (let i = 0; i < arrayOfAnswers.length; i++) {
-						this.singleQuestion.answers.push(arrayOfAnswers[i].answer);
-					}
-				}
-			}
-		}
-
-		// this.testForm.addControl('newAnswer', this.fb.array([
-		// 	this.singleQuestion.answers.forEach(answer => answer, this.fb.control('answer'))
-		// ]));
+			this.singleQuestion.id = questionObj['id'];
+			this.singleQuestion.question = questionObj['question'];
+			this.singleQuestion.difficulty = questionObj['difficulty'];
+			this.singleQuestion.type = questionObj['type'];
+			this.singleQuestion.category = questionObj['category'];
+			this.singleQuestion.answers = questionObj['answers'];
+		};
 	};
-}
+	
+	onChecked(e: any, index: number) {
+		const answers = this.singleQuestion.answers;
+		if (e.srcElement.checked === true) {
+			for (let i = 0; i < answers.length; i++) {
+				if (i === index) {
+					answers[i].chosen = 1;
+				};
+			};
+		};
+		if (e.srcElement.checked === false) {
+			for (let i = 0; i < answers.length; i++) {
+				if (i === index) {
+					answers[i].chosen = 0;
+				};
+			};
+		};
+	};
+};

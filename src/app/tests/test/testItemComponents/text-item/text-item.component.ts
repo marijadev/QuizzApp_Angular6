@@ -24,13 +24,22 @@ export class TextItemComponent implements OnInit {
 		if (this.testService.questionsByType.text) {
 			this.questionsArr = this.testService.questionsByType.text;
 			const questionObj = this.questionsArr[0];
-			for (let prop in questionObj) {
-				if (prop === 'id') {
-					this.singleQuestion.id = questionObj[prop];
-				} else if (prop === 'question') {
-					this.singleQuestion.question = questionObj[prop];
-				};
-			};
+			this.singleQuestion.id = questionObj['id'];
+			this.singleQuestion.question = questionObj['question'];
+			this.singleQuestion.type = questionObj['type'];
+			this.singleQuestion.difficulty = questionObj['difficulty'];
+			this.singleQuestion.category = questionObj['category'];
+			this.singleQuestion.answers = questionObj['answers'];
 		};
+	};
+
+	onTextAdded(e: any) {
+		const userAnswer = e.srcElement.value;
+		this.singleQuestion.answers = [{
+			id: null,
+			answer: userAnswer,
+			value: 0,
+			chosen: 0
+		}];
 	};
 };
