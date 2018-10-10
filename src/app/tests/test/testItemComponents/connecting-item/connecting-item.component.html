@@ -2,10 +2,17 @@
   <h5 class="question-h">{{singleQuestion.question}}</h5>
   <div [formGroup]="testForm" class="single-question-container">
     <ol>
-      <li *ngFor="let singleAnswer of answersLeft">{{singleAnswer}}</li>
+      <li *ngFor="let singleAnswer of answersLeft">{{singleAnswer.answer}}</li>
     </ol>
-    <ul>
-      <li *ngFor="let singleAnswer of answersRight"><input type="number" /> {{singleAnswer}}</li>
-    </ul>
+    <ol class="drop-placeholder drop-container">
+      <cdk-drop #dropZone1 [connectedTo]="[dropZone2]" (dropped)="addToList($event)" [data]="draggedAnswers">
+		  <li *ngFor="let item of draggedAnswers" cdkDrag>{{item.answer}}</li>
+      </cdk-drop>
+    </ol>
+    <ol class="draggable-ol">
+      <cdk-drop #dropZone2 [connectedTo]="[dropZone1]" [data]="answersRight">
+        <li *ngFor="let singleAnswer of answersRight" cdkDrag> {{singleAnswer.answer}}</li>
+      </cdk-drop>
+	</ol>
   </div>
 </div>

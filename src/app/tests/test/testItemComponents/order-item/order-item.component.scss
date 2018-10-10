@@ -11,16 +11,6 @@ ul {
 }
 
 li {
-  list-style-type: none;
-  padding: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 5px;
+  @extend %drag-n-drop;
   max-width: 50%;
-  background-color: $color-white;
-  word-wrap: break-word;
-  -webkit-box-shadow: 0px 0px 9px -4px rgba(0, 0, 0, 0.36);
-  -moz-box-shadow: 0px 0px 9px -4px rgba(0, 0, 0, 0.36);
-  box-shadow: 0px 0px 9px -4px rgba(0, 0, 0, 0.36);
-  cursor: grab;
-  cursor: -webkit-grab;
 }

@@ -7,14 +7,14 @@
 }
 
 %overlay {
-	position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.7);
-    min-height: 100vh;
-    z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  min-height: 100vh;
+  z-index: -1;
 }
 
 //   .box { @include transform(rotate(30deg)); }
@@ -86,6 +86,20 @@
   }
 }
 
+%drag-n-drop {
+  list-style-type: none;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px;
+  background-color: $color-white;
+  word-wrap: break-word;
+  -webkit-box-shadow: 0px 0px 9px -4px rgba(0, 0, 0, 0.36);
+  -moz-box-shadow: 0px 0px 9px -4px rgba(0, 0, 0, 0.36);
+  box-shadow: 0px 0px 9px -4px rgba(0, 0, 0, 0.36);
+  cursor: grab;
+  cursor: -webkit-grab;
+}
+
 %headline-h3 {
   font-weight: bold;
   font-size: 2.3rem;
@@ -108,7 +122,7 @@
   }
 
   &.invert {
-	  color: $color-black;
+    color: $color-black;
   }
 }
 

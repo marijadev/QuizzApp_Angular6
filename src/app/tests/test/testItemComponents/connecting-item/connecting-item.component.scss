@@ -7,7 +7,6 @@
 
 .single-question-container {
   display: flex;
-  align-items: center;
 }
 
 ol,
@@ -22,4 +21,18 @@ ul {
 input {
 	max-width: 40px;
 	margin-right: 15px;
+}
+
+.drop-placeholder {
+	min-width: 10%;
+	width: 40px
+}
+
+li {
+	@extend %drag-n-drop;
+	width: 100%;
+}
+
+.draggable-ol {
+	list-style-type: lower-latin;
 }
