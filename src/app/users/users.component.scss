@@ -1,7 +1,38 @@
-li {
-	padding: 5px;
+@import '~src/assets/styles/_variables.scss';
+@import '~src/assets/styles/_mixins.scss';
+
+.container {
+  min-height: 80vh;
+  width: 80vw;
+  padding: 0 100px;
 }
 
-button {
-	margin-left: 20px;
+li {
+  position: relative;
+  padding: 20px 0;
+  font-weight: bold;
+}
+
+.btn {
+  width: 20%;
+  max-width: 80%;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  color: $color-white;
+  cursor: pointer;
+  border: none;
+  transition: all .3s ease;
+  position: absolute;
+  right: 0;
+  top: 10px;
+
+  &.invert {
+    @extend %btn-cancel-inverted;
+
+    &:hover {
+      @extend %btn-cancel;
+    }
+
+  }
 }
