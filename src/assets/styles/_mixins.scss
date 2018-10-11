@@ -44,15 +44,20 @@
 
 %btn-submit-style {
   width: 100%;
-  margin-top: 40px;
   padding: 10px;
-  border: none;
-  outline: none;
+  margin-top: 40px;
   background-color: $color-orange;
+  border: none;
   border-radius: 5px;
-  cursor: pointer;
+  outline: none;
   text-transform: uppercase;
   color: $color-white;
+  cursor: pointer;
+  transition: all .3s ease;
+
+  &:hover {
+	  background-color: $color-hover;
+  }
 
   &:disabled {
     background-color: grey;
