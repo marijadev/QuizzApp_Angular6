@@ -4,6 +4,11 @@ h3, p {
 	margin: 20px 0;
 }
 
+.profile-img-wrapper {
+	max-width: 200px;
+	margin: 0 auto;
+}
+
 .edit-profile {
 	@extend %btn-submit-style;
 	width: 65%;

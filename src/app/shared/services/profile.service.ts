@@ -32,8 +32,4 @@ export class ProfileService implements OnInit {
 		const currentUser = this.usersService.getCurrentUser();
 		this.http.post(API_URL.edit, currentUser).subscribe(arg => arg);
 	};
-
-	// onEditCancel() {
-
-	// }
 };
