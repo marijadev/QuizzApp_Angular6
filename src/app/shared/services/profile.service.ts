@@ -14,13 +14,12 @@ export class ProfileService implements OnInit {
 
 	constructor(private usersService: UserService, private http: HttpClient, private authService: AuthService) { }
 
-	ngOnInit() {
-	}
+	ngOnInit() { }
 
 	populateUser() {
 		const currentUser = this.usersService.getCurrentUser();
 		return currentUser;
-	}
+	};
 
 	onEditProfile(password: string, name: string, surname: string, phone: number) {
 		const user = {
@@ -28,9 +27,13 @@ export class ProfileService implements OnInit {
 			name,
 			surname,
 			phone
-		}
+		};
 		this.authService.setUser(user);
 		const currentUser = this.usersService.getCurrentUser();
-		this.http.post(API_URL.edit, currentUser).subscribe(arg => console.log(arg));
-	}
-}
+		this.http.post(API_URL.edit, currentUser).subscribe(arg => arg);
+	};
+
+	// onEditCancel() {
+
+	// }
+};

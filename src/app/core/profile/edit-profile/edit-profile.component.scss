@@ -1,5 +1,13 @@
 @import '~src/assets/styles/_mixins.scss';
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition: "color 9999s ease-out, background-color #fff ease-out";
+  -webkit-transition-delay: 9999s;
+}
+
 .form-group {
   @extend %form-group-style;
 }
@@ -17,6 +25,7 @@ input {
 
   &.cancel {
     background-color: $color-white;
-    color: $color-black;
+	color: $color-black;
+	cursor: pointer;
   }
 }

@@ -25,5 +25,10 @@ export class EditProfileComponent implements OnInit {
 		this.profileService.onEditProfile(password, name, surname, phone);
 
 		this.editing.emit(afterEdit);
-	}
-}
+	};
+
+	onCancel() {
+		const notEdited = false;
+		this.editing.emit(notEdited);
+	};
+};

@@ -19,7 +19,7 @@
     </div>
     <div>
       <button class="btn" type="submit" [disabled]="!editProfileForm.valid && editProfileForm.touched">Submit</button>
-      <button class="btn cancel" type="submit" [disabled]="!editProfileForm.valid && editProfileForm.touched">Cancel</button>
     </div>
   </form>
+  <button class="btn cancel" type="button" (click)="onCancel()">Cancel</button>
 </div>
