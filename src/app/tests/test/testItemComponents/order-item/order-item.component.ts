@@ -47,7 +47,6 @@ export class OrderItemComponent implements OnInit {
 		let answers = this.singleQuestion.answers;
 
 		for (let i = 0; i < answers.length; i++) {
-			// console.log('answ-', answers[i].value, 'test-', chosenArray[i])
 			answers[i].chosen = chosenArray[i];
 		};
 	};

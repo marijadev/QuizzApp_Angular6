@@ -30,7 +30,6 @@ export class TestComponent implements OnInit {
 
 	ngOnInit() {
 		this.testService.fakeRequest().subscribe((data) => {
-			// console.log(data)
 			if (data) {
 				this.testData.id = data.id;
 				this.testData.user = data.user;
@@ -52,41 +51,32 @@ export class TestComponent implements OnInit {
 			if (this.questionTypes[0] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(SingleItemComponent);
 				this.componentRef_ = this.container.createComponent(componentFactory);
-
 				this.testService.questionsByType.single.push(question);
-				// console.log('single ', this.testService.questionsByType.single)
-
 			} else if (this.questionTypes[1] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(MultipleItemComponent);
 				this.componentRef_ = this.container.createComponent(componentFactory);
-
 				this.testService.questionsByType.multiple.push(question);
-				// console.log('multiple ', this.testService.questionsByType.multiple)
-
 			} else if (this.questionTypes[2] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(TextItemComponent);
 				this.componentRef_ = this.container.createComponent(componentFactory);
-
 				this.testService.questionsByType.text.push(question);
-				// console.log('text', this.testService.questionsByType.text)
-
 			} else if (this.questionTypes[3] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(OrderItemComponent);
 				this.componentRef_ = this.container.createComponent(componentFactory);
-
 				this.testService.questionsByType.order.push(question);
-				// console.log('order', this.testService.questionsByType.order)
-
 			} else if (this.questionTypes[4] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(ConnectingItemComponent);
 				this.componentRef_ = this.container.createComponent(componentFactory);
-
 				this.testService.questionsByType.connecting.push(question);
-				// console.log('connecting', this.testService.questionsByType.connecting)
 			}
 			this.componentRef_.instance.testForm = this.testForm;
 
 			return null;
 		});
 	};
+
+	onSubmitTest() {
+		//here goes post request
+		this.testService.toggleTestTypeSelectedVisibility();
+	}
 };

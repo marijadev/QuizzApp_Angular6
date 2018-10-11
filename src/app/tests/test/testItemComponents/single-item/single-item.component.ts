@@ -53,6 +53,5 @@ export class SingleItemComponent implements OnInit {
 				};
 			};
 		};
-		// console.log(this.singleQuestion)
 	};
 };
