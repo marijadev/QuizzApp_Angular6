@@ -98,6 +98,5 @@ export class ConnectingItemComponent implements OnInit {
 			};
 		};
 		this.singleQuestion.answers = [...this.answersLeft, ...this.draggedAnswers];
-		// console.log(this.singleQuestion)
 	};
 };

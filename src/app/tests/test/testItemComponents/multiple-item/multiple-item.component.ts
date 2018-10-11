@@ -35,7 +35,7 @@ export class MultipleItemComponent implements OnInit {
 			this.singleQuestion.answers = questionObj['answers'];
 		};
 	};
-	
+
 	onChecked(e: any, index: number) {
 		const answers = this.singleQuestion.answers;
 		if (e.srcElement.checked === true) {

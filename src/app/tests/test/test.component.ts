@@ -89,16 +89,4 @@ export class TestComponent implements OnInit {
 			return null;
 		});
 	};
-
-	onSubmitAnswer() {
-		// console.log('submit works')
-	}
-
-	onPreviousPage() {
-		// this.route.navigate(['/home/tests'], { relativeTo: this.actRoute });
-	}
-
-
-
-
-}
+};

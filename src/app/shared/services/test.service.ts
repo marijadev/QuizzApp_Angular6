@@ -19,8 +19,6 @@ export class TestService implements OnInit{
 		connecting: []
 	}
 
-	filledTest = [];
-
 	constructor(private http: HttpClient) {
 		this.testTypeSelected = false;
 		this.testTypeSelectedChange.subscribe((value) => {
@@ -28,7 +26,7 @@ export class TestService implements OnInit{
 		});
 	};
 	
-	ngOnInit() {}
+	ngOnInit() {};
 
 	toggleTestTypeSelectedVisibility() {
 		this.testTypeSelectedChange.next(!this.testTypeSelected);
@@ -46,10 +44,4 @@ export class TestService implements OnInit{
 	get testQuestions() {
 		return this.questionsArr;
 	};
-
-	populateTest(question: any) {
-		this.filledTest.push(question);
-		console.log(this.filledTest)
-	}
-
 };

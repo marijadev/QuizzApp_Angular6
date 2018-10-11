@@ -19,7 +19,6 @@ export class SingleItemComponent implements OnInit {
 		category: '',
 		answers: []
 	};
-	answers = [];
 	questionInvalid: boolean = false;
 
 	constructor(private fb: FormBuilder, private testService: TestService) { };
@@ -28,7 +27,7 @@ export class SingleItemComponent implements OnInit {
 		if (this.testService.questionsByType.single) {
 			this.questionsArr = this.testService.questionsByType.single;
 			const questionObj = this.questionsArr[0];
-			
+
 			this.singleQuestion.id = questionObj['id'];
 			this.singleQuestion.question = questionObj['question'];
 			this.singleQuestion.difficulty = questionObj['difficulty'];
@@ -54,6 +53,6 @@ export class SingleItemComponent implements OnInit {
 				};
 			};
 		};
-		console.log(this.singleQuestion)
+		// console.log(this.singleQuestion)
 	};
 };
