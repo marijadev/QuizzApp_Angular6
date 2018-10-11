@@ -57,7 +57,6 @@ export class ConnectingItemComponent implements OnInit {
 	};
 
 	addToList(event: CdkDragDrop<string[]>) {
-		const answers = this.singleQuestion.answers;
 		let chosenArray = [];
 		if (event.previousContainer === event.container) {
 			moveItemInArray(
@@ -80,13 +79,25 @@ export class ConnectingItemComponent implements OnInit {
 				this.draggedAnswers.splice(i);
 			}
 		}
-		// this.draggedAnswers.map(answer => {
-		// 	chosenArray.push(answer['value']);
-		// });
-		// for (let i = 0; i < answers.length; i++) {
-		// 	answers[i].chosen = chosenArray[i];
-		// };
-		console.log('dragged', this.draggedAnswers)
-		console.log('chosen ', chosenArray)
+
+		for (let i = 0; i < this.draggedAnswers.length; i++) {
+			const currentAnswer = this.draggedAnswers[i];
+			const value = currentAnswer['value'];
+			chosenArray.push(value);
+		}
+
+		if (this.answersRight.length === 0) {
+			for (let i = 0; i < this.draggedAnswers.length; i++) {
+				const currentAnswer = this.draggedAnswers[i];
+				currentAnswer['chosen'] = chosenArray[i];
+			};
+		} else {
+			for (let i = 0; i < this.draggedAnswers.length; i++) {
+				const currentAnswer = this.draggedAnswers[i];
+				currentAnswer['chosen'] = 0;
+			};
+		};
+		this.singleQuestion.answers = [...this.answersLeft, ...this.draggedAnswers];
+		// console.log(this.singleQuestion)
 	};
 };
