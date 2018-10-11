@@ -1,0 +1,30 @@
+@import '~src/assets/styles/_variables.scss';
+@import '~src/assets/styles/_mixins.scss';
+
+.single-user-holder {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+
+.btn {
+  width: 20%;
+  max-width: 80%;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  color: $color-white;
+  cursor: pointer;
+  border: none;
+  transition: all .3s ease;
+
+  &.invert {
+    @extend %btn-cancel-inverted;
+
+    &:hover {
+      @extend %btn-cancel;
+    }
+
+  }
+}

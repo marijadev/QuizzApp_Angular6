@@ -1,0 +1,30 @@
+<div class="single-user-holder">
+  <p>{{user.name}} {{user.surname}}, ID: {{user.id}}</p>
+  <a class="btn invert" (click)="onUserChosen(user.id)">{{user.name}}'s Tests
+    <ul>
+      <li *ngIf="optionsShowed">
+        <ul>
+          <li>Difficulties
+            <ul>
+              <li *ngFor="let item of difficulties">{{item}}</li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>Categories
+            <ul>
+              <li *ngFor="let category of categories">{{category}}</li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>Status
+            <ul>
+              <li *ngFor="let singleStatus of status">{{singleStatus}}</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </a>
+</div>

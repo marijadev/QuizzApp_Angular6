@@ -24,6 +24,7 @@ import { DataService } from './shared/services/data.service';
 import { TestTypeComponent } from './tests/test-type/test-type.component';
 import { TestComponent } from './tests/test/test.component';
 import { TestService } from './shared/services/test.service';
+import { SingleUserComponent } from './users/single-user/single-user.component';
 
 @NgModule({
 	declarations: [
@@ -34,7 +35,8 @@ import { TestService } from './shared/services/test.service';
 		PassedTestsComponent,
 		TrueFalseDirective,
 		TestTypeComponent,
-		TestComponent
+		TestComponent,
+		SingleUserComponent
 	],
 	imports: [
 		BrowserModule,

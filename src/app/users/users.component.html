@@ -1,10 +1,5 @@
 <div class="container">
   <div class="users-holder">
-    <ol>
-      <li *ngFor="let user of currentUsers">
-        <a> {{user.name}} {{user.surname}}, ID: {{user.id}}</a>
-        <button type="button" class="btn invert">{{user.name}}'s Tests</button>
-      </li>
-    </ol>
+    <app-single-user *ngFor="let user of currentUsers" [user]="user"></app-single-user>
   </div>
 </div>

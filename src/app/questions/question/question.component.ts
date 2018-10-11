@@ -23,7 +23,7 @@ export class QuestionComponent implements OnInit {
 	childInstance: any;
 	@ViewChild('dynamic', { read: ViewContainerRef }) container: ViewContainerRef;
 	questionForm: FormGroup;
-	difficulties: string[] = ['Easy', 'Medium', 'Difficult'];
+	difficulties: string[];
 	categories;
 	questionTypes: string[];
 	newQuestion: Question = {
@@ -45,15 +45,19 @@ export class QuestionComponent implements OnInit {
 			'difficulty': new FormControl(null, [Validators.required]),
 			'type': new FormControl(null, [Validators.required]),
 		}, {
-			validators: [(control: FormGroup): ValidationErrors | null => {
-				// if(!!this.childInstance) {
-				// 	return this.childInstance.validate(control);
-				// } 
-				return null;
-			}]
+				validators: [(control: FormGroup): ValidationErrors | null => {
+					// if(!!this.childInstance) {
+					// 	return this.childInstance.validate(control);
+					// } 
+					return null;
+				}]
+			});
+		this.http.get(API_URL.userCategories).subscribe(data => {
+			this.qService.questionCategory = data;
+			this.categories = this.qService.questionCategory;
 		});
-		this.http.get(API_URL.userCategories).subscribe(data => this.categories = data);
 		this.questionTypes = Object.keys(questionTypes);
+		this.difficulties = this.qService.questionDifficulty;
 	}
 
 	visibleComponent = () => {
