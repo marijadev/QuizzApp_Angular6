@@ -31,20 +31,14 @@
   margin: 0 2px;
   border: none;
   color: $color-white;
+  border: 1px solid transparent;
   cursor: pointer;
-
-  &.true {
-    background-color: $color-green;
-  }
-
-  &.false {
-    background-color: $color-orange;
-  }
 }
 
 %btn-cancel {
   background-color: $color-white;
   color: $color-black;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   transition: all .3s ease;
   cursor: pointer;
 
@@ -59,6 +53,7 @@
   background-color: rgba(0, 0, 0, 0.9);
   color: $color-white;
   transition: all .3s ease;
+  border: 1px solid transparent;
   cursor: pointer;
 
   &:hover {
@@ -73,7 +68,7 @@
   padding: 10px;
   margin-top: 40px;
   background-color: $color-orange;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 5px;
   outline: none;
   text-transform: uppercase;
@@ -86,7 +81,6 @@
   }
 
   &:disabled {
-    // background-color: grey;
     cursor: text;
   }
 }

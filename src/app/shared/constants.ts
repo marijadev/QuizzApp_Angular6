@@ -19,3 +19,7 @@ export const API_URL = {
 	allUsers: '/server/admin/findUsers',
 	edit: '/server/edit',
 };
+
+export const categories = ['JavaScript', 'PHP', 'Java'];
+
+export const status = ['Passed', 'Failed'];

@@ -1,6 +1,12 @@
 @import '~src/assets/styles/_variables.scss';
 @import '~src/assets/styles/_mixins.scss';
 
+ul,
+ol {
+  list-style-type: none;
+  padding: 0 20px;
+}
+
 .single-user-holder {
   display: flex;
   justify-content: space-between;
@@ -8,11 +14,27 @@
   margin: 10px 0;
 }
 
+p {
+  flex: 1 1 80%;
+}
+
+.main-dropdown {
+  padding-left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: $color-white;
+
+  li {
+    width: 100%;
+  }
+}
+
+.dropdown-holder {
+  flex: 1 1 20%;
+}
+
 .btn {
-  width: 20%;
-  max-width: 80%;
+  width: 100%;
   padding: 10px;
-  border-radius: 5px;
   outline: none;
   color: $color-white;
   cursor: pointer;
@@ -25,6 +47,61 @@
     &:hover {
       @extend %btn-cancel;
     }
-
   }
+}
+
+.main-types-holder,
+.type-item {
+  cursor: pointer;
+}
+
+.main-types-holder {
+  display: flex;
+  justify-content: space-between;
+  transition: color .3s ease;
+  flex-wrap: wrap;
+
+  &:hover {
+    color: $color-orange;
+  }
+}
+
+.type-item {
+  padding: 10px 0;
+  border-bottom: 1px solid $color-white;
+  color: $color-white;
+  transition: color .3s ease;
+
+  &:last-child {
+    border-bottom: 1px solid transparent;
+  }
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:hover {
+    color: $color-orange;
+
+    &:last-child {
+      border-bottom: 1px solid transparent;
+    }
+  }
+}
+
+.nested-dropdown {
+  opacity: 0;
+}
+
+.showed {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.optional {
+  margin-top: 5px;
+  padding: 15px 0;
 }

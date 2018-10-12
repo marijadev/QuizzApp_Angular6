@@ -1,30 +1,31 @@
 <div class="single-user-holder">
   <p>{{user.name}} {{user.surname}}, ID: {{user.id}}</p>
-  <a class="btn invert" (click)="onUserChosen(user.id)">{{user.name}}'s Tests
-    <ul>
-      <li *ngIf="optionsShowed">
+  <a class="dropdown-holder">
+    <button class="btn invert" (click)="onUserChosen(user.id)">{{user.name}}'s Tests</button>
+    <div class="main-dropdown">
+      <div *ngIf="optionsShowed" class="optional">
         <ul>
-          <li>Difficulties
-            <ul>
-              <li *ngFor="let item of difficulties">{{item}}</li>
+          <li class="main-types-holder" (mouseover)="onElementHover($event, 'difficulty')" (mouseleave)="onElementUnhover($event, 'difficulty')">Difficulties
+            <ul class="nestedDropdown" [ngClass]="{'showed': dropdownsShowed.difficultyDropdown, 'hidden': !dropdownsShowed.difficultyDropdown}">
+              <li class="type-item" (click)="onItemSelected($event, 'difficulty', item)" *ngFor="let item of difficulties">{{item}}</li>
             </ul>
           </li>
         </ul>
         <ul>
-          <li>Categories
-            <ul>
-              <li *ngFor="let category of categories">{{category}}</li>
+          <li class="main-types-holder" (mouseover)="onElementHover($event, 'category')" (mouseleave)="onElementUnhover($event, 'category')">Categories
+            <ul class="nestedDropdown" [ngClass]="{'showed': dropdownsShowed.categoryDropdown, 'hidden': !dropdownsShowed.categoryDropdown}">
+              <li class="type-item" (click)="onItemSelected($event, 'category', category)" *ngFor="let category of categories">{{category}}</li>
             </ul>
           </li>
         </ul>
         <ul>
-          <li>Status
-            <ul>
-              <li *ngFor="let singleStatus of status">{{singleStatus}}</li>
+          <li class="main-types-holder" (mouseover)="onElementHover($event, 'status')" (mouseleave)="onElementUnhover($event, 'status')">Status
+            <ul class="nestedDropdown" [ngClass]="{'showed': dropdownsShowed.statusDropdown, 'hidden': !dropdownsShowed.statusDropdown}">
+              <li class="type-item status" (click)="onItemSelected($event, 'status', singleStatus)" *ngFor="let singleStatus of status">{{singleStatus}}</li>
             </ul>
           </li>
         </ul>
-      </li>
-    </ul>
+      </div>
+    </div>
   </a>
 </div>

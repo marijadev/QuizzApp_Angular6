@@ -19,6 +19,7 @@ main {
 @import '~src/assets/styles/_variables.scss';
 
 .home-profile-wrapper {
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,6 +36,7 @@ main {
   align-items: center;
   position: relative;
   width: calc(100% - 300px);
+  margin-left: 300px;
 
   .header-wrapper {
     position: absolute;

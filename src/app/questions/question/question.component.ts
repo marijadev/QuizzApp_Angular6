@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, Input, ForwardRefFn } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormArray, ValidationErrors } from '@angular/forms';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { FormControl, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 
 import { Question } from '../../shared/question.model';
 import { ComponentFactoryResolver } from '@angular/core';
@@ -24,7 +24,7 @@ export class QuestionComponent implements OnInit {
 	@ViewChild('dynamic', { read: ViewContainerRef }) container: ViewContainerRef;
 	questionForm: FormGroup;
 	difficulties: string[];
-	categories;
+	categories: string[];
 	questionTypes: string[];
 	newQuestion: Question = {
 		id: null,
@@ -51,11 +51,14 @@ export class QuestionComponent implements OnInit {
 					// } 
 					return null;
 				}]
-			});
+			}
+		);
+
 		this.http.get(API_URL.userCategories).subscribe(data => {
-			this.qService.questionCategory = data;
-			this.categories = this.qService.questionCategory;
+			this.qService.questionCategories = data;
+			this.categories = this.qService.questionCategories;
 		});
+
 		this.questionTypes = Object.keys(questionTypes);
 		this.difficulties = this.qService.questionDifficulty;
 	}
