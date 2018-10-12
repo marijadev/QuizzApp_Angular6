@@ -71,5 +71,7 @@ export class SingleUserComponent implements OnInit {
 		} else if(type === 'category') {
 			this.testTypeObj.type = item;
 		};
+
+		//here goes post request for list of tests
 	};
 };

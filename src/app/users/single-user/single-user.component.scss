@@ -46,7 +46,7 @@ p {
 
     &:hover {
       @extend %btn-cancel;
-    }
+	}
   }
 }
 
@@ -63,12 +63,19 @@ p {
 
   &:hover {
     color: $color-orange;
+
+    &:hover {
+      svg {
+        transform: translateX(5px);
+        fill: $color-orange;
+      }
+    }
   }
 }
 
 .type-item {
   padding: 10px 0;
-  border-bottom: 1px solid $color-white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: $color-white;
   transition: color .3s ease;
 
@@ -89,7 +96,7 @@ p {
   }
 }
 
-.nested-dropdown {
+.hidden {
   opacity: 0;
 }
 
@@ -97,11 +104,25 @@ p {
   opacity: 1;
 }
 
-.hidden {
-  opacity: 0;
-}
-
 .optional {
   margin-top: 5px;
   padding: 15px 0;
+}
+
+.svg-holder {
+  position: relative;
+}
+
+svg {
+  position: absolute;
+  top: 5px;
+  right: -15px;
+  fill: $color-white;
+  height: 10px;
+  transform: translateX(0);
+  transition: all .3s ease;
+}
+
+.active {
+  color: $color-orange;
 }

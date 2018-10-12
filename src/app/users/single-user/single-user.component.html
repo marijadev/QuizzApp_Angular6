@@ -1,31 +1,73 @@
-<div class="single-user-holder">
-  <p>{{user.name}} {{user.surname}}, ID: {{user.id}}</p>
-  <a class="dropdown-holder">
-    <button class="btn invert" (click)="onUserChosen(user.id)">{{user.name}}'s Tests</button>
-    <div class="main-dropdown">
-      <div *ngIf="optionsShowed" class="optional">
-        <ul>
-          <li class="main-types-holder" (mouseover)="onElementHover($event, 'difficulty')" (mouseleave)="onElementUnhover($event, 'difficulty')">Difficulties
-            <ul class="nestedDropdown" [ngClass]="{'showed': dropdownsShowed.difficultyDropdown, 'hidden': !dropdownsShowed.difficultyDropdown}">
-              <li class="type-item" (click)="onItemSelected($event, 'difficulty', item)" *ngFor="let item of difficulties">{{item}}</li>
-            </ul>
-          </li>
-        </ul>
-        <ul>
-          <li class="main-types-holder" (mouseover)="onElementHover($event, 'category')" (mouseleave)="onElementUnhover($event, 'category')">Categories
-            <ul class="nestedDropdown" [ngClass]="{'showed': dropdownsShowed.categoryDropdown, 'hidden': !dropdownsShowed.categoryDropdown}">
-              <li class="type-item" (click)="onItemSelected($event, 'category', category)" *ngFor="let category of categories">{{category}}</li>
-            </ul>
-          </li>
-        </ul>
-        <ul>
-          <li class="main-types-holder" (mouseover)="onElementHover($event, 'status')" (mouseleave)="onElementUnhover($event, 'status')">Status
-            <ul class="nestedDropdown" [ngClass]="{'showed': dropdownsShowed.statusDropdown, 'hidden': !dropdownsShowed.statusDropdown}">
-              <li class="type-item status" (click)="onItemSelected($event, 'status', singleStatus)" *ngFor="let singleStatus of status">{{singleStatus}}</li>
-            </ul>
-          </li>
-        </ul>
+<div class="single-user-wrapper">
+  <div class="single-user-holder">
+    <p [ngClass]="{'active': optionsShowed}">{{user.name}} {{user.surname}}, ID: {{user.id}}</p>
+    <a class="dropdown-holder">
+      <button class="btn invert"  [ngClass]="{'active': optionsShowed}" (click)="onUserChosen(user.id)">{{user.name}}'s Tests</button>
+      <div class="main-dropdown">
+        <div *ngIf="optionsShowed" class="optional">
+          <ul>
+            <li class="main-types-holder" (mouseover)="onElementHover($event, 'difficulty')" (mouseleave)="onElementUnhover($event, 'difficulty')">
+              <span class="svg-holder"> Difficulties
+                <svg viewBox="0 0 492.004 492.004">
+                  <g>
+                    <path d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12
+									c-10.492,10.504-10.492,27.576,0,38.064L293.398,245.9l-184.06,184.06c-5.064,5.068-7.86,11.824-7.86,19.028
+									c0,7.212,2.796,13.968,7.86,19.04l16.124,16.116c5.068,5.068,11.824,7.86,19.032,7.86s13.968-2.792,19.032-7.86L382.678,265
+									c5.076-5.084,7.864-11.872,7.848-19.088C390.542,238.668,387.754,231.884,382.678,226.804z" />
+                  </g>
+                </svg>
+              </span>
+              <ul class="nestedDropdown" [ngClass]="{'showed': dropdownsShowed.difficultyDropdown, 'hidden': !dropdownsShowed.difficultyDropdown}">
+                <li class="type-item" (click)="onItemSelected($event, 'difficulty', item)" *ngFor="let item of difficulties">{{item}}</li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li class="main-types-holder" (mouseover)="onElementHover($event, 'category')" (mouseleave)="onElementUnhover($event, 'category')">
+              <span class="svg-holder"> Categories
+                <svg viewBox="0 0 492.004 492.004">
+                  <g>
+                    <path d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12
+											c-10.492,10.504-10.492,27.576,0,38.064L293.398,245.9l-184.06,184.06c-5.064,5.068-7.86,11.824-7.86,19.028
+											c0,7.212,2.796,13.968,7.86,19.04l16.124,16.116c5.068,5.068,11.824,7.86,19.032,7.86s13.968-2.792,19.032-7.86L382.678,265
+											c5.076-5.084,7.864-11.872,7.848-19.088C390.542,238.668,387.754,231.884,382.678,226.804z" />
+                  </g>
+                </svg>
+              </span>
+              <ul class="nestedDropdown" [ngClass]="{'showed': dropdownsShowed.categoryDropdown, 'hidden': !dropdownsShowed.categoryDropdown}">
+                <li class="type-item" (click)="onItemSelected($event, 'category', category)" *ngFor="let category of categories">{{category}}</li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li class="main-types-holder" (mouseover)="onElementHover($event, 'status')" (mouseleave)="onElementUnhover($event, 'status')">
+              <span class="svg-holder"> Status
+                <svg viewBox="0 0 492.004 492.004">
+                  <g>
+                    <path d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12
+											c-10.492,10.504-10.492,27.576,0,38.064L293.398,245.9l-184.06,184.06c-5.064,5.068-7.86,11.824-7.86,19.028
+											c0,7.212,2.796,13.968,7.86,19.04l16.124,16.116c5.068,5.068,11.824,7.86,19.032,7.86s13.968-2.792,19.032-7.86L382.678,265
+											c5.076-5.084,7.864-11.872,7.848-19.088C390.542,238.668,387.754,231.884,382.678,226.804z" />
+                  </g>
+                </svg>
+              </span>
+              <ul class="nestedDropdown" [ngClass]="{'showed': dropdownsShowed.statusDropdown, 'hidden': !dropdownsShowed.statusDropdown}">
+                <li class="type-item status" (click)="onItemSelected($event, 'status', singleStatus)" *ngFor="let singleStatus of status">{{singleStatus}}</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="test-list-holder">
+    <div class="list-of-tests">
+
+    </div>
+    <div class="test-holder">
+      <div class="single-test-holder">
+
       </div>
     </div>
-  </a>
+  </div>
 </div>
