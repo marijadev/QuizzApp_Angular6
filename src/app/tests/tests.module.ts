@@ -9,7 +9,7 @@ import { OrderItemComponent } from './test/testItemComponents/order-item/order-i
 import { TextItemComponent } from './test/testItemComponents/text-item/text-item.component';
 import { ConnectingItemComponent } from './test/testItemComponents/connecting-item/connecting-item.component';
 import { CoreRoutingModule } from '../core/core-routing.module';
-
+import { PassedTestsComponent } from './passed-tests/passed-tests.component';
 
 @NgModule({
 	declarations: [
@@ -17,7 +17,8 @@ import { CoreRoutingModule } from '../core/core-routing.module';
 		MultipleItemComponent,
 		OrderItemComponent,
 		TextItemComponent,
-		ConnectingItemComponent
+		ConnectingItemComponent,
+		PassedTestsComponent,
 	],
 	imports: [
 		CommonModule,

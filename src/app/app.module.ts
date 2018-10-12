@@ -1,31 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { AppRouting } from './app-routing.module';
-import { AuthModule } from './auth/auth.module';
-import { AuthService } from './auth/auth.service';
-import { CoreModule } from './core/core.module';
 import { UsersComponent } from './users/users.component';
 import { ResultsComponent } from './results/results.component';
 import { TestsComponent } from './tests/tests.component';
-import { PassedTestsComponent } from './tests/passed-tests/passed-tests.component';
-import { QuestionService } from './questions/question.service';
-import { TrueFalseDirective } from './shared/true-false.directive';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { UserService } from './shared/services/users.service';
-import { ProfileService } from './shared/services/profile.service';
-import { AuthGuard } from './shared/guards/auth.guard';
-import { TokenStorageService } from './shared/services/token-storage.service';
-import { MyInterceptor } from './shared/services/my-interceptor';
-import { DataService } from './shared/services/data.service';
+import { SingleUserComponent } from './users/single-user/single-user.component';
 import { TestTypeComponent } from './tests/test-type/test-type.component';
 import { TestComponent } from './tests/test/test.component';
+
+import { AppRouting } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/core.module';
+
+import { QuestionService } from './questions/question.service';
+import { AuthService } from './auth/auth.service';
+import { ProfileService } from './shared/services/profile.service';
+import { UserService } from './shared/services/users.service';
+import { TokenStorageService } from './shared/services/token-storage.service';
+import { DataService } from './shared/services/data.service';
 import { TestService } from './shared/services/test.service';
-import { SingleUserComponent } from './users/single-user/single-user.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+
+import { AuthGuard } from './shared/guards/auth.guard';
+import { TrueFalseDirective } from './shared/true-false.directive';
+import { MyInterceptor } from './shared/services/my-interceptor';
 
 @NgModule({
 	declarations: [
@@ -33,12 +35,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 		UsersComponent,
 		ResultsComponent,
 		TestsComponent,
-		PassedTestsComponent,
-		TrueFalseDirective,
+		SingleUserComponent,
 		TestTypeComponent,
 		TestComponent,
-		SingleUserComponent,
-		NotFoundComponent
+		TrueFalseDirective,
 	],
 	imports: [
 		BrowserModule,
@@ -56,6 +56,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 			useClass: MyInterceptor,
 			multi: true
 		},
+
 		AuthGuard,
 		AuthService,
 		QuestionService,
