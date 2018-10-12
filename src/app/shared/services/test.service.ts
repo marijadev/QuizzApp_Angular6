@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter, OnInit } from '@angular/core';
+import { Injectable, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { questionTypes } from '../../shared/constants';
 @Injectable({
 	providedIn: 'root'
 })
-export class TestService implements OnInit{
+export class TestService implements OnInit, OnDestroy {
 	testTypeSelected: boolean = false;
 	testTypeSelectedChange: Subject<boolean> = new Subject<boolean>();
 	private questionsArr: object[];
@@ -18,10 +18,11 @@ export class TestService implements OnInit{
 		text: [],
 		connecting: []
 	}
+	subscription;
 
 	constructor(private http: HttpClient) {
 		this.testTypeSelected = false;
-		this.testTypeSelectedChange.subscribe((value) => {
+		this.subscription = this.testTypeSelectedChange.subscribe((value) => {
 			this.testTypeSelected = value;
 		});
 	};
@@ -44,4 +45,8 @@ export class TestService implements OnInit{
 	get testQuestions() {
 		return this.questionsArr;
 	};
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
+	}
 };

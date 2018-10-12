@@ -25,6 +25,7 @@ import { TestTypeComponent } from './tests/test-type/test-type.component';
 import { TestComponent } from './tests/test/test.component';
 import { TestService } from './shared/services/test.service';
 import { SingleUserComponent } from './users/single-user/single-user.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
 	declarations: [
@@ -36,7 +37,8 @@ import { SingleUserComponent } from './users/single-user/single-user.component';
 		TrueFalseDirective,
 		TestTypeComponent,
 		TestComponent,
-		SingleUserComponent
+		SingleUserComponent,
+		NotFoundComponent
 	],
 	imports: [
 		BrowserModule,

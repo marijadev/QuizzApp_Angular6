@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from './users.service';
 import { User } from '../user.model';
 import { HttpClient } from '@angular/common/http';
@@ -9,8 +9,9 @@ import { API_URL } from '../constants';
 @Injectable({
 	providedIn: 'root'
 })
-export class ProfileService implements OnInit {
+export class ProfileService implements OnInit, OnDestroy {
 	currentProfile: User;
+	subscription;
 
 	constructor(private usersService: UserService, private http: HttpClient, private authService: AuthService) { }
 
@@ -32,4 +33,8 @@ export class ProfileService implements OnInit {
 		const currentUser = this.usersService.getCurrentUser();
 		this.http.post(API_URL.edit, currentUser).subscribe(arg => arg);
 	};
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
+	}
 };

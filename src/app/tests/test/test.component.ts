@@ -1,4 +1,4 @@
-import { Component, OnInit, ComponentFactoryResolver, ViewChild, ViewContainerRef, EventEmitter } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, ViewChild, ViewContainerRef, EventEmitter, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
@@ -15,7 +15,7 @@ import { questionTypes } from '../../shared/constants';
 	templateUrl: './test.component.html',
 	styleUrls: ['./test.component.scss']
 })
-export class TestComponent implements OnInit {
+export class TestComponent implements OnInit, OnDestroy {
 	testData = {
 		id: 0,
 		user: {},
@@ -26,10 +26,12 @@ export class TestComponent implements OnInit {
 	questionTypes: string[];
 	childInstance: any;
 	componentRef_: any;
+	subscription;
+
 	constructor(private componentResolver: ComponentFactoryResolver, private route: Router, private actRoute: ActivatedRoute, private testService: TestService) { }
 
 	ngOnInit() {
-		this.testService.fakeRequest().subscribe((data) => {
+		this.subscription = this.testService.fakeRequest().subscribe((data) => {
 			if (data) {
 				this.testData.id = data.id;
 				this.testData.user = data.user;
@@ -78,5 +80,9 @@ export class TestComponent implements OnInit {
 	onSubmitTest() {
 		//here goes post request
 		this.testService.toggleTestTypeSelectedVisibility();
+	}
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 };

@@ -35,6 +35,7 @@ export class QuestionComponent implements OnInit {
 		answers: []
 	};
 	childInvalid = false;
+	subscription;
 
 	constructor(private componentResolver: ComponentFactoryResolver, private qService: QuestionService, private http: HttpClient) { }
 
@@ -54,7 +55,7 @@ export class QuestionComponent implements OnInit {
 			}
 		);
 
-		this.http.get(API_URL.userCategories).subscribe(data => {
+		this.subscription = this.http.get(API_URL.userCategories).subscribe(data => {
 			this.qService.questionCategories = data;
 			this.categories = this.qService.questionCategories;
 		});
@@ -117,5 +118,7 @@ export class QuestionComponent implements OnInit {
 		if (this.componentRef_) {
 			this.componentRef_.destroy();
 		};
+
+		this.subscription.unsubscribe();
 	};
 };
