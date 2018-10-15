@@ -38,14 +38,14 @@ export class MultipleItemComponent implements OnInit {
 
 	onChecked(e: any, index: number) {
 		const answers = this.singleQuestion.answers;
-		if (e.srcElement.checked === true) {
+		if (e.srcElement.checked === true || e.srcElement.checked === 1) {
 			for (let i = 0; i < answers.length; i++) {
 				if (i === index) {
 					answers[i].chosen = 1;
 				};
 			};
 		};
-		if (e.srcElement.checked === false) {
+		if (e.srcElement.checked === false || e.srcElement.checked === 0 ) {
 			for (let i = 0; i < answers.length; i++) {
 				if (i === index) {
 					answers[i].chosen = 0;

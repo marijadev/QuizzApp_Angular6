@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionService } from '../../questions/question.service';
+import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
-import { categories, status } from '../../shared/constants';
+import { categories, status, API_URL } from '../../shared/constants';
 
 @Component({
 	selector: 'app-single-user',
@@ -21,14 +23,16 @@ export class SingleUserComponent implements OnInit {
 	};
 	testTypeObj = {
 		type: '',
-		id: 0
+		userId: 0
 	};
 	statusTypeObj = {
 		status: 0,
-		id: 0
+		userId: 0
 	};
+	private userTests;
+	listOfTests = [];
 
-	constructor(private qService: QuestionService) { };
+	constructor(private http: HttpClient, private qService: QuestionService) { };
 
 	ngOnInit() {
 		this.categories = categories;
@@ -39,8 +43,8 @@ export class SingleUserComponent implements OnInit {
 
 	onUserChosen(id: number) {
 		this.optionsShowed = !this.optionsShowed;
-		this.testTypeObj.id = id;
-		this.statusTypeObj.id = id;
+		this.testTypeObj.userId = id;
+		this.statusTypeObj.userId = id;
 	};
 
 	onElementHover(e, type: string) {
@@ -64,14 +68,22 @@ export class SingleUserComponent implements OnInit {
 	};
 
 	onItemSelected(e, type: string, item: string) {
-		if(type === 'status') {
+		if (type === 'status') {
 			this.statusTypeObj.status = item === 'Passed' ? 1 : 0;
-		} else if(type === 'difficulty') {
-			this.testTypeObj.type = item;
-		} else if(type === 'category') {
-			this.testTypeObj.type = item;
-		};
+			this.http.post(API_URL.userTestsStatus, this.statusTypeObj).subscribe(data => {
+				this.userTests = data;
+				console.log(this.userTests)
+			});
+		}
 
-		//here goes post request for list of tests
+		else if (type === 'difficulty') {
+			this.testTypeObj.type = item;
+			this.http.post(API_URL.userTestsDiff, this.testTypeObj).subscribe(data => console.log(data));
+		}
+
+		else if (type === 'category') {
+			this.testTypeObj.type = item;
+			this.http.post(API_URL.userTestsCat, this.testTypeObj).subscribe(data => console.log(data));
+		};
 	};
 };

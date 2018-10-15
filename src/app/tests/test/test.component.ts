@@ -8,7 +8,8 @@ import { MultipleItemComponent } from './testItemComponents/multiple-item/multip
 import { TextItemComponent } from './testItemComponents/text-item/text-item.component';
 import { OrderItemComponent } from './testItemComponents/order-item/order-item.component';
 import { ConnectingItemComponent } from './testItemComponents/connecting-item/connecting-item.component';
-import { questionTypes } from '../../shared/constants';
+import { questionTypes, API_URL } from '../../shared/constants';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
 	selector: 'app-test',
@@ -19,7 +20,11 @@ export class TestComponent implements OnInit, OnDestroy {
 	testData = {
 		id: 0,
 		user: {},
-		questions: []
+		questions: [],
+		date: null,
+		result: 0,
+		status: 0,
+
 	};
 	@ViewChild('dynamic', { read: ViewContainerRef }) container: ViewContainerRef;
 	testForm: FormGroup;
@@ -28,14 +33,19 @@ export class TestComponent implements OnInit, OnDestroy {
 	componentRef_: any;
 	subscription;
 
-	constructor(private componentResolver: ComponentFactoryResolver, private route: Router, private actRoute: ActivatedRoute, private testService: TestService) { }
+	constructor(private http: HttpClient ,private componentResolver: ComponentFactoryResolver, private route: Router, private actRoute: ActivatedRoute, private testService: TestService) { }
 
 	ngOnInit() {
-		this.subscription = this.testService.fakeRequest().subscribe((data) => {
+
+		this.subscription = this.testService.testRequest().subscribe(data => {
 			if (data) {
 				this.testData.id = data.id;
 				this.testData.user = data.user;
 				this.testData.questions = data.questions;
+				this.testData.result = data.result;
+				this.testData.status = data.status;
+				this.testData.status = data.status;
+				this.testData.date = data.date;
 			}
 			this.questionTypes = Object.keys(questionTypes);
 
@@ -80,6 +90,8 @@ export class TestComponent implements OnInit, OnDestroy {
 	onSubmitTest() {
 		//here goes post request
 		this.testService.toggleTestTypeSelectedVisibility();
+		this.testData.questions = this.testService.testQuestions;
+		return this.http.post(API_URL.testSubmit,this.testData).subscribe();
 	}
 
 	ngOnDestroy() {

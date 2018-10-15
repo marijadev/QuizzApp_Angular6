@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SlideInOutAnimation } from '../../shared/animations';
 import { NgForm } from '@angular/forms';
 import { TestService } from '../../shared/services/test.service';
+import { API_URL } from 'src/app/shared/constants';
 
 @Component({
 	selector: 'app-test-type',
@@ -53,7 +54,6 @@ export class TestTypeComponent implements OnInit {
 			this.allowGenerateTest = true;
 			this.testService.toggleTestTypeSelectedVisibility();
 			return selectedTest;
-			//here goes post request for the generated test;
 		}
 		form.reset();
 		return alert('Select only one value!');
@@ -63,14 +63,16 @@ export class TestTypeComponent implements OnInit {
 		const difficultyTest = {
 			type: this.validateCheckboxLength(form)
 		}
-		return difficultyTest;//here goes post request for the generated test;		
+		this.testService.testRequestObj = { url: API_URL.createTestDiff, testObj: difficultyTest }
+		return difficultyTest;	
 	}
 
 	onGenerateCatTest(form: NgForm) {
 		const categoryTest = {
 			type: this.validateCheckboxLength(form)
 		}
-		return categoryTest; //here goes post request for the generated test;
+		this.testService.testRequestObj = { url: API_URL.createTestCat, testObj: categoryTest };
+		return categoryTest;
 	}
 
 	onGenerateDiffCatTest(form: NgForm) {
@@ -80,8 +82,8 @@ export class TestTypeComponent implements OnInit {
 		}
 		if (this.allowGenerateTest) {
 			this.testService.toggleTestTypeSelectedVisibility();
-		}
-		this.testService.fakeRequest()
-		return comboTest;//here goes post request for the generated test;
+		};
+		
+		return this.testService.testRequestObj = { url: API_URL.createTestBoth, testObj: comboTest };
 	}
 }

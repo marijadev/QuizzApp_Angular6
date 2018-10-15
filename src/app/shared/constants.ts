@@ -18,8 +18,15 @@ export const API_URL = {
 	userCategories: '/server/user/categories',
 	allUsers: '/server/admin/findUsers',
 	edit: '/server/edit',
+	createTestBoth: '/server/user/maketest/both',
+	createTestDiff: '/server/user/maketest/difficulty',
+	createTestCat: '/server/user/maketest/category',
+	testSubmit: '/server/user/submit',
+	userTestsCat: '/server/admin/category',
+	userTestsDiff: '/server/admin/difficulty',
+	userTestsStatus: '/server/admin/status',
 };
 
-export const categories = ['JavaScript', 'PHP', 'Java'];
+export const categories = ['JavaScript', 'Java'];
 
 export const status = ['Passed', 'Failed'];

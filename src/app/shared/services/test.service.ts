@@ -11,6 +11,11 @@ export class TestService implements OnInit, OnDestroy {
 	testTypeSelected: boolean = false;
 	testTypeSelectedChange: Subject<boolean> = new Subject<boolean>();
 	private questionsArr: object[];
+	testRequestObj: {
+		url,
+		testObj
+	}
+
 	questionsByType = {
 		single: [],
 		multiple: [],
@@ -26,17 +31,21 @@ export class TestService implements OnInit, OnDestroy {
 			this.testTypeSelected = value;
 		});
 	};
-	
-	ngOnInit() {};
+
+	ngOnInit() { };
 
 	toggleTestTypeSelectedVisibility() {
 		this.testTypeSelectedChange.next(!this.testTypeSelected);
 	};
 
-	fakeRequest() {
-		// FAKE request
-		return this.http.get<any>('/server/user/maketest').pipe(map(data => data));
-	};
+	testRequest() {
+		const url = this.testRequestObj.url;
+		const testObject = this.testRequestObj.testObj;
+
+		if (this.testRequestObj) {
+			return this.http.post<any>(url, testObject).pipe(map(response => response))
+		}
+	}
 
 	getQuestions(questions: object[]) {
 		return this.questionsArr = questions;
