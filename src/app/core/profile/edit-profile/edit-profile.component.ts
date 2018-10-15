@@ -22,12 +22,6 @@ export class EditProfileComponent implements OnInit {
 	onEditSubmit() {
 		const afterEdit = false;
 
-		// const password = this.editProfileForm.value.password;
-		// const name = this.editProfileForm.value.name;
-		// const surname = this.editProfileForm.value.surname;
-		// const phone = this.editProfileForm.value.phone;
-		// this.profileService.onEditProfile(password, name, surname, phone);
-
 		this.user.password = this.editProfileForm.value.password;
 		this.user.name = this.editProfileForm.value.name;
 		this.user.surname = this.editProfileForm.value.surname;

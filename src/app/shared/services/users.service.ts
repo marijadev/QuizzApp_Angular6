@@ -19,7 +19,6 @@ export class UserService {
 
 	getCurrentUser() {
 		const userLoggedIn = this.authService.userLoggedIn;
-		console.log('users service user', userLoggedIn)
 		return userLoggedIn;
 	};
 };

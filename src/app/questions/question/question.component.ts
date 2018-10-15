@@ -103,17 +103,19 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.category = this.questionForm.controls.category.value;
 		this.newQuestion.difficulty = this.questionForm.controls.difficulty.value;
 		this.newQuestion.type = this.questionForm.controls.type.value;
-		for (let i = 0; i < this.componentRef_.instance.values.length; i++) {
-			if (this.componentRef_.instance.values[i].value) {
-				this.componentRef_.instance.values[i].value = 1;
-			} else {
-				this.componentRef_.instance.values[i].value = 0;
+		if(this.componentRef_.instance.values) {
+			for (let i = 0; i < this.componentRef_.instance.values.length; i++) {
+				if (this.componentRef_.instance.values[i].value) {
+					this.componentRef_.instance.values[i].value = 1;
+				} else {
+					this.componentRef_.instance.values[i].value = 0;
+				};
 			};
-		};
-		this.newQuestion.answers = this.componentRef_.instance.values;
-		console.log(this.newQuestion)
+		}
+		this.newQuestion.answers = this.componentRef_.instance.values || [];
 		this.questionForm.reset();
-		return this.http.post('/server/admin/newq', this.newQuestion);
+		console.log(this.newQuestion)
+		return this.http.post('/server/admin/newq', this.newQuestion).subscribe()
 	}
 
 	ngOnDestroy() {
