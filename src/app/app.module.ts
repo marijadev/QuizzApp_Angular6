@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -28,6 +28,7 @@ import { TestService } from './shared/services/test.service';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { TrueFalseDirective } from './shared/true-false.directive';
 import { MyInterceptor } from './shared/services/my-interceptor';
+import { ErrorsHandler } from './shared/services/errors-handler';
 
 @NgModule({
 	declarations: [
@@ -56,7 +57,10 @@ import { MyInterceptor } from './shared/services/my-interceptor';
 			useClass: MyInterceptor,
 			multi: true
 		},
-
+		{
+			provide: ErrorHandler,
+			useClass: ErrorsHandler,
+		},
 		AuthGuard,
 		AuthService,
 		QuestionService,

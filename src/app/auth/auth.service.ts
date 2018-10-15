@@ -10,7 +10,6 @@ import { API_URL } from '../shared/constants';
 
 @Injectable()
 export class AuthService {
-	admin: number;
 	isLoggedIn: boolean = false;
 	private user: User = {
 		id: 0,
@@ -21,13 +20,20 @@ export class AuthService {
 		phone: 0,
 		admin: 0,
 	};
+	admin: number;
 
 	constructor(private http: HttpClient, private tokenService: TokenStorageService) { }
 
 	login(username: string, password: string): Observable<any> {
 		this.user.username = username;
 		this.user.password = password;
-		return this.http.post<any>(API_URL.login, this.user, { observe: 'response' }).pipe(flatMap(res => {
+
+		const loginObj = {
+			username: username,
+			password: password
+		}
+
+		return this.http.post<any>(API_URL.login, loginObj, { observe: 'response' }).pipe(flatMap(res => {
 			const token = res.headers.get('authorization');
 			this.tokenService.saveToken(token);
 			// console.log(res.headers.get('authorization')),
@@ -44,6 +50,7 @@ export class AuthService {
 							this.user.admin = user.admin;
 							localStorage.setItem('currentUser', JSON.stringify(user))
 						}
+						
 						return user;
 					})
 				);
@@ -53,18 +60,20 @@ export class AuthService {
 	}
 
 	public get userLoggedIn() {
-		if(localStorage.getItem('currentUser')) {
+		if (localStorage.getItem('currentUser')) {
 			return JSON.parse(localStorage.getItem('currentUser'));
 		}
 		return this.user;
 	}
 
 	public setUser(user) {
+		console.log('auth service user', user)
 		this.user.password = user.password;
 		this.user.name = user.name;
 		this.user.surname = user.surname;
 		this.user.phone = user.phone;
 		localStorage.setItem('currentUser', JSON.stringify(this.user))
+		console.log('eidted auth service',this.user)
 	}
 
 	logout() {

@@ -106,6 +106,8 @@ export class QuestionComponent implements OnInit {
 		for (let i = 0; i < this.componentRef_.instance.values.length; i++) {
 			if (this.componentRef_.instance.values[i].value) {
 				this.componentRef_.instance.values[i].value = 1;
+			} else {
+				this.componentRef_.instance.values[i].value = 0;
 			};
 		};
 		this.newQuestion.answers = this.componentRef_.instance.values;
@@ -119,6 +121,6 @@ export class QuestionComponent implements OnInit {
 			this.componentRef_.destroy();
 		};
 
-		this.subscription.unsubscribe();
+		// this.subscription.unsubscribe();
 	};
 };
