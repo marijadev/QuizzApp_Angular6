@@ -55,6 +55,10 @@ export class TestService implements OnInit, OnDestroy {
 		return this.questionsArr;
 	};
 
+	displaySingleUserTest(test) {
+		const singleTest = test;
+	}
+
 	ngOnDestroy() {
 		this.subscription.unsubscribe();
 	}

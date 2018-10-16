@@ -2,7 +2,10 @@
   <h5 class="question-h">{{singleQuestion.question}}</h5>
   <div [formGroup]="testForm">
     <ol>
-      <li *ngFor="let singleAnswer of singleQuestion.answers;let i = index;">{{singleAnswer.answer}}<input type="checkbox" (input)="onChecked($event, i)" /></li>
+      <li *ngFor="let singleAnswer of singleQuestion.answers;let i = index;">
+		  {{singleAnswer.answer}}
+		  <input type="radio" name="single-value" (input)="onChecked($event, i)" />
+		</li>
     </ol>
   </div>
 </div>

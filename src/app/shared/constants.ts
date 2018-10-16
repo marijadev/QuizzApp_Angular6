@@ -25,6 +25,10 @@ export const API_URL = {
 	userTestsCat: '/server/admin/category',
 	userTestsDiff: '/server/admin/difficulty',
 	userTestsStatus: '/server/admin/status',
+	userSingleTest: '/server/admin/demandReview',
+	demoTest: '/server/user/demo',
+	unreviewedTests: '/server/admin/unreviewed',
+	reviewQuestion: '/server/admin/review',
 };
 
 export const categories = ['JavaScript', 'Java'];

@@ -46,7 +46,7 @@ p {
 
     &:hover {
       @extend %btn-cancel;
-	}
+    }
   }
 }
 
@@ -125,4 +125,24 @@ svg {
 
 .active {
   color: $color-orange;
+}
+
+.test-ul {
+  list-style-type: decimal;
+
+  a {
+    cursor: pointer;
+  }
+}
+
+.test-list-holder {
+  display: flex;
+
+  .list-of-tests {
+    flex-basis: 30%;
+  }
+
+  .test-holder {
+    flex-basis: 70%;
+  }
 }

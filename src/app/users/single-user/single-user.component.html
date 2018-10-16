@@ -2,7 +2,8 @@
   <div class="single-user-holder">
     <p [ngClass]="{'active': optionsShowed}">{{user.name}} {{user.surname}}, ID: {{user.id}}</p>
     <a class="dropdown-holder">
-      <button class="btn invert"  [ngClass]="{'active': optionsShowed}" (click)="onUserChosen(user.id)">{{user.name}}'s Tests</button>
+      <button class="btn invert" [ngClass]="{'active': optionsShowed}" (click)="onUserChosen(user.id)">{{user.name}}'s
+        Tests</button>
       <div class="main-dropdown">
         <div *ngIf="optionsShowed" class="optional">
           <ul>
@@ -62,11 +63,19 @@
   </div>
   <div class="test-list-holder">
     <div class="list-of-tests">
-		<p *ngFor="let test of userTests">{{test.date}}</p>
+      <h4 class="invert">Select the test by date created:</h4>
+      <ol class="test-ul">
+        <li *ngFor="let test of listOfTests; let i = index;">
+          <a (click)="onSingleTestSelected($event, test)">{{test.date}}</a>
+        </li>
+      </ol>
     </div>
     <div class="test-holder">
       <div class="single-test-holder">
-
+			<ul *ngFor="let question of singleTestData.questions; let i = index;">
+				<li>{{i}}: {{question.question}}</li>
+				<li *ngFor="let answer of question.answers">{{answer.answer}}</li>
+			</ul>
       </div>
     </div>
   </div>

@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 import { categories, status, API_URL } from '../../shared/constants';
+import { UserService } from 'src/app/shared/services/users.service';
 
 @Component({
 	selector: 'app-single-user',
@@ -31,14 +32,21 @@ export class SingleUserComponent implements OnInit {
 	};
 	private userTests;
 	listOfTests = [];
+	singleTestData = {
+		id: 0,
+		date: 0,
+		questions: [],
+		result: 0,
+		status: 0,
+		user: {}
+	};
 
-	constructor(private http: HttpClient, private qService: QuestionService) { };
+	constructor(private http: HttpClient, private qService: QuestionService, private usersService: UserService) { };
 
 	ngOnInit() {
 		this.categories = categories;
 		this.status = status;
 		this.difficulties = this.qService.questionDifficulty;
-		// console.log(this.user)
 	};
 
 	onUserChosen(id: number) {
@@ -67,23 +75,69 @@ export class SingleUserComponent implements OnInit {
 		};
 	};
 
+	formatDate(date) {
+		let newDate = new Date(date);
+		let day: any = newDate.getDate();
+		let month: any = newDate.getMonth() + 1;
+		let year: any = newDate.getFullYear();
+
+		if (day < 10) {
+			day = '0' + day;
+		}
+		if (month < 10) {
+			month = '0' + month;
+		}
+
+		const finalDate = `${day}.${month}.${year}.`;
+		return finalDate;
+	}
+
+	fillUserTests(data) {
+		this.userTests = data;
+		this.listOfTests = [];
+		this.userTests.map(test => {
+			let date = this.formatDate(test.date);
+			const id = test.id;
+			this.listOfTests.push({ date, id })
+		})
+	}
+
 	onItemSelected(e, type: string, item: string) {
+		this.optionsShowed = !this.optionsShowed;
 		if (type === 'status') {
 			this.statusTypeObj.status = item === 'Passed' ? 1 : 0;
 			this.http.post(API_URL.userTestsStatus, this.statusTypeObj).subscribe(data => {
-				this.userTests = data;
-				console.log(this.userTests)
+				this.fillUserTests(data);
+				// console.log(this.userTests)
+				// console.log(this.listOfTests)
 			});
-		}
-
-		else if (type === 'difficulty') {
+		} else if (type === 'difficulty') {
 			this.testTypeObj.type = item;
-			this.http.post(API_URL.userTestsDiff, this.testTypeObj).subscribe(data => console.log(data));
-		}
-
-		else if (type === 'category') {
+			this.http.post(API_URL.userTestsDiff, this.testTypeObj).subscribe(data => {
+				this.fillUserTests(data);
+			});
+		} else if (type === 'category') {
 			this.testTypeObj.type = item;
-			this.http.post(API_URL.userTestsCat, this.testTypeObj).subscribe(data => console.log(data));
+			this.http.post(API_URL.userTestsCat, this.testTypeObj).subscribe(data => {
+				this.fillUserTests(data);
+			})
+		}
+	}
+
+	onSingleTestSelected(event, test) {
+		const singleTestID = {
+			testId: test.id
 		};
-	};
+		this.http.post(API_URL.demoTest, singleTestID).subscribe(data => {
+			for (let prop in data) {
+				this.singleTestData.date = data['date'];
+				this.singleTestData.id = data['id'];
+				this.singleTestData.questions = data['questions'];
+				this.singleTestData.result = data['result'];
+				this.singleTestData.status = data['status'];
+				this.singleTestData.user = data['user'];
+			}
+			console.log('test', this.singleTestData)
+		});
+	}
 };

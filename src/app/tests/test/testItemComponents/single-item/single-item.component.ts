@@ -35,22 +35,16 @@ export class SingleItemComponent implements OnInit {
 			this.singleQuestion.category = questionObj['category'];
 			this.singleQuestion.answers = questionObj['answers'];
 		};
+		console.log(this.singleQuestion)
 	};
 
 	onChecked(e: any, index: number) {
 		const answers = this.singleQuestion.answers;
-		if (e.srcElement.checked === true) {
-			for (let i = 0; i < answers.length; i++) {
-				if (i === index) {
-					answers[i].chosen = 1;
-				};
-			};
-		};
-		if (e.srcElement.checked === false) {
-			for (let i = 0; i < answers.length; i++) {
-				if (i === index) {
-					answers[i].chosen = 0;
-				};
+		for (let i = 0; i < answers.length; i++) {
+			answers[i].chosen = 0;
+
+			if (i === index) {
+				answers[i].chosen = 1;
 			};
 		};
 	};
