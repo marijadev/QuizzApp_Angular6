@@ -1,11 +1,11 @@
 <nav class="header-nav">
 	<ul *ngIf="userType === 1" class="header-ul">
 		<li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="router-link-active" ><a [routerLink]="['/home/question']">Add Question</a></li>
-		<li routerLinkActive="router-link-active"><a [routerLink]="['/home/results']">Examine Tests</a></li>
+		<li routerLinkActive="router-link-active"><a [routerLink]="['/home/results']">Pending Tests</a></li>
 		<li routerLinkActive="router-link-active"><a [routerLink]="['/home/users']">View Users</a></li>
 	</ul>
 	<ul *ngIf="userType === 0"  class="header-ul">
-		<li><a [routerLink]="['/home/test']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}">Take The Test</a></li>
-		<li><a [routerLink]="['/home/passed-tests']" routerLinkActive="router-link-active">Passed Tests</a></li>
+		<li><a [routerLink]="['/home/tests']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}">Take The Test</a></li>
+		<li><a [routerLink]="['/home/passed-tests']" routerLinkActive="router-link-active">All Tests</a></li>
 	</ul>
 </nav>

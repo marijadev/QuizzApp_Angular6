@@ -1,3 +1,28 @@
-<p>
-  results works!
-</p>
+<div class="container">
+<!-- 
+  <div *ngIf="multipleTextQuestionsList">
+    <ul class="test" *ngFor="let singleQuestion of multipleTextQuestionsList">
+      <li class="question" *ngFor="let item of singleQuestion.questions">{{i}}. {{item.question}}</li>
+	  <li class="answer" *ngFor="let item of singleQuestion.questions">{{item.answer}} 
+		  <input type="radio" name="isValid" value="valid">
+		  <input type="radio" name="isValid" value="invalid">
+	 </li>
+    </ul>
+  </div> -->
+
+  <div *ngIf="testList">
+    <h3 *ngIf="testList" class="invert">Please validate pending tests:</h3>
+    <div *ngFor="let test of testList; let i = index;" class="test-holder">
+      <ul *ngFor="let questions of test.questions;" class="test">
+        <li class="question">{{i}}. {{questions.question}}</li>
+        <li class="answer" *ngFor="let answer of questions.answers"> {{answer.answer}}</li>
+      </ul>
+      <button class="btn btn-submit" (click)="onSubmit($event, test.id, 1)">Passed</button>
+      <button class="btn btn-cancel" (click)="onSubmit($event, test.id, 0)">Failed</button>
+    </div>
+  </div>
+
+  <div *ngIf="!testList">
+    <h2>There are currently no tests for review.</h2>
+  </div>
+</div>

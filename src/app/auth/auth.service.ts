@@ -36,7 +36,6 @@ export class AuthService {
 		return this.http.post<any>(API_URL.login, loginObj, { observe: 'response' }).pipe(flatMap(res => {
 			const token = res.headers.get('authorization');
 			this.tokenService.saveToken(token);
-			// console.log(res.headers.get('authorization')),
 			if (token) {
 				return this.http.get<any>(API_URL.getUser).pipe(
 					map(user => {
@@ -67,13 +66,11 @@ export class AuthService {
 	}
 
 	public setUser(user) {
-		console.log('auth service user', user)
 		this.user.password = user.password;
 		this.user.name = user.name;
 		this.user.surname = user.surname;
 		this.user.phone = user.phone;
 		localStorage.setItem('currentUser', JSON.stringify(this.user))
-		console.log('eidted auth service',this.user)
 	}
 
 	logout() {

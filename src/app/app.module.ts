@@ -30,6 +30,7 @@ import { TrueFalseDirective } from './shared/true-false.directive';
 import { MyInterceptor } from './shared/services/my-interceptor';
 import { ErrorsHandler } from './shared/services/errors-handler';
 import { PlusOnePipe } from './shared/plus-one.pipe';
+import { UserType } from './shared/guards/user-type.guard';
 
 @NgModule({
 	declarations: [
@@ -64,6 +65,7 @@ import { PlusOnePipe } from './shared/plus-one.pipe';
 			useClass: ErrorsHandler,
 		},
 		AuthGuard,
+		UserType,
 		AuthService,
 		QuestionService,
 		UserService,

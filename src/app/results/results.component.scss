@@ -1,0 +1,53 @@
+@import '~src/assets/styles/_variables.scss';
+@import '~src/assets/styles/_mixins.scss';
+
+.container {
+  width: 80vw;
+}
+
+h3 {
+  margin-bottom: 30px;
+}
+
+h2 {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.test-holder {
+  display: flex;
+  align-items: flex-end;
+}
+
+.test {
+  list-style-type: none;
+  flex-basis: 60%;
+  padding: 20px 0;
+  border-bottom: 1px solid $color-black;
+
+  .question {
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .answer {
+    margin-left: 20px;
+  }
+}
+
+.btn {
+  @extend %btn-submit-style;
+  width: 7%;
+  height: 100%;
+  margin-right: 20px;
+  margin-bottom: 0;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+}
+
+.btn-cancel {
+  @extend %btn-cancel-inverted;
+}

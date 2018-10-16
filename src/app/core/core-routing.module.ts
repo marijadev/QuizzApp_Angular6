@@ -12,11 +12,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { TestComponent } from '../tests/test/test.component';
+import { UserType } from '../shared/guards/user-type.guard';
 
 const coreRoutes: Routes = [
 	{
 		path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
-			{ path: 'question', component: QuestionComponent },
+			{ path: 'question', component: QuestionComponent, canActivateChild: [UserType]},
 			{ path: 'profile', component: ProfileComponent, children: [
 				{path: 'edit-profile', component: EditProfileComponent},
 			] },
