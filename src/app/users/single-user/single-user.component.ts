@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionService } from '../../questions/question.service';
-import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { formatDate } from '../../shared/constants';
 
 import { categories, status, API_URL } from '../../shared/constants';
 import { UserService } from 'src/app/shared/services/users.service';
@@ -75,28 +75,11 @@ export class SingleUserComponent implements OnInit {
 		};
 	};
 
-	formatDate(date) {
-		let newDate = new Date(date);
-		let day: any = newDate.getDate();
-		let month: any = newDate.getMonth() + 1;
-		let year: any = newDate.getFullYear();
-
-		if (day < 10) {
-			day = '0' + day;
-		}
-		if (month < 10) {
-			month = '0' + month;
-		}
-
-		const finalDate = `${day}.${month}.${year}.`;
-		return finalDate;
-	}
-
 	fillUserTests(data) {
 		this.userTests = data;
 		this.listOfTests = [];
 		this.userTests.map(test => {
-			let date = this.formatDate(test.date);
+			let date = formatDate(test.date);
 			const id = test.id;
 			this.listOfTests.push({ date, id })
 		})
@@ -137,7 +120,7 @@ export class SingleUserComponent implements OnInit {
 				this.singleTestData.status = data['status'];
 				this.singleTestData.user = data['user'];
 			}
-			console.log('test', this.singleTestData)
+			// console.log('test', this.singleTestData)
 		});
 	}
 };

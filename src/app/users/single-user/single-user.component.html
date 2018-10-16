@@ -66,7 +66,7 @@
       <h4 class="invert">Select the test by date created:</h4>
       <ol class="test-ul">
         <li *ngFor="let test of listOfTests; let i = index;">
-          <a (click)="onSingleTestSelected($event, test)">{{test.date}}</a>
+          <a (click)="onSingleTestSelected($event, test)" class="test-date">{{test.date}}</a>
         </li>
       </ol>
     </div>

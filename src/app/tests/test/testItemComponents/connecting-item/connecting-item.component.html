@@ -6,13 +6,18 @@
     </ol>
     <ol class="drop-placeholder drop-container">
       <cdk-drop #dropZone1 [connectedTo]="[dropZone2]" (dropped)="addToList($event)" [data]="draggedAnswers">
-		  <li *ngFor="let item of draggedAnswers" cdkDrag>{{item.answer}}</li>
+        <li *ngFor="let item of draggedAnswers" cdkDrag>
+          <h4 class="invert">Drag to:</h4>
+          {{item.answer}}
+        </li>
       </cdk-drop>
     </ol>
     <ol class="draggable-ol">
       <cdk-drop #dropZone2 [connectedTo]="[dropZone1]" [data]="answersRight">
-        <li *ngFor="let singleAnswer of answersRight" cdkDrag> {{singleAnswer.answer}}</li>
+        <li *ngFor="let singleAnswer of answersRight" cdkDrag>
+          {{singleAnswer.answer}}
+        </li>
       </cdk-drop>
-	</ol>
+    </ol>
   </div>
 </div>

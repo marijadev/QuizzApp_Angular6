@@ -1,3 +1,22 @@
-<p>
-  passed-tests works!
-</p>
+<div class="container">
+  <div class="status-handler">
+    <button (click)="onTestStatusSelect($event, 1)">Passed</button>
+    <button (click)="onTestStatusSelect($event, 0)">Failed</button>
+  </div>
+  <div class="tests-holder">
+    <div class="tests">
+      <h4 class="invert">Select the single test from the list:</h4>
+      <ol>
+        <li *ngFor="let test of testList;let i = index;" (click)="onSingleTestSelected($event, test)">
+          <a class="test-date">{{test.date}}</a>
+        </li>
+      </ol>
+    </div>
+    <div class="test">
+      <ul *ngFor="let question of singleTestData.questions; let i = index;">
+        <li>{{i | plusOne}}. {{question.question}}</li>
+        <li *ngFor="let answer of question.answers">{{answer.answer}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

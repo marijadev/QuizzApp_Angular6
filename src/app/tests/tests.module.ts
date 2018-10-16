@@ -10,6 +10,7 @@ import { TextItemComponent } from './test/testItemComponents/text-item/text-item
 import { ConnectingItemComponent } from './test/testItemComponents/connecting-item/connecting-item.component';
 import { CoreRoutingModule } from '../core/core-routing.module';
 import { PassedTestsComponent } from './passed-tests/passed-tests.component';
+import { PlusOnePipe } from '../shared/plus-one.pipe';
 
 @NgModule({
 	declarations: [
@@ -19,6 +20,7 @@ import { PassedTestsComponent } from './passed-tests/passed-tests.component';
 		TextItemComponent,
 		ConnectingItemComponent,
 		PassedTestsComponent,
+		PlusOnePipe
 	],
 	imports: [
 		CommonModule,

@@ -29,6 +29,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { TrueFalseDirective } from './shared/true-false.directive';
 import { MyInterceptor } from './shared/services/my-interceptor';
 import { ErrorsHandler } from './shared/services/errors-handler';
+import { PlusOnePipe } from './shared/plus-one.pipe';
 
 @NgModule({
 	declarations: [
@@ -40,6 +41,7 @@ import { ErrorsHandler } from './shared/services/errors-handler';
 		TestTypeComponent,
 		TestComponent,
 		TrueFalseDirective,
+		// PlusOnePipe,
 	],
 	imports: [
 		BrowserModule,

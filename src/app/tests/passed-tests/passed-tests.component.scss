@@ -1,0 +1,35 @@
+@import '~src/assets/styles/_variables.scss';
+@import '~src/assets/styles/_mixins.scss';
+
+ul {
+	list-style-type: none;
+}
+
+.container {
+	width: 80vw;
+}
+
+.status-handler {
+	text-align: center;
+}
+
+.tests-holder {
+	display: flex;
+}
+
+.tests {
+	flex-basis: 20%;
+}
+
+.test {
+	flex-basis: 80%;
+}
+
+.test-date {
+	cursor: pointer;
+	transition: color .3s ease;
+
+	&:hover {
+		color: $color-orange;
+	}
+}

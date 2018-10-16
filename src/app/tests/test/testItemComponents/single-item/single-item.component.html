@@ -3,7 +3,7 @@
   <div [formGroup]="testForm">
     <ol>
       <li *ngFor="let singleAnswer of singleQuestion.answers;let i = index;">
-		  {{singleAnswer.answer}}
+		   {{singleAnswer.answer}}
 		  <input type="radio" name="single-value" (input)="onChecked($event, i)" />
 		</li>
     </ol>
