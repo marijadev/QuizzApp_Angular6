@@ -71,19 +71,27 @@ export class QuestionComponent implements OnInit {
 			const componentFactory = this.componentResolver.resolveComponentFactory(SingleChoiceComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
 			this.childInstance = this.componentRef_.instance;
+
 		} else if (this.type == 'Multiple Choice') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(MultipleChoiceComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
 			this.childInstance = this.componentRef_.instance;
+
 		} else if (this.type == 'Text') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(TextComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
+			this.childInstance = this.componentRef_.instance;
+
 		} else if (this.type == 'Order') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(OrderComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
+			this.childInstance = this.componentRef_.instance;
+
 		} else if (this.type == 'Connecting') {
 			const componentFactory = this.componentResolver.resolveComponentFactory(ConnectingComponent);
 			this.componentRef_ = this.container.createComponent(componentFactory);
+			this.childInstance = this.componentRef_.instance;
+
 		}
 		this.componentRef_.instance.questionForm = this.questionForm;
 	};
@@ -103,14 +111,16 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.category = this.questionForm.controls.category.value;
 		this.newQuestion.difficulty = this.questionForm.controls.difficulty.value;
 		this.newQuestion.type = this.questionForm.controls.type.value;
-		if(this.componentRef_.instance.values) {
-			for (let i = 0; i < this.componentRef_.instance.values.length; i++) {
-				if (this.componentRef_.instance.values[i].value) {
-					this.componentRef_.instance.values[i].value = 1;
-				} else {
-					this.componentRef_.instance.values[i].value = 0;
+		if(this.type !== 'Order') {
+			if(this.componentRef_.instance.values) {
+				for (let i = 0; i < this.componentRef_.instance.values.length; i++) {
+					if (this.componentRef_.instance.values[i].value) {
+						this.componentRef_.instance.values[i].value = 1;
+					} else {
+						this.componentRef_.instance.values[i].value = 0;
+					};
 				};
-			};
+			}
 		}
 		this.newQuestion.answers = this.componentRef_.instance.values || [];
 		this.questionForm.reset();

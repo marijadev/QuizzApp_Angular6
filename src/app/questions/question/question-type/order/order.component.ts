@@ -21,7 +21,7 @@ export class OrderComponent implements OnInit {
 	createAnswer() {
 		return this.fb.group({
 			answer: new FormControl(null, [Validators.required]),
-			value: new FormControl(1, [Validators.min(1), Validators.required])
+			value: new FormControl(null, [ Validators.required])
 		})
 	}
 
