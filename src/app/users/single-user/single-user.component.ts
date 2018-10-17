@@ -40,6 +40,7 @@ export class SingleUserComponent implements OnInit {
 		status: 0,
 		user: {}
 	};
+	showHeadline = false;
 
 	constructor(private http: HttpClient, private qService: QuestionService, private usersService: UserService) { };
 
@@ -83,6 +84,7 @@ export class SingleUserComponent implements OnInit {
 			const id = test.id;
 			this.listOfTests.push({ date, id })
 		})
+		this.showHeadline = true;
 	}
 
 	onItemSelected(e, type: string, item: string) {
@@ -122,5 +124,6 @@ export class SingleUserComponent implements OnInit {
 			}
 			// console.log('test', this.singleTestData)
 		});
+		console.log(this.singleTestData.result)
 	}
 };

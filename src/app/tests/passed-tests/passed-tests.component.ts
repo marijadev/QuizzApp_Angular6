@@ -20,6 +20,8 @@ export class PassedTestsComponent implements OnInit {
 		status: 0,
 		user: {}
 	};
+	questionsValid = [];
+	questionsInvalid = [];
 
 	constructor(private http: HttpClient) { }
 
@@ -38,6 +40,9 @@ export class PassedTestsComponent implements OnInit {
 	};
 
 	onTestStatusSelect(e, statusNum: number) {
+		this.questionsValid = [];
+		this.questionsInvalid = [];
+
 		this.statusObj.status = statusNum;
 		this.testList = [];
 		this.http.post(API_URL.userStatusTests, this.statusObj).subscribe(data => {
@@ -52,6 +57,7 @@ export class PassedTestsComponent implements OnInit {
 			};
 		});
 	};
+
 	onSingleTestSelected(event, test) {
 		const singleTestID = {
 			testId: test.id
@@ -65,7 +71,65 @@ export class PassedTestsComponent implements OnInit {
 				this.singleTestData.status = data['status'];
 				this.singleTestData.user = data['user'];
 			}
-			console.log('test', this.singleTestData)
+
+			this.singleTestData.questions.map(question => {
+				// console.log('question', question)
+				if (question.type === 'Single Choice') {
+					question.answers.map(answer => {
+						if (answer.value === answer.chosen) {
+							this.questionsValid.push(question);
+						} else {
+							this.questionsInvalid.push(question)
+						};
+					});
+				}
+				else if (question.type === 'Multiple Choice') {
+					question.answers.map(answer => {
+						if (answer.value === answer.chosen) {
+							this.questionsValid.push(question);
+						} else {
+							this.questionsInvalid.push(question)
+						};
+					});
+				}
+				else if (question.type === 'Text') {
+					question.answers.map(answer => {
+						if (answer.value === answer.chosen) {
+							this.questionsValid.push(question);
+						} else {
+							this.questionsInvalid.push(question)
+						};
+					});
+				} else if (question.type === 'Connecting') {
+					const answersArr = question.answers;
+					let counter = 0;
+					for (let i = 0; i < answersArr.length; i++) {
+						if (answersArr[i].value === answersArr[i].chosen) {
+							counter++;
+						};
+					};
+					if (counter === answersArr.length) {
+						this.questionsValid.push(question)
+					} else {
+						this.questionsInvalid.push(question)
+					};
+				}
+				else if (question.type === 'Order') {
+					const answersArr = question.answers;
+					let counter = 0;
+					for (let i = 0; i < answersArr.length; i++) {
+						if (answersArr[i].value === answersArr[i].chosen) {
+							counter++;
+						};
+					};
+					if (counter === answersArr.length) {
+						this.questionsValid.push(question)
+					} else {
+						this.questionsInvalid.push(question)
+					};
+				};
+				return question.answers;
+			});
 		});
-	}
+	};
 };

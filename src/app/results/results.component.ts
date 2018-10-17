@@ -36,5 +36,6 @@ export class ResultsComponent implements OnInit {
 			this.testList[prop].questions[0].answers[0].value = value;
 			}
 		};
+		
 	};
 };

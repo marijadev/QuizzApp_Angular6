@@ -29,6 +29,7 @@ import { PlusOnePipe } from '../shared/plus-one.pipe';
 		CoreRoutingModule,
 		DragDropModule
 	],
+	exports: [ PlusOnePipe ],
 	providers: [],
 	bootstrap: [],
 	entryComponents: [

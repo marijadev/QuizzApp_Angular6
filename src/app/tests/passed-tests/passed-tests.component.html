@@ -13,10 +13,14 @@
       </ol>
     </div>
     <div class="test">
-      <ul *ngFor="let question of singleTestData.questions; let i = index;">
-        <li>{{i | plusOne}}. {{question.question}}</li>
-        <li *ngFor="let answer of question.answers">{{answer.answer}}</li>
-      </ul>
+		<ul *ngFor="let question of questionsValid; let i = index;" [style.color]="'green'">
+			<li class="question"> {{question.question}}</li>
+			<li class="answer" *ngFor="let answer of question.answers">{{answer.answer}}</li>
+		</ul>
+		<ul *ngFor="let question of questionsInvalid; let i = index;" [style.color]="'red'">
+			<li class="question"> {{question.question}}</li>
+			<li  class="answer" *ngFor="let answer of question.answers">{{answer.answer}}</li>
+		</ul>
     </div>
   </div>
 </div>
