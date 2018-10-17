@@ -85,7 +85,6 @@ export class ConnectingItemComponent implements OnInit {
 			const value = currentAnswer['value'];
 			chosenArray.push(value);
 		}
-
 		if (this.answersRight.length === 0) {
 			for (let i = 0; i < this.draggedAnswers.length; i++) {
 				const currentAnswer = this.draggedAnswers[i];

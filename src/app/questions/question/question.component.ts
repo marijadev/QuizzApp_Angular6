@@ -124,15 +124,14 @@ export class QuestionComponent implements OnInit {
 		}
 		this.newQuestion.answers = this.componentRef_.instance.values || [];
 		this.questionForm.reset();
-		console.log(this.newQuestion)
-		return this.http.post('/server/admin/newq', this.newQuestion).subscribe()
+		alert('Successfully submitted!');
+		// return this.http.post('/server/admin/newq', this.newQuestion).subscribe()
 	}
 
 	ngOnDestroy() {
 		if (this.componentRef_) {
 			this.componentRef_.destroy();
 		};
-
 		// this.subscription.unsubscribe();
 	};
 };

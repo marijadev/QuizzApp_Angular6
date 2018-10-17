@@ -26,11 +26,12 @@ ul {
 }
 
 .tests {
-	flex-basis: 20%;
+	flex-basis: 30%;
 }
 
 .test {
-	flex-basis: 80%;
+	margin-top: 20px;
+	flex-basis: 70%;
 }
 
 .test-date {
@@ -39,5 +40,22 @@ ul {
 
 	&:hover {
 		color: $color-orange;
+	}
+}
+
+.btn {
+	&.passed {
+		@extend %btn-submit-style;
+		width: 100px;
+		margin-right: 10px;
+		margin-top: 0;
+	}
+
+	&.failed {
+		@extend %btn-cancel-inverted;
+		width: 100px;
+		text-transform: uppercase;
+		padding: 10px;
+		border-radius: 5px;
 	}
 }

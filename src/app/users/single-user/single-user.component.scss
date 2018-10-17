@@ -14,7 +14,7 @@ ol {
   margin: 10px 0;
 }
 
-p {
+h3 {
   flex: 1 1 80%;
 }
 
@@ -26,6 +26,18 @@ p {
   li {
     width: 100%;
   }
+}
+
+.question {
+  font-weight: 500;
+}
+
+.answer {
+  margin-left: 20px;
+}
+
+.test-ul {
+  margin: 15px 0;
 }
 
 .dropdown-holder {
@@ -127,12 +139,8 @@ svg {
   color: $color-orange;
 }
 
-.test-ul {
-  list-style-type: decimal;
-
-  a {
-    cursor: pointer;
-  }
+a {
+  cursor: pointer;
 }
 
 .test-list-holder {
@@ -148,10 +156,10 @@ svg {
 }
 
 .test-date {
-	cursor: pointer;
-	transition: color .3s ease;
+  cursor: pointer;
+  transition: color .3s ease;
 
-	&:hover {
-		color: $color-orange;
-	}
+  &:hover {
+    color: $color-orange;
+  }
 }

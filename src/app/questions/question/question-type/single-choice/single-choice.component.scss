@@ -1,9 +1,27 @@
 @import '~src/assets/styles/_mixins.scss';
+@import '~src/assets/styles/_variables.scss';
 
 .answer-holder {
-	@extend %answer-style;
+  @extend %answer-style;
 
-	.form-group {
-		padding: 10px 0;
-	}
+  .form-group {
+    padding: 10px 0;
+  }
+}
+
+.btn {
+  &.add {
+    @extend %btn-submit-style;
+	width: 30%;
+	margin-top: 0;
+	margin-right: 10px;
+  }
+
+  &.remove {
+    @extend %btn-cancel-inverted;
+    width: 30%;
+    padding: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+  }
 }

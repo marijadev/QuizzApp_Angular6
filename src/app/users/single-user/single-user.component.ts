@@ -17,6 +17,7 @@ export class SingleUserComponent implements OnInit {
 	difficulties: string[];
 	status: string[];
 	optionsShowed: boolean = false;
+	filteredBy = '';
 	dropdownsShowed = {
 		difficultyDropdown: false,
 		categoryDropdown: false,
@@ -89,7 +90,9 @@ export class SingleUserComponent implements OnInit {
 
 	onItemSelected(e, type: string, item: string) {
 		this.optionsShowed = !this.optionsShowed;
+		this.singleTestData.questions = [];
 		if (type === 'status') {
+			this.filteredBy = 'Status';
 			this.statusTypeObj.status = item === 'Passed' ? 1 : 0;
 			this.http.post(API_URL.userTestsStatus, this.statusTypeObj).subscribe(data => {
 				this.fillUserTests(data);
@@ -97,11 +100,13 @@ export class SingleUserComponent implements OnInit {
 				// console.log(this.listOfTests)
 			});
 		} else if (type === 'difficulty') {
+			this.filteredBy = 'Difficulty'
 			this.testTypeObj.type = item;
 			this.http.post(API_URL.userTestsDiff, this.testTypeObj).subscribe(data => {
 				this.fillUserTests(data);
 			});
 		} else if (type === 'category') {
+			this.filteredBy = 'Category';
 			this.testTypeObj.type = item;
 			this.http.post(API_URL.userTestsCat, this.testTypeObj).subscribe(data => {
 				this.fillUserTests(data);
@@ -114,6 +119,7 @@ export class SingleUserComponent implements OnInit {
 			testId: test.id
 		};
 		this.http.post(API_URL.demoTest, singleTestID).subscribe(data => {
+			console.log('test',data)
 			for (let prop in data) {
 				this.singleTestData.date = data['date'];
 				this.singleTestData.id = data['id'];

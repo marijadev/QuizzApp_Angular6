@@ -38,6 +38,7 @@ export class TestComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 
 		this.subscription = this.testService.testRequest().subscribe(data => {
+			console.log(data)
 			if (data) {
 				this.testData.id = data.id;
 				this.testData.user = data.user;
@@ -91,6 +92,7 @@ export class TestComponent implements OnInit, OnDestroy {
 		//here goes post request
 		this.testService.toggleTestTypeSelectedVisibility();
 		this.testData.questions = this.testService.testQuestions;
+		console.log('test data questions',this.testData.questions)
 		return this.http.post(API_URL.testSubmit,this.testData).subscribe();
 	}
 

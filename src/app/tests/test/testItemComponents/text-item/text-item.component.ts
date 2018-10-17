@@ -31,15 +31,20 @@ export class TextItemComponent implements OnInit {
 			this.singleQuestion.category = questionObj['category'];
 			this.singleQuestion.answers = questionObj['answers'];
 		};
+		this.singleQuestion.answers.push({
+			id: null,
+			answer: '',
+			value: 0,
+			chosen: 0
+		})
 	};
 
 	onTextAdded(e: any) {
 		const userAnswer = e.srcElement.value;
-		this.singleQuestion.answers = [{
-			id: null,
-			answer: userAnswer,
-			value: 0,
-			chosen: 0
-		}];
+		
+		if(userAnswer) {
+			this.singleQuestion.answers[0].answer = userAnswer;
+		}
+		// console.log('text', this.singleQuestion.answers)
 	};
 };

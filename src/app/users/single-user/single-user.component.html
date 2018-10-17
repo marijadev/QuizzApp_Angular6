@@ -1,6 +1,6 @@
 <div class="single-user-wrapper">
   <div class="single-user-holder">
-    <p [ngClass]="{'active': optionsShowed}">{{user.name}} {{user.surname}}, ID: {{user.id}}</p>
+    <h3 [ngClass]="{'active': optionsShowed}">{{user.name}} {{user.surname}}, ID: {{user.id}}</h3>
     <a class="dropdown-holder">
       <button class="btn invert" [ngClass]="{'active': optionsShowed}" (click)="onUserChosen(user.id)">{{user.name}}'s
         Tests</button>
@@ -63,18 +63,18 @@
   </div>
   <div class="test-list-holder">
     <div class="list-of-tests">
-      <h4 *ngIf="showHeadline" class="invert">Select the test by date created:</h4>
-      <ol class="test-ul">
-        <li *ngFor="let test of listOfTests; let i = index;">
+      <h4 *ngIf="showHeadline" class="invert">Select the test by date created ({{filteredBy}}):</h4>
+      <ul class="test-ul">
+        <li *ngFor="let test of listOfTests">
           <a (click)="onSingleTestSelected($event, test)" class="test-date">{{test.date}}</a>
         </li>
-      </ol>
+      </ul>
     </div>
     <div class="test-holder">
       <div class="single-test-holder">
-			<ul *ngFor="let question of singleTestData.questions; let i = index;">
-				<li>{{i }}: {{question.question}}</li>
-				<li *ngFor="let answer of question.answers">{{answer.answer}}</li>
+			<ul *ngFor="let question of singleTestData.questions;" class="test-ul">
+				<li class="question"> {{question.question}}</li>
+				<li class="answer" *ngFor="let answer of question.answers">{{answer.answer}}</li>
 			</ul>
       </div>
     </div>

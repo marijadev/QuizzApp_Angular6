@@ -18,3 +18,20 @@
 #answer-order {
 	flex-basis: 20%;
 }
+
+.btn {
+	&.add {
+	  @extend %btn-submit-style;
+	  width: 25%;
+	  margin-right: 10px;
+	  margin-top: 0;
+	}
+  
+	&.remove {
+	  @extend %btn-cancel-inverted;
+	  width: 25%;
+	  padding: 10px;
+	  border-radius: 5px;
+	  text-transform: uppercase;
+	}
+  }

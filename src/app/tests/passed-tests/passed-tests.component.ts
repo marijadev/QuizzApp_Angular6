@@ -20,6 +20,7 @@ export class PassedTestsComponent implements OnInit {
 		status: 0,
 		user: {}
 	};
+	viewTests = 'Passed';
 	questionsValid = [];
 	questionsInvalid = [];
 
@@ -43,6 +44,12 @@ export class PassedTestsComponent implements OnInit {
 		this.questionsValid = [];
 		this.questionsInvalid = [];
 
+		if(statusNum === 1) {
+			this.viewTests = 'Passed'
+		} else if(statusNum === 0) {
+			this.viewTests = 'Failed';
+		} 
+
 		this.statusObj.status = statusNum;
 		this.testList = [];
 		this.http.post(API_URL.userStatusTests, this.statusObj).subscribe(data => {
@@ -59,6 +66,9 @@ export class PassedTestsComponent implements OnInit {
 	};
 
 	onSingleTestSelected(event, test) {
+		this.questionsValid = [];
+		this.questionsInvalid = [];
+
 		const singleTestID = {
 			testId: test.id
 		};
@@ -73,25 +83,31 @@ export class PassedTestsComponent implements OnInit {
 			}
 
 			this.singleTestData.questions.map(question => {
-				// console.log('question', question)
+				console.log(question)
 				if (question.type === 'Single Choice') {
-					question.answers.map(answer => {
-						if (answer.value === answer.chosen) {
-							this.questionsValid.push(question);
-						} else {
-							this.questionsInvalid.push(question)
-						};
-					});
-				}
+					let counter = 0;
+					const answers = question.answers;
+					for (let i = 0; i < answers.length; i++) {
+						if (answers[i].value === answers[i].chosen) {
+							counter++;
+						}
+					}
+					if (counter === answers.length) {
+						this.questionsValid.push(question);
+					} this.questionsInvalid.push(question)
+				} 
 				else if (question.type === 'Multiple Choice') {
-					question.answers.map(answer => {
-						if (answer.value === answer.chosen) {
-							this.questionsValid.push(question);
-						} else {
-							this.questionsInvalid.push(question)
-						};
-					});
-				}
+					let counter = 0;
+					const answers = question.answers;
+					for (let i = 0; i < answers.length; i++) {
+						if (answers[i].value === answers[i].chosen) {
+							counter++;
+						}
+					}
+					if (counter === answers.length) {
+						this.questionsValid.push(question);
+					} this.questionsInvalid.push(question)
+				} 
 				else if (question.type === 'Text') {
 					question.answers.map(answer => {
 						if (answer.value === answer.chosen) {
@@ -100,7 +116,8 @@ export class PassedTestsComponent implements OnInit {
 							this.questionsInvalid.push(question)
 						};
 					});
-				} else if (question.type === 'Connecting') {
+				} 
+				else if (question.type === 'Connecting') {
 					const answersArr = question.answers;
 					let counter = 0;
 					for (let i = 0; i < answersArr.length; i++) {
@@ -113,8 +130,7 @@ export class PassedTestsComponent implements OnInit {
 					} else {
 						this.questionsInvalid.push(question)
 					};
-				}
-				else if (question.type === 'Order') {
+				} else if (question.type === 'Order') {
 					const answersArr = question.answers;
 					let counter = 0;
 					for (let i = 0; i < answersArr.length; i++) {

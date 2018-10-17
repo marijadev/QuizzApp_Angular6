@@ -1,5 +1,28 @@
 @import '~src/assets/styles/_mixins.scss';
 
 .form-group {
-	@extend %answer-style;
+  @extend %answer-style;
+}
+
+.answer-holder {
+	margin-top: 10px;
+}
+
+.btn {
+  &.add {
+    @extend %btn-submit-style;
+    width: 30%;
+    margin-right: 10px;
+    margin-top: 20px;
+
+  }
+
+  &.remove {
+    @extend %btn-cancel-inverted;
+    width: 30%;
+    padding: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    margin-top: 20px;
+  }
 }

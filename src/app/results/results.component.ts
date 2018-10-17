@@ -20,22 +20,20 @@ export class ResultsComponent implements OnInit {
 					this.multipleTextQuestionsList.push(data[prop])
 				} else {
 					this.testList.push(data[prop]);
-				}
+				};
 			};
 		});
-		console.log('testList',this.testList)
 	};
 
 	onSubmit(e, id, value) {
-		console.log(id, value)
-		for (let prop in this.testList) {
-			const currentTest = this.testList[prop].questions;
-			const currentTestId = this.testList[prop].id;
+		for (let index in this.testList) {
+			const currentTest = this.testList[index].questions;
+			const currentTestId = this.testList[index].id;
 			if (currentTestId === id) {
-				// console.log(this.testList[prop])
-			this.testList[prop].questions[0].answers[0].value = value;
-			}
+				this.testList[index].questions[0].answers[0].value = value;
+				this.http.post(API_URL.reviewQuestion, this.testList[index]).subscribe();
+				this.testList.splice(this.testList[index], 1);
+			};
 		};
-		
 	};
 };
