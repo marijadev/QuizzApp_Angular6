@@ -53,6 +53,8 @@ export class PassedTestsComponent implements OnInit {
 		this.statusObj.status = statusNum;
 		this.testList = [];
 		this.http.post(API_URL.userStatusTests, this.statusObj).subscribe(data => {
+			console.log('test', data)
+			
 			for (let prop in data) {
 				const test = {
 					id: 0,
@@ -73,6 +75,7 @@ export class PassedTestsComponent implements OnInit {
 			testId: test.id
 		};
 		this.http.post(API_URL.demoTest, singleTestID).subscribe(data => {
+			console.log('single test', data)
 			for (let prop in data) {
 				this.singleTestData.date = data['date'];
 				this.singleTestData.id = data['id'];
@@ -83,7 +86,6 @@ export class PassedTestsComponent implements OnInit {
 			}
 
 			this.singleTestData.questions.map(question => {
-				console.log(question)
 				if (question.type === 'Single Choice') {
 					let counter = 0;
 					const answers = question.answers;

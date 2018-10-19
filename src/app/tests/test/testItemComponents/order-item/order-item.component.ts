@@ -11,43 +11,30 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class OrderItemComponent implements OnInit {
 	testForm: FormGroup;
 	questionsArr: object[];
-	singleQuestion = {
-		id: 0,
-		question: '',
-		difficulty: '',
-		type: '',
-		category: '',
-		answers: []
-	};
-	answerList = [];
-	answerValues = [];
+	singleQuestion;
 	answersUI = [];
-
+	question;
 	constructor(private fb: FormBuilder, private testService: TestService) { };
 
 	ngOnInit() {
-		if (this.testService.questionsByType.order) {
-			this.questionsArr = this.testService.questionsByType.order;
-			const questionObj = this.questionsArr[0];
-
-			this.singleQuestion.id = questionObj['id'];
-			this.singleQuestion.question = questionObj['question'];
-			this.singleQuestion.type = questionObj['type'];
-			this.singleQuestion.difficulty = questionObj['difficulty'];
-			this.singleQuestion.category = questionObj['category'];
-			this.answersUI = questionObj['answers'].slice();
-			this.singleQuestion.answers = questionObj['answers'];
+		if (this.singleQuestion) {
+			this.question = this.singleQuestion;
+			this.answersUI = this.question.answers.slice();
 		};
 	};
 
+	//method from the drag-drop cdk library: 
+	//https://netbasal.com/getting-to-know-the-angular-cdk-drag-and-drop-feature-d79ba462ce31
 	onDrop(event: CdkDragDrop<string[]>) {
+		const id = this.question.id;
 
 		moveItemInArray(this.answersUI, event.previousIndex, event.currentIndex);
 		let chosenArray = this.answersUI.map(answer => answer.value);
-		let answers = this.singleQuestion.answers;
+		let answers = this.question.answers;
 
 		for (let i = 0; i < answers.length; i++) {
 			answers[i].chosen = chosenArray[i];
 		};
+		this.testService.onSingleTestQuestionsUpdate(id, this.question);
 	};
 };

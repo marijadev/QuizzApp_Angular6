@@ -13,36 +13,23 @@ import { TestService } from '../../../../shared/services/test.service';
 export class ConnectingItemComponent implements OnInit {
 	testForm: FormGroup;
 	questionsArr: object[];
-	singleQuestion = {
-		id: 0,
-		question: '',
-		difficulty: '',
-		type: '',
-		category: '',
-		answers: []
-	};
+	singleQuestion;
 	answersLeft;
 	answersRight;
 	draggedAnswers = ['placeholder'];
+	question;
 
 	constructor(private fb: FormBuilder, private testService: TestService) { };
 
 	ngOnInit() {
-		if (this.testService.questionsByType.connecting) {
-			this.questionsArr = this.testService.questionsByType.connecting;
-			const questionObj = this.questionsArr[0];
-			this.singleQuestion.id = questionObj['id'];
-			this.singleQuestion.question = questionObj['question'];
-			this.singleQuestion.type = questionObj['type'];
-			this.singleQuestion.difficulty = questionObj['difficulty'];
-			this.singleQuestion.category = questionObj['category'];
-			this.singleQuestion.answers = questionObj['answers'];
+		if (this.singleQuestion) {
+			this.question = this.singleQuestion;
 			this.sortAnswers();
 		};
 	};
 
 	sortAnswers() {
-		const arrayOfAnswers = this.singleQuestion.answers;
+		const arrayOfAnswers = this.question.answers;
 		let odd = [];
 		let even = [];
 		for (let i = 0; i < arrayOfAnswers.length; i++) {
@@ -58,14 +45,14 @@ export class ConnectingItemComponent implements OnInit {
 
 	addToList(event: CdkDragDrop<string[]>) {
 		let chosenArray = [];
+		const id = this.question.id;
 		if (event.previousContainer === event.container) {
 			moveItemInArray(
 				event.container.data,
 				event.previousIndex,
 				event.currentIndex
 			);
-		}
-		else {
+		} else {
 			transferArrayItem(
 				event.previousContainer.data,
 				event.container.data,
@@ -96,6 +83,7 @@ export class ConnectingItemComponent implements OnInit {
 				currentAnswer['chosen'] = 0;
 			};
 		};
-		this.singleQuestion.answers = [...this.answersLeft, ...this.draggedAnswers];
+		this.question.answers = [...this.answersLeft, ...this.draggedAnswers];
+		this.testService.onSingleTestQuestionsUpdate(id, this.question);
 	};
 };

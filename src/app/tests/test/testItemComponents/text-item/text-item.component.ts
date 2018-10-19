@@ -10,41 +10,28 @@ import { TestService } from '../../../../shared/services/test.service';
 export class TextItemComponent implements OnInit {
 	testForm: FormGroup;
 	questionsArr: any;
-	singleQuestion = {
-		id: 0,
-		question: '',
-		difficulty: '',
-		type: '',
-		category: '',
-		answers: []
-	};
+	singleQuestion;
+	question;
 	constructor(private fb: FormBuilder, private testService: TestService) { };
 
 	ngOnInit() {
-		if (this.testService.questionsByType.text) {
-			this.questionsArr = this.testService.questionsByType.text;
-			const questionObj = this.questionsArr[0];
-			this.singleQuestion.id = questionObj['id'];
-			this.singleQuestion.question = questionObj['question'];
-			this.singleQuestion.type = questionObj['type'];
-			this.singleQuestion.difficulty = questionObj['difficulty'];
-			this.singleQuestion.category = questionObj['category'];
-			this.singleQuestion.answers = questionObj['answers'];
+		if (this.singleQuestion) {
+			this.question = this.singleQuestion;
 		};
-		this.singleQuestion.answers.push({
+		this.question.answers.push({
 			id: null,
 			answer: '',
 			value: 0,
 			chosen: 0
-		})
+		});
 	};
 
 	onTextAdded(e: any) {
 		const userAnswer = e.srcElement.value;
-		
+		const id = this.question.id;
 		if(userAnswer) {
-			this.singleQuestion.answers[0].answer = userAnswer;
-		}
-		// console.log('text', this.singleQuestion.answers)
+			this.question.answers[0].answer = userAnswer;
+		};
+		this.testService.onSingleTestQuestionsUpdate(id, this.question);
 	};
 };

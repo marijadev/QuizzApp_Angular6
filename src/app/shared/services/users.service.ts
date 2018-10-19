@@ -13,12 +13,6 @@ export class UserService {
 		return this.http.get<User[]>(API_URL.allUsers);
 	};
 
-	// getTestById(testId: object) {
-	// 	this.http.post(API_URL.userSingleTest, testId).subscribe(data => {
-	// 		console.log('test', data)
-	// 	})
-	// }
-
 	getCurrentUser() {
 		const userLoggedIn = this.authService.userLoggedIn;
 		return userLoggedIn;

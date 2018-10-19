@@ -1,4 +1,4 @@
-import { Component, OnInit, ComponentFactoryResolver, ViewChild, ViewContainerRef, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, ViewChild, ViewContainerRef, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
@@ -33,12 +33,12 @@ export class TestComponent implements OnInit, OnDestroy {
 	componentRef_: any;
 	subscription;
 
-	constructor(private http: HttpClient ,private componentResolver: ComponentFactoryResolver, private route: Router, private actRoute: ActivatedRoute, private testService: TestService) { }
+	constructor(private http: HttpClient, private componentResolver: ComponentFactoryResolver, private route: Router, private actRoute: ActivatedRoute, private testService: TestService) { }
 
 	ngOnInit() {
 
 		this.subscription = this.testService.testRequest().subscribe(data => {
-			console.log(data)
+			console.log('test', data)
 			if (data) {
 				this.testData.id = data.id;
 				this.testData.user = data.user;
@@ -51,7 +51,7 @@ export class TestComponent implements OnInit, OnDestroy {
 			this.questionTypes = Object.keys(questionTypes);
 
 			if (this.testData.questions) {
-				this.testService.getQuestions(this.testData.questions);
+				this.testService.singleTestQuestions(this.testData.questions);
 				this.addDynamicQuestion();
 			}
 		})
@@ -59,30 +59,37 @@ export class TestComponent implements OnInit, OnDestroy {
 		this.testForm = new FormGroup({});
 	}
 
+
+
 	addDynamicQuestion() {
 		this.testData.questions.map(question => {
 			if (this.questionTypes[0] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(SingleItemComponent);
 				this.componentRef_ = this.container.createComponent(componentFactory);
-				this.testService.questionsByType.single.push(question);
+				this.componentRef_.instance.singleQuestion = question;
+
 			} else if (this.questionTypes[1] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(MultipleItemComponent);
 				this.componentRef_ = this.container.createComponent(componentFactory);
-				this.testService.questionsByType.multiple.push(question);
+				this.componentRef_.instance.singleQuestion = question;
+
 			} else if (this.questionTypes[2] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(TextItemComponent);
 				this.componentRef_ = this.container.createComponent(componentFactory);
-				this.testService.questionsByType.text.push(question);
+				this.componentRef_.instance.singleQuestion = question;
+
 			} else if (this.questionTypes[3] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(OrderItemComponent);
 				this.componentRef_ = this.container.createComponent(componentFactory);
-				this.testService.questionsByType.order.push(question);
+				this.componentRef_.instance.singleQuestion = question;
+
 			} else if (this.questionTypes[4] == question.type) {
 				const componentFactory = this.componentResolver.resolveComponentFactory(ConnectingItemComponent);
 				this.componentRef_ = this.container.createComponent(componentFactory);
-				this.testService.questionsByType.connecting.push(question);
+				this.componentRef_.instance.singleQuestion = question;
+
 			}
-			this.componentRef_.instance.testForm = this.testForm;
+				this.componentRef_.instance.testForm = this.testForm;
 
 			return null;
 		});
@@ -92,8 +99,8 @@ export class TestComponent implements OnInit, OnDestroy {
 		//here goes post request
 		this.testService.toggleTestTypeSelectedVisibility();
 		this.testData.questions = this.testService.testQuestions;
-		console.log('test data questions',this.testData.questions)
-		return this.http.post(API_URL.testSubmit,this.testData).subscribe();
+		console.log('test',this.testData)
+		return this.http.post(API_URL.testSubmit, this.testData).subscribe();
 	}
 
 	ngOnDestroy() {

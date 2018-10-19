@@ -125,7 +125,8 @@ export class QuestionComponent implements OnInit {
 		this.newQuestion.answers = this.componentRef_.instance.values || [];
 		this.questionForm.reset();
 		alert('Successfully submitted!');
-		// return this.http.post('/server/admin/newq', this.newQuestion).subscribe()
+		console.log('new question', this.newQuestion)
+		return this.http.post('/server/admin/newq', this.newQuestion).subscribe()
 	}
 
 	ngOnDestroy() {

@@ -14,6 +14,7 @@ export class ResultsComponent implements OnInit {
 
 	ngOnInit() {
 		this.http.get(API_URL.unreviewedTests).subscribe(data => {
+			console.log('pending',data)
 			for (let prop in data) {
 				const currentTest = data[prop].questions;
 				if (currentTest.length > 1) {

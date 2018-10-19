@@ -12,16 +12,17 @@
 .btn {
   &.add {
     @extend %btn-submit-style;
-	width: 30%;
+	width: 35%;
 	margin-top: 0;
 	margin-right: 10px;
   }
 
   &.remove {
     @extend %btn-cancel-inverted;
-    width: 30%;
+    width: 35%;
     padding: 10px;
     border-radius: 5px;
     text-transform: uppercase;
   }
 }
+

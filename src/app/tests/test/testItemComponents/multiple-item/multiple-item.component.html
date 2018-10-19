@@ -1,5 +1,5 @@
 <div class="container">
-  <h5 class="question-h">{{singleQuestion.question}}</h5>
+  <h5 class="question-h">{{question.question}}</h5>
   <div [formGroup]="testForm">
     <ol>
       <li *ngFor="let singleAnswer of singleQuestion.answers; let i=index;">{{singleAnswer.answer}}<input type="checkbox" (input)="onChecked($event, i)"/></li>

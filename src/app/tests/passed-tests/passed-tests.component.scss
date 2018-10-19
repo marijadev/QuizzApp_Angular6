@@ -2,60 +2,79 @@
 @import '~src/assets/styles/_mixins.scss';
 
 ul {
-	list-style-type: none;
-	margin: 20px 0;
+  list-style-type: none;
+  margin: 20px 0;
 }
+
 .answer {
-	margin-left: 20px;
+  margin-left: 20px;
 }
 
 .question {
-	font-weight: 500;
+  font-weight: 500;
 }
 
 .container {
-	width: 80vw;
+  width: 80vw;
 }
 
 .status-handler {
-	text-align: center;
+  text-align: center;
 }
 
 .tests-holder {
-	display: flex;
+  display: flex;
 }
 
 .tests {
-	flex-basis: 30%;
+  flex-basis: 30%;
 }
 
 .test {
-	margin-top: 20px;
-	flex-basis: 70%;
+  margin-top: 20px;
+  flex-basis: 70%;
 }
 
 .test-date {
-	cursor: pointer;
-	transition: color .3s ease;
+  cursor: pointer;
+  transition: color .3s ease;
 
-	&:hover {
-		color: $color-orange;
-	}
+  &:hover {
+    color: $color-orange;
+  }
+}
+
+
+svg {
+  fill: $color-white;
+  height: 10px;
+  margin-right: 5px;
+  transform: translateX(-5px);
+  transition: all .3s ease;
 }
 
 .btn {
-	&.passed {
-		@extend %btn-submit-style;
-		width: 100px;
-		margin-right: 10px;
-		margin-top: 0;
-	}
+  &.passed {
+    @extend %btn-submit-style;
+    width: 150px;
+    margin-right: 10px;
+    margin-top: 0;
+  }
 
-	&.failed {
-		@extend %btn-cancel-inverted;
-		width: 100px;
-		text-transform: uppercase;
-		padding: 10px;
-		border-radius: 5px;
-	}
+  &.failed {
+    @extend %btn-cancel-inverted;
+    width: 150px;
+    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  &:hover {
+    svg {
+      transform: translateX(3px);
+		&.minus {
+			fill: black;
+		}
+    }
+  }
 }

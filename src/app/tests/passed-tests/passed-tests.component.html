@@ -1,7 +1,15 @@
 <div class="container">
   <div class="status-handler">
-    <button class="btn passed" (click)="onTestStatusSelect($event, 1)">Passed</button>
-    <button class="btn failed" (click)="onTestStatusSelect($event, 0)">Failed</button>
+    <button class="btn passed" (click)="onTestStatusSelect($event, 1)">
+      <svg version="1.1" viewBox="0 0 26 26">
+        <path d="m.3,14c-0.2-0.2-0.3-0.5-0.3-0.7s0.1-0.5 0.3-0.7l1.4-1.4c0.4-0.4 1-0.4 1.4,0l.1,.1 5.5,5.9c0.2,0.2 0.5,0.2 0.7,0l13.4-13.9h0.1v-8.88178e-16c0.4-0.4 1-0.4 1.4,0l1.4,1.4c0.4,0.4 0.4,1 0,1.4l0,0-16,16.6c-0.2,0.2-0.4,0.3-0.7,0.3-0.3,0-0.5-0.1-0.7-0.3l-7.8-8.4-.2-.3z" />
+      </svg>
+      Passed</button>
+    <button class="btn failed" (click)="onTestStatusSelect($event, 0)">
+      <svg class="minus" version="1.1" viewBox="0 0 357 357">
+        <path d="M357,204H0v-51h357V204z" />
+      </svg>
+      Failed</button>
   </div>
   <div class="tests-holder">
     <div class="tests">
@@ -13,14 +21,14 @@
       </ol>
     </div>
     <div class="test">
-		<ul *ngFor="let question of questionsValid; let i = index;" [style.color]="'green'">
-			<li class="question"> {{question.question}}</li>
-			<li class="answer" *ngFor="let answer of question.answers">{{answer.answer}}</li>
-		</ul>
-		<ul *ngFor="let question of questionsInvalid; let i = index;" [style.color]="'red'">
-			<li class="question"> {{question.question}}</li>
-			<li  class="answer" *ngFor="let answer of question.answers">{{answer.answer}}</li>
-		</ul>
+      <ul *ngFor="let question of questionsValid; let i = index;" [style.color]="'green'">
+        <li class="question"> {{question.question}}</li>
+        <li class="answer" *ngFor="let answer of question.answers">{{answer.answer}}</li>
+      </ul>
+      <ul *ngFor="let question of questionsInvalid; let i = index;" [style.color]="'red'">
+        <li class="question"> {{question.question}}</li>
+        <li class="answer" *ngFor="let answer of question.answers">{{answer.answer}}</li>
+      </ul>
     </div>
   </div>
 </div>

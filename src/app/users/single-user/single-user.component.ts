@@ -80,6 +80,7 @@ export class SingleUserComponent implements OnInit {
 	fillUserTests(data) {
 		this.userTests = data;
 		this.listOfTests = [];
+		console.log('list of tests', this.listOfTests)
 		this.userTests.map(test => {
 			let date = formatDate(test.date);
 			const id = test.id;
@@ -96,8 +97,6 @@ export class SingleUserComponent implements OnInit {
 			this.statusTypeObj.status = item === 'Passed' ? 1 : 0;
 			this.http.post(API_URL.userTestsStatus, this.statusTypeObj).subscribe(data => {
 				this.fillUserTests(data);
-				// console.log(this.userTests)
-				// console.log(this.listOfTests)
 			});
 		} else if (type === 'difficulty') {
 			this.filteredBy = 'Difficulty'
@@ -119,7 +118,7 @@ export class SingleUserComponent implements OnInit {
 			testId: test.id
 		};
 		this.http.post(API_URL.demoTest, singleTestID).subscribe(data => {
-			console.log('test',data)
+			console.log('single test', data)
 			for (let prop in data) {
 				this.singleTestData.date = data['date'];
 				this.singleTestData.id = data['id'];
@@ -128,8 +127,6 @@ export class SingleUserComponent implements OnInit {
 				this.singleTestData.status = data['status'];
 				this.singleTestData.user = data['user'];
 			}
-			// console.log('test', this.singleTestData)
 		});
-		console.log(this.singleTestData.result)
 	}
 };
