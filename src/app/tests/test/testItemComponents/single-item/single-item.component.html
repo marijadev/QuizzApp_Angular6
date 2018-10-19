@@ -4,7 +4,7 @@
     <ol>
       <li *ngFor="let singleAnswer of question.answers;let i = index;">
 		   {{singleAnswer.answer}}
-		  <input type="radio" name="single-value" (input)="onChecked($event, i)" />
+		  <input type="radio" name="{{id}}" (input)="onChecked($event, i)" />
 		</li>
     </ol>
   </div>

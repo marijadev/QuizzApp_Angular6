@@ -14,6 +14,7 @@ export class SingleItemComponent implements OnInit {
 	singleQuestion;
 	question;
 	questionInvalid: boolean = false;
+	id: number;
 
 	constructor(private fb: FormBuilder, private testService: TestService) { };
 
@@ -26,6 +27,7 @@ export class SingleItemComponent implements OnInit {
 	onChecked(e: any, index: number) {
 		const answers = this.question.answers;
 		const id = this.question.id;
+		this.id = id;
 		for (let i = 0; i < answers.length; i++) {
 			answers[i].chosen = 0; 
 
