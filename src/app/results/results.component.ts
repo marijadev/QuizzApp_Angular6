@@ -17,9 +17,8 @@ export class ResultsComponent implements OnInit {
 	constructor(private http: HttpClient) { }
 
 	ngOnInit() {
-		this.http.get('server/admin/dump').subscribe(data => {
+		this.http.get(API_URL.unreviewedTests).subscribe(data => {
 			this.testList = data;
-
 			for (let i = 0; i < this.testList.length; i++) {
 				const test = this.testList[i];
 				if (test['questions'].length > 1) {
@@ -38,8 +37,8 @@ export class ResultsComponent implements OnInit {
 			const currentTestId = this.listOfTestsWithOneQuestion[index].id;
 			if (currentTestId === id) {
 				this.listOfTestsWithOneQuestion[index].questions[0].answers[0].value = value;
-				// this.http.post(API_URL.reviewQuestion, this.listOfTestsWithOneQuestion[index]).subscribe();
-				// this.listOfTestsWithOneQuestion.splice(this.listOfTestsWithOneQuestion[index], 1);
+				this.http.post(API_URL.reviewQuestion, this.listOfTestsWithOneQuestion[index]).subscribe();
+				this.listOfTestsWithOneQuestion.splice(this.listOfTestsWithOneQuestion[index], 1);
 			};
 		};
 	};
@@ -65,7 +64,6 @@ export class ResultsComponent implements OnInit {
 				testsObjWithFlags.checked.push(isCheckedFlag)
 			};
 			this.fakeMultipleTestsWithFlags.push(testsObjWithFlags);
-			console.log('test', currentTest)
 		};
 	};
 
@@ -99,7 +97,7 @@ export class ResultsComponent implements OnInit {
 				};
 			};
 			if (checkedCounter === fakeTestChecked.length) {
-				// this.http.post(API_URL.reviewQuestion, fakeTest.test).subscribe();
+				this.http.post(API_URL.reviewQuestion, fakeTest.test).subscribe();
 			};
 		};
 	};
