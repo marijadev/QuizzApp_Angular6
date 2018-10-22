@@ -1,24 +1,40 @@
 @import '~src/assets/styles/_mixins.scss';
 
-h3, p {
-	margin: 20px 0;
+h3,
+p {
+  margin: 20px 0;
+}
+
+.separator-holder {
+  position: relative;
+  padding: 30px 0 40px 0;
+}
+
+.separator {
+  content: '';
+  position: absolute;
+  bottom: 45%;
+  left: calc(50% - 25px);
+  height: 5px;
+  width: 50px;
+  background-color: $color-orange;
 }
 
 .profile-img-wrapper {
-	max-width: 200px;
-	margin: 0 auto;
-	overflow: hidden;
+  max-width: 200px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .profile-img-holder {
-	max-height: 240px;
+  max-height: 240px;
 }
 
-.profile-info-wrapper {
-	margin-top: 20%;
+.name-h {
+	margin-top: 0;
 }
 
 .edit-profile {
-	@extend %btn-submit-style;
-	width: 65%;
+  @extend %btn-submit-style;
+  width: 65%;
 }

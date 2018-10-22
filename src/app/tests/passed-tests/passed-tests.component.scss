@@ -6,6 +6,15 @@ ul {
   margin: 20px 0;
 }
 
+.container {
+  width: 80vw;
+}
+
+.tests-holder {
+  display: flex;
+  margin-top: 50px;
+}
+
 .answer {
   margin-left: 20px;
 }
@@ -14,16 +23,8 @@ ul {
   font-weight: 500;
 }
 
-.container {
-  width: 80vw;
-}
-
 .status-handler {
   text-align: center;
-}
-
-.tests-holder {
-  display: flex;
 }
 
 .tests {
@@ -54,16 +55,20 @@ svg {
 }
 
 .btn {
+	white-space: nowrap;
+    overflow: hidden;
   &.passed {
     @extend %btn-submit-style;
-    width: 150px;
+    width: 15%;
+    max-width: 40%;
     margin-right: 10px;
     margin-top: 0;
   }
 
   &.failed {
     @extend %btn-cancel-inverted;
-    width: 150px;
+    width: 15%;
+    max-width: 40%;
     text-transform: uppercase;
     padding: 10px;
     border-radius: 5px;
@@ -72,9 +77,14 @@ svg {
   &:hover {
     svg {
       transform: translateX(3px);
-		&.minus {
-			fill: black;
-		}
+
+      &.minus {
+        fill: black;
+      }
     }
   }
+}
+
+.date-list {
+	padding: 10px 0;
 }

@@ -13,9 +13,9 @@
   </div>
   <div class="tests-holder">
     <div class="tests">
-      <h4 class="invert">Filter the '{{viewTests}}' tests from the list:</h4>
+      <h4 class="invert tests-h">Filter the '{{viewTests}}' tests from the list:</h4>
       <ol>
-        <li *ngFor="let test of testList;let i = index;" (click)="onSingleTestSelected($event, test)">
+        <li class="date-list" *ngFor="let test of testList;let i = index;" (click)="onSingleTestSelected($event, test)">
           <a class="test-date">{{test.date}}</a>
         </li>
       </ol>

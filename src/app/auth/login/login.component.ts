@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 		this.subscription = this.authService.login(form.value.username, form.value.password).subscribe(
 			user => {
+				// console.log(user)
 				if (user.admin === 1) {
 					this.router.navigate(['/home/question'], { relativeTo: this.actRoute });
 				} else if (user.admin === 0) {

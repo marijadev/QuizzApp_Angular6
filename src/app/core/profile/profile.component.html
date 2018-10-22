@@ -2,14 +2,20 @@
   <div class="profile-container">
     <div class="profile-img-wrapper">
       <div class="profile-img-holder">
-        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="profile-picture">
+        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+          alt="profile-picture">
       </div>
-    </div>
+	</div>
+	
+    <div class="separator-holder">
+      <span class="separator"></span>
+	</div>
+	
     <div class="profile-info-wrapper">
       <div class="profile-info-holder">
-        <h3>{{user.name}} {{user.surname}}</h3>
+        <h3 class="name-h">{{user.name}} {{user.surname}}</h3>
         <p>{{user.username}}</p>
-        <p>0{{user.phone}}</p>
+        <p>{{user.phone}}</p>
       </div>
     </div>
     <button (click)="allowEditProfile()" class="edit-profile">Edit Profile</button>

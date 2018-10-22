@@ -20,7 +20,7 @@ export class PassedTestsComponent implements OnInit {
 		status: 0,
 		user: {}
 	};
-	viewTests = 'Passed';
+	viewTests = 'PASSED';
 	questionsValid = [];
 	questionsInvalid = [];
 
@@ -45,9 +45,9 @@ export class PassedTestsComponent implements OnInit {
 		this.questionsInvalid = [];
 
 		if(statusNum === 1) {
-			this.viewTests = 'Passed'
+			this.viewTests = 'PASSED'
 		} else if(statusNum === 0) {
-			this.viewTests = 'Failed';
+			this.viewTests = 'FAILED';
 		} 
 
 		this.statusObj.status = statusNum;
@@ -75,7 +75,6 @@ export class PassedTestsComponent implements OnInit {
 			testId: test.id
 		};
 		this.http.post(API_URL.demoTest, singleTestID).subscribe(data => {
-			console.log('single test', data)
 			for (let prop in data) {
 				this.singleTestData.date = data['date'];
 				this.singleTestData.id = data['id'];

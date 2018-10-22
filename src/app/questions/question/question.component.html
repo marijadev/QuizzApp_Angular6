@@ -1,40 +1,45 @@
-<div class="question-wrapper">
-	<h4>Please submit a new question:</h4>
-  <div class="question-form-wrapper">
-    <form [formGroup]='questionForm' (ngSubmit)="onSubmitQuestion()">
-      <div class="question-info question-column">
-        <div class="form-group">
-          <label for="question">Question:</label><br>
-          <input type="text" formControlName="question" placeholder="Enter your question..." id="question">
-          <span *ngIf="!questionForm.get('question').valid && questionForm.get('question').touched" class="warning">Please
-            enter a question!</span>
+<div class="container">
+  <div class="question-wrapper">
+    <h4>Please submit a new question:</h4>
+    <div class="question-form-wrapper">
+      <form [formGroup]='questionForm' (ngSubmit)="onSubmitQuestion()">
+        <div class="question-info question-column">
+          <div class="form-group">
+            <label for="question">Question:</label><br>
+            <input type="text" formControlName="question" placeholder="Enter your question..." id="question">
+            <span *ngIf="!questionForm.get('question').valid && questionForm.get('question').touched" class="warning">Please
+              enter a question!</span>
+          </div>
+          <div class="form-group">
+            <label for="category">Category:</label><br>
+            <select formControlName="category" name="category" id="category">
+              <option *ngFor="let singleCategory of categories" [value]="singleCategory">{{singleCategory}}</option>
+            </select>
+            <span *ngIf="!questionForm.get('category').valid && questionForm.get('category').touched" class="warning">Please
+              choose a category!</span>
+          </div>
+          <div class="form-group">
+            <label for="difficulty">Difficulty:</label><br>
+            <select formControlName="difficulty" name="difficulty" id="difficulty">
+              <option [value]="questionDifficulty" *ngFor="let questionDifficulty of difficulties">{{questionDifficulty}}</option>
+            </select>
+            <span *ngIf="!questionForm.get('difficulty').valid && questionForm.get('difficulty').touched" class="warning">Please
+              select difficulty!</span>
+          </div>
+          <div class="form-group">
+            <label for="type">Type:</label><br>
+            <select formControlName="type" name="questionType " (input)="onTypeChange($event)" id="questionType">
+              <option [value]="type" *ngFor="let type of questionTypes; let i=index;" class="option">{{type}}</option>
+            </select>
+            <span *ngIf="!questionForm.get('type').valid && questionForm.get('type').touched" class="warning">Please
+              select a question type!</span>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="category">Category:</label><br>
-          <select formControlName="category" name="category" id="category">
-            <option *ngFor="let singleCategory of categories" [value]="singleCategory">{{singleCategory}}</option>
-		  </select>
-          <span *ngIf="!questionForm.get('category').valid && questionForm.get('category').touched" class="warning">Please choose a category!</span>
+        <div class="question-type question-column">
+          <ng-template #dynamic></ng-template>
+          <button class="submit-btn" [disabled]="!questionForm.valid && questionForm" type="submit">Submit</button>
         </div>
-        <div class="form-group">
-          <label for="difficulty">Difficulty:</label><br>
-          <select formControlName="difficulty" name="difficulty" id="difficulty">
-            <option [value]="questionDifficulty" *ngFor="let questionDifficulty of difficulties">{{questionDifficulty}}</option>
-		  </select>
-          <span *ngIf="!questionForm.get('difficulty').valid && questionForm.get('difficulty').touched" class="warning">Please select difficulty!</span>		  
-        </div>
-        <div class="form-group">
-          <label for="type">Type:</label><br>
-          <select formControlName="type" name="questionType " (input)="onTypeChange($event)" id="questionType">
-            <option [value]="type" *ngFor="let type of questionTypes; let i=index;" class="option">{{type}}</option>
-		  </select>
-          <span *ngIf="!questionForm.get('type').valid && questionForm.get('type').touched" class="warning">Please select a question type!</span>		  
-        </div>
-      </div>
-      <div class="question-type question-column">
-        <ng-template #dynamic></ng-template>
-		<button class="submit-btn" [disabled]="!questionForm.valid && questionForm" type="submit">Submit</button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>

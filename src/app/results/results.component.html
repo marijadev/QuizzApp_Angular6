@@ -1,5 +1,34 @@
 <div class="container">
 
+  <div *ngIf="listOfTestsWithMultipleQuestions.length">
+    <h3 *ngIf="listOfTestsWithMultipleQuestions.length" class="invert">Please validate the pending test questions:</h3>
+    <div class="main-wrapper" *ngFor="let test of listOfTestsWithMultipleQuestions; let i = index;">
+      <div class="test-holder multiple">
+        <div *ngFor="let questions of test.questions; let questionID = index;" class="test-wrapper">
+          <ul class="test">
+            <li class="question multiple">{{questions.question}}</li>
+            <li class="answer multiple" *ngFor="let answer of questions.answers"> {{answer.answer}}</li>
+          </ul>
+          <button class="btn submit" (click)="onSubmitMultipleQuestions($event, test.id, questions.id, 1)">Passed</button>
+          <button class="btn cancel" (click)="onSubmitMultipleQuestions($event, test.id, questions.id, 0)">Failed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="listOfTestsWithOneQuestion.length">
+    <div *ngFor="let test of listOfTestsWithOneQuestion; let i = index;">
+      <div class="test-holder">
+        <ul *ngFor="let questions of test.questions;" class="test">
+          <li class="question"> {{questions.question}}</li>
+          <li class="answer" *ngFor="let answer of questions.answers"> {{answer.answer}}</li>
+        </ul>
+        <button class="btn submit" (click)="onSubmitOneQuestion($event, test.id, 1)">Passed</button>
+        <button class="btn cancel" (click)="onSubmitOneQuestion($event, test.id, 0)">Failed</button>
+      </div>
+    </div>
+  </div>
+  <!-- 
   <div *ngIf="testList.length">
     <h3 *ngIf="testList.length" class="invert">Please validate the pending test questions:</h3>
     <div *ngFor="let test of testList; let i = index;" >
@@ -12,9 +41,9 @@
         <button class="btn cancel" (click)="onSubmit($event, test.id, 0)">Failed</button>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div *ngIf="!testList.length">
+  <div *ngIf="!listOfTestsWithOneQuestion.length || !listOfTestsWithMultipleQuestions.length">
     <h2>There are currently no tests for review.</h2>
   </div>
 </div>
