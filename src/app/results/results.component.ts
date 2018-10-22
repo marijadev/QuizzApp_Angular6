@@ -71,8 +71,6 @@ export class ResultsComponent implements OnInit {
 
 
 	onSubmitMultipleQuestions(e, testId: number, questionIndex: number, value: number) {
-		// console.log('test id', testId, 'question id', questionIndex, 'value', value);
-
 		for (let i = 0; i < this.fakeMultipleTestsWithFlags.length; i++) {
 			const realTest = this.listOfTestsWithMultipleQuestions[i];
 			const fakeTest = this.fakeMultipleTestsWithFlags[i];
@@ -101,10 +99,8 @@ export class ResultsComponent implements OnInit {
 				};
 			};
 			if (checkedCounter === fakeTestChecked.length) {
-				console.log('ready to post', fakeTest.test)
+				// this.http.post(API_URL.reviewQuestion, fakeTest.test).subscribe();
 			};
 		};
-		console.log('multiple',this.listOfTestsWithMultipleQuestions);
-		console.log('fake',this.fakeMultipleTestsWithFlags);
 	};
 };
