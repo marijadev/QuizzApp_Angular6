@@ -11,17 +11,11 @@ p {
 }
 
 .separator {
-  content: '';
-  position: absolute;
-  bottom: 45%;
-  left: calc(50% - 25px);
-  height: 5px;
-  width: 50px;
-  background-color: $color-orange;
+  @extend %separator-style;
 }
 
 .profile-img-wrapper {
-  max-width: 200px;
+  max-width: 250px;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -37,4 +31,9 @@ p {
 .edit-profile {
   @extend %btn-submit-style;
   width: 65%;
+
+  &:hover {
+	  @extend %btn-cancel-inverted;
+	  background-color: $color-white;
+  }
 }

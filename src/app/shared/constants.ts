@@ -29,6 +29,7 @@ export const API_URL = {
 	userStatusTests: '/server/user/status',
 	unreviewedTests: '/server/admin/unreviewed',
 	reviewQuestion: '/server/admin/review', // post reviewed text question 
+	singleUserTests: '/server/admin/usersTests',
 
 	allTests: '/server/admin/allTests',
 	allTestsCategory: '/server/admin/allTestsCategory',

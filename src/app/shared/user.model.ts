@@ -6,6 +6,7 @@ export interface UserModel {
 	surname?: string;
 	phone?: number;
 	admin?: number;
+	photo?: string;
 }
 
 export class User implements UserModel {
@@ -17,5 +18,6 @@ export class User implements UserModel {
 		public surname: string,
 		public phone?: number,
 		public admin?: number,
+		public photo?: string
 	) { }
 }

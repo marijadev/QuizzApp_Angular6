@@ -7,4 +7,71 @@
   padding: 0 100px;
 }
 
+.hero-content {
+  position: relative;
+}
 
+.filter-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.headline-holder {
+  position: relative;
+  padding: 50px;
+}
+
+
+.filter-main-h {
+  @extend %headline-h3;
+  text-align: center;
+}
+
+.separator {
+  @extend %separator-style;
+  bottom: 0;
+}
+
+.main-users-holder {
+  margin-top: 20px;
+}
+
+.filter-h {
+  @extend %headline-h5;
+  position: relative;
+  cursor: pointer;
+}
+
+svg {
+  position: absolute;
+  top: 5px;
+  right: -15px;
+  fill: $color-black;
+  height: 10px;
+  transform: translateX(0);
+  transition: all .3s ease;
+}
+
+.filter-menu {
+	list-style-type: none;
+}
+
+.filter-menu-item {
+	padding: 10px;
+	cursor: pointer;
+	border-bottom: 1px solid transparent; 
+	transition: all .3s ease;
+
+	&:hover {
+		border-bottom: 1px solid rgba(0,0,0,0.5);
+		color: $color-orange;
+	}
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.showed {
+  opacity: 1;
+}

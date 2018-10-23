@@ -18,7 +18,7 @@
       <input type="password" name="password" placeholder="Enter your password..." id="password" ngModel required />
     </div>
     <div>
-      <button class="btn" type="submit" [disabled]="!editProfileForm.valid && editProfileForm.touched">Submit</button>
+      <button class="btn submit" type="submit" [disabled]="!editProfileForm.valid && editProfileForm.touched">Submit</button>
     </div>
   </form>
   <button class="btn cancel" type="button" (click)="onCancel()">Cancel</button>

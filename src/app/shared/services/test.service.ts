@@ -11,7 +11,7 @@ export class TestService implements OnInit, OnDestroy {
 	testTypeSelected: boolean = false;
 	testTypeSelectedChange: Subject<boolean> = new Subject<boolean>();
 	private questionsArr: object[];
-	private testRequestObj: {
+	testRequestObj: {
 		url,
 		testObj
 	}

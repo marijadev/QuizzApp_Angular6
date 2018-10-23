@@ -161,3 +161,24 @@
     color: $color-white;
   }
 }
+
+%headline-h6 {
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: $color-black;
+
+  &.invert {
+    color: $color-white;
+  }
+}
+
+%separator-style {
+  content: '';
+  position: absolute;
+  bottom: 45%;
+  left: calc(50% - 25px);
+  height: 5px;
+  width: 50px;
+  background-color: $color-orange;
+}

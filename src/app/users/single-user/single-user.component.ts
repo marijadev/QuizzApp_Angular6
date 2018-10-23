@@ -51,82 +51,82 @@ export class SingleUserComponent implements OnInit {
 		this.difficulties = this.qService.questionDifficulty;
 	};
 
-	onUserChosen(id: number) {
-		this.optionsShowed = !this.optionsShowed;
-		this.testTypeObj.userId = id;
-		this.statusTypeObj.userId = id;
-	};
+	// onUserChosen(id: number) {
+	// 	this.optionsShowed = !this.optionsShowed;
+	// 	this.testTypeObj.userId = id;
+	// 	this.statusTypeObj.userId = id;
+	// };
 
-	onElementHover(e, type: string) {
-		if (type === 'difficulty') {
-			this.dropdownsShowed.difficultyDropdown = true;
-		} else if (type === 'category') {
-			this.dropdownsShowed.categoryDropdown = true;
-		} else if (type === 'status') {
-			this.dropdownsShowed.statusDropdown = true;
-		};
-	};
+	// onElementHover(e, type: string) {
+	// 	if (type === 'difficulty') {
+	// 		this.dropdownsShowed.difficultyDropdown = true;
+	// 	} else if (type === 'category') {
+	// 		this.dropdownsShowed.categoryDropdown = true;
+	// 	} else if (type === 'status') {
+	// 		this.dropdownsShowed.statusDropdown = true;
+	// 	};
+	// };
 
-	onElementUnhover(e, type: string) {
-		if (type === 'difficulty') {
-			this.dropdownsShowed.difficultyDropdown = false;
-		} else if (type === 'category') {
-			this.dropdownsShowed.categoryDropdown = false;
-		} else if (type === 'status') {
-			this.dropdownsShowed.statusDropdown = false;
-		};
-	};
+	// onElementUnhover(e, type: string) {
+	// 	if (type === 'difficulty') {
+	// 		this.dropdownsShowed.difficultyDropdown = false;
+	// 	} else if (type === 'category') {
+	// 		this.dropdownsShowed.categoryDropdown = false;
+	// 	} else if (type === 'status') {
+	// 		this.dropdownsShowed.statusDropdown = false;
+	// 	};
+	// };
 
-	fillUserTests(data) {
-		this.userTests = data;
-		this.listOfTests = [];
-		console.log('list of tests', this.listOfTests)
-		this.userTests.map(test => {
-			let date = formatDate(test.date);
-			const id = test.id;
-			this.listOfTests.push({ date, id })
-		})
-		this.showHeadline = true;
-	}
+	// fillUserTests(data) {
+	// 	this.userTests = data;
+	// 	this.listOfTests = [];
+	// 	console.log('list of tests', this.listOfTests)
+	// 	this.userTests.map(test => {
+	// 		let date = formatDate(test.date);
+	// 		const id = test.id;
+	// 		this.listOfTests.push({ date, id })
+	// 	})
+	// 	this.showHeadline = true;
+	// }
 
-	onItemSelected(e, type: string, item: string) {
-		this.optionsShowed = !this.optionsShowed;
-		this.singleTestData.questions = [];
-		if (type === 'status') {
-			this.filteredBy = 'Status';
-			this.statusTypeObj.status = item === 'Passed' ? 1 : 0;
-			this.http.post(API_URL.userTestsStatus, this.statusTypeObj).subscribe(data => {
-				this.fillUserTests(data);
-			});
-		} else if (type === 'difficulty') {
-			this.filteredBy = 'Difficulty'
-			this.testTypeObj.type = item;
-			this.http.post(API_URL.userTestsDiff, this.testTypeObj).subscribe(data => {
-				this.fillUserTests(data);
-			});
-		} else if (type === 'category') {
-			this.filteredBy = 'Category';
-			this.testTypeObj.type = item;
-			this.http.post(API_URL.userTestsCat, this.testTypeObj).subscribe(data => {
-				this.fillUserTests(data);
-			})
-		}
-	}
+	// onItemSelected(e, type: string, item: string) {
+	// 	this.optionsShowed = !this.optionsShowed;
+	// 	this.singleTestData.questions = [];
+	// 	if (type === 'status') {
+	// 		this.filteredBy = 'Status';
+	// 		this.statusTypeObj.status = item === 'Passed' ? 1 : 0;
+	// 		this.http.post(API_URL.userTestsStatus, this.statusTypeObj).subscribe(data => {
+	// 			this.fillUserTests(data);
+	// 		});
+	// 	} else if (type === 'difficulty') {
+	// 		this.filteredBy = 'Difficulty'
+	// 		this.testTypeObj.type = item;
+	// 		this.http.post(API_URL.userTestsDiff, this.testTypeObj).subscribe(data => {
+	// 			this.fillUserTests(data);
+	// 		});
+	// 	} else if (type === 'category') {
+	// 		this.filteredBy = 'Category';
+	// 		this.testTypeObj.type = item;
+	// 		this.http.post(API_URL.userTestsCat, this.testTypeObj).subscribe(data => {
+	// 			this.fillUserTests(data);
+	// 		})
+	// 	}
+	// }
 
-	onSingleTestSelected(event, test) {
-		const singleTestID = {
-			testId: test.id
-		};
-		this.http.post(API_URL.demoTest, singleTestID).subscribe(data => {
-			console.log('single test', data)
-			for (let prop in data) {
-				this.singleTestData.date = data['date'];
-				this.singleTestData.id = data['id'];
-				this.singleTestData.questions = data['questions'];
-				this.singleTestData.result = data['result'];
-				this.singleTestData.status = data['status'];
-				this.singleTestData.user = data['user'];
-			}
-		});
-	}
+	// onSingleTestSelected(event, test) {
+	// 	const singleTestID = {
+	// 		testId: test.id
+	// 	};
+	// 	this.http.post(API_URL.demoTest, singleTestID).subscribe(data => {
+	// 		console.log('single test', data)
+	// 		for (let prop in data) {
+	// 			this.singleTestData.date = data['date'];
+	// 			this.singleTestData.id = data['id'];
+	// 			this.singleTestData.questions = data['questions'];
+	// 			this.singleTestData.result = data['result'];
+	// 			this.singleTestData.status = data['status'];
+	// 			this.singleTestData.user = data['user'];
+	// 		}
+	// 	});
+	// }
 };
