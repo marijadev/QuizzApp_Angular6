@@ -1,7 +1,7 @@
 <div class="container">
   <div class="hero-content" *ngIf="!userChosen">
     <div class='headline-holder'>
-      <h3 class="filter-main-h invert">Filter users by:</h3>
+      <h3 class="filter-main-h invert">Filter users by: {{filteredBy}}</h3>
       <div class="separator-holder">
         <span class="separator"></span>
       </div>
@@ -10,8 +10,9 @@
       <div class="filter-holder" (click)="getAllUsers($event)">
         <h5 class="filter-h">Users</h5>
       </div>
+
       <div class="filter-holder">
-        <div class="filter-menu-holder"  (mouseover)="onElementHover($event, 'difficulty')" (mouseleave)="onElementUnhover($event, 'difficulty')">
+        <div class="filter-menu-holder" (mouseover)="onElementHover($event, 'difficulty')" (mouseleave)="onElementUnhover($event, 'difficulty')">
           <h5 class="filter-h">Difficulty
             <svg viewBox="0 0 492.004 492.004">
               <g>
@@ -23,39 +24,45 @@
             </svg>
           </h5>
           <ul class="filter-menu difficulty" [ngClass]="{'showed': dropdownsShowed.difficultyDropdown, 'hidden': !dropdownsShowed.difficultyDropdown}">
-            <li class="filter-menu-item" *ngFor="let difficulty of difficulties">{{difficulty}}</li>
+            <li class="filter-menu-item" *ngFor="let difficulty of difficulties" (click)="onItemSelected($event, 'difficulty', difficulty)">{{difficulty}}</li>
           </ul>
         </div>
       </div>
-      <div class="filter-holder"  (mouseover)="onElementHover($event, 'category')" (mouseleave)="onElementUnhover($event, 'category')">
-        <h5 class="filter-h">Category
-          <svg viewBox="0 0 492.004 492.004">
-            <g>
-              <path d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12
+
+      <div class="filter-holder">
+        <div class="filter-menu-holder" (mouseover)="onElementHover($event, 'category')" (mouseleave)="onElementUnhover($event, 'category')">
+          <h5 class="filter-h">Category
+            <svg viewBox="0 0 492.004 492.004">
+              <g>
+                <path d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12
 													c-10.492,10.504-10.492,27.576,0,38.064L293.398,245.9l-184.06,184.06c-5.064,5.068-7.86,11.824-7.86,19.028
 													c0,7.212,2.796,13.968,7.86,19.04l16.124,16.116c5.068,5.068,11.824,7.86,19.032,7.86s13.968-2.792,19.032-7.86L382.678,265
 													c5.076-5.084,7.864-11.872,7.848-19.088C390.542,238.668,387.754,231.884,382.678,226.804z" />
-            </g>
-          </svg>
-        </h5>
-        <ul class="filter-menu category" [ngClass]="{'showed': dropdownsShowed.categoryDropdown, 'hidden': !dropdownsShowed.categoryDropdown}">
-          <li class="filter-menu-item" *ngFor="let category of categories">{{category}}</li>
-        </ul>
+              </g>
+            </svg>
+          </h5>
+          <ul class="filter-menu category" [ngClass]="{'showed': dropdownsShowed.categoryDropdown, 'hidden': !dropdownsShowed.categoryDropdown}">
+            <li class="filter-menu-item" *ngFor="let category of categories" (click)="onItemSelected($event, 'category', category)">{{category}}</li>
+          </ul>
+        </div>
       </div>
-      <div class="filter-holder"  (mouseover)="onElementHover($event, 'status')" (mouseleave)="onElementUnhover($event, 'status')">
-        <h5 class="filter-h">Status
-          <svg viewBox="0 0 492.004 492.004">
-            <g>
-              <path d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12
+
+      <div class="filter-holder">
+        <div class="filter-menu-holder" (mouseover)="onElementHover($event, 'status')" (mouseleave)="onElementUnhover($event, 'status')">
+          <h5 class="filter-h">Status
+            <svg viewBox="0 0 492.004 492.004">
+              <g>
+                <path d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12
 													c-10.492,10.504-10.492,27.576,0,38.064L293.398,245.9l-184.06,184.06c-5.064,5.068-7.86,11.824-7.86,19.028
 													c0,7.212,2.796,13.968,7.86,19.04l16.124,16.116c5.068,5.068,11.824,7.86,19.032,7.86s13.968-2.792,19.032-7.86L382.678,265
 													c5.076-5.084,7.864-11.872,7.848-19.088C390.542,238.668,387.754,231.884,382.678,226.804z" />
-            </g>
-          </svg>
-        </h5>
-        <ul class="filter-menu status" [ngClass]="{'showed': dropdownsShowed.statusDropdown, 'hidden': !dropdownsShowed.statusDropdown}">
-          <li class="filter-menu-item" *ngFor="let status of statuses">{{status}}</li>
-        </ul>
+              </g>
+            </svg>
+          </h5>
+          <ul class="filter-menu status" [ngClass]="{'showed': dropdownsShowed.statusDropdown, 'hidden': !dropdownsShowed.statusDropdown}">
+            <li class="filter-menu-item" *ngFor="let status of statuses" (click)="onItemSelected($event, 'category', status)">{{status}}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

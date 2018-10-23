@@ -20,6 +20,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 	categories;
 	difficulties;
 	statuses;
+	filteredBy;
 	dropdownsShowed = {
 		difficultyDropdown: false,
 		categoryDropdown: false,
@@ -53,6 +54,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 				res.map(user => {
 					this.currentUsers.push(new User(user.id, user.username, user.password, user.name, user.surname, user.phone, user.admin))
 				});
+				this.filteredBy = 'USERS';
 			}
 		);
 	};
@@ -60,12 +62,32 @@ export class UsersComponent implements OnInit, OnDestroy {
 	getAllUsers(e) {
 		this.allUsers = [];
 		this.displayAllUsers();
-		console.log('called')
 	}
 
 	onUserSelect(user) {
 		this.userChosen = true;
 		this.selectedUser = user;
+	}
+
+	onItemSelected(e, type: string, item: string) {
+		console.log('type', type, 'item', item)
+		if (type === 'status') {
+			const statusName = item === 'Passed' ? 'Passed' : 'Failed';
+			this.filteredBy = `Status / ${statusName}`;
+			this.statusTypeObj.status = item === 'Passed' ? 1 : 0;
+			this.http.post(API_URL.userTestsStatus, this.statusTypeObj).subscribe(data => {
+			});
+		} else if (type === 'difficulty') {
+			this.filteredBy = `Difficulty / ${item}`;
+			this.testTypeObj.type = item;
+			this.http.post(API_URL.userTestsDiff, this.testTypeObj).subscribe(data => {
+			});
+		} else if (type === 'category') {
+			this.filteredBy = `Category / ${item}`;
+			this.testTypeObj.type = item;
+			this.http.post(API_URL.userTestsCat, this.testTypeObj).subscribe(data => {
+			})
+		}
 	}
 
 	onElementHover(e, type: string) {
