@@ -27,10 +27,4 @@ input {
     @extend %btn-cancel;
   }
 
-  &.submit {
-	&:hover {
-		@extend %btn-cancel-inverted;
-		background-color: $color-white;
-	}
-  }
 }

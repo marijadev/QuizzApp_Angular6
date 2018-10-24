@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 	private selectedUser;
 	private selectedView = 'users';
 	private arrLength: number;
-
+p;
 	private categories;
 	private difficulties;
 	private statuses;
@@ -47,6 +47,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 		page: 0
 	}
 	objectActive;
+	flag: string;
 
 	constructor(private http: HttpClient, private userService: UserService, private qService: QuestionService) { };
 
@@ -60,9 +61,11 @@ export class UsersComponent implements OnInit, OnDestroy {
 	};
 
 	displayAllUsers() {
+		this.objectActive = this.usersObj;
 		this.userService.getAll(this.usersObj).subscribe(res => {
 			const users = res.users;
 			this.arrLength = res.length;
+
 			users.map(user => {
 				this.currentUsers.push(new User(user.id, user.username, user.password, user.name, user.surname, user.phone, user.admin, user.photo))
 			});
@@ -100,6 +103,8 @@ export class UsersComponent implements OnInit, OnDestroy {
 		if (type === 'status') {
 			const statusName = item === 'Passed' ? 'Passed' : 'Failed';
 			this.filteredBy = `Status / ${statusName}`;
+			this.statusTypeObj.page = 0;
+			
 			if (item === 'Passed') {
 				this.statusTypeObj.status = 1;
 			} else if (item === 'Failed') {
@@ -114,6 +119,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 			this.filteredBy = `Difficulty / ${item}`;
 			this.testTypeObj.type = item;
 			this.objectActive = this.testTypeObj;
+			this.flag = 'difficulty' ;
 
 			this.userService.getAllTests(API_URL.allTestsDifficulty, this.testTypeObj).subscribe(data => {
 				this.displayAllTests(data);
@@ -122,6 +128,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 			this.filteredBy = `Category / ${item}`;
 			this.testTypeObj.type = item;
 			this.objectActive = this.testTypeObj;
+			this.flag = 'category';
 
 			this.userService.getAllTests(API_URL.allTestsCategory, this.testTypeObj).subscribe(data => {
 				this.displayAllTests(data);
@@ -151,7 +158,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 		};
 	};
 
-	onPageChange(e, page: number) {
+	onTestPageChange(e, page: number) {
 		if (this.objectActive.status) {
 			this.statusTypeObj.page = page;
 
@@ -161,10 +168,15 @@ export class UsersComponent implements OnInit, OnDestroy {
 		} else if (this.objectActive.type) {
 			this.testTypeObj.page = page;
 
-			this.userService.getAllTests(API_URL.allTestsDifficulty, this.testTypeObj).subscribe(data => {
-				this.displayAllTests(data);
-			});
-			console.log(this.currentTests)
+			if(this.flag === 'difficulty') {
+				this.userService.getAllTests(API_URL.allTestsDifficulty, this.testTypeObj).subscribe(data => {
+					this.displayAllTests(data);
+				});
+			} else if(this.flag === 'category') {
+				this.userService.getAllTests(API_URL.allTestsCategory, this.testTypeObj).subscribe(data => {
+					this.displayAllTests(data);
+				});
+			}
 		};
 	};
 
