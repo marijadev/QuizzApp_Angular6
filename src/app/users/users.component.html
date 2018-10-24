@@ -81,7 +81,7 @@
 
     <div *ngIf="selectedView === 'tests'">
       <ol class="main-view">
-        <li *ngFor="let test of currentTests | paginate: { itemsPerPage: 1, currentPage: p, totalItems: arrLength }"
+        <li *ngFor="let test of currentTests | paginate: { itemsPerPage: 4, currentPage: p, totalItems: arrLength }"
           class="main-view-item test">{{test.date}}
           - <span class="orange">{{test.result}}</span> points</li>
       </ol>

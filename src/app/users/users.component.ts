@@ -20,13 +20,13 @@ export class UsersComponent implements OnInit, OnDestroy {
 	private selectedUser;
 	private selectedView = 'users';
 	private arrLength: number;
-	
+
 	private categories;
 	private difficulties;
 	private statuses;
-	
+
 	private filteredBy: string;
-	
+
 	private dropdownsShowed = {
 		difficultyDropdown: false,
 		categoryDropdown: false,
@@ -46,14 +46,15 @@ export class UsersComponent implements OnInit, OnDestroy {
 	usersObj = {
 		page: 0
 	}
-	
+	objectActive;
+
 	constructor(private http: HttpClient, private userService: UserService, private qService: QuestionService) { };
 
 	ngOnInit() {
 		this.http.get(API_URL.userCategories).subscribe(data => this.categories = data);
 		this.difficulties = this.qService.questionDifficulty;
 		this.statuses = status;
-		
+
 		this.currentUsers = [];
 		this.displayAllUsers();
 	};
@@ -104,12 +105,15 @@ export class UsersComponent implements OnInit, OnDestroy {
 			} else if (item === 'Failed') {
 				this.statusTypeObj.status = 0;
 			}
+			this.objectActive = this.statusTypeObj;
+
 			this.userService.getAllTests(API_URL.allTestsStatus, this.statusTypeObj).subscribe(data => {
 				this.displayAllTests(data);
 			});
 		} else if (type === 'difficulty') {
 			this.filteredBy = `Difficulty / ${item}`;
 			this.testTypeObj.type = item;
+			this.objectActive = this.testTypeObj;
 
 			this.userService.getAllTests(API_URL.allTestsDifficulty, this.testTypeObj).subscribe(data => {
 				this.displayAllTests(data);
@@ -117,6 +121,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 		} else if (type === 'category') {
 			this.filteredBy = `Category / ${item}`;
 			this.testTypeObj.type = item;
+			this.objectActive = this.testTypeObj;
 
 			this.userService.getAllTests(API_URL.allTestsCategory, this.testTypeObj).subscribe(data => {
 				this.displayAllTests(data);
@@ -147,8 +152,21 @@ export class UsersComponent implements OnInit, OnDestroy {
 	};
 
 	onPageChange(e, page: number) {
-		console.log(page)
-	}
+		if (this.objectActive.status) {
+			this.statusTypeObj.page = page;
+
+			this.userService.getAllTests(API_URL.allTestsStatus, this.statusTypeObj).subscribe(data => {
+				this.displayAllTests(data);
+			});
+		} else if (this.objectActive.type) {
+			this.testTypeObj.page = page;
+
+			this.userService.getAllTests(API_URL.allTestsDifficulty, this.testTypeObj).subscribe(data => {
+				this.displayAllTests(data);
+			});
+			console.log(this.currentTests)
+		};
+	};
 
 	ngOnDestroy() {
 	}
