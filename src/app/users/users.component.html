@@ -60,7 +60,7 @@
             </svg>
           </h5>
           <ul class="filter-menu status" [ngClass]="{'showed': dropdownsShowed.statusDropdown, 'hidden': !dropdownsShowed.statusDropdown}">
-            <li class="filter-menu-item" *ngFor="let status of statuses" (click)="onItemSelected($event, 'category', status)">{{status}}</li>
+            <li class="filter-menu-item" *ngFor="let status of statuses" (click)="onItemSelected($event, 'status', status)">{{status}}</li>
           </ul>
         </div>
       </div>
@@ -70,11 +70,21 @@
   <div class="main-users-holder">
     <div *ngIf="userChosen">
       <app-single-user [user]="selectedUser"></app-single-user>
+	</div>
+	
+    <div *ngIf="selectedView === 'users'">
+      <ul *ngIf="!userChosen">
+        <li *ngFor="let user of currentUsers" (click)="onUserSelect(user)">
+          <a> {{user.name}} {{user.surname}}</a>
+        </li>
+      </ul>
     </div>
-    <ul *ngIf="!userChosen">
-      <li *ngFor="let user of currentUsers" (click)="onUserSelect(user)">
-        <a> {{user.name}} {{user.surname}}</a>
-      </li>
-    </ul>
+
+    <div *ngIf="selectedView === 'tests'">
+      <ul>
+		  <li *ngFor="let test of currentTests">{{test.date}}</li>
+	  </ul>
+    </div>
+
   </div>
 </div>

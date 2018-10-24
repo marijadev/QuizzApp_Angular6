@@ -32,8 +32,10 @@ export const API_URL = {
 	singleUserTests: '/server/admin/usersTests',
 
 	allTests: '/server/admin/allTests',
+	findUsers: '/server/admin/findUsers',
 	allTestsCategory: '/server/admin/allTestsCategory',
-	allTestsDifficulty: '/server/admin/allTestsDifficulty'
+	allTestsDifficulty: '/server/admin/allTestsDifficulty',
+	allTestsStatus: '/server/admin/allTestsStatus'
 };
 
 export const categories = ['JavaScript', 'Java'];

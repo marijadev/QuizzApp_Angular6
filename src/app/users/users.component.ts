@@ -3,7 +3,8 @@ import { UserService } from '../shared/services/users.service';
 import { User } from '../shared/user.model';
 import { QuestionService } from '../questions/question.service';
 import { HttpClient } from '@angular/common/http';
-import { API_URL, status } from '../shared/constants';
+import { API_URL, status, formatDate } from '../shared/constants';
+import { SingleTest } from '../shared/single-test.model';
 
 @Component({
 	selector: 'app-users',
@@ -12,31 +13,39 @@ import { API_URL, status } from '../shared/constants';
 })
 
 export class UsersComponent implements OnInit, OnDestroy {
-	allUsers;
 	@Output() currentUsers = [];
+	currentTests = [];
+	allUsers;
 	subscription;
 	userChosen = false;
 	selectedUser;
+	selectedView;
+
 	categories;
 	difficulties;
 	statuses;
+
 	filteredBy;
+
 	dropdownsShowed = {
 		difficultyDropdown: false,
 		categoryDropdown: false,
 		statusDropdown: false,
 	};
 	testTypeObj = {
-		type: '',
-		userId: 0
+		page: 0,
+		type: ''
 	};
 	statusTypeObj = {
 		status: 0,
-		userId: 0
+		page: 0
 	};
 	singleUsersObj = {
 		id: 0
 	};
+	usersObj = {
+		page: 0
+	}
 
 	constructor(private http: HttpClient, private userService: UserService, private qService: QuestionService) { };
 
@@ -49,14 +58,22 @@ export class UsersComponent implements OnInit, OnDestroy {
 	};
 
 	displayAllUsers() {
-		this.allUsers = this.userService.getAll().subscribe(
-			res => {
-				res.map(user => {
-					this.currentUsers.push(new User(user.id, user.username, user.password, user.name, user.surname, user.phone, user.admin))
-				});
-				this.filteredBy = 'USERS';
-			}
-		);
+		this.allUsers = [];
+		this.selectedView = 'users';
+
+		this.allUsers = this.userService.getAll(this.usersObj).subscribe(res => {
+			res.map(user => {
+				this.currentUsers.push(new User(user.id, user.username, user.password, user.name, user.surname, user.phone, user.admin))
+			});
+			this.filteredBy = 'USERS';
+		});
+	};
+
+	displayAllTests(result) {
+		this.currentTests = [];
+		result.map(test => {
+			this.currentTests.push(new SingleTest(test.id, formatDate(test.date), test.questions, test.result, test.status, test.user));
+		});
 	};
 
 	getAllUsers(e) {
@@ -64,32 +81,46 @@ export class UsersComponent implements OnInit, OnDestroy {
 		this.displayAllUsers();
 	}
 
+	// on user select
 	onUserSelect(user) {
 		this.userChosen = true;
 		this.selectedUser = user;
 	}
 
+	// do something on filtered by:
 	onItemSelected(e, type: string, item: string) {
-		console.log('type', type, 'item', item)
+		this.selectedView = 'tests';
+
 		if (type === 'status') {
 			const statusName = item === 'Passed' ? 'Passed' : 'Failed';
 			this.filteredBy = `Status / ${statusName}`;
-			this.statusTypeObj.status = item === 'Passed' ? 1 : 0;
-			this.http.post(API_URL.userTestsStatus, this.statusTypeObj).subscribe(data => {
+			if (item === 'Passed') {
+				this.statusTypeObj.status = 1;
+			} else if (item === 'Failed') {
+				this.statusTypeObj.status = 0;
+			}
+			this.userService.getAllTests(API_URL.allTestsStatus, this.statusTypeObj).subscribe(data => {
+				this.displayAllTests(data);
+				this.filteredBy = 'testS';
 			});
 		} else if (type === 'difficulty') {
 			this.filteredBy = `Difficulty / ${item}`;
 			this.testTypeObj.type = item;
-			this.http.post(API_URL.userTestsDiff, this.testTypeObj).subscribe(data => {
+
+			this.userService.getAllTests(API_URL.allTestsDifficulty, this.testTypeObj).subscribe(data => {
+				this.displayAllTests(data);
 			});
 		} else if (type === 'category') {
 			this.filteredBy = `Category / ${item}`;
 			this.testTypeObj.type = item;
-			this.http.post(API_URL.userTestsCat, this.testTypeObj).subscribe(data => {
-			})
-		}
-	}
 
+			this.userService.getAllTests(API_URL.allTestsCategory, this.testTypeObj).subscribe(data => {
+				this.displayAllTests(data);
+			});
+		};
+	};
+
+	// show dropdown on mouseenter
 	onElementHover(e, type: string) {
 		if (type === 'difficulty') {
 			this.dropdownsShowed.difficultyDropdown = true;
@@ -100,6 +131,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 		};
 	};
 
+	// hide dropdown on mouseleave
 	onElementUnhover(e, type: string) {
 		if (type === 'difficulty') {
 			this.dropdownsShowed.difficultyDropdown = false;
@@ -110,10 +142,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 		};
 	};
 
-
-
 	ngOnDestroy() {
-		
 	}
 };
 
