@@ -14,20 +14,18 @@ import { SingleTest } from '../shared/single-test.model';
 
 export class UsersComponent implements OnInit, OnDestroy {
 	@Output() currentUsers = [];
-	currentTests = [];
-	allUsers;
-	subscription;
-	userChosen = false;
-	selectedUser;
-	selectedView = 'users';
-
-	categories;
-	difficulties;
-	statuses;
-
-	filteredBy;
-
-	dropdownsShowed = {
+	private currentTests = [];
+	private userChosen = false;
+	private selectedUser;
+	private selectedView = 'users';
+	
+	private categories;
+	private difficulties;
+	private statuses;
+	
+	private filteredBy: string;
+	
+	private dropdownsShowed = {
 		difficultyDropdown: false,
 		categoryDropdown: false,
 		statusDropdown: false,
@@ -46,7 +44,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 	usersObj = {
 		page: 0
 	}
-
+	
 	constructor(private http: HttpClient, private userService: UserService, private qService: QuestionService) { };
 
 	ngOnInit() {
@@ -59,11 +57,9 @@ export class UsersComponent implements OnInit, OnDestroy {
 	};
 
 	displayAllUsers() {
-		this.allUsers = [];
-
-		this.allUsers = this.userService.getAll(this.usersObj).subscribe(res => {
+		this.userService.getAll(this.usersObj).subscribe(res => {
 			res.map(user => {
-				this.currentUsers.push(new User(user.id, user.username, user.password, user.name, user.surname, user.phone, user.admin))
+				this.currentUsers.push(new User(user.id, user.username, user.password, user.name, user.surname, user.phone, user.admin, user.photo))
 			});
 			this.filteredBy = 'USERS';
 		});
@@ -104,7 +100,6 @@ export class UsersComponent implements OnInit, OnDestroy {
 			}
 			this.userService.getAllTests(API_URL.allTestsStatus, this.statusTypeObj).subscribe(data => {
 				this.displayAllTests(data);
-				this.filteredBy = 'testS';
 			});
 		} else if (type === 'difficulty') {
 			this.filteredBy = `Difficulty / ${item}`;

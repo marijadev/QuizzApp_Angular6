@@ -1,7 +1,7 @@
 <div class="container">
   <div class="hero-content" *ngIf="!userChosen">
     <div class='headline-holder'>
-      <h3 class="filter-main-h invert">Filter users by: {{filteredBy}}</h3>
+      <h3 class="filter-main-h invert">Filter by: <span class="orange">{{filteredBy}}</span></h3>
       <div class="separator-holder">
         <span class="separator"></span>
       </div>
@@ -11,8 +11,8 @@
         <h5 class="filter-h">Users</h5>
       </div>
 
-      <div class="filter-holder">
-        <div class="filter-menu-holder" (mouseover)="onElementHover($event, 'difficulty')" (mouseleave)="onElementUnhover($event, 'difficulty')">
+      <div class="filter-holder" (mouseover)="onElementHover($event, 'difficulty')" (mouseleave)="onElementUnhover($event, 'difficulty')">
+        <div class="filter-menu-holder">
           <h5 class="filter-h">Difficulty
             <svg viewBox="0 0 492.004 492.004">
               <g>
@@ -29,8 +29,8 @@
         </div>
       </div>
 
-      <div class="filter-holder">
-        <div class="filter-menu-holder" (mouseover)="onElementHover($event, 'category')" (mouseleave)="onElementUnhover($event, 'category')">
+      <div class="filter-holder" (mouseover)="onElementHover($event, 'category')" (mouseleave)="onElementUnhover($event, 'category')">
+        <div class="filter-menu-holder">
           <h5 class="filter-h">Category
             <svg viewBox="0 0 492.004 492.004">
               <g>
@@ -47,8 +47,8 @@
         </div>
       </div>
 
-      <div class="filter-holder">
-        <div class="filter-menu-holder" (mouseover)="onElementHover($event, 'status')" (mouseleave)="onElementUnhover($event, 'status')">
+      <div class="filter-holder" (mouseover)="onElementHover($event, 'status')" (mouseleave)="onElementUnhover($event, 'status')">
+        <div class="filter-menu-holder">
           <h5 class="filter-h">Status
             <svg viewBox="0 0 492.004 492.004">
               <g>
@@ -67,23 +67,21 @@
     </div>
   </div>
 
-  <div class="main-users-holder">
+  <div class="main-view-holder">
     <div *ngIf="userChosen">
       <app-single-user [user]="selectedUser"></app-single-user>
 	</div>
 	
     <div *ngIf="selectedView === 'users'">
-      <ul *ngIf="!userChosen">
-        <li *ngFor="let user of currentUsers" (click)="onUserSelect(user)">
-          <a> {{user.name}} {{user.surname}}</a>
-        </li>
-      </ul>
+      <ol *ngIf="!userChosen" class="main-view">
+        <li *ngFor="let user of currentUsers" (click)="onUserSelect(user)" class="main-view-item">{{user.name}} {{user.surname}}</li>
+      </ol>
     </div>
 
     <div *ngIf="selectedView === 'tests'">
-      <ul>
-		  <li *ngFor="let test of currentTests">{{test.date}}</li>
-	  </ul>
+      <ol class="main-view">
+		  <li *ngFor="let test of currentTests" class="main-view-item test">{{test.date}} - <span class="orange">{{test.result}}</span> points</li>
+	  </ol>
     </div>
 
   </div>
