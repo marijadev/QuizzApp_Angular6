@@ -5,6 +5,7 @@ import { QuestionService } from '../questions/question.service';
 import { HttpClient } from '@angular/common/http';
 import { API_URL, status, formatDate } from '../shared/constants';
 import { SingleTest } from '../shared/single-test.model';
+import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
 	selector: 'app-users',
@@ -18,6 +19,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 	private userChosen = false;
 	private selectedUser;
 	private selectedView = 'users';
+	private arrLength: number;
 	
 	private categories;
 	private difficulties;
@@ -58,7 +60,9 @@ export class UsersComponent implements OnInit, OnDestroy {
 
 	displayAllUsers() {
 		this.userService.getAll(this.usersObj).subscribe(res => {
-			res.map(user => {
+			const users = res.users;
+			this.arrLength = res.length;
+			users.map(user => {
 				this.currentUsers.push(new User(user.id, user.username, user.password, user.name, user.surname, user.phone, user.admin, user.photo))
 			});
 			this.filteredBy = 'USERS';
@@ -67,7 +71,9 @@ export class UsersComponent implements OnInit, OnDestroy {
 
 	displayAllTests(result) {
 		this.currentTests = [];
-		result.map(test => {
+		this.arrLength = result.length;
+		const tests = result.tests;
+		tests.map(test => {
 			this.currentTests.push(new SingleTest(test.id, formatDate(test.date), test.questions, test.result, test.status, test.user));
 		});
 	};
@@ -139,6 +145,10 @@ export class UsersComponent implements OnInit, OnDestroy {
 			this.dropdownsShowed.statusDropdown = false;
 		};
 	};
+
+	onPageChange(e, page: number) {
+		console.log(page)
+	}
 
 	ngOnDestroy() {
 	}

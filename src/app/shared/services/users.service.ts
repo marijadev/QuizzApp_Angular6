@@ -12,7 +12,7 @@ export class UserService {
 	constructor(private http: HttpClient, private authService: AuthService) { }
 
 	getAll(usersObj) {
-		return this.http.post<User[]>(API_URL.allUsers, usersObj);
+		return this.http.post<any>(API_URL.allUsers, usersObj);
 	};
 
 	getAllTests(url, obj) {

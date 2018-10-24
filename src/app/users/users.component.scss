@@ -13,6 +13,8 @@ svg {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   min-height: 80vh;
   width: 70vw;
   padding: 0 100px;
@@ -49,12 +51,12 @@ svg {
   transition: color .2s ease;
 
   &:hover {
-	  color: $color-orange;
+    color: $color-orange;
   }
 }
 
 .filter-holder {
-	border-bottom: 1px solid rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .filter-menu-holder {
@@ -108,8 +110,8 @@ svg {
 
   .main-view-item {
     padding: 5px 0;
-	font-weight: 500;
-	font-size: 1.1rem;
+    font-weight: 500;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: color .3s ease;
 
@@ -125,4 +127,10 @@ svg {
       }
     }
   }
+}
+
+
+.pagination-holder {
+  text-align: center;
+  color: black;
 }

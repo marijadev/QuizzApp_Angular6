@@ -16,6 +16,7 @@ import { TestComponent } from './tests/test/test.component';
 import { AppRouting } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { QuestionService } from './questions/question.service';
 import { AuthService } from './auth/auth.service';
@@ -26,10 +27,10 @@ import { DataService } from './shared/services/data.service';
 import { TestService } from './shared/services/test.service';
 
 import { AuthGuard } from './shared/guards/auth.guard';
+import { UserType } from './shared/guards/user-type.guard';
 import { TrueFalseDirective } from './shared/true-false.directive';
 import { MyInterceptor } from './shared/services/my-interceptor';
 import { ErrorsHandler } from './shared/services/errors-handler';
-import { UserType } from './shared/guards/user-type.guard';
 
 @NgModule({
 	declarations: [
@@ -51,6 +52,7 @@ import { UserType } from './shared/guards/user-type.guard';
 		AppRouting,
 		HttpClientModule,
 		BrowserAnimationsModule,
+		NgxPaginationModule
 	],
 	providers: [
 		{

@@ -67,22 +67,27 @@
     </div>
   </div>
 
+  <div *ngIf="userChosen">
+    <app-single-user [user]="selectedUser"></app-single-user>
+  </div>
+
   <div class="main-view-holder">
-    <div *ngIf="userChosen">
-      <app-single-user [user]="selectedUser"></app-single-user>
-	</div>
-	
     <div *ngIf="selectedView === 'users'">
       <ol *ngIf="!userChosen" class="main-view">
-        <li *ngFor="let user of currentUsers" (click)="onUserSelect(user)" class="main-view-item">{{user.name}} {{user.surname}}</li>
+        <li *ngFor="let user of currentUsers" (click)="onUserSelect(user)" class="main-view-item">{{user.name}}
+          {{user.surname}}</li>
       </ol>
     </div>
 
     <div *ngIf="selectedView === 'tests'">
       <ol class="main-view">
-		  <li *ngFor="let test of currentTests" class="main-view-item test">{{test.date}} - <span class="orange">{{test.result}}</span> points</li>
-	  </ol>
+        <li *ngFor="let test of currentTests | paginate: { itemsPerPage: 1, currentPage: p, totalItems: arrLength }"
+          class="main-view-item test">{{test.date}}
+          - <span class="orange">{{test.result}}</span> points</li>
+      </ol>
     </div>
-
+    <div class="pagination-holder">
+      <pagination-controls (pageChange)="p = $event" (click)="onPageChange($event, p)"></pagination-controls>
+    </div>
   </div>
 </div>
