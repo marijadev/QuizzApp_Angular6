@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 	subscription;
 	userChosen = false;
 	selectedUser;
-	selectedView;
+	selectedView = 'users';
 
 	categories;
 	difficulties;
@@ -53,13 +53,13 @@ export class UsersComponent implements OnInit, OnDestroy {
 		this.http.get(API_URL.userCategories).subscribe(data => this.categories = data);
 		this.difficulties = this.qService.questionDifficulty;
 		this.statuses = status;
-
+		
+		this.currentUsers = [];
 		this.displayAllUsers();
 	};
 
 	displayAllUsers() {
 		this.allUsers = [];
-		this.selectedView = 'users';
 
 		this.allUsers = this.userService.getAll(this.usersObj).subscribe(res => {
 			res.map(user => {
@@ -77,9 +77,12 @@ export class UsersComponent implements OnInit, OnDestroy {
 	};
 
 	getAllUsers(e) {
-		this.allUsers = [];
-		this.displayAllUsers();
-	}
+		if (this.selectedView !== 'users') {
+			this.currentUsers = [];
+			this.displayAllUsers();
+			this.selectedView = 'users';
+		};
+	};
 
 	// on user select
 	onUserSelect(user) {
