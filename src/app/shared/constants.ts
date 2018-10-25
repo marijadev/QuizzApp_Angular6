@@ -45,23 +45,6 @@ export const categories = ['JavaScript', 'Java'];
 
 export const status = ['Passed', 'Failed'];
 
-export const formatDate = function (date) {
-	let newDate = new Date(date);
-	let day: any = newDate.getDate();
-	let month: any = newDate.getMonth() + 1;
-	let year: any = newDate.getFullYear();
-
-	if (day < 10) {
-		day = '0' + day;
-	}
-	if (month < 10) {
-		month = '0' + month;
-	}
-
-	const finalDate = `${day}.${month}.${year}.`;
-	return finalDate;
-}
-
 // SINGLE USER objects for filtering tests 
 export const testRequests = {
 	// object for difficulty/category
@@ -94,9 +77,25 @@ export const allUsersTestRequests = {
 	},
 	//object for getting statistics
 	testStatistics: {
-		type: 'Easy',
+		type: '',
 		percentage: 0,
 		points: 0
 	}
 }
 
+export const formatDate = function (date) {
+	let newDate = new Date(date);
+	let day: any = newDate.getDate();
+	let month: any = newDate.getMonth() + 1;
+	let year: any = newDate.getFullYear();
+
+	if (day < 10) {
+		day = '0' + day;
+	}
+	if (month < 10) {
+		month = '0' + month;
+	}
+
+	const finalDate = `${day}.${month}.${year}.`;
+	return finalDate;
+}

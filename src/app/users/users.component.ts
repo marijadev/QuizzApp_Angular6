@@ -22,9 +22,11 @@ export class UsersComponent implements OnInit, OnDestroy {
 	private categories;
 	private difficulties;
 	private statuses;
+	private statistics;
 
 	private filteredBy: string;
-
+	objectActive;
+	flag: string;
 	private dropdownsShowed = {
 		difficultyDropdown: false,
 		categoryDropdown: false,
@@ -33,8 +35,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 	usersObj = {
 		page: 0
 	}
-	objectActive;
-	flag: string;
+
 
 	constructor(private http: HttpClient, private userService: UserService, private qService: QuestionService) { };
 
@@ -91,7 +92,8 @@ export class UsersComponent implements OnInit, OnDestroy {
 			const statusName = item === 'Passed' ? 'Passed' : 'Failed';
 			this.filteredBy = `Status / ${statusName}`;
 			allUsersTestRequests.testStatusObj.page = 0;
-			
+			this.statistics = null;
+
 			if (item === 'Passed') {
 				allUsersTestRequests.testStatusObj.status = 1;
 			} else if (item === 'Failed') {
@@ -105,23 +107,36 @@ export class UsersComponent implements OnInit, OnDestroy {
 		} else if (type === 'difficulty') {
 			this.filteredBy = `Difficulty / ${item}`;
 			allUsersTestRequests.testTypeObj.type = item;
+			allUsersTestRequests.testStatistics.type = item;
 			this.objectActive = allUsersTestRequests.testTypeObj;
-			this.flag = 'difficulty' ;
+			this.flag = 'difficulty';
 
+			this.getStatistics(API_URL.statisticsForDifficulty, allUsersTestRequests.testStatistics).subscribe(statistics => {
+				this.statistics = statistics;
+			});
 			this.userService.getAllTests(API_URL.allTestsDifficulty, allUsersTestRequests.testTypeObj).subscribe(data => {
 				this.displayAllTests(data);
 			});
 		} else if (type === 'category') {
 			this.filteredBy = `Category / ${item}`;
 			allUsersTestRequests.testTypeObj.type = item;
+			allUsersTestRequests.testStatistics.type = item;
 			this.objectActive = allUsersTestRequests.testTypeObj;
 			this.flag = 'category';
-
+			
+			this.getStatistics(API_URL.statisticsForCategory, allUsersTestRequests.testStatistics).subscribe(statistics => {
+				this.statistics = statistics;
+			});
 			this.userService.getAllTests(API_URL.allTestsCategory, allUsersTestRequests.testTypeObj).subscribe(data => {
 				this.displayAllTests(data);
 			});
 		};
 	};
+
+	
+	getStatistics(url, obj) {
+		return this.http.post(url, obj);
+	}
 
 	// show dropdown on mouseenter
 	onElementHover(e, type: string) {
@@ -155,11 +170,11 @@ export class UsersComponent implements OnInit, OnDestroy {
 		} else if (this.objectActive.type) {
 			allUsersTestRequests.testTypeObj.page = page;
 
-			if(this.flag === 'difficulty') {
+			if (this.flag === 'difficulty') {
 				this.userService.getAllTests(API_URL.allTestsDifficulty, allUsersTestRequests.testTypeObj).subscribe(data => {
 					this.displayAllTests(data);
 				});
-			} else if(this.flag === 'category') {
+			} else if (this.flag === 'category') {
 				this.userService.getAllTests(API_URL.allTestsCategory, allUsersTestRequests.testTypeObj).subscribe(data => {
 					this.displayAllTests(data);
 				});

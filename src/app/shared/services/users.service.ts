@@ -23,4 +23,5 @@ export class UserService {
 		const userLoggedIn = this.authService.userLoggedIn;
 		return userLoggedIn;
 	};
+
 };
