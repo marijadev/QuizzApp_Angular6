@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
-import { ResultsComponent } from './results/results.component';
+import { PendingTestsComponent } from './pending/pendingTests.component';
 import { TestsComponent } from './tests/tests.component';
 import { SingleUserComponent } from './users/single-user/single-user.component';
 import { TestTypeComponent } from './tests/test-type/test-type.component';
@@ -36,7 +36,7 @@ import { ErrorsHandler } from './shared/services/errors-handler';
 	declarations: [
 		AppComponent,
 		UsersComponent,
-		ResultsComponent,
+		PendingTestsComponent,
 		TestsComponent,
 		SingleUserComponent,
 		TestTypeComponent,

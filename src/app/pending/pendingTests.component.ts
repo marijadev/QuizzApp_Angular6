@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../shared/constants';
 
 @Component({
-	selector: 'app-results',
-	templateUrl: './results.component.html',
-	styleUrls: ['./results.component.scss']
+	selector: 'app-pending-tests',
+	templateUrl: './pendingTests.component.html',
+	styleUrls: ['./pendingTests.component.scss']
 })
-export class ResultsComponent implements OnInit {
+export class PendingTestsComponent implements OnInit {
 	testList;
 	listOfTestsWithMultipleQuestions = [];
 	listOfTestsWithOneQuestion = [];
