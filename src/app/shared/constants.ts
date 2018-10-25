@@ -35,14 +35,17 @@ export const API_URL = {
 	findUsers: '/server/admin/findUsers',
 	allTestsCategory: '/server/admin/allTestsCategory',
 	allTestsDifficulty: '/server/admin/allTestsDifficulty',
-	allTestsStatus: '/server/admin/allTestsStatus'
+	allTestsStatus: '/server/admin/allTestsStatus',
+
+	statisticsForDifficulty: '/server/admin/avg/difficulty',
+	statisticsForCategory: '/server/admin/avg/category',
 };
 
 export const categories = ['JavaScript', 'Java'];
 
 export const status = ['Passed', 'Failed'];
 
-export const formatDate = function(date) {
+export const formatDate = function (date) {
 	let newDate = new Date(date);
 	let day: any = newDate.getDate();
 	let month: any = newDate.getMonth() + 1;
@@ -58,3 +61,42 @@ export const formatDate = function(date) {
 	const finalDate = `${day}.${month}.${year}.`;
 	return finalDate;
 }
+
+// SINGLE USER objects for filtering tests 
+export const testRequests = {
+	// object for difficulty/category
+	testTypeObj: {
+		type: '',
+		userId: 0
+	},
+	// object for filtering tests by status
+	testStatusObj: {
+		status: 0,
+		userId: 0
+	},
+	// object for getting all tests from a user
+	userTestsObj: {
+		id: 0
+	}
+}
+
+// ALL USERS object for filtering tests
+export const allUsersTestRequests = {
+	// object for difficulty/category
+	testTypeObj: {
+		type: '',
+		page: 0
+	},
+	// object for filtering tests by status
+	testStatusObj: {
+		status: 0,
+		page: 0
+	},
+	//object for getting statistics
+	testStatistics: {
+		type: 'Easy',
+		percentage: 0,
+		points: 0
+	}
+}
+

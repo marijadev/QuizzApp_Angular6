@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionService } from '../../questions/question.service';
 import { HttpClient } from '@angular/common/http';
-import { formatDate } from '../../shared/constants';
 
-import { categories, status, API_URL } from '../../shared/constants';
+import { categories, status, API_URL, testRequests } from '../../shared/constants';
 import { UserService } from 'src/app/shared/services/users.service';
 
 @Component({
@@ -13,120 +12,68 @@ import { UserService } from 'src/app/shared/services/users.service';
 })
 export class SingleUserComponent implements OnInit {
 	@Input() user;
-	categories: string[];
-	difficulties: string[];
-	status: string[];
-	optionsShowed: boolean = false;
-	filteredBy = '';
-	dropdownsShowed = {
-		difficultyDropdown: false,
-		categoryDropdown: false,
-		statusDropdown: false,
-	};
-	testTypeObj = {
-		type: '',
-		userId: 0
-	};
-	statusTypeObj = {
-		status: 0,
-		userId: 0
-	};
-	private userTests;
-	listOfTests = [];
-	singleTestData = {
-		id: 0,
-		date: 0,
-		questions: [],
-		result: 0,
-		status: 0,
-		user: {}
-	};
-	showHeadline = false;
+	private listOfTests;
+	private categories: string[];
+	private difficulties: string[];
+	private statuses: string[];
+	private filteredBy = 'all';
+	private filteredHeadlinePath = 'all';
 
 	constructor(private http: HttpClient, private qService: QuestionService, private usersService: UserService) { };
 
 	ngOnInit() {
 		this.categories = categories;
-		this.status = status;
+		this.statuses = status;
 		this.difficulties = this.qService.questionDifficulty;
+
+		if (this.user) {
+			testRequests.userTestsObj.id = this.user.id;
+			testRequests.testStatusObj.userId = this.user.id;
+			testRequests.testTypeObj.userId = this.user.id;
+
+			this.http.post(API_URL.singleUserTests, testRequests.userTestsObj).subscribe(data => {
+				this.listOfTests = data;
+			});
+		};
 	};
 
-	// onUserChosen(id: number) {
-	// 	this.optionsShowed = !this.optionsShowed;
-	// 	this.testTypeObj.userId = id;
-	// 	this.statusTypeObj.userId = id;
-	// };
+	onItemSelected(e, type: string, item: string) {
+		if (type === 'all') {
+			this.listOfTests = [];
+			this.filteredBy = 'all';
+			this.filteredHeadlinePath = `all`;
 
-	// onElementHover(e, type: string) {
-	// 	if (type === 'difficulty') {
-	// 		this.dropdownsShowed.difficultyDropdown = true;
-	// 	} else if (type === 'category') {
-	// 		this.dropdownsShowed.categoryDropdown = true;
-	// 	} else if (type === 'status') {
-	// 		this.dropdownsShowed.statusDropdown = true;
-	// 	};
-	// };
+			this.http.post(API_URL.singleUserTests, testRequests.userTestsObj).subscribe(data => {
+				this.listOfTests = data;
+			});
+		} else if (type === 'status') {
+			this.listOfTests = [];
+			this.filteredBy = 'status';
+			this.filteredHeadlinePath === `status / ${item}`;
+			testRequests.testStatusObj.status = item === 'Passed' ? 1 : 0;
 
-	// onElementUnhover(e, type: string) {
-	// 	if (type === 'difficulty') {
-	// 		this.dropdownsShowed.difficultyDropdown = false;
-	// 	} else if (type === 'category') {
-	// 		this.dropdownsShowed.categoryDropdown = false;
-	// 	} else if (type === 'status') {
-	// 		this.dropdownsShowed.statusDropdown = false;
-	// 	};
-	// };
+			this.http.post(API_URL.userTestsStatus, testRequests.testStatusObj).subscribe(data => {
+				this.listOfTests = data;
+			});
+		} else if (type === 'difficulty') {
+			this.listOfTests = [];
+			this.filteredBy = 'difficulty';
+			this.filteredHeadlinePath = `difficulty / ${item}`;
+			testRequests.testTypeObj.type = item;
 
-	// fillUserTests(data) {
-	// 	this.userTests = data;
-	// 	this.listOfTests = [];
-	// 	console.log('list of tests', this.listOfTests)
-	// 	this.userTests.map(test => {
-	// 		let date = formatDate(test.date);
-	// 		const id = test.id;
-	// 		this.listOfTests.push({ date, id })
-	// 	})
-	// 	this.showHeadline = true;
-	// }
+			this.http.post(API_URL.userTestsDiff, testRequests.testTypeObj).subscribe(data => {
+				this.listOfTests = data;
+			});
+		} else if (type === 'category') {
+			this.listOfTests = [];
+			this.filteredBy = 'category';
+			this.filteredHeadlinePath = `category / ${item}`;
+			testRequests.testTypeObj.type = item;
 
-	// onItemSelected(e, type: string, item: string) {
-	// 	this.optionsShowed = !this.optionsShowed;
-	// 	this.singleTestData.questions = [];
-	// 	if (type === 'status') {
-	// 		this.filteredBy = 'Status';
-	// 		this.statusTypeObj.status = item === 'Passed' ? 1 : 0;
-	// 		this.http.post(API_URL.userTestsStatus, this.statusTypeObj).subscribe(data => {
-	// 			this.fillUserTests(data);
-	// 		});
-	// 	} else if (type === 'difficulty') {
-	// 		this.filteredBy = 'Difficulty'
-	// 		this.testTypeObj.type = item;
-	// 		this.http.post(API_URL.userTestsDiff, this.testTypeObj).subscribe(data => {
-	// 			this.fillUserTests(data);
-	// 		});
-	// 	} else if (type === 'category') {
-	// 		this.filteredBy = 'Category';
-	// 		this.testTypeObj.type = item;
-	// 		this.http.post(API_URL.userTestsCat, this.testTypeObj).subscribe(data => {
-	// 			this.fillUserTests(data);
-	// 		})
-	// 	}
-	// }
+			this.http.post(API_URL.userTestsCat, testRequests.testTypeObj).subscribe(data => {
+				this.listOfTests = data;
+			})
+		};
+	};
 
-	// onSingleTestSelected(event, test) {
-	// 	const singleTestID = {
-	// 		testId: test.id
-	// 	};
-	// 	this.http.post(API_URL.demoTest, singleTestID).subscribe(data => {
-	// 		console.log('single test', data)
-	// 		for (let prop in data) {
-	// 			this.singleTestData.date = data['date'];
-	// 			this.singleTestData.id = data['id'];
-	// 			this.singleTestData.questions = data['questions'];
-	// 			this.singleTestData.result = data['result'];
-	// 			this.singleTestData.status = data['status'];
-	// 			this.singleTestData.user = data['user'];
-	// 		}
-	// 	});
-	// }
 };

@@ -71,7 +71,7 @@
     <app-single-user [user]="selectedUser"></app-single-user>
   </div>
 
-  <div class="main-view-holder">
+  <div class="main-view-holder" *ngIf="!userChosen">
     <div *ngIf="selectedView === 'users'">
       <ol *ngIf="!userChosen" class="main-view">
         <li *ngFor="let user of currentUsers | paginate: { itemsPerPage: 4, currentPage: p, totalItems: arrLength }" (click)="onUserSelect(user)" class="main-view-item">{{user.name}}
@@ -85,12 +85,12 @@
     <div *ngIf="selectedView === 'tests'">
       <ol class="main-view">
 		<li *ngFor="let test of currentTests | paginate: { itemsPerPage: 4, currentPage: p, totalItems: arrLength }"
-          class="main-view-item test">{{test.user.name}} {{test.user.surname}}, {{test.date}}
+          class="main-view-item test">{{test.user.name}} {{test.user.surname}}, {{test.date | date}}.
           - <span class="orange">{{test.result}}</span> points</li>
+		  <div class="pagination-holder">
+			<pagination-controls  (pageChange)="p = $event" (click)="onTestPageChange($event, p)"></pagination-controls>
+		  </div>
       </ol>
-      <div class="pagination-holder">
-        <pagination-controls (pageChange)="p = $event" (click)="onTestPageChange($event, p)"></pagination-controls>
-      </div>
     </div>
   </div>
 </div>

@@ -3,9 +3,8 @@ import { UserService } from '../shared/services/users.service';
 import { User } from '../shared/user.model';
 import { QuestionService } from '../questions/question.service';
 import { HttpClient } from '@angular/common/http';
-import { API_URL, status, formatDate } from '../shared/constants';
+import { API_URL, status, allUsersTestRequests } from '../shared/constants';
 import { SingleTest } from '../shared/single-test.model';
-import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
 	selector: 'app-users',
@@ -20,7 +19,6 @@ export class UsersComponent implements OnInit, OnDestroy {
 	private selectedUser;
 	private selectedView = 'users';
 	private arrLength: number;
-p;
 	private categories;
 	private difficulties;
 	private statuses;
@@ -31,17 +29,6 @@ p;
 		difficultyDropdown: false,
 		categoryDropdown: false,
 		statusDropdown: false,
-	};
-	testTypeObj = {
-		page: 0,
-		type: ''
-	};
-	statusTypeObj = {
-		status: 0,
-		page: 0
-	};
-	singleUsersObj = {
-		id: 0
 	};
 	usersObj = {
 		page: 0
@@ -78,7 +65,7 @@ p;
 		this.arrLength = result.length;
 		const tests = result.tests;
 		tests.map(test => {
-			this.currentTests.push(new SingleTest(test.id, formatDate(test.date), test.questions, test.result, test.status, test.user));
+			this.currentTests.push(new SingleTest(test.id, test.date, test.questions, test.result, test.status, test.user));
 		});
 	};
 
@@ -103,34 +90,34 @@ p;
 		if (type === 'status') {
 			const statusName = item === 'Passed' ? 'Passed' : 'Failed';
 			this.filteredBy = `Status / ${statusName}`;
-			this.statusTypeObj.page = 0;
+			allUsersTestRequests.testStatusObj.page = 0;
 			
 			if (item === 'Passed') {
-				this.statusTypeObj.status = 1;
+				allUsersTestRequests.testStatusObj.status = 1;
 			} else if (item === 'Failed') {
-				this.statusTypeObj.status = 0;
+				allUsersTestRequests.testStatusObj.status = 0;
 			}
-			this.objectActive = this.statusTypeObj;
+			this.objectActive = allUsersTestRequests.testStatusObj;
 
-			this.userService.getAllTests(API_URL.allTestsStatus, this.statusTypeObj).subscribe(data => {
+			this.userService.getAllTests(API_URL.allTestsStatus, allUsersTestRequests.testStatusObj).subscribe(data => {
 				this.displayAllTests(data);
 			});
 		} else if (type === 'difficulty') {
 			this.filteredBy = `Difficulty / ${item}`;
-			this.testTypeObj.type = item;
-			this.objectActive = this.testTypeObj;
+			allUsersTestRequests.testTypeObj.type = item;
+			this.objectActive = allUsersTestRequests.testTypeObj;
 			this.flag = 'difficulty' ;
 
-			this.userService.getAllTests(API_URL.allTestsDifficulty, this.testTypeObj).subscribe(data => {
+			this.userService.getAllTests(API_URL.allTestsDifficulty, allUsersTestRequests.testTypeObj).subscribe(data => {
 				this.displayAllTests(data);
 			});
 		} else if (type === 'category') {
 			this.filteredBy = `Category / ${item}`;
-			this.testTypeObj.type = item;
-			this.objectActive = this.testTypeObj;
+			allUsersTestRequests.testTypeObj.type = item;
+			this.objectActive = allUsersTestRequests.testTypeObj;
 			this.flag = 'category';
 
-			this.userService.getAllTests(API_URL.allTestsCategory, this.testTypeObj).subscribe(data => {
+			this.userService.getAllTests(API_URL.allTestsCategory, allUsersTestRequests.testTypeObj).subscribe(data => {
 				this.displayAllTests(data);
 			});
 		};
@@ -160,20 +147,20 @@ p;
 
 	onTestPageChange(e, page: number) {
 		if (this.objectActive.status) {
-			this.statusTypeObj.page = page;
+			allUsersTestRequests.testStatusObj.page = page;
 
-			this.userService.getAllTests(API_URL.allTestsStatus, this.statusTypeObj).subscribe(data => {
+			this.userService.getAllTests(API_URL.allTestsStatus, allUsersTestRequests.testStatusObj).subscribe(data => {
 				this.displayAllTests(data);
 			});
 		} else if (this.objectActive.type) {
-			this.testTypeObj.page = page;
+			allUsersTestRequests.testTypeObj.page = page;
 
 			if(this.flag === 'difficulty') {
-				this.userService.getAllTests(API_URL.allTestsDifficulty, this.testTypeObj).subscribe(data => {
+				this.userService.getAllTests(API_URL.allTestsDifficulty, allUsersTestRequests.testTypeObj).subscribe(data => {
 					this.displayAllTests(data);
 				});
 			} else if(this.flag === 'category') {
-				this.userService.getAllTests(API_URL.allTestsCategory, this.testTypeObj).subscribe(data => {
+				this.userService.getAllTests(API_URL.allTestsCategory, allUsersTestRequests.testTypeObj).subscribe(data => {
 					this.displayAllTests(data);
 				});
 			}

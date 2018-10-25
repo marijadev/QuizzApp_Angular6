@@ -1,7 +1,45 @@
 <div class="single-user-wrapper">
   <div class="single-user-holder">
-    <h3 [ngClass]="{'active': optionsShowed}">
-		{{user.name}} {{user.surname}}
-	</h3>
+    <div class="headline-holder">
+      <h3 class="main-h invert">{{user.name}} {{user.surname}} / <span class="orange">{{filteredHeadlinePath}}</span></h3>
+      <div class="separator-holder">
+        <span class="separator"></span>
+      </div>
+    </div>
+
+    <div class="main-user-info-holder">
+      <div class="test-types">
+        <div class="type-holder all">
+          <h4 class="filter-h all" (click)="onItemSelected($event, 'all', all)" [ngClass]="{'orange': filteredBy === 'all'}">ALL TESTS</h4>
+        </div>
+        <div class="type-holder difficulty">
+          <h4 class="filter-h" [ngClass]="{'orange': filteredBy === 'difficulty'}">DIFFICULTY</h4>
+          <ul>
+            <li class="type-item" *ngFor="let difficulty of difficulties" (click)="onItemSelected($event, 'difficulty', difficulty)">{{difficulty}}</li>
+          </ul>
+        </div>
+        <div class="type-holder category">
+          <h4 class="filter-h" [ngClass]="{'orange': filteredBy === 'category'}">CATEGORY</h4>
+          <ul>
+            <li class="type-item" *ngFor="let category of categories" (click)="onItemSelected($event, 'category', category)">{{category}}</li>
+          </ul>
+        </div>
+        <div class="type-holder status">
+          <h4 class="filter-h" [ngClass]="{'orange': filteredBy === 'status'}">STATUS</h4>
+          <ul>
+            <li class="type-item" *ngFor="let status of statuses" (click)="onItemSelected($event, 'status', status)">{{status}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tests-holder">
+        <ol *ngIf="listOfTests" class="test-list-ul">
+          <li *ngFor="let test of listOfTests">{{test.date | date}}. <br><span class="orange">result {{test.result}}</span>
+          </li>
+        </ol>
+        <div *ngIf="!listOfTests">
+          <h2>There are currently no available tests to show.</h2>
+		</div>
+      </div>
+    </div>
   </div>
 </div>
