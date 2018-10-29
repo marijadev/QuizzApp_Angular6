@@ -30,7 +30,6 @@ import { UserType } from './shared/guards/user-type.guard';
 import { TrueFalseDirective } from './shared/true-false.directive';
 import { MyInterceptor } from './shared/services/my-interceptor';
 import { ErrorsHandler } from './shared/services/errors-handler';
-import { PaginationComponent } from './shared/pagination/pagination.component';
 import { PaginationService } from './shared/pagination/pagination.service';
 
 @NgModule({
@@ -43,7 +42,6 @@ import { PaginationService } from './shared/pagination/pagination.service';
 		TestTypeComponent,
 		TestComponent,
 		TrueFalseDirective,
-		PaginationComponent,
 	],
 	imports: [
 		BrowserModule,

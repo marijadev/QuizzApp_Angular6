@@ -76,7 +76,7 @@
   </div>
 
   <div class="main-view-holder" *ngIf="!userChosen">
-    <div *ngIf="selectedView === 'users'">
+    <div class="main-view-wrapper" *ngIf="selectedView === 'users'">
       <div class="pagination-container">
         <div class="items-holder">
           <ol *ngIf="!userChosen" class="main-view">
@@ -107,7 +107,7 @@
       </div>
     </div>
 
-    <div *ngIf="selectedView === 'tests'">
+    <div class="main-view-wrapper" *ngIf="selectedView === 'tests'">
         <div class="pagination-container">
           <div class="items-holder">
             <ul class="main-view">

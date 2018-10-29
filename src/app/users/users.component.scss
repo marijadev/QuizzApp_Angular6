@@ -48,6 +48,7 @@ svg {
 .headline-holder {
   position: relative;
   padding: 50px;
+  min-height: 200px;
 }
 
 .filter-h {
@@ -108,6 +109,12 @@ svg {
 
 .main-view-holder {
   margin-top: 50px;
+  flex: 1;
+  display: flex;
+}
+
+.items-holder {
+	min-height: 90%;
 }
 
 .main-view {
@@ -136,6 +143,23 @@ svg {
   }
 }
 
+.main-view-wrapper {
+	flex-basis: 100%;
+}
+
+.pagination-container {
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+.paginator-holder {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+}
 
 .pagination {
 	display: inline-block;
@@ -176,8 +200,8 @@ svg {
   .pagination>.active>span:hover {
 	z-index: 10;
 	border: 1px solid rgba(0, 0, 0, 0.5);
-	background-color: #337ab7;
-	border-color: #337ab7;
+	background-color: $color-orange;
+	border-color: $color-orange;
 	width: 100%;
 	height: 100%;
 	color: #fff;
