@@ -1,6 +1,7 @@
 <div class="single-user-wrapper">
   <div class="single-user-holder">
     <div class="headline-holder">
+      <!-- <button>Back to users</button> -->
       <h3 class="main-h invert">{{user.name}} {{user.surname}} / <span class="orange">{{filteredHeadlinePath}}</span></h3>
       <div class="separator-holder">
         <span class="separator"></span>
@@ -10,7 +11,8 @@
     <div class="main-user-info-holder">
       <div class="test-types">
         <div class="type-holder all">
-          <h4 class="filter-h all" (click)="onItemSelected($event, 'all', all)" [ngClass]="{'orange': filteredBy === 'all'}">ALL TESTS</h4>
+          <h4 class="filter-h all" (click)="onItemSelected($event, 'all', all)" [ngClass]="{'orange': filteredBy === 'all'}">ALL
+            TESTS</h4>
         </div>
         <div class="type-holder difficulty">
           <h4 class="filter-h" [ngClass]="{'orange': filteredBy === 'difficulty'}">DIFFICULTY</h4>
@@ -38,7 +40,7 @@
         </ol>
         <div *ngIf="!listOfTests">
           <h2>There are currently no available tests to show.</h2>
-		</div>
+        </div>
       </div>
     </div>
   </div>

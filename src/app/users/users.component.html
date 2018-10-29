@@ -1,10 +1,11 @@
 <div class="container">
   <div class="hero-content" *ngIf="!userChosen">
     <div class='headline-holder'>
-		<h3 class="filter-main-h invert">Filter by: <span class="orange">{{filteredBy}}</span></h3>
-		<div *ngIf="statistics" class="statistics">
-			<h4 class="statistics-h" *ngIf="statistics">Passed: {{statistics.percentage}}%, average points: {{statistics.points}}</h4>
-		</div>
+      <h3 class="filter-main-h invert">Filter by: <span class="orange">{{filteredBy}}</span></h3>
+      <div *ngIf="statistics" class="statistics">
+        <h4 class="statistics-h" *ngIf="statistics">Passed: {{statistics.percentage}}%, average points:
+          {{statistics.points}}</h4>
+      </div>
       <div class="separator-holder">
         <span class="separator"></span>
       </div>
@@ -76,24 +77,68 @@
 
   <div class="main-view-holder" *ngIf="!userChosen">
     <div *ngIf="selectedView === 'users'">
-      <ol *ngIf="!userChosen" class="main-view">
-        <li *ngFor="let user of currentUsers | paginate: { itemsPerPage: 4, currentPage: p, totalItems: arrLength }" (click)="onUserSelect(user)" class="main-view-item">{{user.name}}
-          {{user.surname}}</li>
-      </ol>
-      <div class="pagination-holder">
-        <pagination-controls (pageChange)="p1 = $event"></pagination-controls>
+      <div class="pagination-container">
+        <div class="items-holder">
+          <ol *ngIf="!userChosen" class="main-view">
+            <li *ngFor="let user of currentUsers" (click)="onUserSelect(user)" class="main-view-item">{{user.name}}
+              {{user.surname}}</li>
+          </ol>
+        </div>
+        <div class="paginator-holder">
+          <ul *ngIf="pager.totalItems &&  pager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(1)">First</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+			  <a (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.currentPage + 1)">Next</a>
+            </li>
+            <li  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.endPage)">Last</a>
+            </li>
+		  </ul>
+			<h3 *ngIf="!pager.totalPages">There are currently no users.</h3>
+        </div>
       </div>
     </div>
 
     <div *ngIf="selectedView === 'tests'">
-      <ol class="main-view">
-		<li *ngFor="let test of currentTests | paginate: { itemsPerPage: 4, currentPage: p, totalItems: arrLength }"
-          class="main-view-item test">{{test.user.name}} {{test.user.surname}}, {{test.date | date}}.
-          - <span class="orange">{{test.result}}</span> points</li>
-		  <div class="pagination-holder">
-			<pagination-controls  (pageChange)="p = $event" (click)="onTestPageChange($event, p)"></pagination-controls>
-		  </div>
-      </ol>
+        <div class="pagination-container">
+          <div class="items-holder">
+            <ul class="main-view">
+              <li *ngFor="let test of currentTests" class="main-view-item test">{{test.user.name}}
+                {{test.user.surname}}, {{test.date | date}}.
+                - <span class="orange">{{test.result}}</span> points, id: {{test.id}}
+              </li>
+            </ul>
+          </div>
+          <div class="paginator-holder">
+            <ul *ngIf="pager.totalItems && pager.pages.length" class="pagination">
+              <li [ngClass]="{disabled:pager.currentPage === 1}">
+                <a (click)="setPage(1)">First</a>
+              </li>
+              <li [ngClass]="{disabled:pager.currentPage === 1}">
+                <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+              </li>
+              <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+				<a (click)="setPage(page)">{{page}}</a>
+              </li>
+              <li [ngClass]="{disabled:pager.currentPage === pager.totalPages - 1}">
+                <a (click)="setPage(pager.currentPage + 1)">Next</a>
+              </li>
+              <li  [ngClass]="{disabled:pager.currentPage === pager.totalPages - 1}">
+                <a (click)="setPage(pager.endPage)">Last</a>
+              </li>
+			</ul>
+			<h3 *ngIf="!pager.totalPages">There are currently no available tests.</h3>
+          </div>
+        </div>
     </div>
   </div>
+
 </div>

@@ -16,7 +16,6 @@ import { TestComponent } from './tests/test/test.component';
 import { AppRouting } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
-import {NgxPaginationModule} from 'ngx-pagination';
 
 import { QuestionService } from './questions/question.service';
 import { AuthService } from './auth/auth.service';
@@ -31,6 +30,8 @@ import { UserType } from './shared/guards/user-type.guard';
 import { TrueFalseDirective } from './shared/true-false.directive';
 import { MyInterceptor } from './shared/services/my-interceptor';
 import { ErrorsHandler } from './shared/services/errors-handler';
+import { PaginationComponent } from './shared/pagination/pagination.component';
+import { PaginationService } from './shared/pagination/pagination.service';
 
 @NgModule({
 	declarations: [
@@ -42,6 +43,7 @@ import { ErrorsHandler } from './shared/services/errors-handler';
 		TestTypeComponent,
 		TestComponent,
 		TrueFalseDirective,
+		PaginationComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -52,7 +54,6 @@ import { ErrorsHandler } from './shared/services/errors-handler';
 		AppRouting,
 		HttpClientModule,
 		BrowserAnimationsModule,
-		NgxPaginationModule
 	],
 	providers: [
 		{
@@ -72,7 +73,8 @@ import { ErrorsHandler } from './shared/services/errors-handler';
 		ProfileService,
 		TokenStorageService,
 		DataService,
-		TestService
+		TestService,
+		PaginationService
 	],
 	bootstrap: [AppComponent],
 })

@@ -1,10 +1,11 @@
-import { Component, OnInit, Output, OnDestroy } from '@angular/core';
+import { Component, OnInit, Output, OnDestroy, Input } from '@angular/core';
 import { UserService } from '../shared/services/users.service';
 import { User } from '../shared/user.model';
 import { QuestionService } from '../questions/question.service';
 import { HttpClient } from '@angular/common/http';
 import { API_URL, status, allUsersTestRequests } from '../shared/constants';
 import { SingleTest } from '../shared/single-test.model';
+import { PaginationService } from '../shared/pagination/pagination.service';
 
 @Component({
 	selector: 'app-users',
@@ -18,7 +19,6 @@ export class UsersComponent implements OnInit, OnDestroy {
 	private userChosen = false;
 	private selectedUser;
 	private selectedView = 'users';
-	private arrLength: number;
 	private categories;
 	private difficulties;
 	private statuses;
@@ -36,8 +36,11 @@ export class UsersComponent implements OnInit, OnDestroy {
 		page: 0
 	}
 
+	pager: any = {};
+	pagedItems: any[];
 
-	constructor(private http: HttpClient, private userService: UserService, private qService: QuestionService) { };
+
+	constructor(private http: HttpClient, private pageService: PaginationService, private userService: UserService, private qService: QuestionService) { };
 
 	ngOnInit() {
 		this.http.get(API_URL.userCategories).subscribe(data => this.categories = data);
@@ -45,29 +48,60 @@ export class UsersComponent implements OnInit, OnDestroy {
 		this.statuses = status;
 
 		this.currentUsers = [];
+
 		this.displayAllUsers();
 	};
 
+	setPage(page: number) {
+		if (page < 1 || page > this.pager.totalPages) {
+			return;
+		}
+
+		if (this.objectActive) {
+			if (this.objectActive.status) {
+				allUsersTestRequests.testStatusObj.page = page;
+
+				this.userService.getAllTests(API_URL.allTestsStatus, allUsersTestRequests.testStatusObj).subscribe(data => {
+					this.displayAllTests(data, page);
+				});
+			} else if (this.objectActive.type) {
+				allUsersTestRequests.testTypeObj.page = page;
+
+				if (this.flag === 'difficulty') {
+					this.userService.getAllTests(API_URL.allTestsDifficulty, allUsersTestRequests.testTypeObj).subscribe(data => {
+						this.displayAllTests(data, page);
+					});
+				} else if (this.flag === 'category') {
+					this.userService.getAllTests(API_URL.allTestsCategory, allUsersTestRequests.testTypeObj).subscribe(data => {
+						this.displayAllTests(data, page);
+					});
+				};
+			};
+		};
+	}
+
 	displayAllUsers() {
-		this.objectActive = this.usersObj;
 		this.userService.getAll(this.usersObj).subscribe(res => {
 			const users = res.users;
-			this.arrLength = res.length;
 
 			users.map(user => {
 				this.currentUsers.push(new User(user.id, user.username, user.password, user.name, user.surname, user.phone, user.admin, user.photo))
 			});
 			this.filteredBy = 'USERS';
+			this.pager = this.pageService.getPager(this.currentUsers.length);
 		});
 	};
 
-	displayAllTests(result) {
+	displayAllTests(result, page) {
 		this.currentTests = [];
-		this.arrLength = result.length;
+		
 		const tests = result.tests;
 		tests.map(test => {
 			this.currentTests.push(new SingleTest(test.id, test.date, test.questions, test.result, test.status, test.user));
 		});
+
+		console.log('tests',page)
+		this.pager = this.pageService.getPager(result.length, page);
 	};
 
 	getAllUsers(e) {
@@ -90,6 +124,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
 		if (type === 'status') {
 			const statusName = item === 'Passed' ? 'Passed' : 'Failed';
+
 			this.filteredBy = `Status / ${statusName}`;
 			allUsersTestRequests.testStatusObj.page = 0;
 			this.statistics = null;
@@ -102,7 +137,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 			this.objectActive = allUsersTestRequests.testStatusObj;
 
 			this.userService.getAllTests(API_URL.allTestsStatus, allUsersTestRequests.testStatusObj).subscribe(data => {
-				this.displayAllTests(data);
+				this.displayAllTests(data, 1);
 			});
 		} else if (type === 'difficulty') {
 			this.filteredBy = `Difficulty / ${item}`;
@@ -115,7 +150,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 				this.statistics = statistics;
 			});
 			this.userService.getAllTests(API_URL.allTestsDifficulty, allUsersTestRequests.testTypeObj).subscribe(data => {
-				this.displayAllTests(data);
+				this.displayAllTests(data, 1);
 			});
 		} else if (type === 'category') {
 			this.filteredBy = `Category / ${item}`;
@@ -123,17 +158,17 @@ export class UsersComponent implements OnInit, OnDestroy {
 			allUsersTestRequests.testStatistics.type = item;
 			this.objectActive = allUsersTestRequests.testTypeObj;
 			this.flag = 'category';
-			
+
 			this.getStatistics(API_URL.statisticsForCategory, allUsersTestRequests.testStatistics).subscribe(statistics => {
 				this.statistics = statistics;
 			});
 			this.userService.getAllTests(API_URL.allTestsCategory, allUsersTestRequests.testTypeObj).subscribe(data => {
-				this.displayAllTests(data);
+				this.displayAllTests(data, 1);
 			});
 		};
 	};
 
-	
+
 	getStatistics(url, obj) {
 		return this.http.post(url, obj);
 	}
@@ -160,29 +195,6 @@ export class UsersComponent implements OnInit, OnDestroy {
 		};
 	};
 
-	onTestPageChange(e, page: number) {
-		if (this.objectActive.status) {
-			allUsersTestRequests.testStatusObj.page = page;
-
-			this.userService.getAllTests(API_URL.allTestsStatus, allUsersTestRequests.testStatusObj).subscribe(data => {
-				this.displayAllTests(data);
-			});
-		} else if (this.objectActive.type) {
-			allUsersTestRequests.testTypeObj.page = page;
-
-			if (this.flag === 'difficulty') {
-				this.userService.getAllTests(API_URL.allTestsDifficulty, allUsersTestRequests.testTypeObj).subscribe(data => {
-					this.displayAllTests(data);
-				});
-			} else if (this.flag === 'category') {
-				this.userService.getAllTests(API_URL.allTestsCategory, allUsersTestRequests.testTypeObj).subscribe(data => {
-					this.displayAllTests(data);
-				});
-			}
-		};
-	};
-
-	ngOnDestroy() {
-	}
+	ngOnDestroy() { }
 };
 
