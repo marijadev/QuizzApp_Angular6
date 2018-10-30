@@ -52,7 +52,7 @@ Therefore, if you want to get access to the application, you will need to instal
 
 **auth.module.ts**: authentication module
 
-**auth.service.ts**: collecting data form login-page form, and handling login requests from back-end.
+**auth.service.ts**: collecting data from login-page form, and handling login requests from back-end.
 
 
 ## **__CORE__**
