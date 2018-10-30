@@ -179,31 +179,29 @@ There are 5 types of questions that can be generated in a test:
 
 ## **__SHARED__**
 
-Contains directories and files potentially used by multiple components. 
+Contains directories and files potentially used by multiple components
 
-**Guards-directory**: contains guards for user-type and authentication.
+**Guards-directory**: contains guards for user-type and authentication
 
-**Services-directory**: focused on maintaining services used in the application.
+**Services-directory**: focused on maintaining services used in the application
 
-**animation.ts**: file for Angular animation logic.
+**animation.ts**: file for Angular animation logic
 
-**answers.ts**: model for **User**'s answers.
+**answers.ts**: model for **User**'s answers
 
-**constants.ts**: containing objects and functions used in many components such as: **API_URL** with paths to back-end API, 
+**constants.ts**: containing objects and functions used in many components such as: **API_URL** with paths to back-end API, **test-requests** and **allUsersTestRequests** with objects for sending in the post() request
 
-**test-requests** and **allUsersTestRequests** with objects for sending in the post() request.
+**plus-one.pipe.ts**: a pipe for displaying a number +1
 
-**plus-one.pipe.ts**: a pipe for displaying a number + 1.
+**question.model.ts**: an interface and question entity
 
-**question.model.ts**: an interface and question entity.
+**single-test.model.ts**: an interface and single-test entity
 
-**single-test.model.ts**: an interface and single-test entity.
-
-**user.model.ts**: an **User** entity.
+**user.model.ts**: an **User** entity
 
 
 ## **__ASSETS__**
 
 **Img-directory**: containing icons and images
 
-**Styles-directory**: containing _mixins.scss and _variables.scss files with style presets
+**Styles-directory**: containing **_mixins.scss** and **_variables.scss** files with style presets
