@@ -1,27 +1,26 @@
-# TestingApp
-
+# Welcome to QuizzApp
+This application is a **quizz** for taking tests and creating ones. Currently, there are two types of users: administrator and user.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.2.
 
-## Development server
+## RUN
+In your terminal, run `npm install` to install all dependencies. After installing, run `ng serve` for a dev server. 
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+##LOGIN section
+**auth** folder:
+*login* folder: contains login form and logic for user sign-in.
+*auth.module.ts*: authentication module
+*auth.service.ts*: collecting data form login-page form, and handling login requests from back-end.
 
-## Code scaffolding
+##CORE section
+**header component**: containing header template and routing navigation
+**Profile component**: containing user's profile template and **edit-profile component**.
+**home component**: simple template for routing quizz components.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### ADMINISTRATOR
+To log in as an administrator, when LOGIN page is loaded, type:
+Username: marko@gmail.com
+Password: user123
 
-## Build
+Administrator can see and update his profile, add a new question to the test, validate text questions and has access to all users and their tests.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

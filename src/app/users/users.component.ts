@@ -100,7 +100,6 @@ export class UsersComponent implements OnInit, OnDestroy {
 			this.currentTests.push(new SingleTest(test.id, test.date, test.questions, test.result, test.status, test.user));
 		});
 
-		console.log('tests',page)
 		this.pager = this.pageService.getPager(result.length, page);
 	};
 

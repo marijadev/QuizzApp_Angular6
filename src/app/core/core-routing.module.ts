@@ -17,9 +17,9 @@ const coreRoutes: Routes = [
 	{
 		path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
 			{ path: 'question', component: QuestionComponent},
-			{ path: 'profile', component: ProfileComponent, children: [
-				{path: 'edit-profile', component: EditProfileComponent},
-			] },
+			// { path: 'profile', component: ProfileComponent, children: [
+			// 	{path: 'edit-profile', component: EditProfileComponent},
+			// ] },
 			{ path: 'pending-tests', component: PendingTestsComponent },
 			{ path: 'users', component: UsersComponent },
 			{ path: 'passed-tests', component: PassedTestsComponent },
@@ -27,7 +27,7 @@ const coreRoutes: Routes = [
 			{ path: 'test', component: TestComponent },
 		]
 	},
-	{ path: 'header', component: HeaderComponent },
+	// { path: 'header', component: HeaderComponent },
 	{ path: '**', redirectTo: '' }
 ]
 
