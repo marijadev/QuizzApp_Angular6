@@ -4,11 +4,16 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 This application is a **quizz** for taking tests and creating ones. 
 
-Currently, there are two types of users: *administrator and user*. 
+Currently, there are two types of users: ***administrator and user***. 
 
-At this moment, these users are hard-coded in the database and there is no possibility of registering a new one. 
+**Administrator** is an employee with the higher rank who can create questions and answers, can validate them and has access to the list of all users and their tests.
 
-Therefore, if you want to get access to the application, you need to install the *back-end* from the instructions listed bellow and then login with the credentials provided bellow this text.
+**User** is an employee who has a possibility to take the test with different difficulty, category or both difficulty and category. 
+
+He answers the questions submitted by the **Administrator**. 
+
+Test consists of three questions added by the **Administrator** and randomly chosen from the database.
+
 
 ## **__Run__**
 
@@ -41,6 +46,10 @@ After the test submit, he can see the list of all passed/failed tests, and valid
 
 ## **__AUTH__**
 
+At this moment, these users are hard-coded in the database and there is no possibility of registering a new one. 
+
+Therefore, if you want to get access to the application, you need to install the *back-end* from the instructions listed bellow and then login with the credentials provided bellow this text.
+
 **login**: contains login form and logic for user sign-in.
 
 **auth.module.ts**: authentication module
@@ -50,30 +59,51 @@ After the test submit, he can see the list of all passed/failed tests, and valid
 
 ## **__CORE__**
 
-***HeaderComponent***: containing header template and routing navigation
+**HeaderComponent**: containing header template and routing navigation
 
-***ProfileComponent***: containing user's profile template and **edit-profile component**.
+**ProfileComponent**: containing user's profile template and **edit-profile component**.
 
-***HomeComponent***: simple template placeholder for quizz components.
+**HomeComponent**: simple template placeholder for quizz components.
 
-***core-routing.module.ts***: basic routes for routing components.
+**core-routing.module.ts**: basic routes for routing components.
 
-***core.module.ts***: core module with component declarations
+**core.module.ts**: core module with component declarations
 
 ## **__ADMIN__**
 
-***Pending-directory***: containing template and logic for text-questions that the administrator needs to validate as __Passed__ or __Failed__.
+**Questions-directory**: with the **QuestionComponent** responsible for ***dynamic creating of components***. 
 
-***Users-directory***: has a **UsersComponent** template with the list of all users and their tests. 
+This component is designed for submitting a new question
 
-Tests can be filtered by:
+**Pending-directory**: containing template and logic for text-questions that the administrator needs to validate as __Passed__ or __Failed__.
 
-	1. __difficulty (Easy, Medium, Hard)__
+**Users-directory**: has a **UsersComponent** template with the list of all users and their tests. 
 
-	2. __category (JavaScript, Java, PHP)__ 
+Also, this directory contains **SingleUserComponent** with the information about the selected user and his tests. 
 
-	3. __status (Passed, Failed)__
+All tests can be filtered by:
+
+	1. Difficulty (Easy, Medium, Hard)
+
+	2. Category (JavaScript, Java, PHP) 
+
+	3. Status (Passed, Failed)
 	
 All the tests are presented with the dates of their submission. 
 
 Currently the length of tests is 4 per page, in order to show ***custom pagination*** written for this component.
+
+As for the **SingleUserComponent**, all tests can be seen displayed with ***CSS Grid***.
+
+
+There are 5 types of questions:
+
+	1. *Single Choice Question* - based on radio buttons selection
+
+	2. *Multiple Choice Question* - based on checkbox selection
+
+	3. *Text Question* - based on textarea input 
+
+	4. *Order Question* - based on vertical Drag and Drop ordering
+
+	5. *Connecting Question* - based on connection of right side of answers with the left
