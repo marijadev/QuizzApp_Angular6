@@ -5,7 +5,7 @@ import { QuestionService } from '../../admin/questions/question.service';
 import { HttpClient } from '@angular/common/http';
 import { API_URL, status, allUsersTestRequests } from '../../shared/constants';
 import { SingleTest } from '../../shared/single-test.model';
-import { PaginationService } from '../../shared/pagination/pagination.service';
+import { PaginationService } from '../../shared/services/pagination.service';
 
 @Component({
 	selector: 'app-users',

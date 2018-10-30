@@ -173,3 +173,34 @@ There are 5 types of questions that can be generated in a test:
 **User** can see all tests, *Passed* and *Failed*. All questions except the text-question are validated automatically. The correct ones will have green color, wrong ones will be painted in red.
 
 ![user-passed-test](https://user-images.githubusercontent.com/36046572/47721021-82377600-dc4f-11e8-81e1-5d5457385b8f.gif)
+
+## **__SHARED__**
+
+Contains directories and filed possibly shared by multiple components. 
+
+**Guards-directory**: contains guards for user-type and authentication.
+
+**Services-directory**: focused on maintaining services used in the application.
+
+**animation.ts**: file for Angular animation logic.
+
+**answers.ts**: model for **User**'s answers.
+
+**constants.ts**: containing objects and functions used in many components such as: **API_URL** with paths to back-end API, 
+
+**test-requests** and **allUsersTestRequests** with objects for sending in the post() request.
+
+**plus-one.pipe.ts**: a pipe for displaying a number + 1.
+
+**question.model.ts**: an interface and question entity.
+
+**single-test.model.ts**: an interface and single-test entity.
+
+**user.model.ts**: an **User** entity.
+
+
+## **__ASSETS__**
+
+**Img-directory**: containing icons and images
+
+**Styles-directory**: containing _mixins.scss and _variables.scss files with style presets

@@ -27,10 +27,9 @@ import { TestService } from './shared/services/test.service';
 
 import { AuthGuard } from './shared/guards/auth.guard';
 import { UserType } from './shared/guards/user-type.guard';
-import { TrueFalseDirective } from './shared/true-false.directive';
 import { MyInterceptor } from './shared/services/my-interceptor';
 import { ErrorsHandler } from './shared/services/errors-handler';
-import { PaginationService } from './shared/pagination/pagination.service';
+import { PaginationService } from './shared/services/pagination.service';
 
 @NgModule({
 	declarations: [
@@ -41,7 +40,6 @@ import { PaginationService } from './shared/pagination/pagination.service';
 		SingleUserComponent,
 		TestTypeComponent,
 		TestComponent,
-		TrueFalseDirective,
 	],
 	imports: [
 		BrowserModule,
