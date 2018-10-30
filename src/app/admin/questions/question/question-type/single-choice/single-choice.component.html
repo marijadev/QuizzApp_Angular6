@@ -12,8 +12,8 @@
           </label>
         </div>
       </div>
-      <button type="button" class="btn add" (click)="addAnswer(i)">Add Answer</button>
-      <button type="button" class="btn remove" (click)="deleteAnswer(i)">Delete Answer</button>
+      <button type="button" class="btn add" (click)="addAnswer(i)">Add</button>
+      <button type="button" class="btn remove" (click)="deleteAnswer(i)">Delete</button>
     </div>
 	<span *ngIf="questionForm.errors?.checkboxValid && questionForm.get('answers').touched" class="warning">Please select true answer!</span>
   </div>

@@ -22,14 +22,14 @@
 .btn {
 	&.add {
 	  @extend %btn-submit-style;
-	  width: 35%;
+	  width: 15%;
 	  margin-right: 10px;
 	  margin-top: 0;
 	}
   
 	&.remove {
 	  @extend %btn-cancel-inverted;
-	  width: 35%;
+	  width: 15%;
 	  padding: 10px;
 	  border-radius: 5px;
 	  text-transform: uppercase;

@@ -11,12 +11,9 @@
             </div>
           </label>
         </div>
-        <button class="btn add" type="button" (click)="addAnswer(i)">Add Answer</button>
-        <button class="btn remove" type="button" (click)="deleteAnswer(i)">Delete Answer</button>
+        <button class="btn add" type="button" (click)="addAnswer(i)">Add</button>
+        <button class="btn remove" type="button" (click)="deleteAnswer(i)">Delete</button>
       </div>
     </div>
-    <!-- <span *ngIf="!questionForm.errors?.valueRepeat && questionForm.get('answers').touched" class="warning">Please, do not repeat value numbers.</span>
-	<br>
-	<span *ngIf="!questionForm.get('answers').value.valid && questionForm.get('answers').touched" class="warning">Minimal value number is 1.</span> -->
-  </div>
+   </div>
 </div>

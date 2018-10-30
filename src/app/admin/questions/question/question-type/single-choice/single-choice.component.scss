@@ -2,27 +2,36 @@
 @import '~src/assets/styles/_variables.scss';
 
 .answer-holder {
-  @extend %answer-style;
-
-  .form-group {
-    padding: 10px 0;
-  }
+	@extend %answer-style;
+	
+	.form-group {
+		padding: 10px 0;
+	}
 }
 
 .btn {
-  &.add {
-    @extend %btn-submit-style;
-	width: 35%;
-	margin-top: 0;
-	margin-right: 10px;
-  }
-
-  &.remove {
-    @extend %btn-cancel-inverted;
-    width: 35%;
-    padding: 10px;
-    border-radius: 5px;
-    text-transform: uppercase;
-  }
+	&.add {
+		@extend %btn-submit-style;
+		width: 15%;
+		margin-top: 0;
+		margin-right: 10px;
+	}
+	
+	&.remove {
+		@extend %btn-cancel-inverted;
+		width: 15%;
+		padding: 10px;
+		border-radius: 5px;
+		text-transform: uppercase;
+	}
 }
 
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition: "color 9999s ease-out, background-color #fff ease-out";
+  -webkit-transition-delay: 9999s;
+}
