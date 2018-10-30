@@ -15,7 +15,9 @@ Test consists of three questions added by the **Administrator**. Every question 
 
 ## **__Run__**
 
-After cloning this repository to your computer, open the terminal inside the directory and run `npm install` to install all dependencies. After installing, run `ng serve` for a dev server. 
+Therefore, if you want to get access to the application, you will need to install the *back-end* ( instructions will be added soon ) and then login with the credentials provided bellow this text.
+
+After installing the **back-end**, please clone this repository to your computer, open the terminal inside the directory and run `npm install` to install all dependencies. After installing, run `ng serve` for a dev server. 
 
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
@@ -46,7 +48,6 @@ After the test submit, he can see the list of all passed/failed tests, and valid
 
 At this moment, these users are hard-coded in the database and there is no possibility of registering a new one. 
 
-Therefore, if you want to get access to the application, you will need to install the *back-end* from the instructions listed bellow and then login with the credentials provided bellow this text.
 
 **login**: contains login form and logic for user sign-in.
 
