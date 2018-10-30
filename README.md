@@ -147,14 +147,24 @@ As for the **SingleUserComponent**, all tests are displayed with ***CSS Grid***.
 
 After the selection, test is generated and user can begin his examination.
 
-There are 5 types of questions:
+There are 5 types of questions that can be generated in a test:
 
-1. **Single Choice Question** - based on radio buttons selection
+1. **Single Choice Question** - based on single radio-button selection
 
-2. **Multiple Choice Question** - based on checkbox selection
+![user-single](https://user-images.githubusercontent.com/36046572/47719637-10a9f880-dc4c-11e8-8561-de67d9d25e4c.gif)
+
+2. **Multiple Choice Question** - based on multiple checkbox selection
+
+![user-multiple](https://user-images.githubusercontent.com/36046572/47719658-215a6e80-dc4c-11e8-88e2-f18a8e9aee2d.gif)
 
 3. **Text Question** - based on textarea input 
 
+![user-text](https://user-images.githubusercontent.com/36046572/47719690-37682f00-dc4c-11e8-9abf-715555ecdc52.gif)
+
 4. **Order Question** - based on vertical Drag and Drop ordering
 
+![user-order](https://user-images.githubusercontent.com/36046572/47719703-42bb5a80-dc4c-11e8-8b82-1ccb83ab4c95.gif)
+
 5. **Connecting Question** - based on connection of right side of answers with the left
+
+![user-connect](https://user-images.githubusercontent.com/36046572/47719726-4f3fb300-dc4c-11e8-95b4-62862f2e87a9.gif)
