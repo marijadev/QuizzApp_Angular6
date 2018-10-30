@@ -76,36 +76,39 @@ Therefore, if you want to get access to the application, you need to install the
 
 ## **__ADMIN__**
 
-**Questions-directory**: with the **QuestionComponent** responsible for ***dynamic creation of particular question-component***.
+**QUESTIONS-DIRECTORY**: with the **QuestionComponent** responsible for ***dynamic creation of particular question-component***.
 
 This component is designed for creating a new question.  **Administrator** can add a question, can select difficulty, category and add answer.
 
-There are five types of questions:
+There are *five types* of questions:
 
-**Single Choice Question** - **Administrator** adds a question and a list of several wrong answers and one correct answer for the user. He will check the checkbox on the right side to mark the correct answer. If he tries to submit this question with more than one correct answer, the 'submit button' will be disabled until only one answer is checked as the correct one.
+1. **Single Choice Question** - **Administrator** adds a question and a list of several wrong answers and one correct answer for the user. He will check the checkbox on the right side to mark the correct answer. If he tries to submit this question with more than one correct answer, the 'submit button' will be disabled until only one answer is checked as the correct one.
 
 ![admin-single](https://user-images.githubusercontent.com/36046572/47715426-10a3fb80-dc40-11e8-909c-1426546e9212.gif)
 
-**Multiple Choice Question** - **Administrator** adds a question and a list of suggested correct and wrong answers for the user. Multiple answers can be checked as the correct ones.
+2. **Multiple Choice Question** - **Administrator** adds a question and a list of suggested correct and wrong answers for the user. Multiple answers can be checked as the correct ones.
 
 ![admin-multi](https://user-images.githubusercontent.com/36046572/47715432-16014600-dc40-11e8-9c42-51175fb7344a.gif)
 
-**Text Question** - **Administrator** can add the question, yet not the answer. Answer will be provided by the user. **Administrator** will also have the possibility to examine and validate the user's answer to this question-type.
+3. **Text Question** - **Administrator** can add the question, yet not the answer. Answer will be provided by the user. **Administrator** will also have the possibility to examine and validate the user's answer to this question-type.
 
 ![admin-text](https://user-images.githubusercontent.com/36046572/47715438-1863a000-dc40-11e8-9863-11935cb30b25.gif)
 
-**Ordering Question** - **Administrator** adds the question and a list of correct answers. In the inputs on the right side he will add the number to mark the importance of that answer. There cannot be multiple answers with the same value.
+4. **Ordering Question** - **Administrator** adds the question and a list of correct answers. In the inputs on the right side he will add the number to mark the importance of that answer. There cannot be multiple answers with the same value.
 
 ![admin-order](https://user-images.githubusercontent.com/36046572/47715440-1ac5fa00-dc40-11e8-8946-bbfb03b43b47.gif)
 
-**Connecting Question** - **Administrator** adds the question and several answer pairs. All the event answers will be mixed later, and the **User** will have to connect the right odd (left side) with the matching even (the right side) of answer.
+5. **Connecting Question** - **Administrator** adds the question and several answer pairs. All the event answers will be mixed later, and the **User** will have to connect the right odd (left side) with the matching even (the right side) of answer.
 
 ![admin-connect](https://user-images.githubusercontent.com/36046572/47715446-1c8fbd80-dc40-11e8-9acf-8cb9dfd7b129.gif)
 
 
-**Pending-directory**: containing template and logic for text-questions that the administrator needs to validate as __Passed__ or __Failed__.
+**PENDING-DIRECTORY**: containing template and logic for text-questions that the **Administrator** needs to validate as __Passed__ or __Failed__.
 
-**Users-directory**: has a **UsersComponent** template with the list of all users and their tests. 
+![pending](https://user-images.githubusercontent.com/36046572/47716865-3f23d580-dc44-11e8-974d-0c7412e585d8.png)
+
+
+**USERS-DIRECTORY**: has a **UsersComponent** template with the list of all users and their tests. 
 
 All tests can be filtered by:
 
@@ -119,9 +122,13 @@ All the tests are presented with the dates of their submission.
 
 Currently the length of tests is 4 per page, in order to show ***custom pagination*** written for this component.
 
+![users](https://user-images.githubusercontent.com/36046572/47716993-b194b580-dc44-11e8-84bc-bc14deb82452.gif)
+
 Also, this directory contains **SingleUserComponent** with the information about the selected user and his tests. 
 
-As for the **SingleUserComponent**, all tests are displayed with ***CSS Grid***.
+As for the **SingleUserComponent**, all tests are displayed with ***CSS Grid***. Also, all tests can be filtered as mentioned above.
+
+![single-user](https://user-images.githubusercontent.com/36046572/47717214-7050d580-dc45-11e8-94a2-15844b3ac437.gif)
 
 
 There are 5 types of questions:
