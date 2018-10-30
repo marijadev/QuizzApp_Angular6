@@ -159,7 +159,7 @@ There are 5 types of questions that can be generated in a test:
 
 3. **Text Question** - based on textarea input 
 
-![user-text](https://user-images.githubusercontent.com/36046572/47719690-37682f00-dc4c-11e8-9abf-715555ecdc52.gif)
+![user-text](https://user-images.githubusercontent.com/36046572/47719847-ae052c80-dc4c-11e8-8e56-985d44d614f7.gif)
 
 4. **Order Question** - based on vertical Drag and Drop ordering
 
