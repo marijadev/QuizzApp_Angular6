@@ -2,7 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.2.
 
-This application is a **quizz** for taking tests and creating ones. Currently, there are two types of users: administrator and user. At this moment, these users are hard-coded in the database and there is no possibility of registering a new one. Therefore, if you want to get access to the application, you need to install the back-end from the instructions listed bellow and then login with the credentials provided bellow this text.
+This application is a **quizz** for taking tests and creating ones. 
+
+Currently, there are two types of users: *administrator and user*. 
+
+At this moment, these users are hard-coded in the database and there is no possibility of registering a new one. 
+
+Therefore, if you want to get access to the application, you need to install the *back-end* from the instructions listed bellow and then login with the credentials provided bellow this text.
 
 ## **__Run__**
 
@@ -15,17 +21,17 @@ Navigate to `http://localhost:4200/`. The app will automatically reload if you c
 
 To log in as an administrator, when LOGIN page is loaded, type:
 
-Username: marko@gmail.com
+*Username*: marko@gmail.com
 
-Password: user123
+*Password*: user123
 
 Administrator can see and update his profile, add a new question to the test, validate text questions and has access to all users and their tests.
 
 ### **__User__**
 
-Username: petar@gmail.com
+*Username*: petar@gmail.com
 
-Password: user123
+*Password*: user123
 
 User can select type and/or difficulty of tests he wants to take. 
 After the test submit, he can see the list of all passed/failed tests, and validated questions.
@@ -44,18 +50,30 @@ After the test submit, he can see the list of all passed/failed tests, and valid
 
 ## **__CORE__**
 
-**HeaderComponent**: containing header template and routing navigation
+***HeaderComponent***: containing header template and routing navigation
 
-**ProfileComponent**: containing user's profile template and **edit-profile component**.
+***ProfileComponent***: containing user's profile template and **edit-profile component**.
 
-**HomeComponent**: simple template placeholder for quizz components.
+***HomeComponent***: simple template placeholder for quizz components.
 
-**core-routing.module.ts**: basic routes for routing components.
+***core-routing.module.ts***: basic routes for routing components.
 
-**core.module.ts**: core module with component declarations
+***core.module.ts***: core module with component declarations
 
 ## **__ADMIN__**
 
-**pending directory**: containing template and logic for text-questions that the administrator needs to validate as __passed__ or __failed__.
+***Pending-directory***: containing template and logic for text-questions that the administrator needs to validate as __Passed__ or __Failed__.
 
-**users directory**: has a **UsersComponent** template with the list of all users and their tests. Tests can be filtered by __difficulty (Easy, Medium, Hard)__, __category(JavaScript, Java, PHP)__ and __status (Passed, Failed)__, and are presented with the dates of their submission. Currently the length of tests is 4 per page, in order to show custom pagination written for this component.
+***Users-directory***: has a **UsersComponent** template with the list of all users and their tests. 
+
+Tests can be filtered by:
+
+	1. __difficulty (Easy, Medium, Hard)__
+
+	2. __category (JavaScript, Java, PHP)__ 
+
+	3. __status (Passed, Failed)__
+	
+All the tests are presented with the dates of their submission. 
+
+Currently the length of tests is 4 per page, in order to show ***custom pagination*** written for this component.
