@@ -118,11 +118,11 @@ All tests can be filtered by:
 
 3. **Status** (Passed, Failed)
 	
-All the tests are presented with the dates of their submission. 
+All the tests are presented with the dates of their submission. There are also statistics for all tests, percentage of passed tests from the selected area, as well as the average points.
 
 Currently the length of tests is 4 per page, in order to show ***custom pagination*** written for this component.
 
-![users](https://user-images.githubusercontent.com/36046572/47716993-b194b580-dc44-11e8-84bc-bc14deb82452.gif)
+![users](https://user-images.githubusercontent.com/36046572/47717372-dfc6c500-dc45-11e8-9dce-d1f78e5c8d23.gif)
 
 Also, this directory contains **SingleUserComponent** with the information about the selected user and his tests. 
 
@@ -130,6 +130,22 @@ As for the **SingleUserComponent**, all tests are displayed with ***CSS Grid***.
 
 ![single-user](https://user-images.githubusercontent.com/36046572/47717214-7050d580-dc45-11e8-94a2-15844b3ac437.gif)
 
+
+## **__USER__**
+
+**User** can take the test. He can choose the test by *Difficulty*, *Category* or both *Difficulty / Category*. 
+
+**TESTS**
+
+**tests.module.ts**: contains declaration of components in this module.
+
+**TestsComponent**: template used as a placeholder for test-question components.
+
+**TestTypeComponent**: template and logic for generating tests and sending requests to back-end. Also, this component has validation for the checkbox fields. Only one type can be selected or the test won't be generated. If the user wants to select both *Difficulty / Category*, he can do so by checking only one item from each list.
+
+![user-generate-test](https://user-images.githubusercontent.com/36046572/47717705-ce31ed00-dc46-11e8-8e28-b54575ae37c0.gif)
+
+After the selection, test is generated and user can begin his examination.
 
 There are 5 types of questions:
 
