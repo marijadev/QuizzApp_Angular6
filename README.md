@@ -130,6 +130,7 @@ As for the **SingleUserComponent**, all tests are displayed with ***CSS Grid***.
 
 ![single-user](https://user-images.githubusercontent.com/36046572/47717214-7050d580-dc45-11e8-94a2-15844b3ac437.gif)
 
+______________________________________________________________________________________________________________________________
 
 ## **__USER__**
 
@@ -168,3 +169,7 @@ There are 5 types of questions that can be generated in a test:
 5. **Connecting Question** - based on connection of right side of answers with the left
 
 ![user-connect](https://user-images.githubusercontent.com/36046572/47719726-4f3fb300-dc4c-11e8-95b4-62862f2e87a9.gif)
+
+**User** can see all tests, *Passed* and *Failed*. All questions except the text-question are validated automatically. The correct ones will have green color, wrong ones will be painted in red.
+
+![user-passed-test](https://user-images.githubusercontent.com/36046572/47721021-82377600-dc4f-11e8-81e1-5d5457385b8f.gif)
