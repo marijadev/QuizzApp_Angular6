@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { QuestionService } from '../../../../questions/question.service';
 
 @Component({

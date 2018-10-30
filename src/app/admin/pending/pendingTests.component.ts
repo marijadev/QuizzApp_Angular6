@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { API_URL } from '../shared/constants';
+import { API_URL } from '../../shared/constants';
 
 @Component({
 	selector: 'app-pending-tests',

@@ -1,11 +1,11 @@
-import { Component, OnInit, Output, OnDestroy, Input } from '@angular/core';
-import { UserService } from '../shared/services/users.service';
-import { User } from '../shared/user.model';
-import { QuestionService } from '../questions/question.service';
+import { Component, OnInit, Output, OnDestroy } from '@angular/core';
+import { UserService } from '../../shared/services/users.service';
+import { User } from '../../shared/user.model';
+import { QuestionService } from '../../admin/questions/question.service';
 import { HttpClient } from '@angular/common/http';
-import { API_URL, status, allUsersTestRequests } from '../shared/constants';
-import { SingleTest } from '../shared/single-test.model';
-import { PaginationService } from '../shared/pagination/pagination.service';
+import { API_URL, status, allUsersTestRequests } from '../../shared/constants';
+import { SingleTest } from '../../shared/single-test.model';
+import { PaginationService } from '../../shared/pagination/pagination.service';
 
 @Component({
 	selector: 'app-users',

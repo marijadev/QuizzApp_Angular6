@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 
-import { Question } from '../../shared/question.model';
+import { Question } from '../../../shared/question.model';
 import { ComponentFactoryResolver } from '@angular/core';
 import { SingleChoiceComponent } from './question-type/single-choice/single-choice.component';
 import { MultipleChoiceComponent } from './question-type/multiple-choice/multiple-choice.component';
 import { TextComponent } from './question-type/text/text.component';
 import { OrderComponent } from './question-type/order/order.component';
-import { questionTypes, API_URL } from '../../shared/constants';
+import { questionTypes, API_URL } from '../../../shared/constants';
 import { QuestionService } from '../question.service';
 import { ConnectingComponent } from './question-type/connecting/connecting.component';
 import { HttpClient } from '@angular/common/http';

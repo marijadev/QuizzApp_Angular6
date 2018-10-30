@@ -6,10 +6,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { UsersComponent } from './users/users.component';
-import { PendingTestsComponent } from './pending/pendingTests.component';
+import { UsersComponent } from './admin/users/users.component';
+import { PendingTestsComponent } from './admin/pending/pendingTests.component';
 import { TestsComponent } from './tests/tests.component';
-import { SingleUserComponent } from './users/single-user/single-user.component';
+import { SingleUserComponent } from './admin/users/single-user/single-user.component';
 import { TestTypeComponent } from './tests/test-type/test-type.component';
 import { TestComponent } from './tests/test/test.component';
 
@@ -17,7 +17,7 @@ import { AppRouting } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 
-import { QuestionService } from './questions/question.service';
+import { QuestionService } from './admin/questions/question.service';
 import { AuthService } from './auth/auth.service';
 import { ProfileService } from './shared/services/profile.service';
 import { UserService } from './shared/services/users.service';

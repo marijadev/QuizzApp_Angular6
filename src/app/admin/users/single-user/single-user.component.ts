@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { QuestionService } from '../../questions/question.service';
+import { QuestionService } from '../../../admin/questions/question.service';
 import { HttpClient } from '@angular/common/http';
 
-import { categories, status, API_URL, testRequests } from '../../shared/constants';
+import { categories, status, API_URL, testRequests } from '../../../shared/constants';
 import { UserService } from 'src/app/shared/services/users.service';
 
 @Component({

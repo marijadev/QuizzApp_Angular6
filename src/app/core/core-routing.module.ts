@@ -2,14 +2,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { HomeComponent } from './home/home.component';
-import { UsersComponent } from '../users/users.component';
-import { QuestionComponent } from '../questions/question/question.component';
-import {  PendingTestsComponent } from '../pending/pendingTests.component';
-import { HeaderComponent } from './header/header.component';
+import { UsersComponent } from '../admin/users/users.component';
+import { QuestionComponent } from '../admin/questions/question/question.component';
+import { PendingTestsComponent } from '../admin/pending/pendingTests.component';
 import { TestsComponent } from '../tests/tests.component';
 import { PassedTestsComponent } from '../tests/passed-tests/passed-tests.component';
-import { ProfileComponent } from './profile/profile.component';
-import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { TestComponent } from '../tests/test/test.component';
 
@@ -17,9 +14,6 @@ const coreRoutes: Routes = [
 	{
 		path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
 			{ path: 'question', component: QuestionComponent},
-			// { path: 'profile', component: ProfileComponent, children: [
-			// 	{path: 'edit-profile', component: EditProfileComponent},
-			// ] },
 			{ path: 'pending-tests', component: PendingTestsComponent },
 			{ path: 'users', component: UsersComponent },
 			{ path: 'passed-tests', component: PassedTestsComponent },
@@ -27,7 +21,6 @@ const coreRoutes: Routes = [
 			{ path: 'test', component: TestComponent },
 		]
 	},
-	// { path: 'header', component: HeaderComponent },
 	{ path: '**', redirectTo: '' }
 ]
 

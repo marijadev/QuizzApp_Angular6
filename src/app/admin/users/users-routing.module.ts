@@ -2,7 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { UsersComponent } from './users.component';
-import { UserType } from '../shared/guards/user-type.guard';
+import { UserType } from '../../shared/guards/user-type.guard';
 import { SingleUserComponent } from './single-user/single-user.component';
 
 const usersRoutes: Routes = [
