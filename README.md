@@ -252,7 +252,7 @@ After the program installation is finished (*Java 8*, *JDK*, *MySQL Workbench*, 
 
 12. Log into you Local instance in` MySql Workbench` ( with the password you used during the installation process ). 
 
-13. Go to `Server -> Data Import -> Import from Self-contained file -> choose location` and import the `.sql` file (QuizzApp > DOCUMENTATION and **db**) -> Start import
+13. Go to `Server -> Data Import -> Import from Self-contained file -> choose location` and import the `.sql` file (QuizzApp > DOCUMENTATION and db) -> Start import
 
 14. Go to *Eclipse* and in your `*quizzfinal*` -> `springbootrestapi` folder find the `App.java` file
 
