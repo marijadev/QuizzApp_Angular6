@@ -25,6 +25,8 @@ Back-end repository: *https://github.com/ivanav994/quizzfinal*
 
 Front-end repository (this): https://github.com/marijadev/QuizzApp_Angular6
 
+In the Back-end repository, in the folder` DOCUMENTATION and db` you can find the additional instructions for the *Back-end* part of this application.
+
 ### **__Administrator Credentials__**
 
 To log in as an **Administrator**, when LOGIN page is loaded, type:
@@ -248,9 +250,9 @@ After the program installation is finished (*Java 8*, *JDK*, *MySQL Workbench*, 
 
 11. Check '`All children (recursive)`', with 'File and Folder Attributes', specify '`node_modules`'
 
-12. Log into you Local instance in MySql Workbench ( with the password you used during the installation process ). 
+12. Log into you Local instance in` MySql Workbench` ( with the password you used during the installation process ). 
 
-13. Go to `Server -> Data Import -> Import from Self-contained file -> choose location` (QuizzApp > DOCUMENTATION and **db**) -> Start import
+13. Go to `Server -> Data Import -> Import from Self-contained file -> choose location` and import the `.sql` file (QuizzApp > DOCUMENTATION and **db**) -> Start import
 
 14. Go to *Eclipse* and in your `*quizzfinal*` -> `springbootrestapi` folder find the `App.java` file
 
