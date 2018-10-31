@@ -199,7 +199,7 @@ Contains directories and files potentially used by multiple components
 
 **single-test.model.ts**: an interface and single-test entity
 
-**user.model.ts**: an **User** entity
+**user.model.ts**: a **User** entity
 
 
 ## **__ASSETS__**
@@ -218,7 +218,7 @@ but it gives a very useful tutorial for helping you understand how to connect Ba
 
 See the article here: ***https://grokonez.com/frontend/angular/how-to-integrate-angular-6-springboot-2-0-restapi-springtoolsuite***
 
-After the program installation is finished (*Java 8*, *JDK*, *MySql Workbench*, *NodeJS*, *Angular 6*, *Eclipse* or some other IDE), you can continue to follow the article provided to you in the link above and finish the project setup. Also, you can follow the steps listed bellow:
+After the program installation is finished (*Java 8*, *JDK*, *MySQL Workbench*, *NodeJS*, *Angular 6*, *Eclipse*), you can continue to follow the article provided to you in the link above and finish the project setup. Also, you can help yourself by following the steps listed bellow:
 
 1. Create a directory with custom name. For the purpose of this tutorial let's call it QuizzApp.
 
@@ -246,7 +246,7 @@ After the program installation is finished (*Java 8*, *JDK*, *MySql Workbench*, 
 
 13. Go to Server -> Data Import -> Import from Self-contained file -> choose location (QuizzApp > DOCUMENTATION and **db**) -> Start import
 
-14. Password for the Workbench is *root*
+14. Password for the Workbench is **root**
 
 15. After installing, run `npm start` for a dev server.
 
