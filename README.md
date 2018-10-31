@@ -23,7 +23,7 @@ Otherwise, to have access to this application, you need to install: *Java 8*, *J
 
 Back-end repository: *https://github.com/ivanav994/quizzfinal*
 
-Front-end repository (this): https://github.com/marijadev/QuizzApp_Angular6
+Front-end repository (this repository): https://github.com/marijadev/QuizzApp_Angular6
 
 In the Back-end repository, in the folder` DOCUMENTATION and db` you can find the additional instructions for the *Back-end* part of this application.
 
