@@ -216,7 +216,7 @@ Contains directories and files potentially used by multiple components
 
 
 
-### Installing The Application
+### **INSTALLING THE APPLICATION**
 
 
 You can find the instructions for the installation in the following article. That article is not provided by me, nor it is a guide for deploying this particular application, 
