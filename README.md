@@ -258,7 +258,7 @@ After the program installation is finished (*Java 8*, *JDK*, *MySQL Workbench*, 
 
 15. Right-click somewhere in the file and choose `Run As -> Java Application`
 
-16. Go to *Eclipse* and right-click on your `*QuizzApp_Angular6*`, `choose Show In Local Terminal -> Terminal`
+16. Go to *Eclipse* and right-click on your `*QuizzApp_Angular6*` directory, choose `Show In Local Terminal -> Terminal`
 
 17. In the opened terminal, run `npm start` for a dev server
 
@@ -266,4 +266,4 @@ After the program installation is finished (*Java 8*, *JDK*, *MySQL Workbench*, 
 
 19. User the credentials to login (login as [User](#user-credentials), or login as [Administrator](#administrator-credentials))
 
-20. Welcome to our application. :)
+20. Welcome to our application. 
