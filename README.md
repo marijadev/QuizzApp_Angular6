@@ -21,6 +21,10 @@ If you want to get access to the application, you have to install the *Back-end*
 
 Otherwise, to have access to this application, you need to install: *Java 8*, *JDK*, *MySql Workbench*, *NodeJS*, *Angular 6*, *Eclipse* or some other IDE.
 
+Back-end repository: *https://github.com/ivanav994/quizzfinal*
+
+Front-end repository (this): https://github.com/marijadev/QuizzApp_Angular6
+
 ### **__Administrator Credentials__**
 
 To log in as an **Administrator**, when LOGIN page is loaded, type:
@@ -218,36 +222,46 @@ but it gives a very useful tutorial for helping you understand how to connect Ba
 
 See the article here: ***https://grokonez.com/frontend/angular/how-to-integrate-angular-6-springboot-2-0-restapi-springtoolsuite***
 
+Be careful to **remember the password** you entered when installing the MySQL Workbench ('**root**' may be easy to remember)!
+
 After the program installation is finished (*Java 8*, *JDK*, *MySQL Workbench*, *NodeJS*, *Angular 6*, *Eclipse*), you can continue to follow the article provided to you in the link above and finish the project setup. Also, you can help yourself by following the steps listed bellow:
 
 1. Create a directory with custom name. For the purpose of this tutorial let's call it QuizzApp.
 
-2. Inside the QuizzApp clone the Back-end repository: *https://github.com/ivanav994/quizzfinal*
+2. Inside the QuizzApp `clone` the Back-end repository: *https://github.com/ivanav994/quizzfinal*
 
-3. Enter the just cloned *quizzfinal* directory, select the directory *DOCUMENTATION and db*, cut it from the *quizzfinal* and paste it into the QuizzApp directory.
+3. Enter the just cloned *quizzfinal* directory, select the directory `DOCUMENTATION and db`, cut it from the *quizzfinal* and paste it into the QuizzApp directory.
 
-4. Inside the QuizzApp clone this Front-end repository: *https://github.com/marijadev/QuizzApp_Angular6*
+4. Inside the QuizzApp `clone` this Front-end repository: *https://github.com/marijadev/QuizzApp_Angular6*
 
 5. Enter the QuizzApp_Angular6 directory, open your terminal and run `npm install` to install all dependencies.  
 
-6. Open your *Eclipse* IDE and import the *quizzfinal* (Back-end) and *QuizzApp_Angular6* (Front-end) directory.
+6. Open your *Eclipse* IDE and `import the *quizzfinal*` (Back-end) and `*QuizzApp_Angular6*` (Front-end) directory.
 
-7. Open the *quizzfinal* directory
+7. `Open the *quizzfinal*` directory
 
-8. Right-click on the springbootrestapi project -> Maven -> Update project (or Run As -> Maven build -> clean install)
+8. Right-click on the `springbootrestapi` project -> Maven -> Update project
 
-9. Right-click on *QuizzApp_Angular6* project: Properties -> Resource -> Resource Filter -> Add Filter
+9. Right-click on `*QuizzApp_Angular6*` project: Properties -> Resource -> Resource Filter -> Add Filter
 
-10. Choose 'Filter Type: Exclude all', Applies to: 'Files and folders'
+10. Choose 'Filter Type: `Exclude all`', Applies to: '`Files and folders`'
 
-11. Check 'All children (recursive)', with 'File and Folder Attributes', specify 'node_modules'
+11. Check '`All children (recursive)`', with 'File and Folder Attributes', specify '`node_modules`'
 
-12. Log into you Local instance in MySql Workbench. 
+12. Log into you Local instance in MySql Workbench ( with the password you used during the installation process ). 
 
-13. Go to Server -> Data Import -> Import from Self-contained file -> choose location (QuizzApp > DOCUMENTATION and **db**) -> Start import
+13. Go to `Server -> Data Import -> Import from Self-contained file -> choose location` (QuizzApp > DOCUMENTATION and **db**) -> Start import
 
-14. Password for the Workbench is **root**
+14. Go to *Eclipse* and in your `*quizzfinal*` -> `springbootrestapi` folder find the `App.java` file
 
-15. After installing, run `npm start` for a dev server.
+15. Right-click somewhere in the file and choose `Run As -> Java Application`
 
-15. Open your browser and navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+16. Go to *Eclipse* and right-click on your `*QuizzApp_Angular6*`, `choose Show In Local Terminal -> Terminal`
+
+17. In the opened terminal, run `npm start` for a dev server
+
+18. Open your browser and navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+19. User the credentials to login (login as [User](#user-credentials), or login as [Administrator](#administrator-credentials))
+
+20. Welcome to our application. :)
