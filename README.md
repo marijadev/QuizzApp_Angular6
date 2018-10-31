@@ -10,17 +10,20 @@ It consists of two parts and has two types of users: ***Administrator and User**
 
 Test consists of three questions added by the **Administrator**. Every question is randomly selected from the database. 
 
-**User** can choose which type of test he wants to take. 
+**User** can choose which type of test he wants to take and is able to see the list of all *Passed* / *Failed* tests. 
 
 
 ## **__Run__**
 
-Therefore, if you want to get access to the application, you will need to install the *back-end* ( instructions will be added soon ) and then login with the credentials provided bellow this text.
+If you want to get access to the application, you will need to install the *back-end* ( instructions provided bellow ) and then login with the credentials provided bellow this text (**__Administrator__** and **__User__** sections).
 
-After installing the **back-end**, please clone this repository to your computer, open the terminal inside the directory and run `npm install` to install all dependencies. After installing, run `ng serve` for a dev server. 
+### **__Adding Back-end__**: 
 
-Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+To have access to this application, you need to install: *Java 8*, *JDK*, *MySql Workbench*, *Eclipse* or some other IDE, *NodeJS*, *Angular 6*.
 
+You can find the instructions for the installation in the following link: *https://grokonez.com/frontend/angular/how-to-integrate-angular-6-springboot-2-0-restapi-springtoolsuite*.
+
+**__Detailed instructions for deploying this application can be found [here](#installing-the-application).__**
 
 ### **__Administrator__**
 
@@ -206,3 +209,15 @@ Contains directories and files potentially used by multiple components
 **Img-directory**: containing icons and images
 
 **Styles-directory**: containing **_mixins.scss** and **_variables.scss** files with style presets
+
+### Installing The Application
+
+1. Create a directory with custom name. For the purpose of this tutorial let's call it QuizzApp.
+
+2. Inside the QuizzApp clone the Back-end repository: *https://github.com/ivanav994/quizzfinal*
+
+3. Inside the QuizzApp clone this Front-end repository: *https://github.com/marijadev/QuizzApp_Angular6*
+
+4. Open your terminal inside the QuizzApp_Angular6 directory and run `npm install` to install all dependencies. After installing, run `ng serve` for a dev server. 
+
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
