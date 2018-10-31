@@ -13,13 +13,13 @@ Test consists of three questions added by the **Administrator**. Every question 
 
 ## **__Run__**
 
-If you want to get access to the application, you have to install the *Back-end* ( instructions provided bellow ) and then login with the credentials provided bellow this text (**__[Administrator:](#administrator-credentials)__** and **__[User](#user-credentials)__** sections).
+If you want to get access to the application, you have to install the *Back-end* ( [instructions provided bellow](#adding-back-end) ) and then login with the credentials provided bellow this text (**__[Administrator](#administrator-credentials)__** and **__[User](#user-credentials)__** sections).
 
 ### **__Adding Back-end__**:
 
 **__Detailed instructions for deploying this application can be found [HERE](#installing-the-application).__**
 
-To have access to this application, you need to install: *Java 8*, *JDK*, *MySql Workbench*, *NodeJS*, *Angular 6*, *Eclipse* or some other IDE.
+Otherwise, to have access to this application, you need to install: *Java 8*, *JDK*, *MySql Workbench*, *NodeJS*, *Angular 6*, *Eclipse* or some other IDE.
 
 ### **__Administrator Credentials__**
 
@@ -213,19 +213,41 @@ Contains directories and files potentially used by multiple components
 ### Installing The Application
 
 
-You can find the instructions for the installation in the following link. This article is not created by me, nor it is a guide for deploying this particular application, 
-but it provides a very useful tutorial for helping you understand how to connect Back-end with Front-end logic. 
+You can find the instructions for the installation in the following article. That article is not provided by me, nor it is a guide for deploying this particular application, 
+but it gives a very useful tutorial for helping you understand how to connect Back-end with Front-end logic. 
 
-*https://grokonez.com/frontend/angular/how-to-integrate-angular-6-springboot-2-0-restapi-springtoolsuite*.
+See the article here: ***https://grokonez.com/frontend/angular/how-to-integrate-angular-6-springboot-2-0-restapi-springtoolsuite***
 
-**Detailed explanation:**
+After the program installation is finished (*Java 8*, *JDK*, *MySql Workbench*, *NodeJS*, *Angular 6*, *Eclipse* or some other IDE), you can continue to follow the article provided to you in the link above and finish the project setup. Also, you can follow the steps listed bellow:
 
-Create a directory with custom name. For the purpose of this tutorial let's call it QuizzApp.
+1. Create a directory with custom name. For the purpose of this tutorial let's call it QuizzApp.
 
-Inside the QuizzApp clone the Back-end repository: *https://github.com/ivanav994/quizzfinal*
+2. Inside the QuizzApp clone the Back-end repository: *https://github.com/ivanav994/quizzfinal*
 
-Inside the QuizzApp clone this Front-end repository: *https://github.com/marijadev/QuizzApp_Angular6*
+3. Enter the just cloned *quizzfinal* directory, select the directory *DOCUMENTATION and db*, cut it from the *quizzfinal* and paste it into the QuizzApp directory.
 
-Open your terminal inside the QuizzApp_Angular6 directory and run `npm install` to install all dependencies. After installing, run `ng serve` for a dev server. 
+4. Inside the QuizzApp clone this Front-end repository: *https://github.com/marijadev/QuizzApp_Angular6*
 
-Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+5. Enter the QuizzApp_Angular6 directory, open your terminal and run `npm install` to install all dependencies.  
+
+6. Open your *Eclipse* IDE and import the *quizzfinal* (Back-end) and *QuizzApp_Angular6* (Front-end) directory.
+
+7. Open the *quizzfinal* directory
+
+8. Right-click on the springbootrestapi project -> Maven -> Update project (or Run As -> Maven build -> clean install)
+
+9. Right-click on *QuizzApp_Angular6* project: Properties -> Resource -> Resource Filter -> Add Filter
+
+10. Choose 'Filter Type: Exclude all', Applies to: 'Files and folders'
+
+11. Check 'All children (recursive)', with 'File and Folder Attributes', specify 'node_modules'
+
+12. Log into you Local instance in MySql Workbench. 
+
+13. Go to Server -> Data Import -> Import from Self-contained file -> choose location (QuizzApp > DOCUMENTATION and **db**) -> Start import
+
+14. Password for the Workbench is *root*
+
+15. After installing, run `npm start` for a dev server.
+
+15. Open your browser and navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
