@@ -2,20 +2,18 @@
 
 This application is a **quizz** for taking tests and creating ones. 
 
-It consists of two parts and has two types of users: ***Administrator and User***. 
+It consists of two parts and has two types of users: **Administrator** and **User**. 
 
 **Administrator** is an employee with the higher rank who can create questions (for an **Employee** to answer) and answers, who has the authority to validate them and has access to the list of all users and their tests.
 
-**User** is an employee who has a possibility to take the test.
+**User** is an employee who has a possibility to take the test. He can choose which type of test he wants to take and is able to see the list of all *Passed* / *Failed* tests.
 
 Test consists of three questions added by the **Administrator**. Every question is randomly selected from the database. 
-
-**User** can choose which type of test he wants to take and is able to see the list of all *Passed* / *Failed* tests. 
 
 
 ## **__Run__**
 
-If you want to get access to the application, you will need to install the *Back-end* ( instructions provided bellow ) and then login with the credentials provided bellow this text (**__[Administrator:](#administrator-credentials)__** and **__[User](#user-credentials)__** sections).
+If you want to get access to the application, you have to install the *Back-end* ( instructions provided bellow ) and then login with the credentials provided bellow this text (**__[Administrator:](#administrator-credentials)__** and **__[User](#user-credentials)__** sections).
 
 ### **__Adding Back-end__**:
 
