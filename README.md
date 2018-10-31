@@ -15,33 +15,33 @@ Test consists of three questions added by the **Administrator**. Every question 
 
 ## **__Run__**
 
-If you want to get access to the application, you will need to install the *back-end* ( instructions provided bellow ) and then login with the credentials provided bellow this text (**__Administrator__** and **__User__** sections).
+If you want to get access to the application, you will need to install the *Back-end* ( instructions provided bellow ) and then login with the credentials provided bellow this text (**__[Administrator:](#administrator-credentials)__** and **__[User](#user-credentials)__** sections).
 
-### **__Adding Back-end__**: 
+### **__Adding Back-end__**:
 
-To have access to this application, you need to install: *Java 8*, *JDK*, *MySql Workbench*, *Eclipse* or some other IDE, *NodeJS*, *Angular 6*.
+**__Detailed instructions for deploying this application can be found [HERE](#installing-the-application).__**
 
-You can find the instructions for the installation in the following link: *https://grokonez.com/frontend/angular/how-to-integrate-angular-6-springboot-2-0-restapi-springtoolsuite*.
+To have access to this application, you need to install: *Java 8*, *JDK*, *MySql Workbench*, *NodeJS*, *Angular 6*, *Eclipse* or some other IDE.
 
-**__Detailed instructions for deploying this application can be found [here](#installing-the-application).__**
+### **__Administrator Credentials__**
 
-### **__Administrator__**
-
-To log in as an administrator, when LOGIN page is loaded, type:
+To log in as an **Administrator**, when LOGIN page is loaded, type:
 
 *Username*: marko@gmail.com
 
-*Password*: user123
+*Password*: User123#
 
-Administrator can see and update his profile, add a new question to the test, validate text questions and has access to all users and their tests.
+**Administrator** can see and update his profile, add a new question to the test, validate text questions and has access to all users and their tests.
 
-### **__User__**
+### **__User Credentials__**
+
+To log in as a **User**, when LOGIN page is loaded, type:
 
 *Username*: petar@gmail.com
 
-*Password*: user123
+*Password*: User123#
 
-User can see and update his profile, can select type and/or difficulty of tests he wants to take. 
+**User** can see and update his profile, can select type and/or difficulty of tests he wants to take. 
 After the test submit, he can see the list of all passed/failed tests, and validated questions.
 
 
@@ -210,14 +210,24 @@ Contains directories and files potentially used by multiple components
 
 **Styles-directory**: containing **_mixins.scss** and **_variables.scss** files with style presets
 
+
+
 ### Installing The Application
 
-1. Create a directory with custom name. For the purpose of this tutorial let's call it QuizzApp.
 
-2. Inside the QuizzApp clone the Back-end repository: *https://github.com/ivanav994/quizzfinal*
+You can find the instructions for the installation in the following link. This article is not created by me, nor it is a guide for deploying this particular application, 
+but it provides a very useful tutorial for helping you understand how to connect Back-end with Front-end logic. 
 
-3. Inside the QuizzApp clone this Front-end repository: *https://github.com/marijadev/QuizzApp_Angular6*
+*https://grokonez.com/frontend/angular/how-to-integrate-angular-6-springboot-2-0-restapi-springtoolsuite*.
 
-4. Open your terminal inside the QuizzApp_Angular6 directory and run `npm install` to install all dependencies. After installing, run `ng serve` for a dev server. 
+**Detailed explanation:**
+
+Create a directory with custom name. For the purpose of this tutorial let's call it QuizzApp.
+
+Inside the QuizzApp clone the Back-end repository: *https://github.com/ivanav994/quizzfinal*
+
+Inside the QuizzApp clone this Front-end repository: *https://github.com/marijadev/QuizzApp_Angular6*
+
+Open your terminal inside the QuizzApp_Angular6 directory and run `npm install` to install all dependencies. After installing, run `ng serve` for a dev server. 
 
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
