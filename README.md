@@ -43,7 +43,7 @@ To log in as a **User**, when LOGIN page is loaded, type:
 
 *Username*: petar@gmail.com
 
-*Password*: User123#
+*Password*: user123
 
 **User** can see and update his profile, can select type and/or difficulty of tests he wants to take. 
 After the test submit, he can see the list of all passed/failed tests, and validated questions.
