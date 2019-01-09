@@ -13,7 +13,7 @@ export class MyInterceptor implements HttpInterceptor {
 	): Observable<HttpEvent<any>> {
 
 		const updatedRequest = request.clone({
-			headers: request.headers.append("Authorization", this.token.getToken()),
+			headers: request.headers.append("Authorization", this.token.getToken() || ''),
 			withCredentials: true
 		});
 
